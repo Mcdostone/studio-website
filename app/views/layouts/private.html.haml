@@ -1,0 +1,31 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title StudioWebsite
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+  %body
+    %nav.tn-nav.uk-navbar.uk-navbar-attached
+      .uk-container.uk-container-center
+        .uk-navbar-brand
+          %a{href: root_path}
+            = image_tag('logo.png')
+        %ul.uk-navbar-nav
+          %li 
+            %a Get Started
+          %li 
+            %a Core
+          %li 
+            %a Components
+          %li
+            %a Customize
+          %li
+            %a Showcase
+          %li 
+            %a Tutorials
+          %li
+            %a UiKit 3
+    .uk-container.uk-container-center
+      = yield
