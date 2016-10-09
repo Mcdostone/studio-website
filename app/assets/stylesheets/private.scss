@@ -1,5 +1,14 @@
+html {
+  height: 100%;
+}
+
+body {
+	min-height: 100%;
+	background-color: #222222;
+}
+
 .tn-nav {
-	background-color: black;
+	background-color: #0A0A0A;
 	padding-top: 20px;
 	padding-bottom: 20px;
 
@@ -13,4 +22,15 @@
 	img {
 		max-height: 40px;
 	}
+}
+
+.tn-thumbnail {
+	box-shadow: 3px 3px 6px 1px rgba(0, 0, 0, 0.75);
+	-moz-box-shadow: 3px 3px 6px 1px rgba(0, 0, 0, 0.75);
+	-webkit-box-shadow: 3px 3px 6px 1px rgba(0, 0, 0, 0.75);
+}
+
+.tn-footer {
+	background-color: #0A0A0A;
+	padding: 120px;
 }

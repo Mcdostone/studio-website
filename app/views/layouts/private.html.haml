@@ -7,7 +7,7 @@
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   %body
-    %nav.tn-nav.uk-navbar.uk-navbar-attached
+    %nav.tn-nav.uk-navbar.uk-navbar-attached.uk-contrast
       .uk-container.uk-container-center
         .uk-navbar-brand
           %a{href: root_path}
@@ -27,5 +27,9 @@
             %a Tutorials
           %li
             %a UiKit 3
-    .uk-container.uk-container-center
+    .uk-width-large-4-5.uk-width-medium-5-6.uk-container-center.uk-margin-large
       = yield
+    .tn-footer.uk-contrast
+      .uk-container.uk-container-center.uk-text-center
+        %p
+          Fait par Nicolas Kirchner, with love
