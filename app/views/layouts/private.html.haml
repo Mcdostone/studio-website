@@ -4,9 +4,12 @@
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
     %title StudioWebsite
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = stylesheet_link_tag    "http://fonts.googleapis.com/css?family=Open+Sans:300&amp;subset=latin,cyrillic-ext,greek-ext,greek,vietnamese,latin-ext,cyrillic"
+    = javascript_include_tag "http://apis.google.com/js/client.js"
+    = javascript_include_tag "http://apis.google.com/js/api.js"
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
-  %body
+  %body{"ng-app" => "TNStudio", "ng-controller" => "TNStudioCtrl"}
     %nav.tn-nav.uk-navbar.uk-navbar-attached.uk-contrast
       .uk-container.uk-container-center
         .uk-navbar-brand
