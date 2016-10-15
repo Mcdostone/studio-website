@@ -1,0 +1,116 @@
+@import "navbar";
+
+$height-background: 400px;
+$body-background: #222222;
+$text-color: #919191;
+
+
+html, body {
+	width: 100%;
+	height: 100%;
+	padding: 0;
+	margin: 0;
+	color: $text-color;
+
+	background-color: $body-background;
+}
+
+a {
+	color: inherit;
+
+	&:visited, &:hover {
+		color: inherit;
+		text-decoration: none;
+	}
+}
+
+
+section {
+	display: inline-block;
+	position: relative;
+	padding: 2% 30% 3% 30%;
+	text-align: justify;
+	font-size: 1.1em;
+	margin: 0;
+	float: left;
+	z-index: 30;
+
+	&:before {
+		content: '';
+		display: block;
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		border-top: 1px solid $navbar-logo-background;
+		left: 0;
+		right: 0;
+		z-index: -2;
+		@include transform-origin(0, 0);
+		@include skewY(-2deg);
+		background-color: $body-background;
+	}
+}
+
+
+.background {
+	display: inline-block;
+	float: left;
+	width: 100%;
+	height: $height-background;
+	position: relative;
+	z-index: 3;
+
+	&:before {
+		content: '';
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		background-color: $navbar-background;
+		opacity: 0.7;
+	}
+
+	.title {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		line-height: 5em;
+		font-size: 5em;
+		font-weight: 300;
+		color: white;
+		text-transform: uppercase;
+
+		@include translate(-50%, -50%);
+
+	}
+}
+
+#studio {
+	background: url("/images/lens.jpeg") top fixed;
+	background-size: cover;
+}
+
+#works {
+	background: url("/images/spiral-film.jpeg") top fixed;
+	background-size: cover;
+}
+
+#about {
+	background: url("/images/film-projector.jpg") top fixed;
+	background-size: cover;
+}
+
+footer {
+	display: inline-block;
+	width: 100%;
+	height: 100px;
+	background-color: $navbar-background;
+	color: $navbar-color;
+	line-height: 100px;
+	text-align: center;
+
+	p {
+		margin: 0;
+	}
+}
