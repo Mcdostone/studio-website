@@ -1,13 +1,16 @@
 %navbar
   %ul.nav-left
     %li#navbar-logo
-      = image_tag("logo_studio.png")
+      = image_tag("/images/logo_studio.png")
     %li Studio
     %li Réalisations
     %li À propos
   %ul.nav-right
     - if current_user
-      %li= current_user.name
+      %li#nav-profile
+        = current_user.name
+        %div.nav-profile-avatar
+          = image_tag("/images/lens.jpeg")
       %li= link_to "Déconnexion", signout_path, id: "sign_out"     
     - else
       %li= link_to "Se connecter", "/auth/google_oauth2", id: "sign_in"
