@@ -1,16 +1,23 @@
 %navbar
-  %ul.nav-left
-    %li#navbar-logo
-      = image_tag("/images/logo_studio.png")
-    %li Studio
-    %li Réalisations
-    %li À propos
-  %ul.nav-right
-    - if current_user
-      %li#nav-profile
-        = current_user.name
-        %div.nav-profile-avatar
-          = image_tag("/images/lens.jpeg")
-      %li= link_to "Déconnexion", signout_path, id: "sign_out"     
-    - else
-      %li= link_to "Se connecter", "/auth/google_oauth2", id: "sign_in"
+  %a#navbar-logo
+    = image_tag("/images/logo_studio.png")
+  %div.nav-container-hamburger
+    %div.nav-hamburger
+  
+  %div.nav.hidden
+    %div.nav-left
+      = link_to "Studio", "#studio"
+      = link_to "Réalisations", "#works"
+      = link_to "À propos", "#about"
+    %div.nav-right
+      - if !current_user
+
+        = link_to "#", id: "nav-profile" do
+          %div.nav-profile-avatar
+            = image_tag("/images/lens.jpeg")
+            //= current_user.name
+          %div.nav-profile-user
+            Mcdostone
+        = link_to "Déconnexion", signout_path, id: "sign_out"
+      - else
+        = link_to "Se connecter", "/auth/google_oauth2", id: "sign_in"

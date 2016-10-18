@@ -1,11 +1,9 @@
 @import "configuration";
 
-$navbar-background: #0A0A0A;
-$navbar-height: 70px;
-$navbar-color: #444444;
-$navbar-li-hover-color: white;
-//$navbar-logo-background: rgb(197, 36, 6);
-$navbar-logo-background: #921c0c;
+
+/** ----------
+	NAVBAR
+    ----------*/
 
 navbar {
 	background-color: $navbar-background;
@@ -14,14 +12,7 @@ navbar {
 	display: block;
 	border-bottom: 1px solid shade($navbar-background, 70%);
 	
-	ul {
-		height: 100%;
-		list-style-type: none;
-		padding: 0;
-		margin: 0;
-	}
-
-	ul li {
+	a {
 		float: left;
 		height: 100%;
 		line-height: $navbar-height;
@@ -54,7 +45,7 @@ navbar {
 	background-color: $navbar-logo-background;
 
 	&:hover {
-		background-color: shade($navbar-logo-background, 20%);
+		background-color: $navbar-logo-hover-background;
 	}
 
 	img {
@@ -64,23 +55,33 @@ navbar {
 }
 
 
+/** ----------
+	PROFILE BUTTON (when you're connectede)
+    ----------*/
+
+
 #nav-profile {
+
+	.nav-profile-user {
+		display: inline-block;
+	}
 
 
 	.nav-profile-avatar {
-		display: inline-block;
-		width: auto;
-		height: 100%;
+		display: flex;
 		float: left;
-		margin-right: 5px;
+		height: $navbar-height - 20px;
+		width: $navbar-height - 20px;
+		margin: 10px 10px 0 0;
 
 		img {
-			float: left;
 			border-radius: 50%;
-			width: $navbar-height - 20px;
-			height: $navbar-height - 20px;
-			margin-top: 10px;
-			border: 2px solid $navbar-color;
+  			width: auto;
+  			opacity: 0.7;
+  			height: auto;
+		  	max-height: 100%;
+  			max-width: 100%;
+  			border: 2px solid $navbar-color;
 			@include transition-duration(0.2s);
 		}
 	}
@@ -89,6 +90,7 @@ navbar {
 #nav-profile:hover {
 
 	img {
+		opacity: 1;
 		border: 2px solid $navbar-logo-background;
 		@include transition-duration(0.2s);
 	}
