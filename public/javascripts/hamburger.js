@@ -1,18 +1,17 @@
 'use strict'
 
 
-let toggleMenu = function(e) {
-	var navList = document.querySelector('.nav');
-//	alert("in togglemenu");
-	document.querySelector('.nav').classList.toggle('hidden');
-}
 
 window.onload = function(e) {
-	document.querySelector('.nav-container-hamburger').addEventListener('click', toggleMenu);
-	document.addEventListener('turbolinks:click', function(e) {
-		console.log(e)
-		if(event.target.getAttribute('href').charAt(0) === '#') {
-			e.preventDefault()
-		}
+	let nav = document.querySelector('.nav')
+	let navParent = document.getElementsByTagName('nav')[0]
+	let hamburger = document.querySelector('.nav-hamburger')
+	
+	hamburger.addEventListener('click', (e) => 
+		nav.classList.toggle('hidden')
+	)
+	document.body.addEventListener('click', (e) => {
+		if(!navParent.contains(e.target) || nav.contains(e.target))
+			nav.classList.add('hidden')
 	})
 }

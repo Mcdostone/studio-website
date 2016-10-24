@@ -1,0 +1,207 @@
+@import "configuration";
+@import "compass/css3/box-shadow";
+@import "compass/css3/transform";
+$breakpoint: 850px;
+
+
+/** ----------
+	nav
+    ----------*/
+
+nav {
+	width: 100%;
+	height: $nav-height;
+	background-color: $nav-background;
+	border-bottom: 1px solid shade($nav-background, 70%);
+	
+	a {
+		float: left;
+		height: 100%;
+		line-height: $nav-height;
+		width: auto;
+		padding: 0 20px;
+		margin: 0;
+		font-size: 1.2em;
+		cursor: pointer;
+		color: $nav-color;
+		@include transition-duration(0.2s);
+
+		&:hover {
+			color: $nav-li-hover-color;
+			@include transition-duration(0.3s);
+		}	
+	}
+}
+
+#nav-logo {
+	height: $nav-height + 1px;
+	background-color: $nav-logo-background;
+
+	&:hover {
+		background-color: $nav-logo-hover-background;
+	}
+
+	img {
+			height: $nav-height - 20px;
+			margin-bottom: 5px;
+		}
+}
+
+// Presentation - contact - works
+.nav-left {  float: left; z-index: 50; }
+
+// Profile - sign in
+.nav-right {  float: right; z-index: 50; }
+
+
+
+
+/** ----------
+	PROFILE BUTTON (when you're connected)
+    ----------*/
+
+
+#nav-profile {
+	height: auto;
+	.nav-profile-user {
+		float: left;
+	}
+
+	.nav-profile-avatar {
+		float: left;
+		height: $nav-height - 20px;
+		width: $nav-height - 20px;
+		margin-top: 10px;
+		margin-right: 5px;
+		border-radius: 50%;
+
+		img {
+			float: left;
+			border-radius: 50%;
+  			opacity: 0.7;
+  			width: 100%;
+  			height: 100%;
+  			border: 2px solid $nav-color;
+			@include transition-duration(0.2s);
+		}
+	}
+}
+
+#nav-profile:hover {
+
+	img {
+		opacity: 1;
+		border: 2px solid $nav-logo-background;
+		@include transition-duration(0.2s);
+	}
+
+}
+
+
+
+/** -------------
+	RESPONSIVE  |
+----------------*/
+
+@media screen and (max-width: $breakpoint) {
+	
+	#nav-logo {
+		width: 100%;
+		padding: 0;
+		height: $nav-height;
+		margin: auto auto;
+
+		img {  
+			display: block;
+			padding: 0;
+			margin: auto auto;
+			margin-top: 10px;
+		}
+	}
+
+	.nav-left, .nav-right {
+		width: 50%;
+		display: block;
+		background-color: inherit;
+		float: none;
+		//margin: 2% 0;
+		//height: 100%;
+		box-sizing: border-box;
+		
+		a {
+			padding: 0;
+			width: 100%;
+			height: $nav-height;
+			text-align: center;
+		}
+	}
+
+	.nav-container-hamburger {
+		float: left;
+		z-index: 30;
+		width: 100%;
+		padding: 10px 0;		
+		background-color: $nav-background;		
+	}
+
+	.nav-hamburger {
+		position: relative;
+		height: 40px;
+		width: 40px;
+		margin: 0 auto;
+		cursor: pointer;
+
+		&:after {
+			content: '';
+			position: absolute;
+			display: block;
+			width: 30px;
+			left: 50%;
+			height: 0px;
+			top: 0;
+			@include box-shadow(0 10px 0 1px white, 0 20px 0 1px white, 0 30px 0 1px white);
+			@include translate(-50%, -50%);
+		}
+	}
+
+	.nav {
+		display: flex;
+		background-color: $nav-background;
+		width: 100%;
+		opacity: 1;
+	}
+
+	.nav-left {
+		border-right: 1px solid $nav-logo-hover-background;
+		@include box-sizing(border-box);
+	}
+
+	.nav-right {  float: right;  }
+
+	.hidden {
+		display: none;
+		opacity: 0;
+		height: 0;
+	}
+
+
+	#nav-profile {
+		width: 100%;
+		
+		.nav-profile-avatar {
+			float: none;
+			display: block;
+			height: $nav-avatar-height-responsive;
+			width: $nav-avatar-height-responsive;
+			margin: 0 auto;
+		}
+
+		.nav-profile-user {
+			float: none;
+			display: block;
+			line-height: 40px;
+			font-size: 1.5em;
+			text-align: center;
+		}	
+	}
+}

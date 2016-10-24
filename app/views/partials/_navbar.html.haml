@@ -1,23 +1,25 @@
-%navbar
-  %a#navbar-logo
+%nav
+  %a#nav-logo
     = image_tag("/images/logo_studio.png")
   %div.nav-container-hamburger
     %div.nav-hamburger
   
   %div.nav.hidden
     %div.nav-left
-      = link_to "Studio", "#studio"
-      = link_to "Réalisations", "#works"
-      = link_to "À propos", "#about"
+
+      = link_to "Studio", "#studio", data: { turbolinks: false }
+      = link_to "Réalisations", "#works", data: { turbolinks: false }
+      = link_to "À propos", "#about", data: { turbolinks: false }
     %div.nav-right
-      - if !current_user
+      - if current_user
 
         = link_to "#", id: "nav-profile" do
           %div.nav-profile-avatar
             = image_tag("/images/lens.jpeg")
-            //= current_user.name
           %div.nav-profile-user
-            Mcdostone
-        = link_to "Déconnexion", signout_path, id: "sign_out"
+            = current_user.name
+        = link_to "Picker", signout_path, id: "sign_out", data: { turbolinks: false }
+        = link_to "Déconnexion", signout_path, id: "sign_out", data: { turbolinks: false }
+
       - else
         = link_to "Se connecter", "/auth/google_oauth2", id: "sign_in"

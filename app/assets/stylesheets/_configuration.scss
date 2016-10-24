@@ -5,14 +5,14 @@
 @import url('https://fonts.googleapis.com/css?family=Lato:300,400');
 
 
-$navbar-background: #0A0A0A;
-$navbar-height: 70px;
-$navbar-color: #444444;
-$navbar-li-hover-color: white;
-$navbar-logo-background: #921c0c;
-$navbar-logo-hover-background: shade($navbar-logo-background, 20%);
+$nav-background: #0A0A0A;
+$nav-height: 70px;
+$nav-color: #444444;
+$nav-li-hover-color: white;
+$nav-logo-background: #921c0c;
+$nav-logo-hover-background: shade($nav-logo-background, 20%);
 
-$navbar-logo-height-responsive: 100px;
+$nav-avatar-height-responsive: 100px;
 
 
 $height-background: 400px;
