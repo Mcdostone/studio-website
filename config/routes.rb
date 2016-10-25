@@ -8,8 +8,11 @@ Rails.application.routes.draw do
 
   resources :sessions, only: [:create, :destroy]
 
-  get 'gallery/' => "gallery#index"
+  resources :media, only: [:index, :create]
+  
+  get 'media/picker' => "media#picker"
 
+  get 'gallery/' => "gallery#index"
   get 'gallery/upload'
   
   # The priority is based upon order of creation: first created -> highest priority.

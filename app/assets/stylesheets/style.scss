@@ -2,15 +2,27 @@
 @import "configuration";
 
 
-html, body {
-	width: 100%;
+* {
+	margin: 0;
+	padding: 0;
+}
+
+
+html {
 	height: 100%;
 	padding: 0;
 	margin: 0;
-	color: $text-color;
-
-	background-color: $body-background;
 }
+
+body {
+	min-height: 100%;
+	color: $text-color;
+	background-color: $body-background;
+	margin: 0;
+	padding: 0;
+	position: relative;
+}
+
 
 a {
 	color: inherit;
@@ -18,6 +30,14 @@ a {
 	&:visited, &:hover {
 		text-decoration: none;
 	}
+}
+
+h2 {
+	display: block;
+	width: 100%;
+	//background-color: black;
+	color: white;
+	text-align: center;
 }
 
 
@@ -99,14 +119,34 @@ section {
 	background-size: cover;
 }
 
-footer {
+#container {
 	display: inline-block;
-	width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	width: 80%;
+	margin-left: 10%;padding-bottom: 210px;
+}
+
+.thumbnail {
+	float: left;
+	width: 25%;
+	margin: 1px;
+	box-sizing: border-box;
+}
+
+footer {
+	position: absolute;
+	display: block;
 	height: 200px;
 	background-color: $nav-background;
-	color: $nav-color;
 	line-height: 200px;
+	color: $nav-color;
 	text-align: center;
+	bottom: 0;
+	left: 0;
+	right: 0;
 
 	p {
 		margin: 0;
