@@ -8,11 +8,7 @@ class User < ActiveRecord::Base
       user.email = auth.info.email
       user.oauth_token = auth.credentials.token
       user.oauth_expires_at = Time.at(auth.credentials.expires_at)
-      puts "-------------" + auth.credentials.expires_at.inspect
       user.save! if user.email.split('@')[1] == "telecomnancy.net"
-      if(user.save!)
-        puts User.all.inspect
-      end
     end
   end
 end
