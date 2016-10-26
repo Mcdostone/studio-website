@@ -80,7 +80,8 @@ function sendMedias(picked) {
 			callbackServer(xhr.responseXML)
 	}
 
-	xhr.send(JSON.stringify({medias: picked}))
+	picked = {media: picked}
+	xhr.send(JSON.stringify(picked))
 }
 
 

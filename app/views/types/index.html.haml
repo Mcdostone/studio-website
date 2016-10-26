@@ -1,0 +1,25 @@
+%h2 Liste des types
+ 
+%table
+  %tr
+    %th ID
+    %th type
+    %th Ajouté
+    %th Mis à jour
+ 
+  - @types.each do |type|
+    %tr
+      %td
+        = type.id
+      %td
+        = type.type_file
+      %td
+        = format_date(type.created_at)
+      %td
+        = format_date(type.updated_at)
+      %td
+        = link_to 'Éditer', edit_type_path(type)
+      %td 
+        = link_to 'Supprimer', type_path(type), method: :delete, data: { confirm: 'Voulez vous supprimer le type ?' }
+
+= link_to 'Nouveau type', new_type_path, class: "button"

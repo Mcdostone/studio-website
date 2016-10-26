@@ -9,6 +9,7 @@
 
 
 html {
+	display: block;
 	height: 100%;
 	padding: 0;
 	margin: 0;
@@ -23,20 +24,21 @@ body {
 	position: relative;
 }
 
-
-a {
-	color: inherit;
-
-	&:visited, &:hover {
-		text-decoration: none;
-	}
+a, a:visited, a:hover {
+	text-decoration: none;
 }
+
+a:hover {
+	color: $nav-li-hover-color;
+}
+
 
 h2 {
 	display: block;
 	width: 100%;
 	//background-color: black;
 	color: white;
+	margin: 20px 0;
 	text-align: center;
 }
 
@@ -46,6 +48,7 @@ section {
 	position: relative;
 	padding: 3% 20%;
 	text-align: justify;
+	background-color: $body-background;
 	font-size: 1.1em;
 	margin: 0;
 	float: left;
@@ -74,6 +77,9 @@ section {
 	width: 100%;
 	height: $height-background;
 	position: relative;
+	border-top: 1px solid $nav-logo-background;
+	border-left: 1px solid $nav-logo-background;
+	border-right: 1px solid $nav-logo-background;
 	z-index: 3;
 
 	&:before {
@@ -84,7 +90,7 @@ section {
 		left: 0;
 		right: 0;
 		background-color: $nav-background;
-		opacity: 0.7;
+		opacity: 0.5;
 	}
 
 	.title {
@@ -123,10 +129,15 @@ section {
 	display: inline-block;
 	display: flex;
 	flex-wrap: wrap;
+	margin-top: 10px;
 	justify-content: center;
 	align-items: center;
 	width: 80%;
 	margin-left: 10%;padding-bottom: 210px;
+
+	a {
+		color: $nav-li-hover-color;
+	}
 }
 
 .thumbnail {
@@ -151,6 +162,33 @@ footer {
 	p {
 		margin: 0;
 	}
+}
+
+table {
+	width: 100%;
+	text-align: center;
+	/*td {
+		text-align: center;
+	}*/
+}
+
+.button {
+	font-size: 1.2em;
+	padding: 10px 20px;
+	color: white;
+	background-color: $nav-logo-background;
+	text-align: center;
+	@include transition-duration(0.2s);
+
+	&:hover {
+		background-color: $nav-logo-hover-background;
+		@include transition-duration(0.3s);
+	}
+}
+
+
+table {
+	margin: 10px 0 20px 0;
 }
 
 

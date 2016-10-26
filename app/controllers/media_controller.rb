@@ -1,14 +1,21 @@
 class MediaController < ApplicationController
 	layout "application"
-	protect_from_forgery with: :null_session
 
-	def index
-		@medias = Medium.all
+	def index 
+		@media = Medium.all
+	end
+	
+	def test
+		@media = Medium.all
+	end
+
+	def edit
+		@medium = Medium.find(params[:id])
 	end
 
 	def create
-		medias = JSON.parse(medias_params_json.to_json)
-		medias.each do |m|
+		media = JSON.parse(media_params.to_json)
+		media.each do |m|
 			@medium = Medium.new(id_file: m['id'])
 			@medium.save
 		end
@@ -18,13 +25,24 @@ class MediaController < ApplicationController
 		end
 	end
 
+	def show
+		@medium = Medium.find(params[:id])
+	end
+
+	def destroy
+		@medium = Medium.find(params[:id])
+		@medium.destroy
+
+		redirect_to media_path
+	end
+
 	def picker
 		@current_user ||= User.find(session[:user_id]) if session[:user_id]
 		redirect_to root_path unless @current_user
 	end
 
 	private
-		def medias_params_json
-    		params.require(:medias)
+		def media_params
+    		params.require(:media)
   		end
 end

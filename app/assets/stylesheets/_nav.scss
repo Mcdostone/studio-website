@@ -104,8 +104,15 @@ nav {
 ----------------*/
 
 @media screen and (max-width: $breakpoint) {
+
+	nav {
+		display: flex;
+		flex-wrap: wrap;
+		height: auto;
+	}
 	
 	#nav-logo {
+		flex-grow: 3;
 		width: 100%;
 		padding: 0;
 		height: $nav-height;

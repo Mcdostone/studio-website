@@ -1,0 +1,5 @@
+%h2 Media
+
+- @media.each do |medium|
+
+	= image_tag(thumbnail_url(medium, current_user.oauth_token), class: "thumbnail")

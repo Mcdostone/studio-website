@@ -7,10 +7,25 @@ $breakpoint: 850px;
 
 @media screen and (max-width: $breakpoint) {
 
-	section {
-		width: 90%;
-		padding: 5% 5%;
+	.background .title {  font-size: 3em;  }
+
+	#studio {
+		border-top: none;
 	}
 
-	.background .title {  font-size: 3em;  }
+	.background {
+		border-left: none;
+		border-right: none;
+	}
+
+	#container {
+		display: flex;
+		width: 100%;
+		margin-left: 0;
+		margin-top: 0;
+	}
+
+	section {
+		padding: 3% 5%;
+	}
 }

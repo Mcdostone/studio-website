@@ -1,6 +1,28 @@
-%h2 Medias
-
-- @medias.each do |medium|
-
-	= image_tag(thumbnail_url(medium, current_user.oauth_token), class: "thumbnail")
-	
+%h2 Liste des médias
+ 
+%table
+  %tr
+    %th ID
+    %th Thumbnail
+    %th Type
+    %th Ajouté
+    %th Mis à jour
+ 
+  - @media.each do |medium|
+    %tr
+      %td
+        = medium.id
+      %td
+        = link_to image_tag(thumbnail_url(medium, current_user.oauth_token, 80)), medium_path(medium)
+      %td
+        = medium.type
+      %td
+        = format_date(medium.created_at)
+      %td
+        = format_date(medium.updated_at)
+      %td
+        = link_to 'Show', medium_path(medium)
+      %td
+        = link_to 'Éditer', edit_medium_path(medium)
+      %td 
+        = link_to 'Supprimer', medium_path(medium), method: :delete, data: { confirm: 'Voulez vous supprimer le média ?' }

@@ -7,10 +7,11 @@ Rails.application.routes.draw do
   get 'signout', to: 'sessions#destroy', as: 'signout'
 
   resources :sessions, only: [:create, :destroy]
-
-  resources :media, only: [:index, :create]
+  resources :types
+  resources :media, only: [:index, :create, :show, :edit, :destroy]
   
-  get 'media/picker' => "media#picker"
+  get '/picker' => "media#picker"
+  get 'media/test' => 'media#test'
 
   get 'gallery/' => "gallery#index"
   get 'gallery/upload'

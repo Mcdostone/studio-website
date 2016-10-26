@@ -1,5 +1,6 @@
 %nav
-  %a#nav-logo
+  -#%a#nav-logo
+  = link_to "/", id: "nav-logo" do
     = image_tag("/images/logo_studio.png")
   %div.nav-container-hamburger
     %div.nav-hamburger
@@ -18,7 +19,7 @@
             = image_tag("/images/lens.jpeg")
           %div.nav-profile-user
             = current_user.name
-        = link_to "Picker", signout_path, id: "sign_out", data: { turbolinks: false }
+        -#= link_to "Picker", signout_path, id: "sign_out", data: { turbolinks: false }
         = link_to "Déconnexion", signout_path, id: "sign_out", data: { turbolinks: false }
 
       - else
