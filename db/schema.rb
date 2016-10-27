@@ -11,7 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161026180306) do
+ActiveRecord::Schema.define(version: 20161027133126) do
+
+  create_table "events", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "media", force: :cascade do |t|
     t.string   "id_file"
@@ -20,7 +27,7 @@ ActiveRecord::Schema.define(version: 20161026180306) do
   end
 
   create_table "types", force: :cascade do |t|
-    t.string   "type_file"
+    t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

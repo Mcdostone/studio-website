@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'events/index'
+
   root 'public#index'
 
   get 'auth/:provider/callback', to: 'sessions#create'
@@ -8,6 +10,7 @@ Rails.application.routes.draw do
 
   resources :sessions, only: [:create, :destroy]
   resources :types
+  resources :events
   resources :media, only: [:index, :create, :show, :edit, :destroy]
   
   get '/picker' => "media#picker"

@@ -1,7 +1,14 @@
 = form_for @type do |f|
+  %div.errors
+    - if @type.errors.any?
+      %h3
+        = pluralize(@type.errors.count, "erreur")
+      %ul
+        - @type.errors.full_messages.each do |msg|
+          %li= msg
   %p 
-    = f.label :type_of_file
-    = f.text_field :type_file
+    = label_tag 'Type de média:'
+    = f.text_field :name, placeholder: "Vidéo..."
 
   %p
-    = f.submit
+    = f.submit submit_button_value(@type), class: 'button'

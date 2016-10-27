@@ -1,0 +1,29 @@
+%h2 Liste des Events
+ 
+%table
+  %tr
+    %th ID
+    %th Nom
+    %th Date de l'Event
+    %th Ajouté
+    %th Mis à jour
+ 
+  - @events.each do |event|
+    %tr
+      %td
+        = event.id
+      %td
+        = event.name
+      %td
+        = format_event_date(event.date)
+      %td
+        = format_date(event.created_at)
+      %td
+        = format_date(event.updated_at)
+
+      %td
+        = link_to 'Modifier', edit_event_path(event)
+      %td 
+        = link_to 'Supprimer', event_path(event), method: :delete, data: { confirm: 'Voulez-vous supprimer cet Event ?' }
+
+= link_to 'Nouveau Event', new_event_path, class: "button"

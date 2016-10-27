@@ -12,7 +12,11 @@ class TypesController < ApplicationController
 	def create
 		@type = Type.new(type_params)
 		@type.save
-		redirect_to types_path
+		if @type.save
+			redirect_to types_path
+		else
+			render 'new'
+		end
 	end
 
 	def edit
@@ -33,6 +37,6 @@ class TypesController < ApplicationController
 
 	private
 		def type_params
-			params.require(:type).permit(:type_file)
+			params.require(:type).permit(:name)
 		end
 end

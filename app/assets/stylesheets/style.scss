@@ -7,12 +7,77 @@
 	padding: 0;
 }
 
+ul {
+	list-style-type: none;
+	padding: 0;
+}
+
+.errors *{
+	color: white;
+
+	li {
+		padding-left: 20px;
+	}
+}
+
 
 html {
 	display: block;
 	height: 100%;
 	padding: 0;
 	margin: 0;
+}
+
+
+input, input:focus, input:active{ 
+	outline: none;
+	display: block;
+}
+
+input:-webkit-autofill, input:-webkit-autofill:focus{
+    -webkit-box-shadow:0 0 0 50px white inset;   
+}
+
+input {
+	display: block;
+	width: 100%;
+	font-size: 1.3em;
+	padding: 10px 20px;
+	text-align: center;
+	border: none;
+	@include box-sizing(border-box);
+}
+
+input[type="text"] {	
+	line-height: normal;
+	background-color: white;
+	text-align: center;
+
+	@include transition-duration(0.2s);
+
+	&:active, &:focus {
+		@include transition-duration(0.3s);
+	}
+}
+
+input[type="submit"] {
+	width: 50%;
+}
+
+form {
+	width: 30%;
+	p {padding: 5px 0;}
+	float: left;
+	clear: right;
+}
+
+
+label {
+	display: block;
+	font-size: 1.2em;
+	margin-bottom: 6px;
+	font-weight: bold;
+	color: $nav-li-hover-color;
 }
 
 body {
@@ -132,6 +197,7 @@ section {
 	margin-top: 10px;
 	justify-content: center;
 	align-items: center;
+	justify-content: flex-start;
 	width: 80%;
 	margin-left: 10%;padding-bottom: 210px;
 
@@ -176,13 +242,23 @@ table {
 	font-size: 1.2em;
 	padding: 10px 20px;
 	color: white;
+	display: inline-block;	
+	line-height: normal;
 	background-color: $nav-logo-background;
 	text-align: center;
 	@include transition-duration(0.2s);
+	border: none;
+	cursor: pointer;
+	margin: 0;
 
 	&:hover {
 		background-color: $nav-logo-hover-background;
+		border: none;
 		@include transition-duration(0.3s);
+	}
+
+	&:focus {
+		outline: none;
 	}
 }
 
