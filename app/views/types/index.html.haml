@@ -4,8 +4,8 @@
   %tr
     %th ID
     %th Nom
-    %th Ajouté
-    %th Mis à jour
+    %th.colum-timestamps Ajouté
+    %th.colum-timestamps Mis à jour
  
   - @types.each do |type|
     %tr
@@ -13,9 +13,9 @@
         = type.id
       %td
         = type.name
-      %td
+      %td.colum-timestamps
         = format_date(type.created_at)
-      %td
+      %td.colum-timestamps
         = format_date(type.updated_at)
       %td
         = link_to 'Modifier', edit_type_path(type)

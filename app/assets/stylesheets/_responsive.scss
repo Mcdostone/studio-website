@@ -25,7 +25,16 @@ $breakpoint: 850px;
 		margin-top: 0;
 	}
 
+	form {
+		width: 80%;
+		margin-left: 10%;
+	}
+
 	section {
 		padding: 3% 5%;
+	}
+
+	.colum-timestamps {
+		display: none;
 	}
 }

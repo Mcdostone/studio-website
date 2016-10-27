@@ -4,7 +4,7 @@ class Event < ActiveRecord::Base
 	after_initialize :set_defaults
 
 	validates_uniqueness_of :name
-	validates :name, presence: true
+	validates :name, presence: true, allow_blank: false
 
 	def set_defaults
 		self.date = Time.now

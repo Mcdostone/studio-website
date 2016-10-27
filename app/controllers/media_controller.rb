@@ -2,14 +2,12 @@ class MediaController < ApplicationController
 	layout "application"
 
 	def index 
-		@media = Medium.all
+		@media = Medium.includes(:type, :event).all
 	end
 	
-	def test
-		@media = Medium.all
-	end
-
 	def edit
+		@types = Type.all
+		@events = Event.all
 		@medium = Medium.find(params[:id])
 	end
 

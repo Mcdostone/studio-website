@@ -64,11 +64,10 @@ input[type="submit"] {
 	width: 50%;
 }
 
+
 form {
-	width: 30%;
-	p {padding: 5px 0;}
-	float: left;
-	clear: right;
+	width: 50%;
+	margin-left: 25%;
 }
 
 
@@ -233,23 +232,21 @@ footer {
 table {
 	width: 100%;
 	text-align: center;
-	/*td {
-		text-align: center;
-	}*/
 }
 
 .button {
-	font-size: 1.2em;
+	display: block;		
 	padding: 10px 20px;
+	margin: 0 auto;
+	margin-top: 40px;
 	color: white;
-	display: inline-block;	
-	line-height: normal;
-	background-color: $nav-logo-background;
 	text-align: center;
-	@include transition-duration(0.2s);
 	border: none;
 	cursor: pointer;
-	margin: 0;
+	font-size: 1.2em;
+	line-height: normal;
+	background-color: $nav-logo-background;
+	@include transition-duration(0.2s);
 
 	&:hover {
 		background-color: $nav-logo-hover-background;
@@ -257,14 +254,7 @@ table {
 		@include transition-duration(0.3s);
 	}
 
-	&:focus {
-		outline: none;
-	}
-}
-
-
-table {
-	margin: 10px 0 20px 0;
+	&:focus {  outline: none;  }
 }
 
 

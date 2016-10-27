@@ -1,0 +1,18 @@
+= form_for @medium do |f|
+  %div.errors
+    - if @medium.errors.any?
+      %h3
+        = pluralize(@medium.errors.count, "erreur")
+      %ul
+        - @medium.errors.full_messages.each do |msg|
+          %li= msg
+  %p 
+    = label_tag 'Type du média:'
+    = f.select :type_id, @types.map{ |t| [t.name, t.id] }
+
+  %p 
+    = label_tag 'Évenement:'
+    = f.select :event_id, @events.map{ |e| [e.name, e.id] }
+
+  %p
+    = f.submit submit_button_value(@medium), class: 'button'

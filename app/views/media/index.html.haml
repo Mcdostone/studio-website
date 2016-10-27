@@ -5,8 +5,9 @@
     %th ID
     %th Thumbnail
     %th Type
-    %th Ajouté
-    %th Mis à jour
+    %th Event
+    %th.colum-timestamps Ajouté
+    %th.colum-timestamps Mis à jour
  
   - @media.each do |medium|
     %tr
@@ -15,10 +16,12 @@
       %td
         = link_to image_tag(thumbnail_url(medium, current_user.oauth_token, 80)), medium_path(medium)
       %td
-        = medium.type
+        = medium.type.name
       %td
+        = medium.event.name
+      %td.colum-timestamps
         = format_date(medium.created_at)
-      %td
+      %td.colum-timestamps
         = format_date(medium.updated_at)
       %td
         = link_to 'Show', medium_path(medium)

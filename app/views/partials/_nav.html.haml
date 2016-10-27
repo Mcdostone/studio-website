@@ -7,10 +7,12 @@
   
   %div.nav.hidden
     %div.nav-left
-
       = link_to "Studio", "/#studio", data: { turbolinks: false }
       = link_to "Réalisations", "/#works", data: { turbolinks: false }
       = link_to "À propos", "/#about", data: { turbolinks: false }
+      = link_to "Medias", media_path, data: { turbolinks: false }
+      = link_to "Types", types_path, data: { turbolinks: false }
+      = link_to "Évents", events_path, data: { turbolinks: false }
     %div.nav-right
       - if current_user
 
