@@ -11,7 +11,8 @@ Rails.application.routes.draw do
   resources :sessions, only: [:create, :destroy]
   resources :types
   resources :events
-  resources :media, only: [:index, :create, :show, :edit, :destroy]
+  resources :media
+  resources :users
   
   get '/picker' => "media#picker"
   get 'media/test' => 'media#test'

@@ -6,6 +6,8 @@
       %ul
         - @medium.errors.full_messages.each do |msg|
           %li= msg
+
+  = image_tag(url_media(@medium, current_user.oauth_token))
   %p 
     = label_tag 'Type du média:'
     = f.select :type_id, @types.map{ |t| [t.name, t.id] }

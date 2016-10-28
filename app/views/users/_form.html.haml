@@ -1,0 +1,13 @@
+= form_for @user do |f|
+  %div.errors
+    - if @user.errors.any?
+      %h3
+        = pluralize(@user.errors.count, "erreur")
+      %ul
+        - @user.errors.full_messages.each do |msg|
+          %li= msg
+  %p 
+    = label_tag 'Surnom'
+    = f.text_field :nickname, placeholder: "Fredlapouf"
+  %p
+    = f.submit submit_button_value(@user), class: 'button'

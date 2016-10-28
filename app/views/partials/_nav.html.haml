@@ -18,9 +18,12 @@
 
         = link_to "#", id: "nav-profile" do
           %div.nav-profile-avatar
-            = image_tag("/images/lens.jpeg")
+            = image_tag(url_picture_profile(current_user))
           %div.nav-profile-user
-            = current_user.name
+            - if current_user.nickname
+              = current_user.nickname
+            - else
+              = current_user.first_name
         -#= link_to "Picker", signout_path, id: "sign_out", data: { turbolinks: false }
         = link_to "Déconnexion", signout_path, id: "sign_out", data: { turbolinks: false }
 

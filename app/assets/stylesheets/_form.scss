@@ -1,0 +1,54 @@
+@import "configuration";
+
+
+form {
+	width: 40%;
+	margin-left: 30%;
+
+	img {
+		width: 100%;
+	}
+}
+
+input, input:focus, input:active, select{ 
+	outline: none;
+	display: block;
+}
+
+input:-webkit-autofill, input:-webkit-autofill:focus{
+	-webkit-box-shadow:0 0 0 50px white inset;   
+}
+
+input, select{
+	display: block;
+	width: 100%;
+	font-size: 1.3em;
+	padding: 10px 20px;
+	text-align: center;
+	border: none;
+	@include box-sizing(border-box);
+}
+
+input[type="text"], select {	
+	line-height: normal;
+	background-color: white;
+	text-align: center;
+
+	@include transition-duration(0.2s);
+
+	&:active, &:focus {
+		@include transition-duration(0.3s);
+	}
+}
+
+input[type="submit"] {
+	width: 50%;
+}
+
+@media screen and (max-width: $breakpoint) {
+
+	form {
+		width: 80%;
+		margin-left: 10%;
+	}
+}

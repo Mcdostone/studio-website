@@ -1,16 +1,11 @@
 class MediaController < ApplicationController
 	layout "application"
+	before_action :set_medium, only:[:edit, :update, :show, :destroy]
 
 	def index 
 		@media = Medium.includes(:type, :event).all
 	end
 	
-	def edit
-		@types = Type.all
-		@events = Event.all
-		@medium = Medium.find(params[:id])
-	end
-
 	def create
 		media = JSON.parse(media_params.to_json)
 		media.each do |m|
@@ -23,12 +18,20 @@ class MediaController < ApplicationController
 		end
 	end
 
+	def edit
+		@types = Type.all
+		@events = Event.all
+	end
+
+	def update
+		@medium.update(medium_params)
+		redirect_to media_path
+	end
+
 	def show
-		@medium = Medium.find(params[:id])
 	end
 
 	def destroy
-		@medium = Medium.find(params[:id])
 		@medium.destroy
 
 		redirect_to media_path
@@ -43,4 +46,12 @@ class MediaController < ApplicationController
 		def media_params
     		params.require(:media)
   		end
+
+  		def medium_params
+  			params.require(:medium).permit(:type_id, :event_id)
+  		end
+
+		def set_medium
+			@medium = Medium.find(params[:id])
+		end
 end

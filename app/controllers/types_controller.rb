@@ -1,6 +1,8 @@
 class TypesController < ApplicationController
 	layout 'application'
 
+	before_action :set_type, only:[:edit, :update, :show, :destroy]
+
 	def index
 		@types = Type.all
 	end
@@ -20,17 +22,14 @@ class TypesController < ApplicationController
 	end
 
 	def edit
-		@type = Type.find(params[:id])
 	end
 
 	def update
-		@type = Type.find(params[:id])
 		@type.update(type_params)
 		redirect_to types_path
 	end
 
 	def destroy
-		@type = Type.find(params[:id])
 		@type.destroy
 		redirect_to types_path
 	end
@@ -38,5 +37,9 @@ class TypesController < ApplicationController
 	private
 		def type_params
 			params.require(:type).permit(:name)
+		end
+
+		def set_type
+			@type = Type.find(params[:id])
 		end
 end

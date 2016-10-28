@@ -2,8 +2,6 @@
 @import "compass/css3/transform";
 @import "configuration";
 
-$breakpoint: 850px;
-
 
 @media screen and (max-width: $breakpoint) {
 
@@ -25,10 +23,6 @@ $breakpoint: 850px;
 		margin-top: 0;
 	}
 
-	form {
-		width: 80%;
-		margin-left: 10%;
-	}
 
 	section {
 		padding: 3% 5%;

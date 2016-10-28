@@ -1,8 +1,13 @@
 module MediaHelper
 	
 	SIZE_THUMBNAIL = 300
+	SIZE_MEDIA = 500
 
-	def thumbnail_url(media, access_token, size = SIZE_THUMBNAIL)
+	def url_media(media, access_token)
+		"https://drive.google.com/thumbnail?access_token=#{access_token}&sz=w#{SIZE_MEDIA}&id=#{media.id_file}"
+	end
+
+	def url_thumbnail(media, access_token, size = SIZE_THUMBNAIL)
 		"https://drive.google.com/thumbnail?access_token=#{access_token}&sz=w#{size}&id=#{media.id_file}"
 	end
 end

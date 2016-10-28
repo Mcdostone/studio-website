@@ -1,0 +1,41 @@
+@import "configuration";
+// Place all the styles related to the Users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.profile {
+	width: 100%;
+	text-align: center;
+	color: white;
+}
+
+.profile-picture {
+	display: block;
+	width: 20%;
+	margin: 0 auto;
+
+	border-radius: 50%;
+
+	img {
+		display: block;
+		height: 200px;
+		margin: 0 auto;
+		border-radius: 50%;
+		border:1px solid $nav-logo-background;
+		@include box-sizing(border-box);
+		@include transition-duration(0.2s);
+	}
+
+	margin-bottom: 10px;
+}
+
+.profile-about {
+	font-weight: 100;
+}
+.profile-about p:first-child {  font-size: 2.2em;  }
+
+.profile-about p:last-child {
+	font-style: italic;
+	font-size: 1.4em;
+}

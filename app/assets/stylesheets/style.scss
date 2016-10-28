@@ -1,5 +1,6 @@
 @import "nav";
 @import "configuration";
+@import "form";
 
 
 * {
@@ -29,46 +30,7 @@ html {
 }
 
 
-input, input:focus, input:active{ 
-	outline: none;
-	display: block;
-}
 
-input:-webkit-autofill, input:-webkit-autofill:focus{
-    -webkit-box-shadow:0 0 0 50px white inset;   
-}
-
-input {
-	display: block;
-	width: 100%;
-	font-size: 1.3em;
-	padding: 10px 20px;
-	text-align: center;
-	border: none;
-	@include box-sizing(border-box);
-}
-
-input[type="text"] {	
-	line-height: normal;
-	background-color: white;
-	text-align: center;
-
-	@include transition-duration(0.2s);
-
-	&:active, &:focus {
-		@include transition-duration(0.3s);
-	}
-}
-
-input[type="submit"] {
-	width: 50%;
-}
-
-
-form {
-	width: 50%;
-	margin-left: 25%;
-}
 
 
 label {
