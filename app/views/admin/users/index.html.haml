@@ -24,8 +24,8 @@
       %td.colum-timestamps
         = format_date(user.updated_at)
       %td
-        = link_to 'Show', user_path(user)
+        = link_to 'Show', admin_user_path(user)
       %td
-        = link_to 'Éditer', edit_user_path(user)
+        = link_to 'Éditer', edit_admin_user_path(user)
       %td 
-        = link_to 'Supprimer', user_path(user), method: :delete, data: { confirm: 'Voulez vous supprimer ce user ?' }
+        = link_to 'Supprimer', admin_user_path(user), method: :delete, data: { confirm: 'Voulez vous supprimer ce user ?' }

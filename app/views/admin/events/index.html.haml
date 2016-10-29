@@ -20,3 +20,10 @@
         = format_date(event.created_at)
       %td.colum-timestamps
         = format_date(event.updated_at)
+
+      %td
+        = link_to 'Modifier', edit_admin_event_path(event)
+      %td 
+        = link_to 'Supprimer', admin_event_path(event), method: :delete, data: { confirm: 'Voulez-vous supprimer cet Event ?' }
+
+= link_to 'Nouveau Event', new_admin_event_path, class: "button"

@@ -1,4 +1,4 @@
-= form_for @user do |f|
+= form_for [:admin, @user] do |f|
   %div.errors
     - if @user.errors.any?
       %h3
@@ -6,8 +6,13 @@
       %ul
         - @user.errors.full_messages.each do |msg|
           %li= msg
-  %p 
+  %p
     = label_tag 'Surnom'
     = f.text_field :nickname, placeholder: "Fredlapouf"
+  %p
+    = label_tag 'Admin'
+    %div.wrapper
+      = f.check_box :admin, id: "toggle", checked: @user.admin
+      %label{:for => "toggle"}
   %p
     = f.submit submit_button_value(@user), class: 'button'

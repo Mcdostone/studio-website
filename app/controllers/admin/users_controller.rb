@@ -1,10 +1,9 @@
-class UsersController < ApplicationController
+class Admin::UsersController < AdminController
 	layout 'application'
 
 	before_action :set_user, only:[:show, :edit, :update]
 
 	def index
-		puts User.all.inspect
 		@users = User.all
 	end
 
@@ -15,13 +14,14 @@ class UsersController < ApplicationController
 	end
 
 	def update
+		puts user_params.inspect
 		@user.update(user_params)
-		redirect_to users_path
+		redirect_to admin_users_path
 	end
 	
 	private
 		def user_params
-			params.require(:user).permit(:nickname)		
+			params.require(:user).permit(:nickname, :admin)
 		end
 
 		def set_user
