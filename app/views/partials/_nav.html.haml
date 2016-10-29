@@ -17,7 +17,7 @@
     %div.nav-right
       - if current_user
 
-        = link_to "#", id: "nav-profile" do
+        = link_to user_path(current_user), id: "nav-profile" do
           %div.nav-profile-avatar
             = image_tag(url_picture_profile(current_user))
           %div.nav-profile-user

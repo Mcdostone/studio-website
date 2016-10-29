@@ -9,8 +9,9 @@ Rails.application.routes.draw do
   get 'signout', to: 'sessions#destroy', as: 'signout'
 
   resources :sessions, only: [:create, :destroy]
-  resources :types
+  resources :users, only: [:index, :show]
   resources :events, only: [:index, :show]
+  resources :types
   resources :media
 
   namespace :admin do

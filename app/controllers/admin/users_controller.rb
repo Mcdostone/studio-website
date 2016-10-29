@@ -7,24 +7,32 @@ class Admin::UsersController < AdminController
 		@users = User.all
 	end
 
-	def show
-	end
-
 	def edit
+		@authorization = Authorization.find_by(name: 'author')
 	end
 
 	def update
-		puts user_params.inspect
 		@user.update(user_params)
-		redirect_to admin_users_path
+		if(current_user.author?)
+			redirect_to admin_users_path
+		else
+			redirect_to root_path
+		end
 	end
 	
 	private
-		def user_params
-			params.require(:user).permit(:nickname, :admin)
+	def user_params
+		user_p = params.require(:user).permit(:nickname, :authorization)
+		if(!@user.admin? && current_user.admin?)
+			user_p[:authorization] = Authorization.find_by(name: (user_p[:authorization] == '1' ? 'author' : 'viewer'))
+		else 
+			user_p[:authorization] = @user.authorization
 		end
+		user_p
+	end
 
-		def set_user
-			@user = User.find(params[:id])
-		end
+	def set_user
+		@user = User.find(params[:id])
+	end
+	
 end

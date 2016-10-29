@@ -43,15 +43,15 @@ class MediaController < ApplicationController
 	end
 
 	private
-		def media_params
-    		params.require(:media)
-  		end
+	def media_params
+    	params.require(:media)
+  	end
 
-  		def medium_params
-  			params.require(:medium).permit(:type_id, :event_id)
-  		end
+  	def medium_params
+  		params.require(:medium).permit(:type_id, :event_id)
+  	end
 
-		def set_medium
-			@medium = Medium.find(params[:id])
-		end
+	def set_medium
+		@medium = Medium.find(params[:id])
+	end
 end

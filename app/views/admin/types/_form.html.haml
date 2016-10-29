@@ -1,0 +1,14 @@
+= form_for @type do |f|
+  %div.errors
+    - if @type.errors.any?
+      %h3
+        = pluralize(@type.errors.count, "erreur")
+      %ul
+        - @type.errors.full_messages.each do |msg|
+          %li= msg
+  %p 
+    = label_tag 'Type de média:'
+    = f.text_field :name, placeholder: "Vidéo..."
+
+  %p
+    = f.submit submit_button_value(@type), class: 'button'

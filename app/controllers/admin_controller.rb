@@ -1,11 +1,18 @@
 class AdminController < ApplicationController
 	
-	before_action :require_admin
+	before_action :require_author
 
 	def require_admin
-		unless current_user.admin?
-			redirect_to root_path
-		end
+		redirect_to root_path unless current_user.admin?
+		return 
   	end
 
+  	def require_author
+		if(current_user.author?)
+			true
+		else
+			redirect_to root_path
+			return
+		end
+	end
 end

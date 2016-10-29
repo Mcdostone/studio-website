@@ -10,9 +10,11 @@
     = label_tag 'Surnom'
     = f.text_field :nickname, placeholder: "Fredlapouf"
   %p
-    = label_tag 'Admin'
+  - if @user.authorization.name != 'admin' && current_user.authorization.name == 'admin'
+    = label_tag 'Auteur'
+    %p Le statut d'auteur permet d'uploader des médias, créer de nouvelles évents et types ainsi que de modifier les profils des autres utilisateurs.
     %div.wrapper
-      = f.check_box :admin, id: "toggle", checked: @user.admin
+      = f.check_box :authorization, id: "toggle", checked: @user.authorization.name == 'author'
       %label{:for => "toggle"}
   %p
     = f.submit submit_button_value(@user), class: 'button'
