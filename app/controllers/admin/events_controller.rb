@@ -12,7 +12,7 @@ class Admin::EventsController < AdminController
   def create
   	@event = Event.new(event_params)
   	@event.save
-  	redirect_to events_path
+  	redirect_to admin_events_path
   end
 
   def edit
@@ -22,13 +22,13 @@ class Admin::EventsController < AdminController
   def update
     @event = Event.find(params[:id])
     @event.update(event_params)
-    redirect_to events_path
+    redirect_to admin_events_path
   end
 
   def destroy
     event = Event.find(params[:id])
     event.destroy
-    redirect_to events_path
+    redirect_to admin_events_path
   end
 
   private

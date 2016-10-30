@@ -13,13 +13,13 @@
   - @users.each do |user|
     %tr
       %td
-        = user.id
+        =  link_to user.id, user_path(user)
       %td
-        = user.first_name
+        = link_to user.first_name, user_path(user)
       %td
-        = user.last_name.upcase
+        = link_to user.last_name.upcase, user_path(user)
       %td
-        = user.nickname
+        = link_to user.nickname, user_path(user)
       %td
         = user.authorization.name
       %td.colum-timestamps

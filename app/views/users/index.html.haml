@@ -1,0 +1,19 @@
+%h2 Liste des studistes
+ 
+%table
+  %tr
+    %th ID
+    %th Prénom
+    %th Nom
+    %th Pseudo
+ 
+  - @users.each do |user|
+    %tr
+      %td
+        =  link_to user.id, user_path(user)
+      %td
+        = link_to user.first_name, user_path(user)
+      %td
+        = link_to user.last_name.upcase, user_path(user)
+      %td
+        = link_to user.nickname, user_path(user)

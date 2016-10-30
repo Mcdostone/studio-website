@@ -1,4 +1,4 @@
-class Admin::TypesController < ApplicationController
+class Admin::TypesController < AdminController
 
 	layout 'application'
 
@@ -16,7 +16,7 @@ class Admin::TypesController < ApplicationController
 		@type = Type.new(type_params)
 		@type.save
 		if @type.save
-			redirect_to types_path
+			redirect_to admin_types_path
 		else
 			render 'new'
 		end
@@ -27,12 +27,12 @@ class Admin::TypesController < ApplicationController
 
 	def update
 		@type.update(type_params)
-		redirect_to types_path
+		redirect_to admin_types_path
 	end
 
 	def destroy
 		@type.destroy
-		redirect_to types_path
+		redirect_to admin_types_path
 	end
 
 	private

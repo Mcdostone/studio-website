@@ -17,9 +17,6 @@
         = format_date(type.created_at)
       %td.colum-timestamps
         = format_date(type.updated_at)
-      %td
-        = link_to 'Modifier', edit_type_path(type)
-      %td 
-        = link_to 'Supprimer', type_path(type), method: :delete, data: { confirm: 'Voulez-vous supprimer ce type ?' }
 
-= link_to 'Nouveau type', new_type_path, class: "button"
+- if current_user.author?
+  = link_to 'Nouveau type', new_admin_type_path, class: "button"

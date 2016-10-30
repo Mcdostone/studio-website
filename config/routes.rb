@@ -1,22 +1,23 @@
 Rails.application.routes.draw do
 
-  get 'events/index'
-
   root 'public#index'
 
+  get "/auth/google_oauth2", as: 'login'
+  get 'logout', to: 'sessions#destroy', as: 'logout'
   get 'auth/:provider/callback', to: 'sessions#create'
   get 'auth/failure', to: redirect('/')
-  get 'signout', to: 'sessions#destroy', as: 'signout'
 
   resources :sessions, only: [:create, :destroy]
   resources :users, only: [:index, :show]
   resources :events, only: [:index, :show]
-  resources :types
-  resources :media
+  resources :types, only: [:index, :show]
+  resources :media, only: [:index, :show]
 
   namespace :admin do
     resources :events
+    resources :types
     resources :users
+    resources :media
   end
   
   get '/picker' => "media#picker"

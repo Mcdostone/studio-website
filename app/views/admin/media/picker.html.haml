@@ -1,0 +1,13 @@
+
+%div#open-google-picker.button{:onclick => "openDrive()"}
+  Google Picker
+
+%div#google-drive-picker
+
+- if current_user
+  :javascript
+     let email = '#{current_user.email}'
+  = javascript_include_tag 'google-drive-picker', 'data-turbolinks-track' => true
+  = javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.3/vue.min.js', 'data-turbolinks-track' => true
+  = javascript_include_tag 'https://apis.google.com/js/api.js', 'data-turbolinks-track' => true
+  = javascript_include_tag 'test', 'data-turbolinks-track' => true

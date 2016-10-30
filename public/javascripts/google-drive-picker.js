@@ -1,13 +1,13 @@
-'use strict'
- 
-let developerKey = 'AIzaSyA8_QjUyHp0NE4R2_5onUuelT3WbzM8EhQ'
-let clientId 	= "956580412485-bduqk76b51lv7nt9cs9dr98hff6evii4.apps.googleusercontent.com"
-let scope 		= ['https://www.googleapis.com/auth/drive.readonly','https://www.googleapis.com/auth/drive']
-let appId		= "956580412485"
+'use strict';
+
+var developerKey = 'AIzaSyA8_QjUyHp0NE4R2_5onUuelT3WbzM8EhQ'
+var clientId 	= "956580412485-bduqk76b51lv7nt9cs9dr98hff6evii4.apps.googleusercontent.com"
+var scope 		= ['https://www.googleapis.com/auth/drive.readonly','https://www.googleapis.com/auth/drive']
+var appId		= "956580412485"
 
 
-let pickerApiLoaded = false
-let oauthToken
+var pickerApiLoaded = false
+var oauthToken
 
 // Use the API Loader script to load google.picker and gapi.auth.
 function onApiLoad() {
@@ -65,6 +65,7 @@ function createPicker() {
 function pickerCallback(data) {
 	if (data[google.picker.Response.ACTION] == google.picker.Action.PICKED) {
 		sendMedias(data.docs)
+		picker.setVisible(false)
 	}
 }
 
@@ -87,4 +88,8 @@ function sendMedias(picked) {
 
 function callbackServer(response) {
 	console.log(response)
+}
+
+function openDrive() {
+	onApiLoad()
 }

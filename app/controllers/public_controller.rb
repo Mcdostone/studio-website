@@ -1,7 +1,6 @@
 class PublicController < ApplicationController
 	
-  def index
-    puts current_user.inspect
+  def index    
   end
   
 end

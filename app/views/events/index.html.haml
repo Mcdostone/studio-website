@@ -20,3 +20,6 @@
         = format_date(event.created_at)
       %td.colum-timestamps
         = format_date(event.updated_at)
+
+- if current_user.author?
+  = link_to 'Nouveau Évent', new_admin_event_path, class: "button"
