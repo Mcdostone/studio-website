@@ -4,6 +4,7 @@ var developerKey = 'AIzaSyA8_QjUyHp0NE4R2_5onUuelT3WbzM8EhQ'
 var clientId 	= "956580412485-bduqk76b51lv7nt9cs9dr98hff6evii4.apps.googleusercontent.com"
 var scope 		= ['https://www.googleapis.com/auth/drive.readonly','https://www.googleapis.com/auth/drive']
 var appId		= "956580412485"
+var acceptedFiles = "image/png,image/jpeg,image/jpg,image/gif,image/svg+xml,video/mp4,video/quicktime,video/x-ms-wmv,video/x-msvideo,video/x-flv,video/webm,video/mpeg,application/pdf"
 
 
 var pickerApiLoaded = false
@@ -13,6 +14,7 @@ var oauthToken
 function onApiLoad() {
 	gapi.load('auth', {'callback': onAuthApiLoad})
 	gapi.load('picker', {'callback': onPickerApiLoad})
+	gapi.client.load('drive', 'v2', null);
 }
 
 function onAuthApiLoad() {
@@ -39,8 +41,6 @@ function handleAuthResult(authResult) {
 // Create and render a Picker object for picking user Photos.
 function createPicker() {
 	if (pickerApiLoaded && oauthToken) {
-		let acceptedFiles = "image/png,image/jpeg,image/jpg,image/gif,image/svg+xml"
-		acceptedFiles = acceptedFiles + "video/mp4,video/quicktime,video/x-ms-wmv,video/x-msvideo,video/x-flv,video/webm,video/mpeg,application/pdf"
 		var view = new google.picker.DocsView().setIncludeFolders(true)
 		.setOwnedByMe(true)
 		.setSelectFolderEnabled(true)
@@ -64,8 +64,10 @@ function createPicker() {
 
 function pickerCallback(data) {
 	if (data[google.picker.Response.ACTION] == google.picker.Action.PICKED) {
-		sendMedias(data.docs)
-		picker.setVisible(false)
+		if(data.docs.length == 1)
+			retrieveAllFilesInFolder(data.docs[0].id, media.fetchMedia)
+		else		
+			media.fetchMedia(data.docs)
 	}
 }
 
@@ -75,14 +77,12 @@ function sendMedias(picked) {
 	xhr.open('POST', '/media', true)
 	xhr.setRequestHeader("X-CSRF-Token", token)
 	xhr.setRequestHeader('Content-Type', 'application/json; charset=utf-8')
-
+	
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0))
 			callbackServer(xhr.responseXML)
 	}
-
 	picked = {media: picked}
-	xhr.send(JSON.stringify(picked))
 }
 
 
@@ -92,4 +92,31 @@ function callbackServer(response) {
 
 function openDrive() {
 	onApiLoad()
+}
+
+
+function retrieveAllFilesInFolder(folderId, callback) {
+  var retrievePageOfChildren = function(request, result) {
+    request.execute(function(resp) {
+      result = result.concat(resp.items);
+      var nextPageToken = resp.nextPageToken;
+      if (nextPageToken) {
+        request = gapi.client.drive.children.list({
+          'folderId' : folderId,
+          'pageToken': nextPageToken
+        });
+        retrievePageOfChildren(request, result);
+      } else {
+        callback(result);
+      }
+    });
+  }
+  var initialRequest = gapi.client.drive.children.list({
+		'folderId' : folderId,
+		//'q' : "mimeType contains '" + acceptedFiles + "'",
+		'q' : "(mimeType contains 'image/' or mimeType contains 'video/' or mimeType contains 'application/pdf')",
+		'maxResults': 1000
+    });
+
+  retrievePageOfChildren(initialRequest, []);
 }

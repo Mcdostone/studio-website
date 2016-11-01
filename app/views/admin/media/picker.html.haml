@@ -1,13 +1,51 @@
-
 %div#open-google-picker.button{:onclick => "openDrive()"}
   Google Picker
+
+%div#app
+
+  -#%select{'v-model' => 'typeAll'}
+  -#  %option{{'v-for' => 'type in types'}, {':value' => 'type.id'}}
+  -#    {{ type.name }}
+  -#%select{{'v-model' => 'eventAll'}}
+  -#  %option{{'v-for' => 'event in events'}, {':value' => 'event'}}
+  -#   {{ event.name }}
+
+  %table{{'v-show' => 'visible'}}
+    %tr
+      %th 
+        %p Select
+        %input{:type=>"checkbox", :name=>"test", :value=>1, :v => {'model' => 'selectAll'}}
+      %th ID
+      %th Thumbnail
+      %th Type
+      %th Event
+      %tr{{'v-for' => 'medium in media'}}
+        %td
+          %input{:type=>"checkbox", :name=>"test",  :v => {'model' => "medium.selected"}}
+        %td
+          {{ medium.id }}
+        %td
+          %img{{':src' => 'generateURL(medium)'}}
+        %td
+          %select{'v-model' => 'medium.type'}
+            %option{{'v-for' => 'type in types'}, {':value' => 'type.id'}}
+              {{ type.name }}
+        %td
+          %select
+            %option{{'v-for' => 'event in events'}, {':value' => 'event.id'}}
+              {{ event.name }}
+
+
 
 %div#google-drive-picker
 
 - if current_user
   :javascript
      let email = '#{current_user.email}'
-  = javascript_include_tag 'google-drive-picker', 'data-turbolinks-track' => true
-  = javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.3/vue.min.js', 'data-turbolinks-track' => true
+     let oauth_token = '#{current_user.oauth_token}'
+  = javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.3/vue.js', 'data-turbolinks-track' => true
   = javascript_include_tag 'https://apis.google.com/js/api.js', 'data-turbolinks-track' => true
+  = javascript_include_tag 'https://apis.google.com/js/client.js'
   = javascript_include_tag 'test', 'data-turbolinks-track' => true
+  = javascript_include_tag 'google-drive-picker', 'data-turbolinks-track' => true
+

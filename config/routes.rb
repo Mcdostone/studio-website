@@ -18,9 +18,9 @@ Rails.application.routes.draw do
     resources :types
     resources :users
     resources :media
+    get '/picker' => 'media#picker'
   end
-  
-  get '/picker' => "media#picker"
+
   get 'media/test' => 'media#test'
 
   get 'gallery/' => "gallery#index"
