@@ -6,7 +6,9 @@ var media = new Vue({
 	data: {
 		media: [],
 		types: [],
-		events: []
+		events: [],
+		typeForAll: 0,
+		eventForAll: 0
 	},
 	computed: {
 		visible: function() {
@@ -22,20 +24,26 @@ var media = new Vue({
 		},
 		eventAll: {
 			get: function() {
-				return ''
+				return this.eventForAll
 			},
 			set: function(value) {
-				console.log(value.name + ': ' + value.id)
-				//this.media.forEach((m) => m.selected = value)
+				this.eventForAll = value
+				this.media.forEach((m) => {
+					if(m.selected)
+						m.event = this.eventForAll
+				})
 			}
 		},
 		typeAll: {
 			get: function() {
-				return ''
+				return this.typeForAll
 			},
 			set: function(value) {
-				console.log(value.name + ': ' + value.id)
-				this.media.forEach((m) => m.type = value.id)
+				this.typeForAll = value
+				this.media.forEach((m) => {
+					if(m.selected)
+						m.type = this.typeForAll
+				})
 			}
 		}
 
@@ -49,6 +57,9 @@ var media = new Vue({
 			data.forEach((m) => {
 				if(!this.media.some((e) => e.id == m.id)) {
 					m.selected = false
+					m.type = this.types[0]
+					//this.guessType(m)
+					m.event = this.events[0]
 					this.media.push(m)
 				}
 			})
@@ -57,5 +68,15 @@ var media = new Vue({
 		generateURL: function(medium) {
 			return 'https://drive.google.com/thumbnail?access_token=' + oauth_token + '&sz=w100&id=' + medium.id
 		},
+
+		guessType: function(medium) {
+			switch(medium.mimeType.split('/')[0].toUpperCase()) {
+				case 'IMAGE':
+					return 's'
+					break;
+				case 'VIDEO':
+					console.log(medium.mimeType)
+			}
+		}
 	}
 })

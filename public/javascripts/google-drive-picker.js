@@ -64,7 +64,8 @@ function createPicker() {
 
 function pickerCallback(data) {
 	if (data[google.picker.Response.ACTION] == google.picker.Action.PICKED) {
-		if(data.docs.length == 1)
+		console.log(data.docs)
+		if(data.docs.length == 1 && data.docs[0].type === 'folder')
 			retrieveAllFilesInFolder(data.docs[0].id, media.fetchMedia)
 		else		
 			media.fetchMedia(data.docs)

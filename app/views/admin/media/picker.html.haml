@@ -1,16 +1,16 @@
 %div#open-google-picker.button{:onclick => "openDrive()"}
   Google Picker
 
-%div#app
+%div#app{{'v-show' => 'visible'}}
 
-  -#%select{'v-model' => 'typeAll'}
-  -#  %option{{'v-for' => 'type in types'}, {':value' => 'type.id'}}
-  -#    {{ type.name }}
-  -#%select{{'v-model' => 'eventAll'}}
-  -#  %option{{'v-for' => 'event in events'}, {':value' => 'event'}}
-  -#   {{ event.name }}
+  %select{'v-model' => 'typeAll'}
+    %option{{'v-for' => 'type in types'}, {':value' => 'type'}}
+      {{ type.name }}
+  %select{{'v-model' => 'eventAll'}}
+    %option{{'v-for' => 'event in events'}, {':value' => 'event'}}
+      {{ event.name }}
 
-  %table{{'v-show' => 'visible'}}
+  %table
     %tr
       %th 
         %p Select
@@ -28,11 +28,11 @@
           %img{{':src' => 'generateURL(medium)'}}
         %td
           %select{'v-model' => 'medium.type'}
-            %option{{'v-for' => 'type in types'}, {':value' => 'type.id'}}
+            %option{{'v-for' => 'type in types'}, {':value' => 'type'}}
               {{ type.name }}
         %td
-          %select
-            %option{{'v-for' => 'event in events'}, {':value' => 'event.id'}}
+          %select{'v-model' => 'medium.event'}
+            %option{{'v-for' => 'event in events'}, {':value' => 'event'}}
               {{ event.name }}
 
 
