@@ -3,18 +3,21 @@
 
 %div#app{{'v-show' => 'visible'}}
 
+  %label Type pour tous les medias:
   %select{'v-model' => 'typeAll'}
     %option{{'v-for' => 'type in types'}, {':value' => 'type'}}
       {{ type.name }}
+  %label Event pour tous les medias:
   %select{{'v-model' => 'eventAll'}}
     %option{{'v-for' => 'event in events'}, {':value' => 'event'}}
       {{ event.name }}
 
   %table
     %tr
-      %th 
-        %p Select
+      %th
         %input{:type=>"checkbox", :name=>"test", :value=>1, :v => {'model' => 'selectAll'}}
+        %label
+          Selectionner tout
       %th ID
       %th Thumbnail
       %th Type
@@ -25,7 +28,8 @@
         %td
           {{ medium.id }}
         %td
-          %img{{':src' => 'generateURL(medium)'}}
+          %a{{':href' => 'medium.link'}, {'target' =>'_blank'}}
+            %img{{':src' => 'generateURL(medium)'}}
         %td
           %select{'v-model' => 'medium.type'}
             %option{{'v-for' => 'type in types'}, {':value' => 'type'}}

@@ -64,7 +64,6 @@ function createPicker() {
 
 function pickerCallback(data) {
 	if (data[google.picker.Response.ACTION] == google.picker.Action.PICKED) {
-		console.log(data.docs)
 		if(data.docs.length == 1 && data.docs[0].type === 'folder')
 			retrieveAllFilesInFolder(data.docs[0].id, media.fetchMedia)
 		else		
@@ -79,7 +78,7 @@ function sendMedias(picked) {
 	xhr.setRequestHeader("X-CSRF-Token", token)
 	xhr.setRequestHeader('Content-Type', 'application/json; charset=utf-8')
 	
-	xhr.onreadystatechange = function() {
+		xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0))
 			callbackServer(xhr.responseXML)
 	}
@@ -97,27 +96,33 @@ function openDrive() {
 
 
 function retrieveAllFilesInFolder(folderId, callback) {
-  var retrievePageOfChildren = function(request, result) {
-    request.execute(function(resp) {
-      result = result.concat(resp.items);
-      var nextPageToken = resp.nextPageToken;
-      if (nextPageToken) {
-        request = gapi.client.drive.children.list({
-          'folderId' : folderId,
-          'pageToken': nextPageToken
-        });
-        retrievePageOfChildren(request, result);
-      } else {
-        callback(result);
-      }
-    });
+  	var retrievePageOfChildren = function(request, result) {
+		request.execute(function(resp) {
+		result = result.concat(resp.items);
+		var nextPageToken = resp.nextPageToken;
+		if (nextPageToken) {
+			request = gapi.client.drive.children.list({
+				'folderId' : folderId,
+				'pageToken': nextPageToken
+			})
+			retrievePageOfChildren(request, result);
+		} else
+			callback(result)
+	})
   }
+  
   var initialRequest = gapi.client.drive.children.list({
 		'folderId' : folderId,
-		//'q' : "mimeType contains '" + acceptedFiles + "'",
 		'q' : "(mimeType contains 'image/' or mimeType contains 'video/' or mimeType contains 'application/pdf')",
 		'maxResults': 1000
-    });
+    })
 
   retrievePageOfChildren(initialRequest, []);
+}
+
+function getFileMetadata(file, cb) {
+	var request = gapi.client.drive.files.get({
+		'fileId': file.id
+	})
+	request.execute(cb)
 }

@@ -57,9 +57,9 @@ var media = new Vue({
 			data.forEach((m) => {
 				if(!this.media.some((e) => e.id == m.id)) {
 					m.selected = false
-					m.type = this.types[0]
-					//this.guessType(m)
+					this.guessType(m, (t) =>  m.type = t)
 					m.event = this.events[0]
+					m.link = this.createLink(m)
 					this.media.push(m)
 				}
 			})
@@ -69,14 +69,18 @@ var media = new Vue({
 			return 'https://drive.google.com/thumbnail?access_token=' + oauth_token + '&sz=w100&id=' + medium.id
 		},
 
-		guessType: function(medium) {
-			switch(medium.mimeType.split('/')[0].toUpperCase()) {
-				case 'IMAGE':
-					return 's'
-					break;
-				case 'VIDEO':
-					console.log(medium.mimeType)
-			}
+		guessType: function(medium, cb) {
+			this.types.forEach(t => {
+				if(t.mime_types != undefined && medium.mimeType) {
+					if(t.mime_types.toUpperCase().includes(medium.mimeType.toUpperCase()))
+						cb(t)
+				}
+				else
+					cb(this.types[0])
+			})
+		},
+		createLink: function(medium) {
+			return 'https://drive.google.com/file/d/' + medium.id
 		}
 	}
 })

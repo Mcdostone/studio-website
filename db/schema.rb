@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161029102024) do
+ActiveRecord::Schema.define(version: 20161102214806) do
 
   create_table "authorizations", force: :cascade do |t|
     t.string "name"
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 20161029102024) do
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "mime_types"
   end
 
   create_table "users", force: :cascade do |t|

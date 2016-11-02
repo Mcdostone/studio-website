@@ -10,5 +10,9 @@
     = label_tag 'Type de média:'
     = f.text_field :name, placeholder: "Vidéo..."
 
+  %p 
+    = label_tag 'Types MIME:'
+    = f.text_field :mime_types, placeholder: "image/png image/jpeg"
+
   %p
     = f.submit submit_button_value(@type), class: 'button'

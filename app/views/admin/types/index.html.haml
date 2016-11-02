@@ -4,6 +4,7 @@
   %tr
     %th ID
     %th Nom
+    %th Types MIME
     %th.colum-timestamps Ajouté
     %th.colum-timestamps Mis à jour
  
@@ -13,6 +14,8 @@
         = type.id
       %td
         = type.name
+      %td
+        = type.mime_types
       %td.colum-timestamps
         = format_date(type.created_at)
       %td.colum-timestamps
