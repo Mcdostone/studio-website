@@ -7,13 +7,11 @@ $breakpoint: 850px;
 /** ----------
 	nav
     ----------*/
-
-nav {
-	width: 100%;
+nav.uk-navbar {
 	height: $nav-height;
 	background-color: $nav-background;
 	border-bottom: 1px solid shade($nav-background, 70%);
-	
+
 	a {
 		float: left;
 		height: 100%;
@@ -26,34 +24,30 @@ nav {
 		color: $nav-color;
 		@include transition-duration(0.2s);
 
-		&:hover {
+		&:hover, &:focus {
 			color: $nav-li-hover-color;
 			@include transition-duration(0.3s);
-		}	
+			background-color: inherit;
+		}
 	}
+
+	li:hover > a {
+		background-color: inherit;
+	}
+
 }
 
 #nav-logo {
 	height: $nav-height + 1px;
 	background-color: $nav-logo-background;
 
-	&:hover {
-		background-color: $nav-logo-hover-background;
-	}
+	&:hover {  background-color: $nav-logo-hover-background;  }
 
 	img {
-			height: $nav-height - 20px;
-			margin-bottom: 5px;
-		}
+		height: $nav-height - 20px;
+		margin-bottom: 5px;
+	}
 }
-
-// Presentation - contact - works
-.nav-left {  float: left; z-index: 50; }
-
-// Profile - sign in
-.nav-right {  float: right; z-index: 50; }
-
-
 
 
 /** ----------
@@ -105,12 +99,12 @@ nav {
 
 @media screen and (max-width: $breakpoint) {
 
-	nav {
+	nav.uk-navbar {
 		display: flex;
 		flex-wrap: wrap;
 		height: auto;
 	}
-	
+
 	#nav-logo {
 		flex-grow: 3;
 		width: 100%;
@@ -118,7 +112,7 @@ nav {
 		height: $nav-height;
 		margin: auto auto;
 
-		img {  
+		img {
 			display: block;
 			padding: 0;
 			margin: auto auto;
@@ -126,20 +120,35 @@ nav {
 		}
 	}
 
-	.nav-left, .nav-right {
+	.uk-navbar-nav, .uk-navbar-flip {
 		width: 50%;
 		display: block;
 		background-color: inherit;
 		float: none;
-		//margin: 2% 0;
-		//height: 100%;
-		box-sizing: border-box;
-		
-		a {
+		border-right: 1px solid $nav-logo-hover-background;
+		@include box-sizing(border-box);
+
+		li {
 			padding: 0;
 			width: 100%;
 			height: $nav-height;
-			text-align: center;
+			height: auto;
+
+			a {
+				width: 100%;
+				text-align: center;
+			}
+		}
+	}
+
+	.uk-navbar-flip {
+		display: block;
+		width: 50%;
+		border-right: none;
+
+		.uk-navbar-nav {
+			width: 100%;
+			height: 100%;
 		}
 	}
 
@@ -147,8 +156,8 @@ nav {
 		float: left;
 		z-index: 30;
 		width: 100%;
-		padding: 10px 0;		
-		background-color: $nav-background;		
+		padding: 10px 0;
+		background-color: $nav-background;
 	}
 
 	.nav-hamburger {
@@ -178,12 +187,7 @@ nav {
 		opacity: 1;
 	}
 
-	.nav-left {
-		border-right: 1px solid $nav-logo-hover-background;
-		@include box-sizing(border-box);
-	}
-
-	.nav-right {  float: right;  }
+	.uk-navbar-flip {  float: right;  }
 
 	.hidden {
 		display: none;
@@ -191,10 +195,9 @@ nav {
 		height: 0;
 	}
 
-
 	#nav-profile {
 		width: 100%;
-		
+
 		.nav-profile-avatar {
 			float: none;
 			display: block;
@@ -209,6 +212,6 @@ nav {
 			line-height: 40px;
 			font-size: 1.5em;
 			text-align: center;
-		}	
+		}
 	}
 }

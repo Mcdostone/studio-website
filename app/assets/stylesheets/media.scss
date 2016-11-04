@@ -16,17 +16,22 @@
 	width: 100%;
 	display: block;
 
-	select {
-		margin-bottom: 5px;
-		width: 20%;
-	}
 
 	select:nth-child(2){
 		margin-bottom: 10px;
 	}
 
-	td select{
+	td select, th select{
 		width: 90%;
 		margin-left: 5%;
 	}
+
+}
+
+.fade-enter-active, .fade-leave-active {
+	transition: opacity 3s;
+}
+
+.fade-enter, .fade-leave-active {
+	opacity: 0;
 }

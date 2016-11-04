@@ -57,7 +57,12 @@ var media = new Vue({
 			data.forEach((m) => {
 				if(!this.media.some((e) => e.id == m.id)) {
 					m.selected = false
-					this.guessType(m, (t) =>  m.type = t)
+					this.guessType(m, (t) =>  {
+						if(t.length >= 1)
+							m.type = t[0]
+						else
+							m.type = this.types[0]
+					})
 					m.event = this.events[0]
 					m.link = this.createLink(m)
 					this.media.push(m)
@@ -70,14 +75,16 @@ var media = new Vue({
 		},
 
 		guessType: function(medium, cb) {
-			this.types.forEach(t => {
-				if(t.mime_types != undefined && medium.mimeType) {
-					if(t.mime_types.toUpperCase().includes(medium.mimeType.toUpperCase()))
-						cb(t)
-				}
-				else
-					cb(this.types[0])
-			})
+			if(medium && medium.mimeType) {
+				cb(this.types.filter(type => {
+					if(type.mime_types)
+						return type.mime_types.toUpperCase().includes(medium.mimeType.toUpperCase())
+					else
+						return false
+				}))
+			}
+			else
+				return undefined
 		},
 		createLink: function(medium) {
 			return 'https://drive.google.com/file/d/' + medium.id

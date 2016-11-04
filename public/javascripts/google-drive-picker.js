@@ -47,8 +47,8 @@ function createPicker() {
 		//stud folder
 		.setParent("0B3RcUBU3GDgbSXpwc3haZi0wU0k")
 		.setMimeTypes(acceptedFiles)
-		
-		
+
+
 		var picker = new google.picker.PickerBuilder()
 		.addView(view)
 		.enableFeature(google.picker.Feature.NAV_HIDDEN)
@@ -57,7 +57,7 @@ function createPicker() {
 		.setDeveloperKey(developerKey)
 		.setCallback(pickerCallback)
 		.build()
-		
+
 		picker.setVisible(true)
 	}
 }
@@ -66,7 +66,7 @@ function pickerCallback(data) {
 	if (data[google.picker.Response.ACTION] == google.picker.Action.PICKED) {
 		if(data.docs.length == 1 && data.docs[0].type === 'folder')
 			retrieveAllFilesInFolder(data.docs[0].id, media.fetchMedia)
-		else		
+		else
 			media.fetchMedia(data.docs)
 	}
 }
@@ -77,8 +77,8 @@ function sendMedias(picked) {
 	xhr.open('POST', '/media', true)
 	xhr.setRequestHeader("X-CSRF-Token", token)
 	xhr.setRequestHeader('Content-Type', 'application/json; charset=utf-8')
-	
-		xhr.onreadystatechange = function() {
+
+	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0))
 			callbackServer(xhr.responseXML)
 	}
@@ -110,7 +110,7 @@ function retrieveAllFilesInFolder(folderId, callback) {
 			callback(result)
 	})
   }
-  
+
   var initialRequest = gapi.client.drive.children.list({
 		'folderId' : folderId,
 		'q' : "(mimeType contains 'image/' or mimeType contains 'video/' or mimeType contains 'application/pdf')",

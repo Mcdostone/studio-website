@@ -23,6 +23,6 @@ $text-color: #919191;
 $breakpoint: 850px;
 
 
-html * {
-	font-family: 'Lato', sans-serif;
+html *, body {
+	font-family: 'Lato', sans-serif !important;
 }

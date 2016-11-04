@@ -1,32 +1,40 @@
-%nav
-  -#%a#nav-logo
+%nav.uk-navbar
+
   = link_to "/", id: "nav-logo" do
     = image_tag("/images/logo_studio.png")
   %div.nav-container-hamburger
     %div.nav-hamburger
-  
+
+
   %div.nav.hidden
-    %div.nav-left
-      = link_to "Studio", "/#studio", data: { turbolinks: false }
-      = link_to "Réalisations", "/#works", data: { turbolinks: false }
-      = link_to "À propos", "/#about", data: { turbolinks: false }
-      = link_to "Medias", media_path, data: { turbolinks: false }
-      = link_to "Types", types_path, data: { turbolinks: false }
-      = link_to "Évents", events_path, data: { turbolinks: false }
-      = link_to "Users", admin_users_path, data: { turbolinks: false }
-    %div.nav-right
-      - if current_user
+    %ul.uk-navbar-nav
+      %li
+        = link_to "Studio", "/#studio", data: { turbolinks: false }
+      %li
+        = link_to "Réalisations", "/#works", data: { turbolinks: false }
+      %li
+        = link_to "À propos", "/#about", data: { turbolinks: false }
+      %li
+        = link_to "Medias", media_path, data: { turbolinks: false }
+      %li
+        = link_to "Types", types_path, data: { turbolinks: false }
+      %li
+        = link_to "Évents", events_path, data: { turbolinks: false }
+      %li
+        = link_to "Users", admin_users_path, data: { turbolinks: false }
 
-        = link_to user_path(current_user), id: "nav-profile" do
-          %div.nav-profile-avatar
-            = image_tag(url_picture_profile(current_user))
-          %div.nav-profile-user
-            - if current_user.nickname
-              = current_user.nickname
-            - else
-              = current_user.first_name
-        -#= link_to "Picker", signout_path, id: "sign_out", data: { turbolinks: false }
-        = link_to "Déconnexion", logout_path, id: "sign_out", data: { turbolinks: false }
 
-      - else
-        = link_to "Se connecter", login_path, id: "sign_in"
+    %div.uk-navbar-flip
+      %ul.uk-navbar-nav
+        - if current_user
+          %li
+            = link_to user_path(current_user), id: "nav-profile" do
+              %div.nav-profile-avatar
+                = image_tag(url_picture_profile(current_user))
+              %div.nav-profile-user
+                = current_user.nickname
+          %li
+            = link_to "Déconnexion", logout_path, id: "sign_out", data: { turbolinks: false }
+        - else
+          %li
+            = link_to "Se connecter", login_path, id: "login", data: { turbolinks: false }
