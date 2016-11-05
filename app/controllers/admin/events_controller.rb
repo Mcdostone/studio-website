@@ -3,10 +3,10 @@ class Admin::EventsController < AdminController
 	def new
 		@event = Event.new
 	end
-  
+
   def index
     @events = Event.all
-    puts "ctr: " + current_user.inspect
+    puts @events.inspect
   end
 
   def create
@@ -33,7 +33,7 @@ class Admin::EventsController < AdminController
 
   private
   def event_params
-		params.require(:event).permit(:name, :date)
+		params.require(:event).permit(:name, :date_event)
 	end
-  
+
 end

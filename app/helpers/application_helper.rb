@@ -4,7 +4,7 @@ module ApplicationHelper
 		date.strftime('%d/%m/%Y - %H:%M:%S')
 	end
 
-	def submit_button_value(model)		
+	def submit_button_value(model)
 		model.new_record? ? 'Créer' : 'Modifier'
 	end
 end

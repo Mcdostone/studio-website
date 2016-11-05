@@ -27,7 +27,8 @@ gem "haml-rails"
 
 gem "omniauth-google-oauth2", "~> 0.2.1"
 
-gem "uikit-sass-rails"
+gem 'uikit-rails'
+#gem "uikit-sass-rails"
 
 gem 'angularjs-rails'
 

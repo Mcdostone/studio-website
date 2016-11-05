@@ -1,4 +1,4 @@
-= form_for [:admin, @type] do |f|
+= form_for [:admin, @type], :html => {class: 'uk-form'} do |f|
   %div.errors
     - if @type.errors.any?
       %h3
@@ -6,13 +6,13 @@
       %ul
         - @type.errors.full_messages.each do |msg|
           %li= msg
-  %p 
+  %p
     = label_tag 'Type de média:'
     = f.text_field :name, placeholder: "Vidéo..."
 
-  %p 
-    = label_tag 'Types MIME:'
+  %p
+    = label_tag 'Types de MIME:'
     = f.text_field :mime_types, placeholder: "image/png image/jpeg"
 
   %p
-    = f.submit submit_button_value(@type), class: 'button'
+    = f.submit submit_button_value(@type), class: 'uk-button button'

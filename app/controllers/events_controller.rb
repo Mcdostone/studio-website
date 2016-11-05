@@ -7,5 +7,5 @@ class EventsController < ApplicationController
 	  format.json { render :json => @events }
 	end
   end
-  
+
 end

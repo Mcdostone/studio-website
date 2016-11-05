@@ -1,0 +1,11 @@
+%h2 Modifier le profil
+%div.profile
+  %div.profile-picture
+    = image_tag(url_picture_profile(@user, 200))
+
+  %div.profile-about
+    %p
+      = @user.first_name + ' ' + @user.last_name
+    %p
+
+= render 'form'

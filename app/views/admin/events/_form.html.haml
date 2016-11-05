@@ -1,10 +1,10 @@
-= form_for [:admin, @event] do |f|
-  %p 
-    = label_tag "Nom de l'Event:"
+= form_for [:admin, @event], :html => {class: 'uk-form'} do |f|
+  %p
+    = label_tag "Nom de l'Évent:"
     = f.text_field :name, placeholder: "WEI 2015, Gala ..."
   %p
-    = label_tag "Date de l'Event:"
-    = f.date_field :date
+    = label_tag "Date de l'Évent:"
+    = f.date_field :date_event
 
-  %p 
-    = f.submit submit_button_value(@event), class: 'button'
+  %p
+    = f.submit submit_button_value(@event), class: 'uk-button button'

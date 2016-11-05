@@ -1,0 +1,83 @@
+@import "configuration";
+@import "uikit";
+@import "uikit-components";
+@import "base";
+@import "style";
+@import "users";
+
+
+table {
+	width: 100%;
+	color: white;
+	border: 3px solid $table-delimiter;
+}
+
+.uk-button:focus {
+	background-color: $nav-logo-hover-background;
+}
+
+.uk-table thead {
+	background-color: $table-delimiter;
+}
+
+.uk-table-hover tbody tr:hover {
+	background-color: $table-delimiter;
+}
+
+.uk-table tbody tr {
+	border-bottom: 1px solid $table-delimiter;
+}
+
+.uk-table thead tr {
+	border-bottom: 3px solid $table-delimiter;
+}
+
+.uk-table .button {
+	margin: 0 auto;
+	color: white;
+	font-size: inherit;
+	line-height: inherit;
+	padding: inherit;
+}
+
+.uk-form input, .uk-form textarea, .uk-form select, .uk-form input[type="text"], .uk-form input[type="submit"],
+.uk-form input[type="date"] {
+	font-size: 1.2em;
+	height: 42px;
+	line-height: normal;
+	padding: 10px 20px;
+	border: none;
+	@include box-sizing(border-box);
+}
+
+.uk-form input[type="date"] {
+	padding: 10px 0px;
+}
+
+.uk-form input[type="submit"] {
+	color: white;
+	margin: 0 auto;
+	margin-top: 40px;
+}
+
+
+
+#container {
+	display: inline-block;
+	display: flex;
+	flex-wrap: wrap;
+	margin-top: 10px;
+	justify-content: center;
+	align-items: center;
+	justify-content: flex-start;
+	width: 80%;
+	margin-left: 10%;padding-bottom: 210px;
+
+	h2 {
+		text-transform: uppercase;
+	}
+
+	a {
+		color: $nav-li-hover-color;
+	}
+}

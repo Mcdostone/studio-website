@@ -1,4 +1,4 @@
-= form_for @medium do |f|
+= form_for [:admin, @medium], :html => {class: 'uk-form'} do |f|
   %div.errors
     - if @medium.errors.any?
       %h3
@@ -8,13 +8,13 @@
           %li= msg
 
   = image_tag(url_media(@medium, current_user.oauth_token))
-  %p 
+  %p
     = label_tag 'Type du média:'
     = f.select :type_id, @types.map{ |t| [t.name, t.id] }
 
-  %p 
+  %p
     = label_tag 'Évenement:'
     = f.select :event_id, @events.map{ |e| [e.name, e.id] }
 
   %p
-    = f.submit submit_button_value(@medium), class: 'button'
+    = f.submit submit_button_value(@medium), class: 'uk-button button'

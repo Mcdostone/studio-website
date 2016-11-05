@@ -8,6 +8,6 @@ class Event < ActiveRecord::Base
 
 	private
 		def set_defaults
-			self.date = Time.now
+			self.date_event = Time.now if(!self.date_event)
 		end
 end

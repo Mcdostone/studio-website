@@ -9,9 +9,10 @@
     = csrf_meta_tags
   %body
     = render 'partials/nav'
-    
+
     %div#container
       = yield
-    
+
     = render 'partials/footer'
     = javascript_include_tag 'hamburger', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true

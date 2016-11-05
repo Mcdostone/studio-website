@@ -1,28 +1,31 @@
-%h2 Liste des types
- 
-%table
-  %tr
-    %th ID
-    %th Nom
-    %th Types MIME
-    %th.colum-timestamps Ajouté
-    %th.colum-timestamps Mis à jour
- 
-  - @types.each do |type|
+%h2 Liste des Types
+
+%table.uk-table.uk-table-hover
+  %thead
     %tr
-      %td
-        = type.id
-      %td
-        = type.name
-      %td
-        = type.mime_types
-      %td.colum-timestamps
-        = format_date(type.created_at)
-      %td.colum-timestamps
-        = format_date(type.updated_at)
-      %td
-        = link_to 'Modifier', edit_admin_type_path(type)
-      %td 
-        = link_to 'Supprimer', admin_type_path(type), method: :delete, data: { confirm: 'Voulez-vous supprimer ce type ?' }
+      %th ID
+      %th Nom
+      %th Types MIME
+      %th.colum-timestamps Ajouté
+      %th.colum-timestamps Mis à jour
+      %th
+      %th
+  %tbody
+    - @types.each do |type|
+      %tr
+        %td.uk-table-middle
+          = link_to type.id, edit_admin_type_path(type)
+        %td.uk-table-middle
+          = link_to type.name, edit_admin_type_path(type)
+        %td.uk-table-middle
+          = type.mime_types
+        %td.colum-timestamps.uk-table-middle
+          = format_date(type.created_at)
+        %td.colum-timestamps.uk-table-middle
+          = format_date(type.updated_at)
+        %td.uk-table-middle
+          = link_to 'Modifier', edit_admin_type_path(type), class: "uk-button button"
+        %td.uk-table-middle
+          = link_to 'Supprimer', admin_type_path(type), method: :delete, data: { confirm: 'Voulez-vous supprimer ce Type ?' }, class: "uk-button button"
 
 = link_to 'Nouveau type', new_admin_type_path, class: "button"

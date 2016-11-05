@@ -5,24 +5,37 @@
 @import url('https://fonts.googleapis.com/css?family=Lato:300,400');
 
 
-$nav-background: #0A0A0A;
-$nav-height: 70px;
-$nav-color: #444444;
-$nav-li-hover-color: white;
-$nav-logo-background: #921c0c;
-$nav-logo-hover-background: shade($nav-logo-background, 20%);
+// ----------------------------------------------------
+// -- Variables for studio
+// ----------------------------------------------------
 
-$nav-avatar-height-responsive: 100px;
+$nav-background: 				#0A0A0A;
+$nav-height: 					70px;
+$nav-color: 					#444444;
+$nav-li-hover-color: 			white;
+$nav-logo-background: 			#921c0c;
+$nav-logo-hover-background: 	shade($nav-logo-background, 20%);
+$nav-avatar-height-responsive: 	100px;
+
+$height-background: 			400px;
+$body-background:				#222222;
+$text-color:					#919191;
+
+$table-delimiter:				shade($body-background, 30%);
 
 
-$height-background: 400px;
-$body-background: #222222;
-$text-color: #919191;
 
+// ----------------------------------------------------
+// -- Variables of Uikit
+// ----------------------------------------------------
+
+$form-focus-background:			white;
+$form-color:					black;
+$form-focus-color:				black;
+
+
+$button-color:					white;
+$button-hover-color: 			white;
+$button-active-color: 			white;
 
 $breakpoint: 850px;
-
-
-html *, body {
-	font-family: 'Lato', sans-serif !important;
-}

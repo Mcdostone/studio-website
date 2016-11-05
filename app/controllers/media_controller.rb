@@ -1,12 +1,12 @@
 class MediaController < ApplicationController
 	layout "application"
-	
+
 	before_action :set_medium, only:[:show]
 
-	def index 
+	def index
 		@media = Medium.includes(:type, :event).all
 	end
-	
+
 	def show
 	end
 

@@ -2,17 +2,17 @@ class Admin::MediaController < AdminController
 	layout "application"
 	before_action :set_medium, only:[:edit, :update, :show, :destroy]
 
-	def index 
+	def index
 		@media = Medium.includes(:type, :event).all
 	end
-	
+
 	def create
 		media = JSON.parse(media_params.to_json)
 		media.each do |m|
 			@medium = Medium.new(id_file: m['id'])
 			@medium.save
 		end
-		
+
 		respond_to do |format|
 			format.json { render :json => "ok", :status => 200 }
 		end

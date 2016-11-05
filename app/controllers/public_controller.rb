@@ -1,6 +1,6 @@
 class PublicController < ApplicationController
-	
-  def index    
+
+  def index
   end
-  
+
 end

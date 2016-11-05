@@ -19,13 +19,13 @@ class Admin::UsersController < AdminController
 			redirect_to root_path
 		end
 	end
-	
+
 	private
 	def user_params
 		user_p = params.require(:user).permit(:nickname, :authorization)
 		if(!@user.admin? && current_user.admin?)
 			user_p[:authorization] = Authorization.find_by(name: (user_p[:authorization] == '1' ? 'author' : 'viewer'))
-		else 
+		else
 			user_p[:authorization] = @user.authorization
 		end
 		user_p
@@ -34,5 +34,5 @@ class Admin::UsersController < AdminController
 	def set_user
 		@user = User.find(params[:id])
 	end
-	
+
 end

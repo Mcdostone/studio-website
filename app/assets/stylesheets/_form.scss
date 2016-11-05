@@ -16,20 +16,20 @@ input, input:focus, input:active, select{
 }
 
 input:-webkit-autofill, input:-webkit-autofill:focus{
-	-webkit-box-shadow:0 0 0 50px white inset;   
+	-webkit-box-shadow:0 0 0 50px white inset;
 }
 
 input, select{
 	display: block;
 	width: 100%;
-	font-size: 1.3em;
+	font-size: 1.2em;
 	padding: 10px 20px;
 	text-align: center;
 	border: none;
 	@include box-sizing(border-box);
 }
 
-input[type="text"], select {	
+input[type="text"], select {
 	line-height: normal;
 	background-color: white;
 	text-align: center;
