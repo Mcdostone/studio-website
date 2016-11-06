@@ -23,6 +23,12 @@ $text-color:					#919191;
 
 $table-delimiter:				shade($body-background, 30%);
 
+$container-small-item-margin:	2px;
+
+$container-big-item-margin:		4 * $container-small-item-margin;
+
+$small-item-size:				120px;
+$big-item-size:					2 * $small-item-size;
 
 
 // ----------------------------------------------------

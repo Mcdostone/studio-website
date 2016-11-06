@@ -66,3 +66,9 @@ label {
 	font-weight: normal;
 	color: $nav-li-hover-color;
 }
+
+table {
+	width: 100%;
+	color: white;
+	border: 3px solid $table-delimiter;
+}

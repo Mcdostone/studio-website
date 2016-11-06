@@ -4,7 +4,7 @@ class TypesController < ApplicationController
 	before_action :set_type, only:[:show]
 
 	def index
-		@types = Type.all
+		@types = Type.includes(:media).all
 		respond_to do |format|
 			format.html
 			format.json { render :json => @types }

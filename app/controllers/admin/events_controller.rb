@@ -6,7 +6,6 @@ class Admin::EventsController < AdminController
 
   def index
     @events = Event.all
-    puts @events.inspect
   end
 
   def create

@@ -12,8 +12,8 @@ class User < ActiveRecord::Base
       user.uid = auth.uid
       user.first_name = auth.info.first_name
       user.last_name = auth.info.last_name.capitalize
-      
-      # Test if picture is the default picture of google account      
+
+      # Test if picture is the default picture of google account
       user.picture = auth.info.image if(auth.info.image != DEFAULT_IMAGE)
 
       user.email = auth.info.email

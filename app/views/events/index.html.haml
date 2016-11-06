@@ -1,1 +1,13 @@
 %h2 Évents
+
+%div.container-big-items.container-events
+  - @events.each do |event|
+    = link_to event_path(event) do
+      %div.item
+        = image_tag(url_thumbnail(random_media(event), current_user.oauth_token, 300))
+        %div.overlay
+          %div.item-infos
+            %p.item-name
+              = event.name
+            %p.item-date
+              = format_event_date(event.date_event)

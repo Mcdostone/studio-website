@@ -1,16 +1,13 @@
 @import "configuration";
+
 @import "uikit";
 @import "uikit-components";
+
 @import "base";
 @import "style";
+@import "events";
 @import "users";
 
-
-table {
-	width: 100%;
-	color: white;
-	border: 3px solid $table-delimiter;
-}
 
 .uk-button:focus {
 	background-color: $nav-logo-hover-background;
@@ -60,8 +57,6 @@ table {
 	margin-top: 40px;
 }
 
-
-
 #container {
 	display: inline-block;
 	display: flex;
@@ -79,5 +74,96 @@ table {
 
 	a {
 		color: $nav-li-hover-color;
+	}
+}
+
+.container-media, .container-events, .container-types, .container-users {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-content: flex-start;
+	align-items: center;
+	color: white;
+	cursor: pointer;
+
+	& > * {
+		margin: $container-big-item-margin;
+	}
+}
+
+.container-media > * {
+	margin: $container-small-item-margin;
+}
+
+.container-big-items .item, .container-small-items .item {
+	background-color: grey;
+	position: relative;
+	img { object-fit: cover; }
+}
+
+.container-big-items .item {
+	width: $big-item-size;
+	height: $big-item-size;
+
+	img {
+		width: $big-item-size;
+		height: $big-item-size;
+	}
+}
+
+.container-small-items .item {
+	width: $small-item-size;
+	height: $small-item-size;
+
+	img {
+		width: $small-item-size;
+		height: $small-item-size;
+	}
+}
+
+.overlay {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	margin: auto;
+	text-align: center;
+	line-height: normal;
+	text-transform: uppercase;
+	background-color: rgba(0, 0, 0, 0.7);
+	@include transition-duration(0.2s);
+
+	&:hover {
+		background-color: rgba(0, 0, 0, 0.6);
+		@include transition-duration(0.3s);
+	}
+}
+
+.container-users .overlay:hover { background-color: rgba(0, 0, 0, 0.3); }
+
+.container-users .overlay:hover .item-name {
+	opacity: 0;
+	@include transition-duration(0.2s);
+}
+
+.item-infos {
+	margin-top: 50%;
+	@include translate(0, -50%);
+
+	p {
+		line-height: normal;
+	}
+
+	.item-name {
+		@include transition-duration(0.2s);
+		font-size: 2em;
+		font-weight: 300em;
+	}
+
+	.item-date {
+		margin: 0;
+		font-size: 1em;
+		font-style: italic;
 	}
 }
