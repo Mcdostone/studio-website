@@ -11,6 +11,8 @@ nav.uk-navbar {
 	height: $nav-height;
 	background-color: $nav-background;
 	border-bottom: 1px solid shade($nav-background, 70%);
+	position: relative;
+	z-index: 3;
 
 	a {
 		float: left;

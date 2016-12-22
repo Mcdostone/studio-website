@@ -8,7 +8,6 @@ class Admin::MediaController < AdminController
 
 	def create
 		media = JSON.parse(media_params)
-		puts "ok #{media} --"
 		media.each do |m|
 			@medium = Medium.new(id_file: m['id'])
 			@medium.save

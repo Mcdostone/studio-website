@@ -27,6 +27,7 @@ class Admin::EventsController < AdminController
   def destroy
     event = Event.find(params[:id])
     event.destroy
+    puts "#{admin_events_path}"
     redirect_to admin_events_path
   end
 
