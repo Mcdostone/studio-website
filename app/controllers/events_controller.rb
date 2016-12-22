@@ -1,11 +1,18 @@
 class EventsController < ApplicationController
 
+  before_action :set_event, only:[:show]
+
   def index
 	@events = Event.includes(:media).all
-	respond_to do |format|
-	  format.html
-	  format.json { render :json => @events }
-	end
   end
+
+  def show
+  	@media = @event.media
+  end
+
+  private
+	def set_event
+		@event = Event.find(params[:id])
+	end
 
 end

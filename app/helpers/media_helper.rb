@@ -1,6 +1,6 @@
 module MediaHelper
 
-	SIZE_THUMBNAIL = 300
+	SIZE_THUMBNAIL = 100
 	SIZE_MEDIA = 500
 
 	def url_media(media, access_token)

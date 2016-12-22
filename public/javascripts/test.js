@@ -88,6 +88,22 @@ var media = new Vue({
 		},
 		createLink: function(medium) {
 			return 'https://drive.google.com/file/d/' + medium.id
+		},
+
+		sendMedia: function() {
+			let success = function(e) {
+				console.log(e)
+			}
+
+			$.ajax({
+  				type: "POST",
+  				url: '/admin/media',
+  				beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+  				//data: JSON.stringify({media: media.media}),
+  				data: JSON.stringify({media: this.media}),
+  				success: success,
+  				dataType: 'json'
+			})
 		}
 	}
 })
