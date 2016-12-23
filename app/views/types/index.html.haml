@@ -1,10 +1,9 @@
-%h2 Types
-
-
 - if @types.empty?
   = render 'partials/nothing'
 
 -else
+  %h2 Types
+
   %div.div.container-big-items.container-types
     - @types.each do |type|
       = link_to type_path(type) do

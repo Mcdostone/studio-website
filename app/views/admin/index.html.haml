@@ -1,0 +1,25 @@
+%h2 Dashboard Admin
+
+%div.dashboard
+  = link_to admin_media_path, :id => "card-media", :class => "card"  do
+    %div.card-icon
+    %p.card-number
+      = @media_count
+    %p.card-text
+      = @media_count > 1 ? "Media disponibles" : "Medium disponible"
+
+
+  = link_to admin_events_path, :id => "card-events", :class => "card"  do
+    %div.card-icon
+    %p.card-number
+      = @events_count
+    %p.card-text
+      = @events_count > 1 ? "Events disponibles" : "Event disponible"
+
+
+  = link_to admin_types_path, :id => "card-types", :class => "card"  do
+    %div.card-icon
+    %p.card-number
+      = @types_count
+    %p.card-text
+      = @types_count > 1 ? "Types disponibles" : "Type disponible"

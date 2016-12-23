@@ -1,0 +1,102 @@
+.dashboard {
+	width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-content: flex-start;
+	align-items: center;
+}
+
+.card {
+	display: inline-block;
+	width: 30%;
+	margin-right: 3%;
+	height: 100px;
+	* {
+		color: white;
+		margin-right: 20px;
+	}
+
+	cursor: pointer;
+
+	.card-number {
+		display: inline;
+		width: auto;
+		float: right;
+		font-size: 3em;
+		line-height: 1;
+		clear: right;
+		text-align: right;
+		margin-bottom: 7px;
+	}
+
+	.card-text {
+		display: inline;
+		margin-top: 0;
+		float: right;
+		text-align: right;
+		margin-bottom: 0;
+		clear: right;
+	}
+
+	.card-icon {
+		float: left;
+		background-color: $nav-logo-background;
+		display: inline-block;
+		width: 100px;
+		height: 100px;
+	}
+}
+
+
+#card-media {
+	background-color: $card-media-background;
+	@include transition-duration(0.2s);
+}
+
+#card-media:hover {
+	background-color: shade($card-media-background, 30%);
+	@include transition-duration(0.3s);
+}
+
+#card-media .card-icon {
+	background: url("/images/card-media.png");
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 60px 60px;
+}
+
+
+#card-events {
+	background-color: $card-events-background;
+	@include transition-duration(0.2s);
+}
+
+#card-events:hover {
+	background-color: shade($card-events-background, 30%);
+	@include transition-duration(0.3s);
+}
+
+#card-events .card-icon {
+	background: url("/images/card-events.png");
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 60px 60px;
+}
+
+#card-types {
+	background-color: $card-types-background;
+	@include transition-duration(0.2s);
+}
+
+#card-types:hover {
+	background-color: shade($card-types-background, 30%);
+	@include transition-duration(0.3s);
+}
+
+#card-types .card-icon {
+	background: url("/images/card-types.png");
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 60px 60px;
+}

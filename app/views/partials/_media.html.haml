@@ -1,5 +1,9 @@
-%div.container-small-items.container-media#media
-  - @media.each do |medium|
-    %div.item
-      = link_to image_tag(medium.thumbnail_url), medium_path(medium)
-      -#= link_to image_tag(url_thumbnail(medium, current_user.oauth_token, 150)), medium_path(medium)
+- if @media.empty?
+  = render 'partials/nothing'
+
+-else
+  %div.container-small-items.container-media#media
+    - @media.each do |medium|
+      %div.item
+        = link_to image_tag(medium.thumbnail_url), medium_path(medium)
+        -#= link_to image_tag(url_thumbnail(medium, current_user.oauth_token, 150)), medium_path(medium)

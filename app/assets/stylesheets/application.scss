@@ -8,6 +8,7 @@
 @import "events";
 @import "users";
 @import "media";
+@import "admin";
 @import "animate";
 
 
@@ -72,6 +73,7 @@
 
 	h2 {
 		text-transform: uppercase;
+		margin-bottom: 40px;
 	}
 
 	a {
