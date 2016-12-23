@@ -8,6 +8,7 @@
 @import "events";
 @import "users";
 @import "media";
+@import "animate";
 
 
 .uk-button:focus {
@@ -170,10 +171,51 @@
 }
 
 .nothing {
-	width: 100%;
-	font-weight: 100;
-	font-size: 3em;
-	text-align: center;
-	line-height: 3em;
-	margin-top: 50px;
+	position: absolute;
+	top: $nav-height;
+	left: 0;
+	bottom: $footer-height;
+	bottom: 0;
+	right: 0;
+	background: url("/images/nothing.gif") top fixed;
+	background-size: cover;
+	z-index: 5;
+
+	&:before {
+		position: absolute;
+		content: '';
+		display: inline-block;
+		width: 100%;
+		height: 100%;
+		background-color: rgba(0,0,0, 0.4);
+	}
+
+	p {
+		position: relative;
+		width: 70%;
+		margin-left: 15%;
+		font-weight: 300;
+		font-size: 4em;
+		line-height: 1;
+		color: white;
+		top: 45%;
+		@include translate(0, -50%);
+		text-align: center;
+	}
 }
+
+#nothing1 {
+	background: url("/images/nothing1.gif") top fixed;
+	background-size: cover;
+}
+
+#nothing2 {
+	background: url("/images/nothing2.gif") top fixed;
+	background-size: cover;
+}
+
+#nothing3 {
+	background: url("/images/nothing3.gif") top fixed;
+	background-size: cover;
+}
+

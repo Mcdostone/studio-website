@@ -68,9 +68,9 @@
 footer {
 	position: absolute;
 	display: block;
-	height: 100px;
+	height: $footer-height;
 	background-color: $nav-background;
-	line-height: 100px;
+	line-height: $footer-height;
 	color: $nav-color;
 	text-align: center;
 	bottom: 0;
