@@ -1,11 +1,16 @@
 %h2 Types
 
-%div.div.container-big-items.container-types
-  - @types.each do |type|
-    = link_to type_path(type) do
-      %div.item
-        = image_tag(url_thumbnail(random_media(type), current_user.oauth_token, 300))
-        %div.overlay
-          %div.item-infos
-            %p.item-name
-              = type.name
+
+- if @types.empty?
+  = render 'partials/nothing'
+
+-else
+  %div.div.container-big-items.container-types
+    - @types.each do |type|
+      = link_to type_path(type) do
+        %div.item
+          = image_tag(url_thumbnail(random_media(type), current_user.oauth_token, 300))
+          %div.overlay
+            %div.item-infos
+              %p.item-name
+                = type.name

@@ -34,7 +34,9 @@ gem 'angularjs-rails'
 
 gem 'compass-rails'
 
-gem "paperclip", "~> 5.0.0"
+gem 'mini_magick', '~> 4.6'
+
+gem 'carrierwave', '>= 1.0.0.rc', '< 2.0'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

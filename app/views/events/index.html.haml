@@ -1,11 +1,11 @@
 %h2 Évents
 
-%div.container-big-items.container-events
 
-  - if @events.empty?
-    = render 'partials/nothing'
+- if @events.empty?
+  = render 'partials/nothing'
 
-  -else
+-else
+  %div.container-big-items.container-events
     - @events.each do |event|
       = link_to event_path(event) do
         %div.item

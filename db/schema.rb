@@ -26,14 +26,11 @@ ActiveRecord::Schema.define(version: 20161222124455) do
 
   create_table "media", force: :cascade do |t|
     t.string   "id_file"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.integer  "event_id"
     t.integer  "type_id"
-    t.string   "thumbnail_file_name"
-    t.string   "thumbnail_content_type"
-    t.integer  "thumbnail_file_size"
-    t.datetime "thumbnail_updated_at"
+    t.string   "thumbnail"
   end
 
   create_table "types", force: :cascade do |t|

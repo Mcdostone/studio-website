@@ -1,3 +1,7 @@
 %h2 Médias
 
-= render 'partials/media'
+- if @media.empty?
+  = render 'partials/nothing'
+
+-else
+  = render 'partials/media'

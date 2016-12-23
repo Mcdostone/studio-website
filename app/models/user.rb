@@ -1,10 +1,10 @@
 class User < ActiveRecord::Base
 
+
   belongs_to :authorization
-
   after_initialize :set_defaults
-
   DEFAULT_IMAGE = 'https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg'
+
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_initialize.tap do |user|

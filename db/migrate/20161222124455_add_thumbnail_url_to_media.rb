@@ -1,6 +1,6 @@
 class AddThumbnailUrlToMedia < ActiveRecord::Migration
 
   def change
-  	 add_attachment :media, :thumbnail
+  	 add_column :media, :thumbnail, :string
   end
 end
