@@ -5,6 +5,11 @@ class TypesController < ApplicationController
 
 	def index
 		@types = Type.includes(:media).all
+
+		respond_to do |format|
+      		format.html
+      		format.json { render :json => @types.to_json }
+    end
 	end
 
 	def show

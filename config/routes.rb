@@ -22,11 +22,6 @@ Rails.application.routes.draw do
     get '/picker' => 'media#picker'
   end
 
-  get 'media/test' => 'media#test'
-
-  get 'gallery/' => "gallery#index"
-  get 'gallery/upload'
-
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

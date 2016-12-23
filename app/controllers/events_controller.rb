@@ -3,7 +3,12 @@ class EventsController < ApplicationController
   before_action :set_event, only:[:show]
 
   def index
-	@events = Event.includes(:media).all
+    @events = Event.includes(:media).all
+
+    respond_to do |format|
+      format.html
+      format.json { render :json => @events.to_json }
+    end
   end
 
   def show

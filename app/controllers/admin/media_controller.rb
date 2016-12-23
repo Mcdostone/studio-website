@@ -7,7 +7,9 @@ class Admin::MediaController < AdminController
 	end
 
 	def create
+		puts "fkjsdjkfgdkjfgkjdfgkjdkjfg #{media}"
 		media = JSON.parse(media_params)
+
 		media.each do |m|
 			@medium = Medium.new(id_file: m['id'])
 			@medium.save
@@ -37,8 +39,6 @@ class Admin::MediaController < AdminController
 	end
 
 	def picker
-		@current_user ||= User.find(session[:user_id]) if session[:user_id]
-		redirect_to root_path unless @current_user
 	end
 
 	private

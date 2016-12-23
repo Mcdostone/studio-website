@@ -56,6 +56,7 @@ function createPicker() {
 		.setOAuthToken(oauthToken)
 		.setDeveloperKey(developerKey)
 		.setCallback(pickerCallback)
+		.setOrigin("localhost:3000")
 		.build()
 
 		picker.setVisible(true)

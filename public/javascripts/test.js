@@ -91,20 +91,21 @@ var media = new Vue({
 		},
 
 		sendMedia: function() {
-			let success = function(e) {
+			let log = function(e) {
 				console.log(e)
 			}
 			console.log(this.media)
 
-			/*$.ajax({
+			$.ajax({
   				type: "POST",
   				url: '/admin/media',
   				beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
   				//data: JSON.stringify({media: media.media}),
-  				data: JSON.stringify({"media": this.media}),
-  				success: success,
+  				data: JSON.stringify({media: this.media}),
+  				success: log,
+  				error: log,
   				dataType: 'json'
-			})*/
+			})
 		}
 	}
 })
