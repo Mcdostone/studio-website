@@ -23,3 +23,17 @@
       = @types_count
     %p.card-text
       = @types_count > 1 ? "Types disponibles" : "Type disponible"
+
+  = link_to admin_users_path, :id => "card-users", :class => "card"  do
+    %div.card-icon
+    %p.card-number
+      = @users.size
+    %p.card-text
+      = @users.size > 1 ? "Studistes inscrits" : "Studiste inscrit"
+
+
+%h2 Administrateurs
+= render 'partials/list_users', users: @users.select { |u| u.admin? }
+
+%h2 Autheurs
+= render 'partials/list_users', users: @users.select { |u| u.author? }

@@ -9,7 +9,7 @@
 
 .card {
 	display: inline-block;
-	width: 30%;
+	width: 40%;
 	margin-right: 3%;
 	height: 100px;
 	* {
@@ -96,6 +96,24 @@
 
 #card-types .card-icon {
 	background: url("/images/card-types.png");
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 60px 60px;
+}
+
+
+#card-users {
+	background-color: $card-users-background;
+	@include transition-duration(0.2s);
+}
+
+#card-users:hover {
+	background-color: shade($card-users-background, 30%);
+	@include transition-duration(0.3s);
+}
+
+#card-users .card-icon {
+	background: url("/images/card-users.png");
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: 60px 60px;

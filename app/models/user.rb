@@ -28,7 +28,7 @@ class User < ActiveRecord::Base
   end
 
   def author?
-    self.authorization.name == 'author' || self.admin?
+    self.authorization.name == 'author'
   end
 
   private

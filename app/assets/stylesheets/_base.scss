@@ -1,9 +1,14 @@
+@import "compass/css3/selection";
+
+
 // ----------------------------------------------------
 // -- Basic rules
 // ----------------------------------------------------
 
+
 html *, body {
 	font-family: 'Lato', sans-serif !important;
+	@include selection(rgba($nav-logo-background, 0.8), white);
 }
 
 html {

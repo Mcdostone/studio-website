@@ -6,15 +6,11 @@ class AdminController < ApplicationController
 		@media_count =  Medium.count
 		@events_count =  Event.count
 		@types_count =  Type.count
+		@users = User.all
 	end
 
-	def require_admin
-		redirect_to root_path unless current_user.admin?
-		return
-  	end
-
   	def require_author
-		if(current_user.author?)
+		if(current_user.author? || current_user.admin?)
 			true
 		else
 			redirect_to root_path

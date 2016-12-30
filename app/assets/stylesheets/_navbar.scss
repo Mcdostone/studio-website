@@ -7,11 +7,12 @@ $breakpoint: 850px;
 /** ----------
 	nav
     ----------*/
-nav.uk-navbar {
+.navbar {
 	height: $nav-height;
 	background-color: $nav-background;
 	border-bottom: 1px solid shade($nav-background, 70%);
 	position: relative;
+	padding: 0;
 	z-index: 6;
 
 	a {
@@ -37,28 +38,43 @@ nav.uk-navbar {
 		background-color: inherit;
 	}
 
-}
+	#nav-logo {
+		height: $nav-height;
+		background-color: $nav-logo-background;
 
-#nav-logo {
-	height: $nav-height + 1px;
-	background-color: $nav-logo-background;
+		&:hover {  background-color: $nav-logo-hover-background;  }
 
-	&:hover {  background-color: $nav-logo-hover-background;  }
-
-	img {
-		height: $nav-height - 20px;
-		margin-bottom: 5px;
+		img {
+			height: $nav-height - 20px;
+			margin-bottom: 5px;
+		}
 	}
+
 }
+
+.dropdown-menu {
+	padding: 0;
+
+	a:hover {
+		color: $nav-logo-background;
+		@include transition-duration(0.3s);
+		background-color: inherit;
+	}
+} 
+
+
 
 
 /** ----------
 	PROFILE BUTTON (when you're connected)
     ----------*/
 
+.navbar .float-xs-right {
+	padding-right: 40px;
+}
 
 #nav-profile {
-	height: auto;
+	padding: 0;
 	.nav-profile-user {
 		float: left;
 	}

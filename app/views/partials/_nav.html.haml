@@ -1,45 +1,46 @@
-%nav.uk-navbar
-
-  = link_to "/", id: "nav-logo" do
+%nav.navbar.navbar-collapse
+  = link_to "/", class: "navbar-brand", id: "nav-logo" do
     = image_tag("/images/logo_studio.png")
+
   %div.nav-container-hamburger
     %div.nav-hamburger
 
-
   %div.nav.hidden
-    %ul.uk-navbar-nav
+    %ul.nav.navbar-nav
       - if !current_user
-        %li
+        %li.nav-item
           = link_to "Studio", "/#studio", data: { turbolinks: false }
-        %li
+        %li.nav-item
           = link_to "Réalisations", "/#works", data: { turbolinks: false }
-        %li
+        %li.nav-item
           = link_to "À propos", "/#about", data: { turbolinks: false }
       - else
-        %li
+        %li.nav-item
           = link_to "Medias", media_path, data: { turbolinks: false }
-        %li
+        %li.nav-item
           = link_to "Types", types_path, data: { turbolinks: false }
-        %li
+        %li.nav-item
           = link_to "Évents", events_path, data: { turbolinks: false }
-        %li
+        %li.nav-item
           = link_to "Users", users_path, data: { turbolinks: false }
 
-
-    %div.uk-navbar-flip
-      %ul.uk-navbar-nav
+    %div.float-xs-right
+      %ul.nav.navbar-nav
         - if current_user
-          %li
-            = link_to user_path(current_user), id: "nav-profile" do
+          %li.nav-item.dropdown
+            = link_to user_path(current_user), class: "nav-link dropdown-toggle", id: "nav-profile", data: {toggle: "dropdown" }, aria: {haspopup: "true", expanded: "false"} do
               %div.nav-profile-avatar
                 = image_tag(url_picture_profile(current_user))
               %div.nav-profile-user
                 = current_user.nickname
-          - if current_user.admin?
-            %li
-              = link_to "Dashboard", admin_path, data: { turbolinks: false }
-          %li
-            = link_to "Déconnexion", logout_path, id: "sign_out", data: { turbolinks: false }
+
+            %div.dropdown-menu
+              = link_to "Mon profil", user_path(current_user), class: "dropdown-item" 
+              - if current_user.admin?
+                = link_to "Dashboard", admin_path, class: "dropdown-item"
+              = link_to "Déconnexion", logout_path, class: "dropdown-item"  
+
         - else
-          %li
-            = link_to "Se connecter", login_path, id: "login", data: { turbolinks: false }
+          %li.nav-item
+            = link_to "Se connecter", login_path, class: "dropdown-item"
+           
