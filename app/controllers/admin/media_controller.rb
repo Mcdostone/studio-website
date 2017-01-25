@@ -7,12 +7,11 @@ class Admin::MediaController < AdminController
 	end
 
 	def create
-		puts "fkjsdjkfgdkjfgkjdfgkjdkjfg #{media}"
 		media = JSON.parse(media_params)
-
 		media.each do |m|
-			@medium = Medium.new(id_file: m['id'])
-			@medium.save
+			puts "#{m}"
+			medium = Medium.new(m)
+			medium.save
 		end
 
 		respond_to do |format|
@@ -39,6 +38,7 @@ class Admin::MediaController < AdminController
 	end
 
 	def picker
+		render(:layout => "layouts/pickerLayout")
 	end
 
 	private

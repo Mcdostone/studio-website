@@ -2,16 +2,100 @@
 
 @import "bootstrap";
 
-@import "base";
+
+//@import "base";
+@import "public";
 @import "navbar";
-@import "style";
+@import "animate";
+/*@import "style";
 @import "events";
 @import "users";
 @import "media";
 @import "admin";
-@import "animate";
+*/
+
+.footer {
+	position: absolute;
+	bottom: 0;
+	display: block;
+	width: 100%;
+	height: $footer-height;
+	background-color: $nav-background;
+	line-height: $footer-height;
+	text-align: center;
+	z-index: 4;
+
+	p {  
+		margin: 0;  
+		color: $nav-color;
+	}
+}
+
+.nothing {
+	position: absolute;
+	top: $nav-height;
+	left: 0;
+	bottom: $footer-height;
+	bottom: 0;
+	right: 0;
+	background: url("/images/nothing.gif") top fixed;
+	background-size: cover;
+	z-index: 5;
+
+	&:before {
+		position: absolute;
+		content: '';
+		display: inline-block;
+		width: 100%;
+		height: 100%;
+		background-color: rgba(0,0,0, 0.4);
+	}
+
+	p {
+		position: relative;
+		width: 70%;
+		margin-left: 15%;
+		font-weight: 300;
+		font-size: 4em;
+		line-height: 1;
+		color: white;
+		top: 45%;
+		@include translate(0, -50%);
+		text-align: center;
+	}
+}
+
+.button {
+	display: inline-block;
+	padding: 10px 20px;
+	width: auto;
+	margin: 0 auto;
+	margin-top: 40px;
+	color: white;
+	text-align: center;
+	border: none;
+	cursor: pointer;
+	font-size: 1.2em;
+	line-height: normal;
+	background-color: $nav-logo-background;
+	@include transition-duration(0.2s);
+
+	&:hover {
+		background-color: $nav-logo-hover-background;
+		color: white;
+		@include transition-duration(0.3s);
+	}
+
+	&:focus {  outline: none;  }
+}
+
+.center {
+	display: block;
+	text-align: center;
+}
 
 
+/*
 .uk-button:focus {
 	background-color: $nav-logo-hover-background;
 }
@@ -206,18 +290,6 @@
 	}
 }
 
-#nothing1 {
-	background: url("/images/nothing1.gif") top fixed;
-	background-size: cover;
-}
 
-#nothing2 {
-	background: url("/images/nothing2.gif") top fixed;
-	background-size: cover;
-}
 
-#nothing3 {
-	background: url("/images/nothing3.gif") top fixed;
-	background-size: cover;
-}
-
+*/

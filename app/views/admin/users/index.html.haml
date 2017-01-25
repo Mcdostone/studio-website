@@ -1,6 +1,6 @@
 %h2 Liste des Studistes
 
-%table.uk-table.uk-table-hover
+%table.table.table-striped
   %thead
     %tr
       %th ID
@@ -15,21 +15,23 @@
   %tbody
   - @users.each do |user|
     %tr
-      %td.uk-table-middle
+      %td
         =  link_to user.id, user_path(user)
-      %td.uk-table-middle
+      %td
         = link_to user.first_name, user_path(user)
-      %td.uk-table-middle
+      %td
         = link_to user.last_name.upcase, user_path(user)
-      %td.uk-table-middle
+      %td
         = link_to user.nickname, user_path(user)
-      %td.uk-table-middle
+      %td
         = user.authorization.name
-      %td.colum-timestamps.uk-table-middle
+      %td
         = format_date(user.created_at)
-      %td.colum-timestamps.uk-table-middle
+      %td
         = format_date(user.updated_at)
-      %td.uk-table-middle
-        = link_to 'Show', user_path(user), class: "uk-button button"
-      %td.uk-table-middle
-        = link_to 'Éditer', edit_admin_user_path(user), class: "uk-button button"
+      %td
+        = link_to 'Afficher', user_path(user)
+      %td
+        = link_to 'Éditer', edit_admin_user_path(user)
+      %td
+        = link_to 'Ninja', "#"

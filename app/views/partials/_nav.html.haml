@@ -1,5 +1,5 @@
 %nav.navbar.navbar-collapse
-  = link_to "/", class: "navbar-brand", id: "nav-logo" do
+  = link_to "/", class: "navbar-brand" do
     = image_tag("/images/logo_studio.png")
 
   %div.nav-container-hamburger
@@ -31,8 +31,8 @@
             = link_to user_path(current_user), class: "nav-link dropdown-toggle", id: "nav-profile", data: {toggle: "dropdown" }, aria: {haspopup: "true", expanded: "false"} do
               %div.nav-profile-avatar
                 = image_tag(url_picture_profile(current_user))
-              %div.nav-profile-user
-                = current_user.nickname
+              -#%div.nav-profile-user
+              = current_user.nickname
 
             %div.dropdown-menu
               = link_to "Mon profil", user_path(current_user), class: "dropdown-item" 

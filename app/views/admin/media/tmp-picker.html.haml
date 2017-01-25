@@ -1,0 +1,43 @@
+%div#app{{'v-show' => 'visible'}}
+  %transition{:name => "fade"}
+    %div#form-picker
+      %table
+        %tr
+          %th
+            %input{:type=>"checkbox", :name=>"test", :value=>1, :v => {'model' => 'selectAll'}}
+          %th ID
+          %th Thumbnail
+          %th
+            %select{'v-model' => 'typeAll'}
+              %option{:value => ' ', :selected => 'selected', :disabled => 'disabled'}
+                Type
+              %option{{'v-for' => 'type in types'}, {':value' => 'type'}}
+                {{ type.name }}
+          %th
+            %select{{'v-model' => 'eventAll'}}
+              %option{:value => ' ', :selected => 'selected', :disabled => 'disabled'}
+                Évent
+              %option{{'v-for' => 'event in events'}, {':value' => 'event'}}
+                {{ event.name }}
+
+
+        %tr{{'v-for' => 'medium in media'}}
+          %td
+            %input{:type=>"checkbox", :name=>"test",  :v => {'model' => "medium.selected"}}
+          %td
+            {{ medium.id }}
+          %td
+            %a{{':href' => 'medium.link'}, {'target' =>'_blank'}}
+              %img{{':src' => 'generateURL(medium)'}}
+          %td
+            %select{'v-model' => 'medium.type'}
+              %option{{'v-for' => 'type in types'}, {':value' => 'type'}}
+                {{ type.name }}
+          %td
+            %select{'v-model' => 'medium.event'}
+              %option{{'v-for' => 'event in events'}, {':value' => 'event'}}
+                {{ event.name }}
+
+  %div.button{{'@click' => 'sendMedia'}}
+    Envoyer
+

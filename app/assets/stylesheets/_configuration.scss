@@ -1,6 +1,7 @@
 @import "compass";
 @import "compass/css3/transition";
 @import "compass/css3/box-sizing";
+@import "compass/css3/selection";
 
 @import url('https://fonts.googleapis.com/css?family=Lato:300,400');
 
@@ -11,15 +12,16 @@
 
 $nav-background: 				#0A0A0A;
 $nav-height: 					70px;
-$nav-color: 					#444444;
+$nav-color: 					#666666;
 $nav-li-hover-color: 			white;
 $nav-logo-background: 			#921c0c;
 $nav-logo-hover-background: 	shade($nav-logo-background, 20%);
 $nav-avatar-height-responsive: 	100px;
 
 $height-background: 			400px;
-$body-background:				#222222;
-$text-color:					#919191;
+//$body-background:				#222222;
+$body-background:				white;
+$text-color:					black;
 
 $table-delimiter:				shade($body-background, 30%);
 
@@ -39,7 +41,7 @@ $card-events-background:		#EB9532;
 $card-types-background:			#3498DB;
 $card-users-background:			#936663;
 
-
+/*
 // ----------------------------------------------------
 // -- Variables of Uikit
 // ----------------------------------------------------
@@ -53,4 +55,90 @@ $button-color:					white;
 $button-hover-color: 			white;
 $button-active-color: 			white;
 
-$breakpoint: 850px;
+$breakpoint: 850px;*/
+
+
+// ----------------------------------------------------
+// -- Images of the public side
+// ----------------------------------------------------
+
+#studio .illustration {
+	background: url("/images/lens.jpeg") top fixed;
+	background-size: cover;
+}
+
+#works .illustration {
+	background: url("/images/spiral-film.jpeg") top fixed;
+	background-size: cover;
+}
+
+#about .illustration {
+	background: url("/images/film-projector.jpg") top fixed;
+	background-size: cover;
+}
+
+
+// ----------------------------------------------------
+// -- "Nothing to show" images
+// ----------------------------------------------------
+
+#nothing1 {
+	background: url("/images/nothing1.gif") top fixed;
+	background-size: cover;
+}
+
+#nothing2 {
+	background: url("/images/nothing2.gif") top fixed;
+	background-size: cover;
+}
+
+#nothing3 {
+	background: url("/images/nothing3.gif") top fixed;
+	background-size: cover;
+}
+
+
+/**
+	----------------------------------
+	Here, we modify default style of elements
+	----------------------------------
+*/
+
+html {
+	position: relative;
+	min-height: 100%;
+}
+
+html *, body {
+	font-family: 'Lato', sans-serif !important;
+	@include selection(rgba($nav-logo-background, 0.8), white);
+	color: $text-color;
+}
+
+h2 {
+	width: 80%;
+	color: $text-color;
+	margin: 20px auto;
+	padding-bottom: 10px;
+	text-align: center;
+	//border-bottom: 1px solid tint($nav-color, 85%);
+}
+
+
+
+a:hover {
+	text-decoration: none;
+	color: $nav-logo-background;
+	cursor: pointer;
+}
+
+.container-fluid {
+	padding: 0;
+	background-color: $body-background; 
+}
+
+
+// Hot fix
+#about p:before {
+	@include skewY(-1.5deg);
+}

@@ -1,10 +1,10 @@
 %h2 Liste des Médias
 
-%table.uk-table.uk-table-hover
+%table.table.table-striped
   %thead
     %tr
       %th ID
-      %th.uk-text-center Thumbnail
+      %th Thumbnail
       %th Type
       %th Event
       %th.colum-timestamps Ajouté
@@ -15,24 +15,24 @@
   %tbody
     - @media.each do |medium|
       %tr
-        %td.uk-table-middle
+        %td
           = medium.id
-        %td.uk-table-middle.uk-text-center
+        %td
           = link_to image_tag(url_thumbnail(medium, current_user.oauth_token, 80)), edit_admin_medium_path(medium)
-        %td.uk-table-middle
-          = medium.type.name
-        %td.uk-table-middle
-          = medium.event.name
-        %td.uk-table-middle.colum-timestamps
+        %td
+          = medium.type.name if medium.type
+        %td
+          = medium.event.name if medium.event
+        %td
           = format_date(medium.created_at)
-        %td.uk-table-middle.colum-timestamps
+        %td
           = format_date(medium.updated_at)
-        %td.uk-table-middle
-          = link_to 'Show', admin_medium_path(medium), class: "uk-button button"
-        %td.uk-table-middle
-          = link_to 'Edit', edit_admin_medium_path(medium), class: "uk-button button"
-        %td.uk-table-middle
-          = link_to 'Supprimer', admin_medium_path(medium), method: :delete, data: { confirm: 'Voulez vous supprimer ce média ?'}, class: "uk-button button"
+        %td
+          = link_to 'Show', admin_medium_path(medium)
+        %td
+          = link_to 'Edit', edit_admin_medium_path(medium)
+        %td
+          = link_to 'Supprimer', admin_medium_path(medium), method: :delete, data: { confirm: 'Voulez vous supprimer ce média ?'}
 
-
-= link_to 'Importer des médias', admin_picker_path, class: "uk-button button"
+%div.center
+  = link_to 'Importer des médias', admin_picker_path, class: 'button'

@@ -15,8 +15,8 @@ class User < ActiveRecord::Base
 
       # Test if picture is the default picture of google account
       user.picture = auth.info.image if(auth.info.image != DEFAULT_IMAGE)
-
       user.email = auth.info.email
+      user.id_token = auth.extra.id_token
       user.oauth_token = auth.credentials.token
       user.oauth_expires_at = Time.zone.at(auth.credentials.expires_at)
       user.save! if user.email.split('@')[1] == 'telecomnancy.net'

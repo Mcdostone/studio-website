@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161222124455) do
+ActiveRecord::Schema.define(version: 20170122141409) do
 
   create_table "authorizations", force: :cascade do |t|
     t.string "name"
@@ -26,11 +26,11 @@ ActiveRecord::Schema.define(version: 20161222124455) do
 
   create_table "media", force: :cascade do |t|
     t.string   "id_file"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
     t.integer  "event_id"
     t.integer  "type_id"
-    t.string   "thumbnail"
+    t.string   "thumbnail_url"
   end
 
   create_table "types", force: :cascade do |t|
@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(version: 20161222124455) do
     t.string   "nickname"
     t.string   "picture"
     t.integer  "authorization_id"
+    t.string   "id_token"
   end
 
 end
