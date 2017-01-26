@@ -1,5 +1,4 @@
 class TypesController < ApplicationController
-	layout 'application'
 
 	before_action :set_type, only:[:show]
 

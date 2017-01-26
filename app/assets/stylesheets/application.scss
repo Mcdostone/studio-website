@@ -11,8 +11,9 @@
 @import "events";
 @import "users";
 @import "media";
-@import "admin";
 */
+@import "grid";
+@import "admin";
 
 .footer {
 	position: absolute;
@@ -95,55 +96,13 @@
 }
 
 
+
+
+
+
+
+
 /*
-.uk-button:focus {
-	background-color: $nav-logo-hover-background;
-}
-
-.uk-table thead {
-	background-color: $table-delimiter;
-}
-
-.uk-table-hover tbody tr:hover {
-	background-color: $table-delimiter;
-}
-
-.uk-table tbody tr {
-	border-bottom: 1px solid $table-delimiter;
-}
-
-.uk-table thead tr {
-	border-bottom: 3px solid $table-delimiter;
-}
-
-.uk-table .button {
-	margin: 0 auto;
-	color: white;
-	font-size: inherit;
-	line-height: inherit;
-	padding: inherit;
-}
-
-.uk-form input, .uk-form textarea, .uk-form select, .uk-form input[type="text"], .uk-form input[type="submit"],
-.uk-form input[type="date"] {
-	font-size: 1.2em;
-	height: 42px;
-	line-height: normal;
-	padding: 10px 20px;
-	border: none;
-	@include box-sizing(border-box);
-}
-
-.uk-form input[type="date"] {
-	padding: 10px 0px;
-}
-
-.uk-form input[type="submit"] {
-	color: white;
-	margin: 0 auto;
-	margin-top: 40px;
-}
-
 #container {
 	display: inline-block;
 	display: flex;
@@ -165,6 +124,7 @@
 	}
 }
 
+g
 .container-media, .container-events, .container-types, .container-users {
 	display: flex;
 	flex-wrap: wrap;
@@ -253,40 +213,6 @@
 		margin: 0;
 		font-size: 1em;
 		font-style: italic;
-	}
-}
-
-.nothing {
-	position: absolute;
-	top: $nav-height;
-	left: 0;
-	bottom: $footer-height;
-	bottom: 0;
-	right: 0;
-	background: url("/images/nothing.gif") top fixed;
-	background-size: cover;
-	z-index: 5;
-
-	&:before {
-		position: absolute;
-		content: '';
-		display: inline-block;
-		width: 100%;
-		height: 100%;
-		background-color: rgba(0,0,0, 0.4);
-	}
-
-	p {
-		position: relative;
-		width: 70%;
-		margin-left: 15%;
-		font-weight: 300;
-		font-size: 4em;
-		line-height: 1;
-		color: white;
-		top: 45%;
-		@include translate(0, -50%);
-		text-align: center;
 	}
 }
 

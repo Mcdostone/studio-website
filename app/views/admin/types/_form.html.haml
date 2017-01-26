@@ -1,18 +1,14 @@
-= form_for [:admin, @type], :html => {class: 'uk-form'} do |f|
-  %div.errors
-    - if @type.errors.any?
-      %h3
-        = pluralize(@type.errors.count, "erreur")
-      %ul
-        - @type.errors.full_messages.each do |msg|
-          %li= msg
-  %p
+= form_for [:admin, @type] do |f|
+
+  = render 'admin/partials/errors', model: @type
+  
+  %div.form-group
     = label_tag 'Type de média:'
-    = f.text_field :name, placeholder: "Vidéo..."
+    = f.text_field :name, placeholder: "Vidéo...", class: "form-control"
 
-  %p
-    = label_tag 'Types de MIME:'
-    = f.text_field :mime_types, placeholder: "image/png image/jpeg"
+  %div.form-group
+    = label_tag 'Types de MIME (séparé par un espace si plusieurs):'
+    = f.text_field :mime_types, placeholder: "image/png image/jpeg", class: "form-control"
 
-  %p
-    = f.submit submit_button_value(@type), class: 'uk-button button'
+  %div.form-group
+    = f.submit submit_button_value(@type), class: "button"

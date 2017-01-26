@@ -97,6 +97,11 @@ $breakpoint: 850px;*/
 	background-size: cover;
 }
 
+#nothing4 {
+	background: url("/images/nothing4.gif") top fixed;
+	background-size: cover;
+}
+
 
 /**
 	----------------------------------
@@ -112,14 +117,14 @@ html {
 html *, body {
 	font-family: 'Lato', sans-serif !important;
 	@include selection(rgba($nav-logo-background, 0.8), white);
-	color: $text-color;
+	//color: $text-color;
 }
 
 h2 {
 	width: 80%;
 	color: $text-color;
-	margin: 20px auto;
-	padding-bottom: 10px;
+	margin: auto auto;
+	padding: 20px 0;
 	text-align: center;
 	//border-bottom: 1px solid tint($nav-color, 85%);
 }
@@ -135,10 +140,38 @@ a:hover {
 .container-fluid {
 	padding: 0;
 	background-color: $body-background; 
+	margin-bottom: 2 * $footer-height;
 }
 
 
 // Hot fix
 #about p:before {
 	@include skewY(-1.5deg);
+}
+
+#container-studio {
+	width: 60%;
+	margin-left: 20%;
+} 
+
+form .button {
+	text-align: center;	
+}
+
+table a {
+	color: $nav-logo-background;
+	@include transition-duration(0.2s);
+
+	&:hover {
+		@include transition-duration(0.3s);
+		color: $nav-logo-hover-background;
+	}
+}
+
+.form-control:focus {
+	border-color: tint($nav-logo-background, 25%);
+}
+
+input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
+    background-color: inherit;
 }

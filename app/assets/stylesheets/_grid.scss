@@ -1,0 +1,63 @@
+@import "configuration";
+
+
+.grid {
+	flex-wrap: wrap;
+	justify-content: center;
+	align-content: flex-start;
+	align-items: center;
+	color: white;
+	cursor: pointer;
+}
+
+.item {
+	position: relative;
+	width: $big-item-size;
+	height: $big-item-size;
+
+	img {
+		width: $big-item-size;
+		height: $big-item-size;
+	}
+}
+
+.item-overlay {
+	color: white;
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	margin: auto;
+	text-align: center;
+	line-height: normal;
+	text-transform: uppercase;
+	background-color: rgba(0, 0, 0, 0.7);
+	@include transition-duration(0.2s);
+
+	&:hover {
+		background-color: rgba(0, 0, 0, 0.5);
+		@include transition-duration(0.3s);
+	}
+}
+
+.item-infos {
+	margin-top: 50%;
+	@include translate(0, -50%);
+
+	p {
+		line-height: normal;
+	}
+
+	.item-name {
+		@include transition-duration(0.2s);
+		font-size: 2em;
+		font-weight: 300em;
+	}
+
+	.item-date {
+		margin: 0;
+		font-size: 1em;
+		font-style: italic;
+	}
+}

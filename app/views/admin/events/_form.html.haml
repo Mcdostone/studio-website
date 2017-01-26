@@ -1,10 +1,13 @@
-= form_for [:admin, @event], :html => {class: 'uk-form'} do |f|
-  %p
-    = label_tag "Nom de l'Évent:"
-    = f.text_field :name, placeholder: "WEI 2015, Gala ..."
-  %p
-    = label_tag "Date de l'Évent:"
-    = f.date_field :date_event
+= form_for [:admin, @event] do |f|
 
-  %p
-    = f.submit submit_button_value(@event), class: 'uk-button button'
+  = render 'admin/partials/errors', model: @event
+
+  %div.form-group
+    = label_tag "Nom de l'Évent:"
+    = f.text_field :name, placeholder: "WEI 2015, Gala ...", class: "form-control"
+  %div.form-group
+    = label_tag "Date de l'Évent:"
+    = f.date_field :date_event, class: "form-control"
+  
+  %div.form-group
+    = f.submit submit_button_value(@event), class: "button"

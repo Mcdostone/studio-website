@@ -1,0 +1,12 @@
+- if model.errors.any?
+  %div.alert.alert-warning.show{:role =>"alert"}
+    %button.close{"data-dismiss" => "alert", "aria-label" => "Close"}
+      %span{"aria-hidden" => "true"}
+        &times;
+      
+    %p
+      %strong Hey petit guacamole,
+      = "il y a " + pluralize(model.errors.count, "erreur")+ ":"
+      %ul
+        - model.errors.full_messages.each do |msg|
+          %li= msg

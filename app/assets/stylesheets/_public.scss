@@ -2,7 +2,10 @@ $margin: 100px;
 
 .descriptions {
 	display: inline-block;
-	margin-bottom: $margin;
+}
+
+.descriptions .description:last-child {
+	margin-bottom: 0;
 }
 
 .description {
@@ -54,6 +57,7 @@ $margin: 100px;
 	display: inline-block;
 	position: relative;
 	padding: 0 20%;
+	padding-top: 15px;
 	text-align: justify;
 	font-weight: 200;
 	font-size: 1.1em;

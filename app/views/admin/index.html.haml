@@ -1,6 +1,5 @@
 %h2 Dashboard Admin
-
-%div.dashboard
+%div.cards 
   = link_to admin_media_path, :id => "card-media", :class => "card"  do
     %div.card-icon
     %p.card-number
@@ -33,7 +32,9 @@
 
 
 %h2 Administrateurs
-= render 'partials/list_users', users: @users.select { |u| u.admin? }
+%div.grid
+  = render 'partials/list_users', users: @users.select { |u| u.admin? }
 
 %h2 Autheurs
-= render 'partials/list_users', users: @users.select { |u| u.author? }
+%div.grid
+  = render 'partials/list_users', users: @users.select { |u| u.author? }
