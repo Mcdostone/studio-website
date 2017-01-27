@@ -19,9 +19,8 @@ Rails.application.routes.draw do
     resources :events
     resources :types
     resources :media
-    resources :users, only: [:index, :edit, :update] do
-      get '/ninja' => 'users#ninja'
-    end
+    resources :users, only: [:index, :edit, :update]
+    get "users/:id/ninja", to: "users#ninja", as: 'ninja'
     get '/picker' => 'media#picker'
   end
 

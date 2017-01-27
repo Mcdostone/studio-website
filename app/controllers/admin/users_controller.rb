@@ -23,7 +23,13 @@ class Admin::UsersController < AdminController
 	end
 
 	def ninja
-		#session[:user_id] = @user.id
+		if current_user.admin?
+			#puts @user.inspect
+			session[:user_id] = @user.id
+			redirect_to root_path
+		else
+			redirect_to admin_path
+		end
 	end
 
 	private
