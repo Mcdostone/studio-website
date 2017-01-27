@@ -10,7 +10,7 @@
   = image_tag(url_media(@medium, current_user.oauth_token))
   %p
     = label_tag 'Type du média:'
-    = f.select :type_id, @types.map{ |t| [t.name, t.id] }
+    = f.select :type_id, autofocus: "autofocus", @types.map{ |t| [t.name, t.id] }
 
   %p
     = label_tag 'Évenement:'

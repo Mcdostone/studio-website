@@ -1,0 +1,12 @@
+%div.profile-picture
+  = image_tag(url_picture_profile(@user, 200))
+
+%div.profile-about
+  %p
+    = @user.first_name + ' ' + @user.last_name
+  - if current_user.nickname
+    %p
+      = '@' + @user.nickname
+  - if current_user.admin?
+    %p
+      = '(' + @user.authorization.name + ')'

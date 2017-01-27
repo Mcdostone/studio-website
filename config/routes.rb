@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get 'logout', to: 'sessions#destroy', as: 'logout'
   get 'auth/:provider/callback', to: 'sessions#create'
   get 'admin/', to: 'admin#index'
+  
   get 'auth/failure', to: redirect('/')
 
   resources :sessions, only: [:create, :destroy]
@@ -17,8 +18,10 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :events
     resources :types
-    resources :users
     resources :media
+    resources :users, only: [:index, :edit, :update] do
+      get '/ninja' => 'users#ninja'
+    end
     get '/picker' => 'media#picker'
   end
 

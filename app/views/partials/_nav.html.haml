@@ -31,12 +31,11 @@
             = link_to user_path(current_user), class: "nav-link dropdown-toggle", id: "nav-profile", data: {toggle: "dropdown" }, aria: {haspopup: "true", expanded: "false"} do
               %div.nav-profile-avatar
                 = image_tag(url_picture_profile(current_user))
-              -#%div.nav-profile-user
-              = current_user.nickname
+              = profile_name(current_user)
 
             %div.dropdown-menu
-              = link_to "Mon profil", user_path(current_user), class: "dropdown-item" 
-              - if current_user.admin?
+              = link_to "Mon profil", edit_user_path(current_user), class: "dropdown-item" 
+              - if current_user.author? || current_user.admin?
                 = link_to "Dashboard", admin_path, class: "dropdown-item"
               = link_to "Déconnexion", logout_path, class: "dropdown-item"  
 

@@ -1,23 +1,29 @@
 class Admin::UsersController < AdminController
 	layout 'application'
 
-	before_action :set_user, only:[:show, :edit, :update]
+	before_action :set_user, only:[:edit, :update, :ninja]
 
 	def index
 		@users = User.all
 	end
 
 	def edit
-		@authorization = Authorization.find_by(name: 'author')
+		if current_user.author? && !@user.admin? || @user == current_user || current_user.admin?
+			@authorization = Authorization.find_by(name: 'author')
+		else
+			redirect_to admin_path
+		end
 	end
 
 	def update
-		@user.update(user_params)
-		if(current_user.author?)
-			redirect_to admin_users_path
-		else
-			redirect_to root_path
+		if current_user.author? && !@user.viewer? || current_user.admin? && !@user.admin? 
+			@user.update(user_params)
 		end
+		redirect_to admin_users_path	
+	end
+
+	def ninja
+		#session[:user_id] = @user.id
 	end
 
 	private

@@ -4,7 +4,12 @@
 .profile {
 	width: 100%;
 	text-align: center;
-	color: white;
+	color: $text-color;
+}
+
+.profile form {
+	text-align: left;
+	margin-top: 30px;
 }
 
 .profile-picture {

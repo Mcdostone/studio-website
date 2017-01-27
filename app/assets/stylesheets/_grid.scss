@@ -2,18 +2,25 @@
 
 
 .grid {
+	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
 	align-content: flex-start;
 	align-items: center;
 	color: white;
-	cursor: pointer;
+}
+
+.small-items .item {
+	margin: $small-item-margin;
 }
 
 .item {
+	display: inline-block;
 	position: relative;
 	width: $big-item-size;
 	height: $big-item-size;
+	cursor: pointer;
+	margin: $big-item-margin;
 
 	img {
 		width: $big-item-size;

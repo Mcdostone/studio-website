@@ -31,6 +31,10 @@ class User < ActiveRecord::Base
     self.authorization.name == 'author'
   end
 
+  def viewer?
+    self.authorization.name == 'viewer'
+  end
+
   private
     def set_defaults
       self.authorization ||= Authorization.find_by(name: 'viewer')

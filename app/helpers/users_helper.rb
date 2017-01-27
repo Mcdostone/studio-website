@@ -10,4 +10,8 @@ module UsersHelper
 	def get_full_name(user)
 		return "#{user.first_name} #{user.last_name}"
 	end
+
+	def profile_name(user)
+		user.nickname.empty? ? get_full_name(user) : user.nickname
+	end
 end

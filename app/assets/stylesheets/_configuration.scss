@@ -25,9 +25,9 @@ $text-color:					black;
 
 $table-delimiter:				shade($body-background, 30%);
 
-$container-small-item-margin:	2px;
+$small-item-margin:				4px;
 
-$container-big-item-margin:		4 * $container-small-item-margin;
+$big-item-margin:  				$small-item-margin;
 
 $small-item-size:				120px;
 $big-item-size:					2 * $small-item-size;

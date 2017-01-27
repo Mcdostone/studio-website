@@ -1,20 +1,17 @@
 = form_for [:admin, @user] do |f|
-  %div.errors
-    - if @user.errors.any?
-      %h3
-        = pluralize(@user.errors.count, "erreur")
-      %ul
-        - @user.errors.full_messages.each do |msg|
-          %li= msg
-  %p
-    = label_tag 'Surnom'
-    = f.text_field :nickname, placeholder: "Fredlapouf"
-  %p
+  
+  = render 'admin/partials/errors', model: @user
+
+  %div.form-group
+    = label_tag 'Surnom:'
+    = f.text_field :nickname, placeholder: "fred la pouf, toubab ...", autofocus: "autofocus", class: "form-control"
+  
   - if @user.authorization.name != 'admin' && current_user.authorization.name == 'admin'
-    = label_tag 'Auteur'
-    %p Le statut d'auteur permet d'uploader des médias, créer de nouvelles évents et types ainsi que de modifier les profils des autres utilisateurs.
-    %div.wrapper
-      = f.check_box :authorization, id: "toggle", checked: @user.authorization.name == 'author'
-      %label{:for => "toggle"}
-  %p
+    %div.form-group
+      = label_tag "Auteur (Le statut d'auteur permet d'uploader des médias, créer de nouvelles évents et types ainsi que de modifier les profils des autres utilisateurs)"
+      %div.wrapper
+        = f.check_box :authorization, id: "toggle", checked: @user.authorization.name == 'author'
+        %label{:for => "toggle"}
+  
+  %div.form-group
     = f.submit submit_button_value(@user), class: 'button'

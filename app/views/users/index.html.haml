@@ -5,12 +5,5 @@
   = render 'partials/nothing'
 
 -else
-  %div.div.container-big-items.container-users
-    - @users.each do |user|
-      = link_to user_path(user) do
-        %div.item
-          = image_tag(url_picture_profile(user, 300))
-          %div.overlay
-            %div.item-infos
-              %p.item-name
-                = get_full_name(user)
+  %div.grid
+    = render 'partials/list_users', users: @users

@@ -17,4 +17,5 @@ class AdminController < ApplicationController
 			return
 		end
 	end
+
 end

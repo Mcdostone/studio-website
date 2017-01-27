@@ -5,7 +5,7 @@
     %p.card-number
       = @media_count
     %p.card-text
-      = @media_count > 1 ? "Media disponibles" : "Medium disponible"
+      = @media_count > 1 ? "Media" : "Medium"
 
 
   = link_to admin_events_path, :id => "card-events", :class => "card"  do
@@ -13,7 +13,7 @@
     %p.card-number
       = @events_count
     %p.card-text
-      = @events_count > 1 ? "Events disponibles" : "Event disponible"
+      = @events_count > 1 ? "Events" : "Event"
 
 
   = link_to admin_types_path, :id => "card-types", :class => "card"  do
@@ -21,20 +21,20 @@
     %p.card-number
       = @types_count
     %p.card-text
-      = @types_count > 1 ? "Types disponibles" : "Type disponible"
+      = @types_count > 1 ? "Types" : "Type"
 
   = link_to admin_users_path, :id => "card-users", :class => "card"  do
     %div.card-icon
     %p.card-number
       = @users.size
     %p.card-text
-      = @users.size > 1 ? "Studistes inscrits" : "Studiste inscrit"
+      = @users.size > 1 ? "Studistes" : "Studistes"
 
 
 %h2 Administrateurs
 %div.grid
-  = render 'partials/list_users', users: @users.select { |u| u.admin? }
+  = render 'admin/partials/list_users', users: @users.select { |u| u.admin? }
 
-%h2 Autheurs
+%h2 Auteurs
 %div.grid
-  = render 'partials/list_users', users: @users.select { |u| u.author? }
+  = render 'admin/partials/list_users', users: @users.select { |u| u.author? }
