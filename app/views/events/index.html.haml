@@ -7,7 +7,7 @@
   %div.grid
     - @events.each do |event|
       = link_to event_path(event), :class => "item" do
-        = image_tag(url_thumbnail(random_media(event), current_user.oauth_token, 300))
+        = image_tag(url_thumbnail(random_media(event)))
         %div.item-overlay
           %div.item-infos
             %p.item-name

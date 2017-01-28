@@ -9,6 +9,6 @@ module MediaHelper
 
 
 	def url_thumbnail medium
-		medium.file.url
+		medium ? medium.file.url : '/images/film-projector.jpg'
 	end
 end

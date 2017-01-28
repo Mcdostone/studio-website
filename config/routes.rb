@@ -1,14 +1,11 @@
 Rails.application.routes.draw do
 
-  namespace :admin do
-  end
   root 'public#index'
-
+  
   get "/auth/google_oauth2", as: 'login'
   get 'logout', to: 'sessions#destroy', as: 'logout'
   get 'auth/:provider/callback', to: 'sessions#create'
   get 'admin/', to: 'admin#index'
-  
   get 'auth/failure', to: redirect('/')
 
   resources :sessions, only: [:create, :destroy]
@@ -20,11 +17,10 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :events
     resources :types
-    resources :media
+    resources :media, only: [:index, :edit, :update, :destroy]
     resources :uploads, only: [:index, :create]
     resources :users, only: [:index, :edit, :update]
     get 'users/:id/ninja', to: 'users#ninja', as: 'ninja'
-    #get '/picker' => 'media#picker'
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

@@ -1,22 +1,9 @@
 class Admin::MediaController < AdminController
 
-	before_action :set_medium, only:[:edit, :update, :show, :destroy]
+	before_action :set_medium, only:[:edit, :update, :destroy]
 
 	def index
 		@media = Medium.includes(:type, :event).all
-	end
-
-	def create
-		media = JSON.parse(media_params)
-		media.each do |m|
-			puts "#{m}"
-			medium = Medium.new(m)
-			medium.save
-		end
-
-		respond_to do |format|
-			format.json { render :json => "ok", :status => 200 }
-		end
 	end
 
 	def edit
@@ -29,16 +16,9 @@ class Admin::MediaController < AdminController
 		redirect_to admin_media_path
 	end
 
-	def show
-	end
-
 	def destroy
 		@medium.destroy
 		redirect_to admin_media_path
-	end
-
-	def picker
-		#render(:layout => "layouts/pickerLayout")
 	end
 
 	private

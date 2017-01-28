@@ -23,8 +23,7 @@ class Admin::UsersController < AdminController
 	end
 
 	def ninja
-		if current_user.admin?
-			#puts @user.inspect
+		if current_user.admin? && current_user != @user
 			session[:user_id] = @user.id
 			redirect_to root_path
 		else
