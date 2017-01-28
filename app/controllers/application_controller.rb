@@ -6,8 +6,6 @@ class ApplicationController < ActionController::Base
   	begin
   		@current_user ||= User.find(session[:user_id]) if session[:user_id]
     rescue ActiveRecord::RecordNotFound => e
-    		redirect_to signout_path
-        return
     end
   end
 

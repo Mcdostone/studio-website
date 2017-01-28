@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  namespace :admin do
+  end
   root 'public#index'
 
   get "/auth/google_oauth2", as: 'login'
@@ -19,9 +21,10 @@ Rails.application.routes.draw do
     resources :events
     resources :types
     resources :media
+    resources :uploads, only: [:index, :create]
     resources :users, only: [:index, :edit, :update]
-    get "users/:id/ninja", to: "users#ninja", as: 'ninja'
-    get '/picker' => 'media#picker'
+    get 'users/:id/ninja', to: 'users#ninja', as: 'ninja'
+    #get '/picker' => 'media#picker'
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

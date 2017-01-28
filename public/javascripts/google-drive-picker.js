@@ -67,21 +67,11 @@ var log = function(e) {
 }
 
 function pickerCallback(data) {
-	if (data.action == google.picker.Action.PICKED) {		
-		var media = [];
-		for (let i = 0; i < data.docs.length; i++) {
-			let medium = {}
-			medium.id_file = data.docs[i].id
-			console.log(data.docs[i].id)
-			
-			getInfosFile(medium, function(res) {
-//				console.log(res)
-				medium.thumbnail_url = res.thumbnailLink
-				media.push(medium)
-				if(i == data.docs.length - 1)
-					sendData(media)
-		})}
-	}
+	if (data.action == google.picker.Action.PICKED) {
+		data.docs.forEach(function(doc) {
+			getInfosFile(doc, (res) => console.log(res))
+		})
+	}	
 }
 
 function sendData(media) {
@@ -99,7 +89,7 @@ function sendData(media) {
 
 function getInfosFile(medium, callback) {
 	var request = gapi.client.drive.files.get({
-		'fileId': medium.id_file
+		'fileId': medium.id
 	});
   	request.execute(callback)
 }
@@ -107,3 +97,24 @@ function getInfosFile(medium, callback) {
 function test() {
 	loadPicker()
 }
+
+function createTable() {
+	let table = $(
+		`<table>
+		  <thead>
+            <tr>
+      			<th>ID fichier</th>
+      			<th>ID thumbnail</th>
+      			<th>Event</th>
+      			<th>Type</th>
+            </tr>
+            </thead>
+	`)
+	table.addClass('table table-striped')
+	return table
+}
+
+$(function() {
+	let openDrive = $('#open-google-picker')
+	createTable().insertAfter(openDrive)	
+});

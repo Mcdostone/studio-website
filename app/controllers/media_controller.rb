@@ -1,6 +1,5 @@
 class MediaController < ApplicationController
-	layout "application"
-
+	
 	before_action :set_medium, only:[:show]
 
 	def index

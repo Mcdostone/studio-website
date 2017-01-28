@@ -1,0 +1,110 @@
+@import "configuration";
+
+
+.dropzone {
+	min-height: 150px;
+	background: white;
+	padding: 20px;
+}
+
+#studio-dropzone {
+	border: 2px dashed rgba($nav-logo-background, 0.3);
+	@include transition-duration(0.2s);
+	@include box-sizing(border-box);
+}
+
+#studio-dropzone:hover {
+	border-color: $nav-logo-background;
+	@include transition-duration(0.3s);
+	.dz-message {
+		color: $nav-logo-hover-background;
+		color: $text-color;
+		@include transition-duration(0.3s);
+	}
+}
+
+#studio-dropzone .dz-message {
+	font-size: 2em;
+	font-weight: 100;
+	text-align: center;
+	margin-top: 2em;
+	color: tint($nav-color, 25%);
+	@include transition-duration(0.2s);
+}
+
+
+
+
+.dropzone .dz-preview .dz-success-mark, .dropzone .dz-preview .dz-error-mark {
+	z-index: 19;
+}
+
+.dropzone .dz-preview.dz-file-preview .dz-image, .dropzone .dz-preview .dz-image {
+	border-radius: 0;
+	background: shade(white, 6%);
+}
+
+.dropzone .dz-preview .dz-details .dz-filename span, .dropzone .dz-preview .dz-details .dz-size span {
+	background-color: transparent;
+	color: white;
+	font-weight: bold;
+}
+
+.dropzone .dz-preview .dz-progress {
+	display: none;
+}
+
+.dropzone .dz-preview .dz-remove {
+	text-decoration: none;
+	color: $nav-logo-background;
+}
+
+.progress-bar-container {
+	display: inline-block;
+	position: fixed;
+	top: 0;
+	z-index: 20;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: rgba(0,0,0, 0.8);
+	@include transition-duration(0.2s);
+
+	.progress-bar-content {
+		width: 100%;
+		height: 100%;
+		display: flex;
+		justify-content: center;
+		flex-direction: column;
+		text-align: center;
+
+		p {
+			font-size: 12em;
+			font-weight: 100;
+			color: white;
+			z-index: 22;
+		}
+	}
+	
+	.progress-bar {
+		left: 0;
+		top: 0;
+		bottom: 0;
+		right: 100%;
+		position: absolute;
+		z-index: 21;
+		background-color: rgba($nav-logo-background, 0.2)
+	}
+
+	
+}
+
+.button-close {
+	background-color: white;
+	z-index: 33;
+	color: $text-color;
+	&:hover {
+		background-color: white;
+		color: $nav-logo-background;
+	}
+}

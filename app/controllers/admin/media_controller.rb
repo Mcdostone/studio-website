@@ -1,5 +1,5 @@
 class Admin::MediaController < AdminController
-	layout "application"
+
 	before_action :set_medium, only:[:edit, :update, :show, :destroy]
 
 	def index
@@ -38,7 +38,7 @@ class Admin::MediaController < AdminController
 	end
 
 	def picker
-		render(:layout => "layouts/pickerLayout")
+		#render(:layout => "layouts/pickerLayout")
 	end
 
 	private

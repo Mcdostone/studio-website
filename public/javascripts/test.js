@@ -1,111 +1,107 @@
-Vue.config.debug = true
-Vue.config.devtools = true
+let AUTH_TOKEN = $('meta[name="csrf-token"]').attr('content')
 
-var media = new Vue({
-	el: '#app',
-	data: {
-		media: [],
-		types: [],
-		events: [],
-		typeForAll: 0,
-		eventForAll: 0
+let form = $('form')
+let action = form.attr('action')
+let submit = $('.button')
+let parallelUploads = 5
+
+
+submit.addClass('disabled')
+submit.attr('disabled', 'disabled')
+Dropzone.autoDiscover = false
+
+Dropzone.prototype.getActiveFiles = function() {
+	var file, _i, _len, _ref, _results;
+	_ref = this.files;
+	_results = [];
+	for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+		file = _ref[_i];
+		_results.push(file);
+	}
+	return _results;
+}      
+
+form.off('submit')
+
+
+let progressBarContainer = $('<div/>')
+let progressBarInfos = $('<div/>')
+progressBarInfos.addClass('progress-bar-content')
+let progressBar = $('<div/>')
+
+let percent = $('<p/>')
+let close = $('<div/>').text('Fermer').addClass('button button-close').hide()
+progressBarInfos.append(percent)
+progressBarInfos.append(close)
+progressBar.addClass('progress-bar')
+progressBarContainer.addClass('progress-bar-container')
+progressBarContainer.append(progressBar)
+progressBarContainer.append(progressBarInfos)
+progressBarContainer.hide()
+progressBarContainer.insertAfter(document.body)
+
+let studioDropzone = new Dropzone('div#studio-dropzone', { 
+	url: action,
+	autoProcessQueue: false,
+	uploadMultiple: true,
+	dictDefaultMessage: 'Uploader des media',
+	paramName: 'admin_upload[media]',
+	addRemoveLinks: true,
+	parallelUploads: parallelUploads,
+	acceptedFiles: 'image/*,audio/*,application/pdf,.CR2',
+	maxFilesize: 100,
+	params:{
+		'authenticity_token':  AUTH_TOKEN
 	},
-	computed: {
-		visible: function() {
-			return this.media.length != 0
-		},
-		selectAll: {
-			get: function() {
-				return this.media.filter(medium => !medium.selected).length === 0
-			},
-			set: function(value) {
-				this.media.forEach((m) => m.selected = value)
+	init: function() {
+		this.on("sending", (file, xhr, formData) => {
+		 		formData.append('admin_upload[event]', $('#admin_upload_event').val())
+		 		formData.append('admin_upload[type]', $('#admin_upload_type').val())
 			}
-		},
-		eventAll: {
-			get: function() {
-				return this.eventForAll
-			},
-			set: function(value) {
-				this.eventForAll = value
-				this.media.forEach((m) => {
-					if(m.selected)
-						m.event = this.eventForAll
-				})
-			}
-		},
-		typeAll: {
-			get: function() {
-				return this.typeForAll
-			},
-			set: function(value) {
-				this.typeForAll = value
-				this.media.forEach((m) => {
-					if(m.selected)
-						m.type = this.typeForAll
-				})
-			}
-		}
+		)},
+	successmultiple: (data,response) => {}
+})
 
-	},
-	created: function() {
-		$.getJSON('/types.json',(data) => this.types = data)
-		$.getJSON('/events.json',(data) => this.events = data)
-	},
-	methods: {
-		fetchMedia: function(data) {
-			data.forEach((m) => {
-				if(!this.media.some((e) => e.id == m.id)) {
-					m.selected = false
-					this.guessType(m, (t) =>  {
-						if(t.length >= 1)
-							m.type = t[0]
-						else
-							m.type = this.types[0]
-					})
-					m.event = this.events[0]
-					m.link = this.createLink(m)
-					this.media.push(m)
-				}
-			})
-			this.visible = true;
-		},
-		generateURL: function(medium) {
-			return 'https://drive.google.com/thumbnail?access_token=' + oauth_token + '&sz=w100&id=' + medium.id
-		},
 
-		guessType: function(medium, cb) {
-			if(medium && medium.mimeType) {
-				cb(this.types.filter(type => {
-					if(type.mime_types)
-						return type.mime_types.toUpperCase().includes(medium.mimeType.toUpperCase())
-					else
-						return false
-				}))
-			}
-			else
-				return undefined
-		},
-		createLink: function(medium) {
-			return 'https://drive.google.com/file/d/' + medium.id
-		},
 
-		sendMedia: function() {
-			let log = function(e) {
-				console.log(e)
-			}
-			console.log(this.media)
+studioDropzone.on('completemultiple', function(files) {
+	if(studioDropzone.getQueuedFiles().length > 0)
+		studioDropzone.processQueue()
+})
 
-			$.ajax({
-  				type: "POST",
-  				url: '/admin/media',
-  				beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
-  				//data: JSON.stringify({media: media.media}),
-  				data: JSON.stringify({media: this.media}),
-  				success: log,
-  				error: log,
-  				dataType: 'json'
-			})
-		}
+studioDropzone.on('addedfile', function(file) {
+	if(studioDropzone.getQueuedFiles().length + 1 > 0) {
+		submit.removeClass('disabled')
+		submit.removeAttr('disabled')
+	}
+})
+
+studioDropzone.on('removedfile', function(file) {
+	if(studioDropzone.getQueuedFiles().length  == 0) {
+		submit.addClass('disabled')
+		submit.attr('disabled', 'disabled')
+	}
+})
+
+studioDropzone.on('queuecomplete', function() {
+	console.log('finished')
+	studioDropzone.removeAllFiles()
+	progressBarContainer.removeClass('fadeIn')
+	close.fadeIn(200)
+	close.on('click', e => progressBarContainer.fadeOut(300, () => progressBarContainer.hide()))
+})
+
+studioDropzone.on('totaluploadprogress', (per, r, a) => {
+	progressBar.css('right', 100 - per + '%')
+	percent.text(Math.floor(per) + '%')
+})
+
+form.submit(e => {
+	if(studioDropzone.getQueuedFiles().length > 0) {
+		progressBarContainer.show()
+		close.hide()
+		progressBarContainer.fadeIn(500)
+		e.preventDefault()
+		studioDropzone.processQueue()
 	}
 })

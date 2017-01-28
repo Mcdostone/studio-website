@@ -1,20 +1,15 @@
-= form_for [:admin, @medium], :html => {class: 'uk-form'} do |f|
-  %div.errors
-    - if @medium.errors.any?
-      %h3
-        = pluralize(@medium.errors.count, "erreur")
-      %ul
-        - @medium.errors.full_messages.each do |msg|
-          %li= msg
-
-  = image_tag(url_media(@medium, current_user.oauth_token))
-  %p
+= form_for [:admin, @medium] do |f|
+  
+  = render 'admin/partials/errors', model: @medium
+  = image_tag(url_media(@medium), :class => "admin-medium")
+  
+  %div.form-group
     = label_tag 'Type du média:'
-    = f.select :type_id, autofocus: "autofocus", @types.map{ |t| [t.name, t.id] }
+    = f.select :type_id, @types.map{ |t| [t.name, t.id] }, {}, {:class => 'custom-select form-control', autofocus: 'autofocus'}
 
-  %p
+  %div.form-group
     = label_tag 'Évenement:'
-    = f.select :event_id, @events.map{ |e| [e.name, e.id] }
+    = f.select :event_id, @events.map{ |e| [e.name, e.id] }, {}, {:class => 'custom-select form-control'}
 
-  %p
-    = f.submit submit_button_value(@medium), class: 'uk-button button'
+  %div.form-group
+    = f.submit submit_button_value(@medium), class: "button"

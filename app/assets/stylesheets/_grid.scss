@@ -8,6 +8,8 @@
 	align-content: flex-start;
 	align-items: center;
 	color: white;
+
+	img { object-fit: cover; }
 }
 
 .small-items .item {

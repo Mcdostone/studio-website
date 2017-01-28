@@ -130,10 +130,8 @@ h2 {
 }
 
 
-
-a:hover {
+a:hover, a:visited, a:link, a:active {
 	text-decoration: none;
-	color: $nav-logo-background;
 	cursor: pointer;
 }
 

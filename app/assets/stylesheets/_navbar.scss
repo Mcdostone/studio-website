@@ -8,11 +8,12 @@ $breakpoint: 850px;
 	nav
     ----------*/
 .navbar {
+	border-radius: 0;
 	height: $nav-height;
 	background-color: $nav-background;
 	border-bottom: 1px solid shade($nav-background, 70%);
 	padding: 0;
-	z-index: 6;
+	z-index: 30;
 }
 
 .navbar a {
@@ -48,15 +49,14 @@ $breakpoint: 850px;
 
 .dropdown-menu {
 	padding: 0;
-
+	width: 100%;
+	a {  color: $text-color;  }
 	a:hover {
 		color: $nav-logo-background;
 		@include transition-duration(0.3s);
 		background-color: inherit;
 	}
-} 
-
-
+}
 
 
 /** ----------
