@@ -1,0 +1,12 @@
+%h2
+  = "Upload n°#{@upload.id}"
+
+%h3
+  = "Upload réalisé par "
+  = link_to(full_name(@upload.user), user_path(@upload.user))
+%div.profile-picture
+  = image_tag(url_picture_profile(@upload.user, 200))
+
+
+%h3 Liste des médias upload
+= render 'partials/media', media: @upload.media

@@ -7,8 +7,8 @@ module UsersHelper
 		'default-profile-picture.png'
 	end
 
-	def get_full_name(user)
-		return "#{user.first_name} #{user.last_name}"
+	def full_name(user)
+		return "#{user.first_name} #{user.last_name}" if user
 	end
 
 	def profile_name(user)

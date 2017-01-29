@@ -1,5 +1,5 @@
 module CarrierWave
-
+  
   module MiniMagick
     def quality(percentage)
       manipulate! do |img|
@@ -8,8 +8,19 @@ module CarrierWave
         img
       end
     end
-  end
 
+    def optimize_thumbnail(percentage)
+      manipulate! do |img|
+        img.strip
+        img.combine_options do |c|
+          c.quality(percentage.to_s)
+          c.depth "8"
+          c.interlace "plane"
+        end
+        img
+      end
+    end
+  end
 
 
   CarrierWave.configure do |config|
@@ -25,10 +36,10 @@ module CarrierWave
     }
 
     config.aws_credentials = {
-    provider:       'AWS',
-    aws_access_key_id:    Rails.application.secrets.AWS_ACCESS_KEY_ID,
+      provider:               'AWS',
+      aws_access_key_id:      Rails.application.secrets.AWS_ACCESS_KEY_ID,
       aws_secret_access_key:  Rails.application.secrets.AWS_SECRET_ACCESS_KEY,
-      region:               Rails.application.secrets.AWS_REGION
+      region:                 Rails.application.secrets.AWS_REGION
     }
 
     # -----------------
@@ -39,8 +50,8 @@ module CarrierWave
       aws_access_key_id:      Rails.application.secrets.AWS_ACCESS_KEY_ID,
       aws_secret_access_key:  Rails.application.secrets.AWS_SECRET_ACCESS_KEY,
       region:                 Rails.application.secrets.AWS_REGION,
-      host:           Rails.application.secrets.AWS_HOST,
-      endpoint:         Rails.application.secrets.AWS_ENDPOINT
+      host:                   Rails.application.secrets.AWS_HOST,
+      endpoint:               Rails.application.secrets.AWS_ENDPOINT
     }
     config.fog_directory  = Rails.application.secrets.AWS_BUCKET_NAME
     config.fog_public     = false

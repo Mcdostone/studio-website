@@ -25,7 +25,7 @@ $text-color:					black;
 
 $table-delimiter:				shade($body-background, 30%);
 
-$small-item-size:				150px;
+$small-item-size:				160px;
 $small-item-margin:				4px;
 
 $big-item-size:					240px;
@@ -40,6 +40,7 @@ $card-media-background:			#2ECC71;
 $card-events-background:		#EB9532;
 $card-types-background:			#3498DB;
 $card-users-background:			#936663;
+$card-uploads-background:		#333;
 
 /*
 // ----------------------------------------------------
@@ -123,7 +124,7 @@ html *, body {
 	//color: $text-color;
 }
 
-h2 {
+h2, h3 {
 	width: 80%;
 	color: $text-color;
 	margin: auto auto;
@@ -132,6 +133,9 @@ h2 {
 	//border-bottom: 1px solid tint($nav-color, 85%);
 }
 
+h3 {
+	font-weight: 200;
+}
 
 a:hover, a:visited, a:link, a:active {
 	text-decoration: none;

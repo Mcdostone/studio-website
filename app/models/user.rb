@@ -2,6 +2,7 @@ class User < ApplicationRecord
 
 
   belongs_to :authorization
+  has_many :uploads
   after_initialize :set_defaults
   DEFAULT_IMAGE = 'https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg'
 

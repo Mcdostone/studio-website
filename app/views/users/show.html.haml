@@ -2,7 +2,7 @@
 
 %div.profile
   
-  = render 'profile'
+  = render 'profile', user: @user
   
   - if current_user == @user
     = link_to 'Mon profil', edit_user_path(@user), class: "button"

@@ -1,10 +1,9 @@
 App.upload_progress = App.cable.subscriptions.create("UploadProgressChannel", {
+  
   connected: function() {
-    // Called when the subscription is ready for use on the server
   },
 
   disconnected: function() {
-    // Called when the subscription has been terminated by the server
   },
 
   received: function(data) {
@@ -25,11 +24,14 @@ App.upload_progress = App.cable.subscriptions.create("UploadProgressChannel", {
 
   refresh: function() {
   	p1 = Math.floor((100 * filesUploaded / nbFiles) / 2)
-	p2 = Math.floor(percentUpload/ 2)
+    p2 = Math.floor(percentUpload/ 2)
 	
-	percentValue = p1 + p2 > 100 ? 100 : p1 + p2 
-	progressBar.css('right', (100 - percentValue) + '%')
-	percent.text(percentValue + '%')
+    percentValue = p1 + p2 > 100 ? 100 : p1 + p2 
+    progressBar.css('right', (100 - percentValue) + '%')
+    percent.text(percentValue + '%')
+
+    if(nbFiles == filesUploaded)
+      desc.text('Upload terminé')
   }
 
 })

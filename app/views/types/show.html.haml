@@ -1,4 +1,6 @@
-%h2
-  = @type.name
-
-= render 'partials/media'
+- if @type.media.empty?
+  = render 'partials/nothing'
+- else
+  %h2
+    = @type.name
+  = render 'partials/media', media: @type.media

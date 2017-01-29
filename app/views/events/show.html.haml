@@ -1,4 +1,6 @@
-%h2
-  = @event.name
-
-= render 'partials/media'
+- if @event.media.empty?
+  = render 'partials/nothing'
+- else
+  %h2
+    = @event.name
+    = render 'partials/media', media: @event.media

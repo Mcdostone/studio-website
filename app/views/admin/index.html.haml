@@ -1,11 +1,11 @@
 %h2 Dashboard Admin
 %div.cards 
-  = link_to admin_media_path, :id => "card-media", :class => "card"  do
+  = link_to admin_media_path, :id => 'card-media', :class => 'card'  do
     %div.card-icon
     %p.card-number
       = @media_count
     %p.card-text
-      = @media_count > 1 ? "Media" : "Medium"
+      = @media_count > 1 ? 'médias' : 'média'
 
 
   = link_to admin_events_path, :id => "card-events", :class => "card"  do
@@ -13,22 +13,30 @@
     %p.card-number
       = @events_count
     %p.card-text
-      = @events_count > 1 ? "Events" : "Event"
+      = @events_count > 1 ? 'events' : 'event'
 
 
-  = link_to admin_types_path, :id => "card-types", :class => "card"  do
+  = link_to admin_types_path, :id => 'card-types', :class => 'card'  do
     %div.card-icon
     %p.card-number
       = @types_count
     %p.card-text
-      = @types_count > 1 ? "Types" : "Type"
+      = @types_count > 1 ? 'types' : 'type'
 
-  = link_to admin_users_path, :id => "card-users", :class => "card"  do
+  = link_to admin_users_path, :id => 'card-users', :class => 'card'  do
     %div.card-icon
     %p.card-number
       = @users.size
     %p.card-text
-      = @users.size > 1 ? "Studistes" : "Studistes"
+      = @users.size > 1 ? 'studistes' : "studiste (oui c'est toi ...)"
+
+
+  = link_to admin_uploads_path, :id => 'card-uploads', :class => 'card'  do
+    %div.card-icon
+    %p.card-number
+      = @uploads_count
+    %p.card-text
+      = @uploads_count > 1 ? 'uploads' : 'upload'
 
 
 %h2 Administrateurs

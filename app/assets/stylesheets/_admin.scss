@@ -13,7 +13,7 @@ $card-padding: 10px;
 	}
 }
 
-.card:nth-child(odd) {
+.card:nth-child(even) {
 	float: right;
 }
 
@@ -26,7 +26,6 @@ $card-padding: 10px;
 	height: $card-height;
 	margin-bottom: 15px;
 	cursor: pointer;
-	//padding-left: $card-padding;
 	.card-number {
 		display: block;
 		width: auto;
@@ -48,11 +47,22 @@ $card-padding: 10px;
 	.card-icon {
 		float: left;
 		background-color: $nav-logo-background;
+		background-color: black;
 		display: inline-block;
 		width: $card-height;
 		height: $card-height;
 		margin-right: $card-padding;
 	}
+}
+
+.card {
+	background-color: #333;
+	@include transition-duration(0.2s);
+}
+
+.card:hover {
+	background-color: shade(#333, $shaden);
+	@include transition-duration(0.3s);
 }
 
 
@@ -129,6 +139,25 @@ $card-padding: 10px;
 	background-position: center;
 	background-size: 60px 60px;
 	background-color: shade($card-users-background, $shaden);
+}
+
+
+#card-uploads {
+	background-color: $card-uploads-background;
+	@include transition-duration(0.2s);
+}
+
+#card-uploads:hover {
+	background-color: shade($card-uploads-background, $shaden);
+	@include transition-duration(0.3s);
+}
+
+#card-uploads .card-icon {
+	background: url("/images/card-uploads.png");
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 60px 60px;
+	background-color: shade($card-uploads-background, $shaden);
 }
 
 

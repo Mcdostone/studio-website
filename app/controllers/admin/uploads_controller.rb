@@ -1,25 +1,31 @@
-class Admin::UploadsController < ApplicationController
-  before_action :set_admin_upload, only: [:destroy]
+class Admin::UploadsController < AdminController
+  before_action :set_admin_upload, only: [:destroy, :show]
   layout 'upload'
 
   def index
-    @events = Event.all
-    @types = Type.all
-    @upload = Admin::Upload.new
+    @uploads = Upload.includes(:type, :event).all
   end
 
+  def new
+    @events = Event.all
+    @types = Type.all
+    @upload = Upload.new
+  end
+  
   def create
     upload_params = admin_upload_params
-    type = Type.find(upload_params[:type])
-    event = Event.find(upload_params[:event])
-    @upload = Admin::Upload.new(type: type, event: event)
+    type = Type.find(upload_params[:type_id])
+    event = Event.find(upload_params[:event_id])
+    @upload = Upload.new(type: type, event: event, user: @current_user)
     @upload.save
-    
     ActionCable.server.broadcast 'uploadProgress', {task: 's3'}
+    
     upload_params[:media].each do |m|
-      @upload.media.create(type: type, event: event, file: m)
-      ActionCable.server.broadcast 'uploadProgress', {task: 'upload'}
+      if @upload.media.create(type: type, event: event, file: m, upload: @Upload)
+        ActionCable.server.broadcast 'uploadProgress', {task: 'upload'}
+      end
     end
+    
     ActionCable.server.broadcast 'uploadProgress', {task: 'end'}    
     respond_to do |format|
       msg = {:status => 200, :nbUploaded => upload_params[:media].size}
@@ -27,16 +33,19 @@ class Admin::UploadsController < ApplicationController
     end
   end
 
+  def show
+  end
+
   private
     
     def set_admin_upload
-      @admin_upload = Admin::Upload.find(params[:id])
+      @upload = Upload.find(params[:id])
     end
 
     def admin_upload_params      
       params.require(:admin_upload).tap do |whitelisted|
-        whitelisted[:event] = params[:admin_upload][:event]
-        whitelisted[:type] = params[:admin_upload][:type]
+        whitelisted[:event_id] = params[:admin_upload][:event_id]
+        whitelisted[:type_id] = params[:admin_upload][:type_id]
         whitelisted[:media] = params[:admin_upload][:media].values
       end
     end

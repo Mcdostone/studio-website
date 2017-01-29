@@ -6,6 +6,7 @@ class AdminController < ApplicationController
 		@media_count =  Medium.count
 		@events_count =  Event.count
 		@types_count =  Type.count
+		@uploads_count =  Upload.count
 		@users = User.all
 	end
 

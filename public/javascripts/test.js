@@ -57,8 +57,8 @@ studioDropzone = new Dropzone('div#studio-dropzone', {
 	},
 	init: function() {
 		this.on("sending", (file, xhr, formData) => {
-		 		formData.append('admin_upload[event]', $('#admin_upload_event').val())
-		 		formData.append('admin_upload[type]', $('#admin_upload_type').val())
+		 		formData.append('admin_upload[type_id]', $('#upload_type_id').val())
+		 		formData.append('admin_upload[event_id]', $('#upload_event_id').val())
 			}
 		)},
 	successmultiple: (data,response) => {}
@@ -93,18 +93,18 @@ studioDropzone.on('queuecomplete', function() {
 	console.log('finished')
 	studioDropzone.removeAllFiles()
 	progressBarContainer.removeClass('fadeIn')
+	App.upload_progress.refresh(true)
 	close.toggleClass('invisible')
 	close.on('click', e => progressBarContainer.fadeOut(300, () => progressBarContainer.hide()))
 })
 
 studioDropzone.on('totaluploadprogress', (per, r, a) => {
 	percentUpload = per
-	console.log(percentUpload)
 	App.upload_progress.refresh()
 })
 
 form.submit(e => {
-	if(studioDropzone.getQueuedFiles().length > 0) {
+	if(studioDropzone.getQueuedFiles().length > 0	) {
 		nbFiles = studioDropzone.getActiveFiles().length
 		progressBarContainer.show()
 		progressBarContainer.fadeIn(500)

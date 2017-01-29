@@ -23,13 +23,13 @@ class MediumUploader < CarrierWave::Uploader::Base
   # end
 
   # Process files as they are uploaded:
-  process :resize_to_fit  =>  [2000, 2000]
-  process :quality        =>  80
+  process :resize_to_fit  => [1500, 1500]
+  process :quality        => 80
   
   # Create different versions of your uploaded files:
   version :thumb do
-    process resize_to_fit: [256, 256]
-    process :quality => 100
+    process :resize_to_fill       => [180, 180]
+    process :optimize_thumbnail   => 80
   end
 
   # Add a white list of extensions which are allowed to be uploaded.

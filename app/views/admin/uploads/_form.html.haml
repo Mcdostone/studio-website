@@ -1,13 +1,13 @@
 
 
-= form_for [@upload], multipart: true do |f|
+= form_for [:admin, @upload], multipart: true do |f|
   %div.form-group
     = label_tag 'Evénement:'
-    = f.select :event, options_from_collection_for_select(@events, :id, :name), {}, {:class => 'custom-select form-control', autofocus: 'autofocus'}
+    = f.select :event_id, options_from_collection_for_select(@events, :id, :name), {}, {:class => 'custom-select form-control', autofocus: 'autofocus'}
 
   %div.form-group
     = label_tag 'Type:'
-    = f.select :type, options_from_collection_for_select(@types, :id, :name, :selected), {}, {:class => 'custom-select form-control'}
+    = f.select :type_id, options_from_collection_for_select(@types, :id, :name), {}, {:class => 'custom-select form-control'}
 
   %div.form-group
     = label_tag 'Media à upload:'

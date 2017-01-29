@@ -16,9 +16,9 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :events
+    resources :uploads, only: [:index, :new, :show, :create]
     resources :types
     resources :media, only: [:index, :edit, :update, :destroy]
-    resources :uploads, only: [:index, :create]
     resources :users, only: [:index, :edit, :update]
     get 'users/:id/ninja', to: 'users#ninja', as: 'ninja'
   end
