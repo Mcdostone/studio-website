@@ -25,12 +25,12 @@ $text-color:					black;
 
 $table-delimiter:				shade($body-background, 30%);
 
+$small-item-size:				150px;
 $small-item-margin:				4px;
 
+$big-item-size:					240px;
 $big-item-margin:  				$small-item-margin;
 
-$small-item-size:				120px;
-$big-item-size:					2 * $small-item-size;
 
 
 $footer-height: 				100px;
@@ -77,6 +77,9 @@ $breakpoint: 850px;*/
 	background-size: cover;
 }
 
+.invisible {
+	visibility: hidden;
+}
 
 // ----------------------------------------------------
 // -- "Nothing to show" images

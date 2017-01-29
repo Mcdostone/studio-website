@@ -1,20 +1,52 @@
-CarrierWave.configure do |config|
-  config.storage    = :aws
-  config.aws_bucket = 'mybucketname'
-  config.aws_acl    = :public_read
-  config.asset_host = 'https://mybucketname.s3-us-west-1.amazonaws.com'
-  config.aws_authenticated_url_expiration = 60 * 60 * 24 * 365
+module CarrierWave
 
-  config.aws_credentials = {
+  module MiniMagick
+    def quality(percentage)
+      manipulate! do |img|
+        img.quality(percentage.to_s)
+        img = yield(img) if block_given?
+        img
+      end
+    end
+  end
 
-    # Configuration for Amazon S3
-    :provider              => 'AWS',
-    :access_key_id     => 'myaccessid',
-    :secret_access_key => 'mysecretkey',
-    :region                => 'eu-central-1',
-  }
 
-   config.storage = :aws
-   config.cache_dir = '/tmp/studio'                
 
+  CarrierWave.configure do |config|
+    config.storage =      :aws
+    config.aws_bucket =       Rails.application.secrets.AWS_BUCKET_NAME
+    config.aws_acl =      :public_read
+    
+    config.aws_authenticated_url_expiration = 60 * 60
+    
+    config.aws_attributes = {
+    expires: 1.week.from_now.httpdate,
+      cache_control: 'max-age=604800'
+    }
+
+    config.aws_credentials = {
+    provider:       'AWS',
+    aws_access_key_id:    Rails.application.secrets.AWS_ACCESS_KEY_ID,
+      aws_secret_access_key:  Rails.application.secrets.AWS_SECRET_ACCESS_KEY,
+      region:               Rails.application.secrets.AWS_REGION
+    }
+
+    # -----------------
+    
+    config.fog_provider = 'fog/aws'
+    config.fog_credentials = {
+      provider:               'AWS',
+      aws_access_key_id:      Rails.application.secrets.AWS_ACCESS_KEY_ID,
+      aws_secret_access_key:  Rails.application.secrets.AWS_SECRET_ACCESS_KEY,
+      region:                 Rails.application.secrets.AWS_REGION,
+      host:           Rails.application.secrets.AWS_HOST,
+      endpoint:         Rails.application.secrets.AWS_ENDPOINT
+    }
+    config.fog_directory  = Rails.application.secrets.AWS_BUCKET_NAME
+    config.fog_public     = false
+    config.fog_attributes = { 'Cache-Control' => "max-age=#{30.day.to_i}" }
+
+
+    config.cache_dir = '/tmp/studio'
+  end
 end

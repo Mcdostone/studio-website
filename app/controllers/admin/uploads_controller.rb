@@ -20,7 +20,8 @@ class Admin::UploadsController < ApplicationController
     end
     
     respond_to do |format|
-      format.json { render :json => "receive #{upload_params[:media]}", :status => 200 }
+      msg = {:status => 200, :nbUploaded => upload_params[:media].size}
+      format.json { render :json => msg }
     end
   end
 

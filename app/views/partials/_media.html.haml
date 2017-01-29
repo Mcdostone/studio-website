@@ -1,4 +1,4 @@
-%div.grid
+%div.grid.small-items
   - @media.each do |medium|
     %div.item
       = link_to image_tag(url_thumbnail(medium)), medium_path(medium)

@@ -2,6 +2,8 @@ let AUTH_TOKEN = $('meta[name="csrf-token"]').attr('content')
 
 let form = $('form')
 let action = form.attr('action')
+let nbFiles = 0
+let filesUploaded = 0
 let submit = $('.button')
 let parallelUploads = 5
 
@@ -26,12 +28,14 @@ form.off('submit')
 
 let progressBarContainer = $('<div/>')
 let progressBarInfos = $('<div/>')
+let desc = $('<span/>')
 progressBarInfos.addClass('progress-bar-content')
 let progressBar = $('<div/>')
 
 let percent = $('<p/>')
-let close = $('<div/>').text('Fermer').addClass('button button-close').hide()
+let close = $('<div/>').text('Fermer').addClass('button button-close').toggleClass('invisible')
 progressBarInfos.append(percent)
+progressBarInfos.append(desc)
 progressBarInfos.append(close)
 progressBar.addClass('progress-bar')
 progressBarContainer.addClass('progress-bar-container')
@@ -69,6 +73,10 @@ studioDropzone.on('completemultiple', function(files) {
 		studioDropzone.processQueue()
 })
 
+studioDropzone.on('successmultiple', function(file, res) {
+	filesUploaded+= res.nbUploaded
+})
+
 studioDropzone.on('addedfile', function(file) {
 	if(studioDropzone.getQueuedFiles().length + 1 > 0) {
 		submit.removeClass('disabled')
@@ -87,20 +95,27 @@ studioDropzone.on('queuecomplete', function() {
 	console.log('finished')
 	studioDropzone.removeAllFiles()
 	progressBarContainer.removeClass('fadeIn')
-	close.fadeIn(200)
+	close.toggleClass('invisible')
 	close.on('click', e => progressBarContainer.fadeOut(300, () => progressBarContainer.hide()))
 })
 
 studioDropzone.on('totaluploadprogress', (per, r, a) => {
-	progressBar.css('right', 100 - per + '%')
-	percent.text(Math.floor(per) + '%')
+	p1 = Math.floor((100 * filesUploaded / nbFiles) / 2)
+	p2 = Math.floor(per/ 2)
+	if(p2 == 50)
+		desc.text('Traitement des images - Upload sur AWS S3')
+	percentValue = p1 + p2 > 100 ? 100 : p1 + p2 
+	progressBar.css('right', (100 - percentValue) + '%')
+	percent.text(percentValue + '%')
 })
 
 form.submit(e => {
 	if(studioDropzone.getQueuedFiles().length > 0) {
+		nbFiles = studioDropzone.getActiveFiles().length
 		progressBarContainer.show()
-		close.hide()
 		progressBarContainer.fadeIn(500)
+		desc.text('Upload sur le serveur TN.net')
+		close.addClass('invisible')
 		e.preventDefault()
 		studioDropzone.processQueue()
 	}

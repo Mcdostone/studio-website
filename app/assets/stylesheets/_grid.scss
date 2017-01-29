@@ -14,7 +14,15 @@
 
 .small-items .item {
 	margin: $small-item-margin;
+	width: $small-item-size;
+	height: $small-item-size;
+	img {
+		width: $small-item-size;
+		height: $small-item-size;
+	}
 }
+
+
 
 .item {
 	display: inline-block;
@@ -45,7 +53,7 @@
 	@include transition-duration(0.2s);
 
 	&:hover {
-		background-color: rgba(0, 0, 0, 0.5);
+		background-color: rgba(0, 0, 0, 0.35);
 		@include transition-duration(0.3s);
 	}
 }

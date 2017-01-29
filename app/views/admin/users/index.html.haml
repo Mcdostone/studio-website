@@ -34,6 +34,6 @@
         = link_to 'Afficher', user_path(user)
       %td
         = link_to 'Éditer', edit_admin_user_path(user)
-      - if current_user.admin?
         %td
-          = link_to 'Ninja', admin_ninja_path(user), target: '_blank'
+          - if current_user.admin? && current_user != user
+            = link_to 'Ninja', admin_ninja_path(user), target: '_blank'
