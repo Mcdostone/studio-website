@@ -1,4 +1,3 @@
-class Authorization < ActiveRecord::Base
-
+class Authorization < ApplicationRecord
 	has_many :users
 end

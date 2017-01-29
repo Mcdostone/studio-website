@@ -14,11 +14,13 @@ class Admin::UploadsController < ApplicationController
     event = Event.find(upload_params[:event])
     @upload = Admin::Upload.new(type: type, event: event)
     @upload.save
-
+    
+    ActionCable.server.broadcast 'uploadProgress', {task: 's3'}
     upload_params[:media].each do |m|
       @upload.media.create(type: type, event: event, file: m)
+      ActionCable.server.broadcast 'uploadProgress', {task: 'upload'}
     end
-    
+    ActionCable.server.broadcast 'uploadProgress', {task: 'end'}    
     respond_to do |format|
       msg = {:status => 200, :nbUploaded => upload_params[:media].size}
       format.json { render :json => msg }

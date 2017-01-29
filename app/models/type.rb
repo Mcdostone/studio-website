@@ -1,4 +1,4 @@
-class Type < ActiveRecord::Base
+class Type < ApplicationRecord
 	has_many :media
 
 	validates_uniqueness_of :name

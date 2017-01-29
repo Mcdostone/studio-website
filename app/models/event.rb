@@ -1,4 +1,4 @@
-class Event < ActiveRecord::Base
+class Event < ApplicationRecord
 	has_many :media
 
 	after_initialize :set_defaults

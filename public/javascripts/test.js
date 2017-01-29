@@ -3,7 +3,6 @@ let AUTH_TOKEN = $('meta[name="csrf-token"]').attr('content')
 let form = $('form')
 let action = form.attr('action')
 let nbFiles = 0
-let filesUploaded = 0
 let submit = $('.button')
 let parallelUploads = 5
 
@@ -27,12 +26,11 @@ form.off('submit')
 
 
 let progressBarContainer = $('<div/>')
-let progressBarInfos = $('<div/>')
-let desc = $('<span/>')
-progressBarInfos.addClass('progress-bar-content')
-let progressBar = $('<div/>')
 
-let percent = $('<p/>')
+progressBarInfos.addClass('progress-bar-content')
+//let progressBar = $('<div/>')
+
+//let percent = $('<p/>')
 let close = $('<div/>').text('Fermer').addClass('button button-close').toggleClass('invisible')
 progressBarInfos.append(percent)
 progressBarInfos.append(desc)
@@ -44,7 +42,7 @@ progressBarContainer.append(progressBarInfos)
 progressBarContainer.hide()
 progressBarContainer.insertAfter(document.body)
 
-let studioDropzone = new Dropzone('div#studio-dropzone', { 
+studioDropzone = new Dropzone('div#studio-dropzone', { 
 	url: action,
 	autoProcessQueue: false,
 	uploadMultiple: true,
@@ -100,13 +98,9 @@ studioDropzone.on('queuecomplete', function() {
 })
 
 studioDropzone.on('totaluploadprogress', (per, r, a) => {
-	p1 = Math.floor((100 * filesUploaded / nbFiles) / 2)
-	p2 = Math.floor(per/ 2)
-	if(p2 == 50)
-		desc.text('Traitement des images - Upload sur AWS S3')
-	percentValue = p1 + p2 > 100 ? 100 : p1 + p2 
-	progressBar.css('right', (100 - percentValue) + '%')
-	percent.text(percentValue + '%')
+	percentUpload = per
+	console.log(percentUpload)
+	App.upload_progress.refresh()
 })
 
 form.submit(e => {
