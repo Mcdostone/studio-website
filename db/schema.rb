@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170129114108) do
+ActiveRecord::Schema.define(version: 20170129172546) do
 
   create_table "authorizations", force: :cascade do |t|
     t.string "name"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20170129114108) do
     t.datetime "date_event"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "cover"
   end
 
   create_table "media", force: :cascade do |t|

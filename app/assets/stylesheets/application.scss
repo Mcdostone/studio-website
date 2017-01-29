@@ -4,17 +4,16 @@
 
 
 //@import "base";
+//@import "style";
 @import "public";
 @import "animate";
-/*@import "style";
-@import "events";
-*/
 @import "media";
 @import "dropzone";
 @import "users";
 @import "grid";
 @import "admin";
 @import "navbar";
+@import "events";
 
 .footer {
 	position: absolute;

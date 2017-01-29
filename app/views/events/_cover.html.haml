@@ -1,0 +1,16 @@
+%div.descriptions
+  %div.description.cover
+    - if((current_user.author? || current_user.admin?) && settings == true)
+      = link_to edit_admin_event_path(event), class: 'button-admin' do
+        %div.icon
+        %p Editer l'événement
+    %div.illustration
+      = image_tag event.cover.url, class: 'illustration'
+      %div.event-desc
+        %div.event-name
+          = event.name
+        %div.event-date
+          = format_event_date(event.date_event) 
+        %div.event-count 
+          = "#{@event.media.size} " + (event.media.size > 1 ? 'médias' : 'média')
+  

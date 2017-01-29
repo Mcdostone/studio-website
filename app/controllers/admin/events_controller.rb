@@ -32,7 +32,7 @@ class Admin::EventsController < AdminController
 
   private
   def event_params
-		params.require(:event).permit(:name, :date_event)
+		params.require(:event).permit(:name, :date_event, :cover)
 	end
 
 end

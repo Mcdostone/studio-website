@@ -1,6 +1,8 @@
 - if @event.media.empty?
+
   = render 'partials/nothing'
+
 - else
-  %h2
-    = @event.name
-    = render 'partials/media', media: @event.media
+
+  = render 'events/cover', event: @event, settings: true
+  = render 'partials/media', media: @event.media

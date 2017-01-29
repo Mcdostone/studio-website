@@ -27,11 +27,11 @@ $table-delimiter:				shade($body-background, 30%);
 
 $small-item-size:				160px;
 $small-item-margin:				4px;
-
+$button-settings-height: 		30px;
 $big-item-size:					240px;
 $big-item-margin:  				$small-item-margin;
 
-
+$cover-height:					300px;
 
 $footer-height: 				100px;
 
@@ -106,6 +106,64 @@ $breakpoint: 850px;*/
 	background-size: cover;
 }
 
+
+.button-admin {
+	position: absolute;
+	display: inline-block;
+	width: auto;
+	height: auto;
+	bottom: 20px;
+	
+	right: 20px;
+	cursor: pointer;
+	z-index: 50;
+	opacity: 0.5;
+	@include transition-duration(0.2s);
+
+}
+
+.button-admin:hover {
+	opacity: 1;
+
+	@include transition-duration(0.3s);
+	.icon {
+			@include transition-duration(0.2s);
+			@include rotateZ(70deg);
+	}
+
+	p {
+		visibility: visible;
+	}
+}
+
+
+.button-admin .icon {
+	height: $button-settings-height;
+	width: $button-settings-height;
+	float: right;
+	z-index: 50;
+	@include transform-origin(15, 15);
+	background: url("/images/settings.png");
+	background-size: cover;
+	@include transition-duration(0.3s);
+	@include rotateZ(0deg);	
+}
+
+.button-admin p {
+	display: inline;
+	visibility: hidden;
+	background-color: transparent;
+	float: left;
+	line-height: $button-settings-height;
+	margin-right: 10px;
+	z-index: 50;
+	color: white;
+	padding: 0;
+	
+	&:before {
+		display: none;
+	}
+}
 
 /**
 	----------------------------------

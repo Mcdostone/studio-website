@@ -25,14 +25,13 @@ module CarrierWave
 
   CarrierWave.configure do |config|
     config.storage =      :aws
-    config.aws_bucket =       Rails.application.secrets.AWS_BUCKET_NAME
+    config.aws_bucket =    Rails.application.secrets.AWS_BUCKET_NAME
     config.aws_acl =      :public_read
     
-    config.aws_authenticated_url_expiration = 60 * 60
-    
+    config.aws_authenticated_url_expiration = 20
     config.aws_attributes = {
     expires: 1.week.from_now.httpdate,
-      cache_control: 'max-age=604800'
+      cache_control: 'max-age=20'
     }
 
     config.aws_credentials = {
@@ -45,6 +44,7 @@ module CarrierWave
     # -----------------
     
     config.fog_provider = 'fog/aws'
+    config.fog_authenticated_url_expiration = 10
     config.fog_credentials = {
       provider:               'AWS',
       aws_access_key_id:      Rails.application.secrets.AWS_ACCESS_KEY_ID,
