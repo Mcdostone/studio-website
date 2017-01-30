@@ -1,0 +1,14 @@
+%div.descriptions
+  %div.description.cover
+    - if((current_user.author? || current_user.admin?) && settings == true)
+      = link_to edit_admin_type_path(type), class: 'button-admin' do
+        %div.icon
+        %p Editer le type
+    %div.illustration
+      = image_tag cover(type), class: 'illustration'
+      %div.cover-desc
+        %div.cover-name
+          = type.name
+        %div.cover-count 
+          = "#{type.media.size} " + (type.media.size > 1 ? 'médias' : 'média')
+  

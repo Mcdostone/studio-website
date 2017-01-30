@@ -1,3 +1,7 @@
 %h2 Nouveau Évent
 
+= content_for :js do
+  = javascript_include_tag 'admin/covers.js'
+  = javascript_include_tag 'admin/events.js'
+
 = render 'form'

@@ -37,7 +37,7 @@ class Admin::TypesController < AdminController
 
 	private
 	def type_params
-		params.require(:type).permit(:name, :mime_types)
+		params.require(:type).permit(:name, :mime_types, :cover)
 	end
 
 	def set_type

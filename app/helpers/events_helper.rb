@@ -7,4 +7,8 @@ module EventsHelper
 	def random_media(event)
 		return event.media.sample
 	end
+
+	def cover(event)
+		event.cover.url ? event.cover.url : '/images/spiral-film.jpeg'
+	end
 end

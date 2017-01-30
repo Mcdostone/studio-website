@@ -1,6 +1,8 @@
 - if @type.media.empty?
+  
   = render 'partials/nothing'
+
 - else
-  %h2
-    = @type.name
+
+  = render 'types/cover', type: @type, settings: true
   = render 'partials/media', media: @type.media

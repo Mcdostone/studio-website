@@ -1,7 +1,14 @@
 = form_for [:admin, @type] do |f|
 
   = render 'admin/partials/errors', model: @type
-  
+
+  %div.form-group
+    = render 'types/cover', type: @type, settings: false
+
+  %div.form-group
+    = label_tag 'Photo de couverture:'
+    = f.file_field :cover, accept: 'image/png,image/gif,image/jpeg,image/jpg', class: 'form-control' 
+
   %div.form-group
     = label_tag 'Type de média:'
     = f.text_field :name, placeholder: "Vidéo...", autofocus: "autofocus", class: "form-control"

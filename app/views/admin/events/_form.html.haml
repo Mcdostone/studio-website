@@ -1,12 +1,13 @@
 = form_for [:admin, @event] do |f|
 
   = render 'admin/partials/errors', model: @event
-
+  
   %div.form-group
     = render 'events/cover', event: @event, settings: false
-    = label_tag 'Photo de couverture:'
-    = f.file_field :cover, class: 'form-control'
 
+  %div.form-group
+    = label_tag 'Photo de couverture:'
+    = f.file_field :cover, accept: 'image/png,image/gif,image/jpeg,image/jpg', class: 'form-control' 
   %div.form-group
     = label_tag "Nom de l'Évent:"
     = f.text_field :name, placeholder: 'WEI 2015, Gala ...', autofocus: 'autofocus', class: 'form-control'
@@ -16,3 +17,4 @@
   
   %div.form-group
     = f.submit submit_button_value(@event), class: 'button'
+

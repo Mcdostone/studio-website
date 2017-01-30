@@ -7,10 +7,9 @@
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
-  
+
   %body
   
-
     = render 'partials/nav'
 
     %div.container-fluid#container-studio
@@ -49,3 +48,5 @@
 
     = javascript_include_tag 'hamburger'
     = javascript_include_tag 'https://sdk.amazonaws.com/js/aws-sdk-2.7.27.min.js'
+    - if content_for?(:js)
+      = yield :js

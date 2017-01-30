@@ -38,7 +38,7 @@
               = profile_name(current_user)
 
             %div.dropdown-menu
-              = link_to "Mon profil", edit_user_path(current_user), class: "dropdown-item" 
+              = link_to "Mon profil", user_path(current_user), class: "dropdown-item" 
               = link_to "Déconnexion", logout_path, class: "dropdown-item"  
 
         - else

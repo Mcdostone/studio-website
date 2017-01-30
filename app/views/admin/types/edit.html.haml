@@ -1,2 +1,7 @@
 %h2 Éditer le type
+
 = render 'form'
+
+= content_for :js do
+  = javascript_include_tag 'admin/covers.js'
+  = javascript_include_tag 'admin/types.js'

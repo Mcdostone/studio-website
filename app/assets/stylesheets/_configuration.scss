@@ -200,6 +200,10 @@ a:hover, a:visited, a:link, a:active {
 	cursor: pointer;
 }
 
+a, a:hover {
+	color: $nav-logo-background;
+}
+
 .container-fluid {
 	padding: 0;
 	background-color: $body-background; 
@@ -237,4 +241,13 @@ table a {
 
 input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
     background-color: inherit;
+}
+
+.alert {
+	position: fixed;
+	width: 600px;
+	right: 20px;
+	//bottom: $footer-height + 20px;
+	top: $nav-height + 20px;
+	z-index: 60;
 }

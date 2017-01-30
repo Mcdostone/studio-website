@@ -1,0 +1,51 @@
+@import "configuration";
+
+form .cover {
+	width: 60%;
+	margin: 0 auto;
+	margin-bottom: 40px;
+}
+
+.descriptions .description.cover {
+	height: $cover-height;
+	display: inline-block;
+	width: 100%;
+	
+	.illustration {
+    	height: $cover-height;
+		object-fit: cover;
+		background-color: black;
+	}
+	
+	margin-bottom: 40px;
+}
+
+.cover .cover-desc {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	width: 100%;
+	z-index: 15;
+	height: 100%;
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	top: 0;
+	text-align: center;
+    color: white;
+	
+	.cover-name {
+    	font-size: 5em;
+    	font-weight: 300;
+	}
+	.cover-count, .cover-date {
+		font-weight: 100;
+		font-size: 1.5em;		
+	}
+
+	.cover-date {
+		font-size: 2em;
+	}
+}

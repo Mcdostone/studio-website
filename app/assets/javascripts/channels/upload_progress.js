@@ -9,29 +9,17 @@ App.upload_progress = App.cable.subscriptions.create("UploadProgressChannel", {
   received: function(data) {
   	switch(data.task) {
   		case 's3': 
-			desc.text('Traitement des images - Upload sur AWS S3')
+        desc.text('Traitement des images - Upload sur AWS S3')
   			break
   		case 'upload':
-  			filesUploaded++
+  			App.uploads().increaseNbFilesUploaded()
   			break
-  			default:
-				if(studioDropzone.getQueuedFiles().length > 0)
-  					desc.text('Upload sur le serveur TN.net')
+  		default:
+				if(App.uploads.dropzone.getQueuedFiles().length > 0)
+  					App.uploads().desc('Upload sur le serveur TN.net')
 		}
   	
-  	this.refresh()
-  },
-
-  refresh: function() {
-  	p1 = Math.floor((100 * filesUploaded / nbFiles) / 2)
-    p2 = Math.floor(percentUpload/ 2)
-	
-    percentValue = p1 + p2 > 100 ? 100 : p1 + p2 
-    progressBar.css('right', (100 - percentValue) + '%')
-    percent.text(percentValue + '%')
-
-    if(nbFiles == filesUploaded)
-      desc.text('Upload terminé')
+  	App.uploads.refresh()
   }
 
 })

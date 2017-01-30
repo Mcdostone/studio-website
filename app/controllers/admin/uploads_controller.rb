@@ -1,6 +1,5 @@
 class Admin::UploadsController < AdminController
   before_action :set_admin_upload, only: [:destroy, :show]
-  layout 'upload', only: [:new]
 
   def index
     @uploads = Upload.includes(:type, :event).all
