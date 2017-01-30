@@ -117,9 +117,8 @@ $breakpoint: 850px;*/
 	right: 20px;
 	cursor: pointer;
 	z-index: 50;
-	opacity: 0.5;
+	opacity: 0.8;	
 	@include transition-duration(0.2s);
-
 }
 
 .button-admin:hover {

@@ -11,7 +11,7 @@ Dropzone.prototype.getActiveFiles = function() {
 	return _results;
 }
 
-App.uploads = function() {
+App.uploads = (function() {
 	let form = $('form')
 	let action = form.attr('action')
 	let nbFiles = 0
@@ -25,15 +25,41 @@ App.uploads = function() {
 	let desc = $('<span/>')
 	let studioDropzone = undefined
 
+	let initDropzone = function() {
+		studioDropzone = new Dropzone('div#studio-dropzone', { 
+			url: action,
+			autoProcessQueue: false,
+			uploadMultiple: true,
+			dictDefaultMessage: 'Uploader des media',
+			paramName: 'admin_upload[media]',
+			addRemoveLinks: true,
+			parallelUploads: parallelUploads,
+			acceptedFiles: 'image/*,audio/*,application/pdf,.CR2',
+			maxFilesize: 100,
+			params:{
+				'authenticity_token':  AUTH_TOKEN
+			},
+			init: function() {
+				this.on("sending", (file, xhr, formData) => {
+		 			formData.append('admin_upload[type_id]', $('#upload_type_id').val())
+		 			formData.append('admin_upload[event_id]', $('#upload_event_id').val())
+				}
+			)},
+			successmultiple: (data,response) => {}
+		})
+	}
+
 	return {
-		dropzone: studioDropzone,
+		getDropzone: function() {
+			return studioDropzone
+		},
 
 		refresh: function() {
   			p1 = Math.floor((100 * filesUploaded / nbFiles) / 2)
     		p2 = Math.floor(percentUpload/ 2)
 	
     		percentValue = p1 + p2 > 100 ? 100 : p1 + p2 
-    		App.uploads().setProgressBar(percentValue)
+    		App.uploads.setProgressBar(percentValue)
     		percent.text(percentValue + '%')
     		if(nbFiles == filesUploaded)
       			desc.text('Upload terminé')
@@ -41,11 +67,6 @@ App.uploads = function() {
 		
 		nbFiles: function() {
 			return nbFiles
-		},
-
-
-		filesUploaded: function() {
-			return filesUploaded
 		},
 
 		percentUpload: function() {
@@ -86,37 +107,14 @@ App.uploads = function() {
 			progressBarContainer.hide()
 			progressBarContainer.insertAfter(document.body)
 
-
-			studioDropzone = new Dropzone('div#studio-dropzone', { 
-				url: action,
-				autoProcessQueue: false,
-				uploadMultiple: true,
-				dictDefaultMessage: 'Uploader des media',
-				paramName: 'admin_upload[media]',
-				addRemoveLinks: true,
-				parallelUploads: parallelUploads,
-				acceptedFiles: 'image/*,audio/*,application/pdf,.CR2',
-				maxFilesize: 100,
-				params:{
-					'authenticity_token':  AUTH_TOKEN
-				},
-				init: function() {
-					this.on("sending", (file, xhr, formData) => {
-		 				formData.append('admin_upload[type_id]', $('#upload_type_id').val())
-		 				formData.append('admin_upload[event_id]', $('#upload_event_id').val())
-					}
-				)},
-				successmultiple: (data,response) => {}
-			})
+			initDropzone()
 
 			studioDropzone.on('completemultiple', function(files) {
 				if(studioDropzone.getQueuedFiles().length > 0)
 					studioDropzone.processQueue()
 			})
 
-			studioDropzone.on('successmultiple', function(file, res) {
-				filesUploaded+= res.nbUploaded
-			})
+			//studioDropzone.on('successmultiple', function(file, res) {})
 
 			studioDropzone.on('addedfile', function(file) {
 				if(studioDropzone.getQueuedFiles().length + 1 > 0) {
@@ -136,15 +134,17 @@ App.uploads = function() {
 				console.log('finished')
 				studioDropzone.removeAllFiles()
 				progressBarContainer.removeClass('fadeIn')
-				App.uploads().refresh(true)
+				App.uploads.refresh(true)
 				close.toggleClass('invisible')
-				close.on('click', e => progressBarContainer.fadeOut(300, () => progressBarContainer.hide()))
+				close.on('click', e => progressBarContainer.fadeOut(300, () => {
+					window.location.href = App.upload_progress.getUrl()
+				}))
+			//		=> progressBarContainer.hide()))
 			})
 
 			studioDropzone.on('totaluploadprogress', (per, r, a) => {
 				percentUpload = per
-				console.log(per)
-				App.uploads().refresh()
+				App.uploads.refresh()
 			})
 
 			form.submit(e => {
@@ -160,9 +160,10 @@ App.uploads = function() {
 			})
 		}
 	}
-}
+})()
 
 
 $(function() {
-	App.uploads().init()
+	App.upload_progress.init()
+	App.uploads.init()
 })

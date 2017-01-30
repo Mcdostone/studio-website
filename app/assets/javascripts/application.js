@@ -1,7 +1,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap-sprockets
-var App = {}
+//= require cable
 
 App.flash = function() {
 	let closeHTML = `

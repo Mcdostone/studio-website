@@ -1,8 +1,9 @@
 class Admin::UploadsController < AdminController
-  before_action :set_admin_upload, only: [:destroy, :show]
+  before_action :set_admin_upload, only: [:destroy, :show, :update]
 
   def index
     @uploads = Upload.includes(:type, :event).all
+    @check = Event.count != 0 &&Type.count != 0
   end
 
   def new
@@ -16,19 +17,21 @@ class Admin::UploadsController < AdminController
     type = Type.find(upload_params[:type_id])
     event = Event.find(upload_params[:event_id])
     @upload = Upload.new(type: type, event: event, user: @current_user)
-    @upload.save
-    ActionCable.server.broadcast 'uploadProgress', {task: 's3'}
-    
-    upload_params[:media].each do |m|
-      if @upload.media.create(type: type, event: event, file: m, upload: @Upload)
-        ActionCable.server.broadcast 'uploadProgress', {task: 'upload'}
+    if @upload.save
+      ActionCable.server.broadcast 'uploadProgress', {task: 's3'}
+      
+      upload_params[:media].each do |m|
+        if @upload.media.create(type: type, event: event, file: m, upload: @upload)
+          ActionCable.server.broadcast 'uploadProgress', {task: 'upload'}
+        end
       end
-    end
-    
-    ActionCable.server.broadcast 'uploadProgress', {task: 'end'}    
-    respond_to do |format|
-      msg = {:status => 200, :nbUploaded => upload_params[:media].size}
-      format.json { render :json => msg }
+      
+      ActionCable.server.broadcast 'uploadProgress', {task: 'end', 
+#        url: Rails.application.routes.url_helpers.admin_upload_path(@upload)}
+      respond_to do |format|
+        msg = {:status => 200, :nbUploaded => upload_params[:media].size}
+        format.json { render :json => msg }
+      end
     end
   end
 
