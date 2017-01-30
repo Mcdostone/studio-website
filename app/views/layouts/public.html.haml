@@ -9,11 +9,11 @@
     = csrf_meta_tags
   
   %body
-  
 
     = render 'partials/nav'
 
     %div.container-fluid
+      = render 'partials/flash'
       = yield
 
     = render 'partials/footer'

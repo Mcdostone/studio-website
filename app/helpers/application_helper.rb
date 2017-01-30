@@ -7,4 +7,5 @@ module ApplicationHelper
 	def submit_button_value(model)
 		model.new_record? ? 'Créer' : 'Modifier'
 	end
+
 end

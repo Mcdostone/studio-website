@@ -12,6 +12,6 @@ module UsersHelper
 	end
 
 	def profile_name(user)
-		user.nickname.empty? ? get_full_name(user) : user.nickname
+		user.nickname.empty? ? user.first_name : user.nickname
 	end
 end

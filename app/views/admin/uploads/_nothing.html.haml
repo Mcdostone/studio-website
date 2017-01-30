@@ -1,11 +1,12 @@
 %h2 Petit problème ...
 
 %p 
-  Il n'est pas possible d'upload de nouveaux médias, il nécéssaire d'avoir 
-  %strong au moins 1 évent et 1 type de crée !
+  Afin d'upload de nouveaux médias, il nécéssaire d'avoir 
+  %strong au moins 1 évent et 1 type déjà créés !
 
-%ul
-  %li
-    =  link_to 'Créer un event', new_admin_event_path
-  %li
-    = link_to 'Créer un type', new_admin_type_path()
+%div.center
+  %ul
+    %li
+      =  link_to 'Créer un event', new_admin_event_path, class: 'button'
+    %li
+      = link_to 'Créer un type', new_admin_type_path(), class: 'button'

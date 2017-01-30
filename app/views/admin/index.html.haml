@@ -30,15 +30,14 @@
     %p.card-text
       = @users.size > 1 ? 'studistes' : "studiste (oui c'est toi ...)"
 
-
-  = link_to admin_uploads_path, :id => 'card-uploads', :class => 'card'  do
+  = link_to admin_uploads_path, :id => 'card-uploads', :class => 'card disabled'  do
     %div.card-icon
     %p.card-number
       = @uploads_count
     %p.card-text
       = @uploads_count > 1 ? 'uploads' : 'upload'
-
-
+  
+  
 %h2 Administrateurs
 %div.grid
   = render 'admin/partials/list_users', users: @users.select { |u| u.admin? }

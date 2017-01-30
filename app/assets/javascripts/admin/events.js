@@ -1,10 +1,10 @@
 App.events = (function() {
 	let check = function(e) {
 		e.preventDefault()
-		if($('#event_name').val() == "")
+		if($('#event_name').val() === "")
 			App.flash.warning("", 'SPÉCyphi 1 N0N STeplé')
 		else
-		$('form').submit()
+			$('form').submit()
 	}
 
 	return {

@@ -1,25 +1,19 @@
 class Admin::UsersController < AdminController
-	layout 'application'
 
 	before_action :set_user, only:[:edit, :update, :ninja]
+	before_action :is_authorized, only:[:edit, :update]
 
 	def index
 		@users = User.all
 	end
 
 	def edit
-		if current_user.author? && !@user.admin? || @user == current_user || current_user.admin?
-			@authorization = Authorization.find_by(name: 'author')
-		else
-			redirect_to admin_path
-		end
+		@authorization = Authorization.find_by(name: 'author')
 	end
 
 	def update
-		if current_user.author? && !@user.viewer? || current_user.admin? && !@user.admin? 
-			@user.update(user_params)
-		end
-		redirect_to admin_users_path	
+		@user.update(user_params)
+		redirect_to admin_users_path
 	end
 
 	def ninja
@@ -33,7 +27,7 @@ class Admin::UsersController < AdminController
 
 	private
 	def user_params
-		user_p = params.require(:user).permit(:nickname, :authorization)
+		user_p = params.require(:user).permit(:nickname, :authorization, :ban)
 		if(!@user.admin? && current_user.admin?)
 			user_p[:authorization] = Authorization.find_by(name: (user_p[:authorization] == '1' ? 'author' : 'viewer'))
 		else
@@ -44,6 +38,13 @@ class Admin::UsersController < AdminController
 
 	def set_user
 		@user = User.find(params[:id])
+	end
+
+	def is_authorized
+		unless !(current_user.author? && @user.admin?) || current_user.admin?
+			flash[:warning] = "Tu t'es cru où gamin ?"
+			redirect_to admin_path
+		end
 	end
 
 end

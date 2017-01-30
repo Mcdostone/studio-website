@@ -27,7 +27,7 @@ class Admin::UploadsController < AdminController
       end
       
       ActionCable.server.broadcast 'uploadProgress', {task: 'end', 
-#        url: Rails.application.routes.url_helpers.admin_upload_path(@upload)}
+        url: Rails.application.routes.url_helpers.admin_upload_path(@upload)}
       respond_to do |format|
         msg = {:status => 200, :nbUploaded => upload_params[:media].size}
         format.json { render :json => msg }

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170129234658) do
+ActiveRecord::Schema.define(version: 20170130200020) do
 
   create_table "authorizations", force: :cascade do |t|
     t.string "name"
@@ -57,14 +57,15 @@ ActiveRecord::Schema.define(version: 20170129234658) do
     t.string   "last_name"
     t.string   "oauth_token"
     t.datetime "oauth_expires_at"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
     t.string   "email"
     t.string   "first_name"
     t.string   "nickname"
     t.string   "picture"
     t.integer  "authorization_id"
     t.string   "id_token"
+    t.boolean  "ban",              default: false
   end
 
 end

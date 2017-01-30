@@ -2,11 +2,11 @@
   = image_tag(url_picture_profile(user, 200))
 
 %div.profile-about
-  %p
+  %p#full-name
     = full_name(user)
   - if current_user.nickname
-    %p
+    %p#nickname
       = '@' + user.nickname
   - if current_user.admin?
-    %p
+    %p#authorization
       = '(' + user.authorization.name + ')'

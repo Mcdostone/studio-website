@@ -10,8 +10,8 @@ class Admin::EventsController < AdminController
 
   def create
   	@event = Event.new(event_params)
-  	@event.save
-  	redirect_to admin_events_path
+  	flash[:success] = "L'événement a été crée !" if @event.save
+    redirect_to admin_events_path
   end
 
   def edit

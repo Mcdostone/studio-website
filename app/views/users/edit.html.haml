@@ -1,5 +1,8 @@
 %h2 Modifier le profil
 
+= content_for :js do
+  = javascript_include_tag 'users.js'
+
 %div.profile
   
   = render 'profile', user: @user

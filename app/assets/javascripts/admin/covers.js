@@ -41,8 +41,7 @@ App.covers = (function() {
 		},
 
 		setActionOnSubmit: function(f) {
-			submit.on('click', f)
-		
+			submit.on('click', f)		
 		}
 	}
 })()

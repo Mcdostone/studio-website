@@ -8,6 +8,7 @@
       %th Nom
       %th Pseudo
       %th Autorisation
+      %th ban
       %th.colum-timestamps Ajouté
       %th.colum-timestamps Mis à jour
       %th
@@ -17,15 +18,17 @@
   - @users.each do |user|
     %tr
       %td
-        =  link_to user.id, user_path(user)
+        =  link_to user.id, edit_admin_user_path(user)
       %td
-        = link_to user.first_name, user_path(user)
+        = link_to user.first_name, edit_admin_user_path(user)
       %td
-        = link_to user.last_name.upcase, user_path(user)
+        = link_to user.last_name, edit_admin_user_path(user)
       %td
-        = link_to user.nickname, user_path(user)
+        = link_to user.nickname, edit_admin_user_path(user)
       %td
         = user.authorization.name
+      %td
+        = 'oui' if user.ban 
       %td
         = format_date(user.created_at)
       %td

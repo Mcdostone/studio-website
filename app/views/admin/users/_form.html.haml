@@ -9,9 +9,18 @@
   - if @user.authorization.name != 'admin' && current_user.authorization.name == 'admin'
     %div.form-group
       = label_tag "Auteur (Le statut d'auteur permet d'uploader des médias, créer de nouvelles évents et types ainsi que de modifier les profils des autres utilisateurs)"
-      %div.wrapper
-        = f.check_box :authorization, id: "toggle", checked: @user.authorization.name == 'author'
-        %label{:for => "toggle"}
+      = f.check_box :authorization, id: "toggle", checked: @user.authorization.name == 'author'
+      -#%div.wrapper
+        -#= f.check_box :authorization, id: "toggle", checked: @user.authorization.name == 'author'
+        -#%label{:for => "toggle"}
   
+  - if current_user.authorization.name == 'admin' && @user.authorization.name != 'admin'
+    %div.form-group
+      = label_tag 'Bannir ?'
+      = f.check_box :ban, checked: @user.ban
+      -#%div.wrapper
+        -#%label{:for => "toggle"}
+    
+
   %div.form-group
     = f.submit submit_button_value(@user), class: 'button'
