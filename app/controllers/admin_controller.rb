@@ -11,7 +11,7 @@ class AdminController < ApplicationController
 	end
 
   	def require_author
-		if(current_user.author? || current_user.admin?)
+		if(@current_user.author? || current_user.admin?)
 			true
 		else
 			redirect_to root_path

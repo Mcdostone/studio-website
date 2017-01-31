@@ -11,11 +11,11 @@ class UsersController < ApplicationController
 	end
 
 	def edit
-		redirect_to users_path unless current_user == @user
+		redirect_to users_path unless @current_user == @user
 	end
 
 	def update
-		@user.update(user_params) if(current_user == @user)
+		@user.update(user_params) if(@current_user == @user)
 		redirect_to user_path(@user)
 	end
 
