@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 20170130224215) do
     t.integer  "medium_id"
     t.index ["medium_id"], name: "index_likes_on_medium_id"
     t.index ["user_id"], name: "index_likes_on_user_id"
+    t.index [nil, nil], name: "index_likes_on_user_and_medium", unique: true
   end
 
   create_table "media", force: :cascade do |t|

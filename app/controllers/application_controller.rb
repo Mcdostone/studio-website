@@ -11,6 +11,7 @@ class ApplicationController < ActionController::Base
   end
 
   def authenticate_user
+    redirect_to root_path unless current_user
     redirect_to logout_path if current_user.ban
     redirect_to root_path unless current_user
   end

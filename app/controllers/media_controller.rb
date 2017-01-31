@@ -10,9 +10,14 @@ class MediaController < ApplicationController
 	end
 
 	def like
-		puts "hello !"
-		Like.create(medium: @medium, user: current_user)
-		flash[:success] = "Like Counted!"
+		like = Like.new
+		if Like.exists?(medium: @medium, user: current_user)
+			Like.where(medium: @medium).where(user: current_user).first.destroy
+			flash[:success] = "You don't like ?"
+		else
+			Like.create(medium: @medium, user: current_user)
+			flash[:success] = "Like counted !"
+		end
 		redirect_to :back
 	end
 

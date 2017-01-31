@@ -2,6 +2,6 @@
 
 = image_tag url_media(@medium), class: "medium"
 
-= link_to like_medium_path(@medium), method: :post 
+= link_to 'like', like_medium_path(@medium), method: :post#, remote: true
 %p 
   = "#{@medium.likes.size} likes"
