@@ -2,6 +2,9 @@
 
 = image_tag url_media(@medium), class: "medium"
 
-= link_to 'like', like_medium_path(@medium), method: :post#, remote: true
-%p 
+= link_to 'like', like_medium_path(@medium), method: :post, id: 'like', remote: true
+%p#count-likes
   = "#{@medium.likes.size} likes"
+
+
+= javascript_include_tag 'likes'    
