@@ -1,8 +1,11 @@
 App.events = (function() {
 	let check = function(e) {
 		e.preventDefault()
-		if($('#event_name').val() === "")
+		let input = $('#event_name')
+		if(input.val() === "") {
+			input.focus()
 			App.flash.warning("", 'SPÉCyphi 1 N0N STeplé')
+		}
 		else
 			$('form').submit()
 	}

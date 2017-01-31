@@ -17,4 +17,5 @@
   
   %div.form-group
     = f.submit submit_button_value(@event), class: 'button'
-
+    - unless @event.new_record?
+      = link_to 'Supprimer', admin_event_path(@event), method: :delete, data: { confirm: 'Voulez-vous supprimer cet événement ?' }, class: 'button'

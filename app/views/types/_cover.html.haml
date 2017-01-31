@@ -3,7 +3,7 @@
     - if((current_user.author? || current_user.admin?) && settings == true)
       = link_to edit_admin_type_path(type), class: 'button-admin' do
         %div.icon
-        %p Editer le type
+        %p Modifier
     %div.illustration
       = image_tag cover(type), class: 'illustration'
       %div.cover-desc

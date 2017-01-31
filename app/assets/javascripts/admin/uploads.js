@@ -137,9 +137,9 @@ App.uploads = (function() {
 				App.uploads.refresh(true)
 				close.toggleClass('invisible')
 				close.on('click', e => progressBarContainer.fadeOut(300, () => {
-					window.location.href = App.upload_progress.getUrl()
+					progressBarContainer.hide()
+//					window.location.href = App.upload_progress.getUrl()
 				}))
-			//		=> progressBarContainer.hide()))
 			})
 
 			studioDropzone.on('totaluploadprogress', (per, r, a) => {

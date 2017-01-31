@@ -4,7 +4,8 @@
 %div.profile-about
   %p#full-name
     = full_name(user)
-  - if current_user.nickname
+  -# unless current_user.nickname.nil? || current_user.nickname.empty?
+  - unless current_user.nickname.empty?
     %p#nickname
       = '@' + user.nickname
   - if current_user.admin?

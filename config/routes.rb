@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :likes
   root 'public#index'
   
   get "/auth/google_oauth2", as: 'login'
@@ -12,7 +13,13 @@ Rails.application.routes.draw do
   resources :users, only: [:index, :show, :edit, :update]
   resources :events, only: [:index, :show]
   resources :types, only: [:index, :show]
-  resources :media, only: [:index, :show]
+  
+  resources :media, only: [:index, :show] do
+    member do
+      post 'like'
+    end
+  end
+
 
   namespace :admin do
     resources :events

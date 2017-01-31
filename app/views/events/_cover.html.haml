@@ -3,7 +3,7 @@
     - if((current_user.author? || current_user.admin?) && settings == true)
       = link_to edit_admin_event_path(event), class: 'button-admin' do
         %div.icon
-        %p Editer l'événement
+        %p Modifier
     %div.illustration
       = image_tag cover(event), class: 'illustration'
       %div.cover-desc

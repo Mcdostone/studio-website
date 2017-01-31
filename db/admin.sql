@@ -4,3 +4,4 @@
 ---
 
 UPDATE Users set authorization_id = 1 WHERE email='yann.prono@telecomnancy.net';
+UPDATE Users set authorization_id = 1 WHERE email='quentin.bruel@telecomnancy.net';
