@@ -7,7 +7,7 @@
 
   %div.nav.hidden
     %ul.nav.navbar-nav
-      - if !current_user
+      - if !@current_user
         %li.nav-item
           = link_to "Studio", "/#studio", data: { turbolinks: false }
         %li.nav-item
@@ -26,19 +26,19 @@
 
     %div.float-xs-right
       %ul.nav.navbar-nav
-        - if current_user
-          - if current_user.author? || current_user.admin?
+        - if @current_user
+          - if @current_user.author? || @current_user.admin?
             %li.nav-item          
               = link_to "Dashboard", admin_path, class: "dropdown-item"
 
           %li.nav-item.dropdown
-            = link_to user_path(current_user), class: "nav-link dropdown-toggle", id: "nav-profile", data: {toggle: "dropdown" }, aria: {haspopup: "true", expanded: "false"} do
+            = link_to user_path(@current_user), class: "nav-link dropdown-toggle", id: "nav-profile", data: {toggle: "dropdown" }, aria: {haspopup: "true", expanded: "false"} do
               %div.nav-profile-avatar
-                = image_tag(url_picture_profile(current_user))
-              = profile_name(current_user)
+                = image_tag(url_picture_profile(@current_user))
+              = profile_name(@current_user)
 
             %div.dropdown-menu
-              = link_to "Mon profil", user_path(current_user), class: "dropdown-item" 
+              = link_to "Mon profil", user_path(@current_user), class: "dropdown-item" 
               = link_to "Déconnexion", logout_path, class: "dropdown-item"  
 
         - else
