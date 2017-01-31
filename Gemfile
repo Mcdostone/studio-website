@@ -32,6 +32,10 @@ gem 'mini_magick', '~> 4.6'
 gem 'carrierwave', '>= 1.0.0.rc', '< 2.0'
 gem 'carrierwave-aws'
 gem "fog-aws"
+
+#for use on windows
+gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -53,4 +57,3 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
 end
-
