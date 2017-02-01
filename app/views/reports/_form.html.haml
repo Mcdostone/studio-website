@@ -1,8 +1,11 @@
-= form_for @report do |f|
+= form_for @report, :url => report_medium_path do |f|
 
+  %div.form-group
+    Suite à un report, le média concerné ne sera plus accessible sur le site web. Les admins se chargeront de traiter votre demande de report. S'ils jugent que le report n'est pas justifié, le média sera de nouveau disponible !
+ 
   %div.form-group
     = label_tag 'Message du report:'
     = f.text_field :message, class: 'form-control' 
 
   %div.form-group
-    = f.submit submit_button_value(@report), class: 'button'
+    = f.submit submit_button_value(@report), class: 'button', data: { confirm: 'Voulez vous report ce média (le média ne sera plus disponible sur le site) ?'}

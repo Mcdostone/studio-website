@@ -9,7 +9,6 @@ class ReportsController < ApplicationController
   def create
     @report = Report.new(report_params)
     @report.user = @current_user
-    puts "----- #{@medium}"
     @report.medium = @medium
     if @report.save
       @medium.visible = false

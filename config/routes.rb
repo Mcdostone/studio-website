@@ -17,8 +17,8 @@ Rails.application.routes.draw do
   
   resources :media, only: [:index, :show] do
     member do
-      #post 'like'
-      resources :reports, only: [:new, :create]
+      get '/report', to: 'reports#new', as: "report"
+      post '/report', to: 'reports#create'
     end
   end
 
@@ -27,7 +27,11 @@ Rails.application.routes.draw do
     resources :events
     resources :uploads, only: [:index, :new, :show, :create]
     resources :types
-    resources :reports, only: [:index, :show, :destroy]
+    resources :reports, only: [:index, :show, :destroy] do
+      member do
+        post 'valid'
+      end 
+    end   
     resources :media, only: [:index, :edit, :update, :destroy]
     resources :users, only: [:index, :edit, :update]
     get 'users/:id/ninja', to: 'users#ninja', as: 'ninja'

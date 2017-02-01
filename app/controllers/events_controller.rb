@@ -3,7 +3,7 @@ class EventsController < ApplicationController
   before_action :set_event, only:[:show]
 
   def index
-    @events = Event.includes(:media).all
+    @events = Event.includes(:media).where(media: { visible: true })
 
     respond_to do |format|
       format.html

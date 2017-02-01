@@ -1,6 +1,6 @@
 class Admin::ReportsController < AdminController
 
-	before_action :set_report, only:[:show, :destroy]
+	before_action :set_report, only:[:show, :destroy, :valid]
 
 	def index
 		@reports = Report.all
@@ -9,9 +9,16 @@ class Admin::ReportsController < AdminController
 	def show
 	end
 	
+	def valid
+		@report.medium.destroy
+		@report.destroy
+		redirect_to admin_reports_path
+	end
+
 	def destroy
-		@medium.destroy
-		redirect_to admin_media_path
+		@report.medium.update(visible: true)
+		@report.destroy
+		redirect_to admin_reports_path
 	end
 
 	private

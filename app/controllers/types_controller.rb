@@ -3,7 +3,7 @@ class TypesController < ApplicationController
 	before_action :set_type, only:[:show]
 
 	def index
-		@types = Type.includes(:media).all
+		@types = Event.includes(:media).where(media: { visible: true })
 
 		respond_to do |format|
       		format.html

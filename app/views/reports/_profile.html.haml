@@ -1,0 +1,7 @@
+%div.report-profile
+  %div.profile-picture
+    = image_tag(picture_profile(user), id: 'avatar')
+
+  %div.profile-about
+    %p#full-name
+      = full_name(user)
