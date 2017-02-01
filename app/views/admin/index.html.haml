@@ -30,18 +30,26 @@
     %p.card-text
       = @users.size > 1 ? 'studistes' : "studiste (oui c'est toi ...)"
 
-  = link_to admin_uploads_path, :id => 'card-uploads', :class => 'card disabled'  do
+  = link_to admin_uploads_path, :id => 'card-uploads', :class => 'card'  do
     %div.card-icon
     %p.card-number
       = @uploads_count
     %p.card-text
       = @uploads_count > 1 ? 'uploads' : 'upload'
   
+  = link_to admin_reports_path, :id => 'card-reports', :class => 'card'  do
+    %div.card-icon
+    %p.card-number
+      = @reports_count
+    %p.card-text
+      = @reports_count > 1 ? 'reports' : 'report'
+  
+
   
 %h2 Administrateurs
 %div.grid
-  = render 'admin/partials/list_users', users: @users.select { |u| u.admin? }
+  = render 'admin/users/list_users', users: @users.select { |u| u.admin? }
 
 %h2 Auteurs
 %div.grid
-  = render 'admin/partials/list_users', users: @users.select { |u| u.author? }
+  = render 'admin/users/list_users', users: @users.select { |u| u.author? }

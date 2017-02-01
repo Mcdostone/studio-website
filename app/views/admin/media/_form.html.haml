@@ -12,4 +12,8 @@
     = f.select :event_id, @events.map{ |e| [e.name, e.id] }, {}, {:class => 'custom-select form-control'}
 
   %div.form-group
+    = label_tag 'Visible:'
+    = f.check_box :visible, checked: @medium.visible, :class => 'form-control'
+
+  %div.form-group
     = f.submit submit_button_value(@medium), class: "button"

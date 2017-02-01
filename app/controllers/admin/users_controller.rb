@@ -27,7 +27,7 @@ class Admin::UsersController < AdminController
 
 	private
 	def user_params
-		user_p = params.require(:user).permit(:nickname, :authorization, :ban)
+		user_p = params.require(:user).permit(:nickname, :authorization, :ban, :avatar)
 		if(!@user.admin? && @current_user.admin?)
 			user_p[:authorization] = Authorization.find_by(name: (user_p[:authorization] == '1' ? 'author' : 'viewer'))
 		else
@@ -43,7 +43,7 @@ class Admin::UsersController < AdminController
 	def is_authorized
 		unless !(@current_user.author? && @user.admin?) || @current_user.admin?
 			flash[:warning] = "Tu t'es cru où gamin ?"
-			redirect_to admin_path
+			redirect_to admin_users_path
 		end
 	end
 

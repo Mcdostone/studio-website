@@ -2,8 +2,7 @@ class User < ApplicationRecord
   belongs_to :authorization
   has_many :uploads
   after_initialize :set_defaults
-  
-  DEFAULT_IMAGE = 'https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg'
+  mount_uploader :avatar, AvatarUploader  
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_initialize.tap do |user|
@@ -13,7 +12,7 @@ class User < ApplicationRecord
       user.last_name = auth.info.last_name.capitalize
 
       # Test if picture is the default picture of google account
-      user.picture = auth.info.image if(auth.info.image != DEFAULT_IMAGE)
+      #user.picture = auth.info.image if(auth.info.image != DEFAULT_IMAGE)
       user.email = auth.info.email
       user.id_token = auth.extra.id_token
       user.oauth_token = auth.credentials.token

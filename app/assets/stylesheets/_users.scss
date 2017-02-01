@@ -1,5 +1,5 @@
 @import "configuration";
-
+$avatar-width: 200px;
 
 .profile {
 	width: 100%;
@@ -14,18 +14,21 @@
 
 .profile-picture {
 	display: block;
-	width: auto;
+	width: $avatar-width;
+	height: $avatar-width;
 	margin: 0 auto;
-
+	border:2px solid $nav-logo-background;
 	border-radius: 50%;
+	z-index: 15;
+	@include box-sizing(border-box);
 
 	img {
 		display: block;
-		height: 200px;
+		height: $avatar-width - 4px;
+		width: $avatar-width - 4px;
 		margin: 0 auto;
+		object-fit: cover;
 		border-radius: 50%;
-		border:2px solid $nav-logo-background;
-		@include box-sizing(border-box);
 	}
 
 	margin-bottom: 10px;

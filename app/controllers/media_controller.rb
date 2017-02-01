@@ -10,19 +10,20 @@ class MediaController < ApplicationController
 	end
 
 	def like
-		created = true
-		if Like.exists?(medium: @medium, user: @current_user)
-			Like.where(medium: @medium).where(user: @current_user).first.destroy
-			flash[:success] = "You don't like ?"
-			created = false
-		else
-			Like.create(medium: @medium, user: @current_user)
-			flash[:success] = "Like counted !"
-		end
+		#created = true
+	#	if Like.exists?(medium: @medium, user: @current_user)
+		#	Like.where(medium: @medium).where(user: @current_user).first.destroy
+		#	flash[:success] = "You don't like ?"
+		#	created = false
+		#else
+		#	Like.create(medium: @medium, user: @current_user)
+		#	flash[:success] = "Like counted !"
+		#end
 
- 		respond_to do |format|      	
-			format.json { render json: created}
-		end
+ 		#respond_to do |format|      	
+		#	format.json { render json: created}
+		#end
+	#=end
 	end
 
 	private

@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
-  resources :likes
+#  resources :reports
+  #resources :likes
   root 'public#index'
   
   get "/auth/google_oauth2", as: 'login'
@@ -16,7 +17,8 @@ Rails.application.routes.draw do
   
   resources :media, only: [:index, :show] do
     member do
-      post 'like'
+      #post 'like'
+      resources :reports, only: [:new, :create]
     end
   end
 
@@ -25,6 +27,7 @@ Rails.application.routes.draw do
     resources :events
     resources :uploads, only: [:index, :new, :show, :create]
     resources :types
+    resources :reports, only: [:index, :show, :destroy]
     resources :media, only: [:index, :edit, :update, :destroy]
     resources :users, only: [:index, :edit, :update]
     get 'users/:id/ninja', to: 'users#ninja', as: 'ninja'

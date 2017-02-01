@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170130224215) do
+ActiveRecord::Schema.define(version: 20170131235450) do
 
   create_table "authorizations", force: :cascade do |t|
     t.string "name"
@@ -35,13 +35,24 @@ ActiveRecord::Schema.define(version: 20170130224215) do
   end
 
   create_table "media", force: :cascade do |t|
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
     t.integer  "event_id"
     t.integer  "type_id"
     t.string   "thumbnail_url"
     t.string   "file"
     t.integer  "upload_id"
+    t.boolean  "visible",       default: true
+  end
+
+  create_table "reports", force: :cascade do |t|
+    t.string   "message"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "user_id"
+    t.integer  "medium_id"
+    t.index ["medium_id"], name: "index_reports_on_medium_id"
+    t.index ["user_id"], name: "index_reports_on_user_id"
   end
 
   create_table "types", force: :cascade do |t|
@@ -76,6 +87,7 @@ ActiveRecord::Schema.define(version: 20170130224215) do
     t.integer  "authorization_id"
     t.string   "id_token"
     t.boolean  "ban",              default: false
+    t.string   "avatar"
   end
 
 end

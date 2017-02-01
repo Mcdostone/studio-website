@@ -27,7 +27,7 @@ class Admin::MediaController < AdminController
   	end
 
   	def medium_params
-  		params.require(:medium).permit(:type_id, :event_id)
+  		params.require(:medium).permit(:type_id, :event_id, :visible)
   	end
 
 	def set_medium

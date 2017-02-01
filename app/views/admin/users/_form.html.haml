@@ -3,13 +3,17 @@
   = render 'admin/partials/errors', model: @user
 
   %div.form-group
+    = label_tag 'Image de profile:'
+    = f.file_field :avatar, accept: 'image/png,image/gif,image/jpeg,image/jpg', class: 'form-control' 
+
+  %div.form-group
     = label_tag 'Surnom:'
     = f.text_field :nickname, placeholder: "fred la pouf, toubab ...", autofocus: "autofocus", class: "form-control"
 
   - if @user.authorization.name != 'admin' && @current_user.authorization.name == 'admin'
     %div.form-group
       = label_tag "Auteur (Le statut d'auteur permet d'uploader des médias, créer de nouvelles évents et types ainsi que de modifier les profils des autres utilisateurs)"
-      = f.check_box :authorization, id: "toggle", checked: @user.authorization.name == 'author'
+      = f.check_box :authorization, id: "toggle", checked: @user.authorization.name == 'author',  :class => 'form-control'
       -#%div.wrapper
         -#= f.check_box :authorization, id: "toggle", checked: @user.authorization.name == 'author'
         -#%label{:for => "toggle"}
@@ -17,7 +21,7 @@
   - if @current_user.authorization.name == 'admin' && @user.authorization.name != 'admin'
     %div.form-group
       = label_tag 'Bannir ?'
-      = f.check_box :ban, checked: @user.ban
+      = f.check_box :ban, checked: @user.ban, :class => 'form-control'
       -#%div.wrapper
         -#%label{:for => "toggle"}
 

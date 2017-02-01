@@ -7,11 +7,12 @@ class AdminController < ApplicationController
 		@events_count =  Event.count
 		@types_count =  Type.count
 		@uploads_count =  Upload.count
-		@users = User.all
+		@reports_count =  Report.count
+		@users = User.includes(:authorization).all
 	end
 
   	def require_author
-		if(@current_user.author? || current_user.admin?)
+		if(@current_user.author? || @current_user.admin?)
 			true
 		else
 			redirect_to root_path

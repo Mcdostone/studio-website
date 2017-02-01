@@ -160,6 +160,25 @@ $card-padding: 10px;
 	background-color: shade($card-uploads-background, $shaden);
 }
 
+#card-reports {
+	background-color: $card-reports-background;
+	@include transition-duration(0.2s);
+}
+
+#card-reports:hover {
+	background-color: shade($card-reports-background, $shaden);
+	@include transition-duration(0.3s);
+}
+
+#card-reports .card-icon {
+	background: url("/images/card-report.png");
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 60px 60px;
+	background-color: shade($card-reports-background, $shaden);
+}
+
+
 /*
 .wrapper {
 	display: block;

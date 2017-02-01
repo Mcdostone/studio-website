@@ -1,7 +1,7 @@
 App.likes = function() {
 
-	let link = $('#like')
-	let count = ('#cout-likes')
+	let link = $('.like-button')
+	let count = ('.count-likes')
 
 
 	let success = function(res) {
@@ -14,6 +14,9 @@ App.likes = function() {
 
 	link.on('click', function(e) {
 		e.preventDefault()	
+		
+		let added = link.toggleClass('liked')
+		console.log(added)
 		$.ajax({
   			type: 'POST',
   			url: link.attr('href'),

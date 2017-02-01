@@ -1,7 +1,0 @@
-- users.each do |user|
-  = link_to edit_admin_user_path(user), :class => "item" do
-    = image_tag(url_picture_profile(user, 300))
-    %div.item-overlay
-      %div.item-infos
-        %p.item-name
-          = get_full_name(user)

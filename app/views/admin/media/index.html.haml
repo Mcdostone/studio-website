@@ -8,6 +8,7 @@
       %th Type
       %th Event
       %th Upload
+      %th Visible
       %th.colum-timestamps Ajouté
       %th.colum-timestamps Mis à jour
       %th
@@ -27,6 +28,8 @@
         %td
           -#= link_to(medium.upload.id, show_admin_upload_path(medium.upload)) if medium.upload
           = link_to(medium.upload.id, admin_upload_path(medium.upload)) if medium.upload
+        %td
+          = 'non' unless medium.visible
         %td
           = format_date(medium.created_at)
         %td

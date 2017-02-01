@@ -2,9 +2,13 @@ module UsersHelper
 
 	SIZE_NAVBAR = 100
 
-	def url_picture_profile(user, size = SIZE_NAVBAR)
-		#user.picture ? "#{user.picture}?sz=#{size}" : 'default-profile-picture.png'
-		'default-profile-picture.png'
+	def picture_profile user, thumb = false
+		
+		if(user.avatar.url)
+			thumb ? user.avatar.url(:thumb) : user.avatar.url
+		else
+			'default-profile-picture.png'
+		end
 	end
 
 	def full_name(user)

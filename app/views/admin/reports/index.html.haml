@@ -1,0 +1,30 @@
+%h2 Liste des reports
+
+%table.table.table-striped
+  %thead
+    %tr
+      %th ID
+      %th Report par
+      %th Média
+      %th message
+      %th.colum-timestamps Ajouté
+      %th.colum-timestamps Mis à jour
+      %th
+      %th
+  %tbody
+  - @reports.each do |report|
+    %tr
+      %td
+        = link_to report.id, admin_report_path(report)
+      %td
+        = link_to full_name(report.user), user_path(report.user)
+      %td
+        = link_to image_tag(url_thumbnail(report.medium), class: 'table-medium'), admin_report_path(report)
+      %td
+        = format_message(report) 
+      %td
+        = format_date(report.created_at)
+      %td
+        = format_date(report.updated_at)
+      %td
+        = link_to 'Afficher', admin_report_path(report)

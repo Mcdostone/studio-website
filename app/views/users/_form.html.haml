@@ -3,6 +3,10 @@
   = render 'admin/partials/errors', model: @user
 
   %div.form-group
+    = label_tag 'Image de profile:'
+    = f.file_field :avatar, accept: 'image/png,image/gif,image/jpeg,image/jpg', class: 'form-control' 
+
+  %div.form-group
     = label_tag 'Surnom:'
     = f.text_field :nickname, placeholder: "fred la pouf, toubab ...", class: "form-control"
 
