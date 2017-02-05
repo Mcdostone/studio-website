@@ -19,6 +19,7 @@ Rails.application.routes.draw do
     member do
       get '/report', to: 'reports#new', as: "report"
       post '/report', to: 'reports#create'
+      post '/like', to: 'media#like'
     end
   end
 

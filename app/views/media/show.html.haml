@@ -1,10 +1,13 @@
 %h2 Média
 
+
+= content_for :js do
+  = javascript_include_tag 'likes'
+
+
 = image_tag url_media(@medium), class: "medium"
 
--#= link_to like_medium_path(@medium), method: :post, class: => ff ? 'like-button liked' : 'like-button'  , remote: true do
--#  %div.like-icon
--#  %p.like-count
--#    = @medium.likes.size
-
--#= javascript_include_tag 'likes'
+= link_to like_medium_path(@medium), method: :post, class: 'like-button liked', remote: true do
+  %div.like-icon
+  %p#like-count
+    = @medium.likes.size

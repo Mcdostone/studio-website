@@ -5,7 +5,7 @@
   = "Réalisé par "
   = link_to(full_name(@upload.user), user_path(@upload.user))
 %div.profile-picture
-  = image_tag(url_picture_profile(@upload.user, 200))
+  = image_tag(picture_profile(@upload.user, 200))
 
 
 %h3 Liste des médias upload

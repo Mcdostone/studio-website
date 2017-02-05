@@ -17,7 +17,13 @@ class User < ApplicationRecord
       user.id_token = auth.extra.id_token
       user.oauth_token = auth.credentials.token
       user.oauth_expires_at = Time.zone.at(auth.credentials.expires_at)
-      user.save! #if user.email.split('@')[1] == 'telecomnancy.net' 
+      
+      if auth.extra.id_info.hd == 'telecomnancy.net' && user.email.split('@')[1] == 'telecomnancy.net'
+        user.save! 
+        return user
+      else
+        return nil
+      end
     end
   end
 

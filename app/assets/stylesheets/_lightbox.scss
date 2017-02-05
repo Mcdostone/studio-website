@@ -1,0 +1,128 @@
+#lightbox {
+	z-index: 30;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	left: 0;
+	background-color: rgba(0,0,0, 0.75);
+}
+
+
+
+#lightbox img {
+	position: fixed;
+}
+
+
+
+.lightbox-button {
+	position: fixed;
+	width: 50px;
+	height: 50px;
+	top: 50%;
+	line-height: 50px;
+	text-align: center;
+	left: 0;
+	transform: translate(0, -50%);
+	cursor: pointer;
+	color: grey;
+	font-size: 50px;
+	overflow-y: hidden;
+}
+
+.lightbox-button:hover {
+	color: white;
+}
+
+
+#next {
+	left: initial;
+	right: 0;
+}
+
+#close {
+	top: 0;
+	left: initial;
+	right: 0;
+	transform: translate(0, 0);	
+}
+
+
+#loading {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 200px;
+	height: 100px;
+	background: url(./studio.png) no-repeat;
+	background-size: 200px 100px;
+	animation-name: loading;
+	animation-duration: 1s;
+	animation-iteration-count: infinite;
+}
+
+
+
+@keyframes loading {
+	0% {
+		background-color: red;
+	}
+
+	100% {
+		background-color: yellow;
+	}
+}
+
+/*
+.lightbox-fade-enter, .lightbox-fade-leave-active {
+	opacity: 0;
+}
+
+.lightbox-fade-enter-active, .lightbox-fade-leave-active {
+  transition: opacity .3s;
+}
+
+
+
+.lightbox-next-leave-active, .lightbox-next-enter-active, .lightbox-previous-enter-active, .lightbox-previous-leave-active {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	left: 0;
+	top: 0;
+	opacity: 1;
+	transition: opacity 0.1s;
+}
+ 
+
+.lightbox-next-enter-active {
+ //	transition-delay: 0.1s
+}
+
+.lightbox-next-enter-active{
+	opacity: 0;
+	transform: translateX(100px);
+}
+
+.lightbox-next-leave-active{
+	opacity: 0;
+	transform: translateX(-100px);
+}
+
+
+.lightbox-previous-enter-active {
+ //	transition-delay: 0.1s
+}
+
+.lightbox-previous-enter{
+	opacity: 0;
+	transform: translateX(-100px);
+}
+
+.lightbox-previous-leave {
+	opacity: 0;
+	transform: translateX(100px);
+}
+*/

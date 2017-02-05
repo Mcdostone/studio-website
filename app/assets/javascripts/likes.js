@@ -1,22 +1,30 @@
 App.likes = function() {
 
 	let link = $('.like-button')
-	let count = ('.count-likes')
+	let count = $('#like-count')
+	let nb = parseInt(count.html())
+	let liked = false
 
+	let updateCount = function(nb) {
+		count.text(nb)
+	}
 
 	let success = function(res) {
-		console.log(res)
-		if(res)
+		if(res) {
 			App.flash.warning('', 'Nice !')
-		else
+			nb++
+		}
+		else {
 			App.flash.warning('', 'Nooooo !')
+			nb--
+		}
+		updateCount(nb)
 	}
 
 	link.on('click', function(e) {
 		e.preventDefault()	
 		
 		let added = link.toggleClass('liked')
-		console.log(added)
 		$.ajax({
   			type: 'POST',
   			url: link.attr('href'),
@@ -24,6 +32,8 @@ App.likes = function() {
   			dataType: 'json',
   			success: success,
 		})
+
+
 	})
 }
 

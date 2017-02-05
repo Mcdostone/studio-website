@@ -8,6 +8,7 @@ Rails.application.config.middleware.use OmniAuth::Builder do
 		:image_aspect_ratio => "square",
 		:image_size => 50,
 		:include_granted_scopes => 'true',
-		:access_type => 'online'
+		:access_type => 'online',
+  		:hd => 'telecomnancy.net'
   }
 end
