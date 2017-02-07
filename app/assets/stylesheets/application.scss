@@ -21,15 +21,25 @@
 }
 
 .footer {
-	//position: absolute;
-	//bottom: 0;
-	display: inline-block;
+	position: absolute;
+	bottom: 0;
 	width: 100%;
+	justify-content: center;
+	align-items: center;
+	display: flex;
+	
+	padding: 0 20%;	
+	.col {
+		width: 40%;
+	}
+	a {
+		display: block;
+	}
 	height: $footer-height;
 	background-color: $nav-background;
-	line-height: $footer-height;
 	text-align: center;
 	z-index: 4;
+	display: 
 
 	p {  
 		margin: 0;  

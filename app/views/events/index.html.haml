@@ -2,15 +2,12 @@
   = render 'partials/nothing'
 
 -else
-  
-  %h2 Évents
-  %div.grid
+  %div.grid.big-items
     - @events.each do |event|
       = link_to event_path(event), :class => "item" do
         = image_tag(url_thumbnail(random_media(event)))
-        %div.item-overlay
-          %div.item-infos
-            %p.item-name
-              = event.name
-            %p.item-date
-              = format_event_date(event.date_event)
+        %div.item-infos
+          %p.item-name
+            = event.name
+          %p.item-date
+            = format_event_date(event.date_event)

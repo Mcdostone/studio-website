@@ -3,11 +3,10 @@
 
 -else
 
-  %div.grid
+  %div.grid.big-items
     - @types.each do |type|
       = link_to type_path(type), :class => "item" do
         = image_tag(url_thumbnail(random_media(type)))
-        %div.item-overlay
-          %div.item-infos
-            %p.item-name
-              = type.name
+        %div.item-infos
+          %p.item-name
+            = type.name
