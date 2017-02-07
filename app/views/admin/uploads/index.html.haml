@@ -10,13 +10,14 @@
         %th Type
         %th.colum-timestamps Uploadé le
         %th
+
     %tbody
     - @uploads.each do |upload|
       %tr
         %td
-          = link_to upload.id, ''#admin_upload_path(upload)
+          = link_to upload.id, admin_upload_path(upload)
         %td
-          = link_to(full_name(upload.user), admin_user_path(upload.user)) if upload.user
+          = link_to(full_name(upload.user), user_path(upload.user)) if upload.user
         %td
           = link_to upload.event.name, event_path(upload.event) if upload.event
         %td
@@ -25,7 +26,7 @@
           = format_upload_date(upload.created_at)
         %td
           = link_to 'Détails', admin_upload_path(upload)
-
+        
   %div.center
     = link_to 'Nouvel upload', new_admin_upload_path, class: 'button'
 

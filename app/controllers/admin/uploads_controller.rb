@@ -1,5 +1,5 @@
 class Admin::UploadsController < AdminController
-  before_action :set_admin_upload, only: [:destroy, :show, :update]
+  before_action :set_admin_upload, only: [:show, :destroy]
 
   def index
     @uploads = Upload.includes(:type, :event).all
@@ -13,6 +13,7 @@ class Admin::UploadsController < AdminController
   end
   
   def create
+    @upload = Upload.new
     upload_params = admin_upload_params
     type = Type.find(upload_params[:type_id])
     event = Event.find(upload_params[:event_id])
@@ -36,6 +37,9 @@ class Admin::UploadsController < AdminController
   end
 
   def show
+  end
+
+  def destroy
   end
 
   private

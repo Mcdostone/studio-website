@@ -8,5 +8,6 @@
   = image_tag(picture_profile(@upload.user, 200))
 
 
-%h3 Liste des médias upload
+%h3 
+  = "#{@upload.media.count} médias upload"
 = render 'partials/media', media: @upload.media

@@ -96,7 +96,7 @@ let media = {
 	template: `
 
 	<div @click.stop >
-		<div v-if="loading" class="loading" id="loading"></div>
+		<div v-show="loading" class="loading" id="loading"></div>
 		<transition name="lightbox-fade">
 			<img :src="src" :style="style" :key="src">
 		</transition>
@@ -156,10 +156,7 @@ let lightbox = {
 		<div class="lightbox-button" id="previous" @click.prevent.stop="prev">&lt;</div>
 		<div id="next" class="lightbox-button" @click.prevent.stop="next">&gt;</div>
 		<div id="close" class="lightbox-button" @click.prevent.stop="close">X</div>
-		
-		<transition :name="direction">
-			<lightbox-media :medium="medium" :key="medium"></lightbox-media>
-		</transition>
+		<lightbox-media :medium="medium" :key="medium"></lightbox-media>
 	</div>
 	`
 }
@@ -188,9 +185,5 @@ Vue.directive('lightbox', {
 })
 
 var vm = new Vue({
-	el: '#app',
-	data: {
-		name: 'Hello',
-		cover: 'http://lorempicsum.com/futurama/1200/800/2',
-	}
+	el: '#app'
 })

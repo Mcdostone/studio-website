@@ -1,5 +1,5 @@
 #lightbox {
-	z-index: 30;
+	z-index: 60;
 	position: fixed;
 	top: 0;
 	width: 100%;
@@ -24,11 +24,17 @@
 	line-height: 50px;
 	text-align: center;
 	left: 0;
+	font-weight: 100;
 	transform: translate(0, -50%);
 	cursor: pointer;
 	color: grey;
-	font-size: 50px;
+	font-size: 30px;
 	overflow-y: hidden;
+	@include transition-duration(0.2s);
+}
+
+.lightbox-button {
+	@include transition-duration(0.3s);
 }
 
 .lightbox-button:hover {
@@ -36,15 +42,22 @@
 }
 
 
-#next {
+#next, #previous {
 	left: initial;
-	right: 0;
+	right: 10px;
+	font-size: 80px;
+	height: 80px;
+}
+
+#previous {
+	right: initial;
+	left: 10px;
 }
 
 #close {
-	top: 0;
+	top: 10px;
 	left: initial;
-	right: 0;
+	right: 10px;
 	transform: translate(0, 0);	
 }
 
@@ -53,13 +66,16 @@
 	position: fixed;
 	top: 50%;
 	left: 50%;
-	transform: translate(-50%, -50%);
-	width: 200px;
-	height: 100px;
-	background: url(./studio.png) no-repeat;
-	background-size: 200px 100px;
+	margin-top: -100px;
+	margin-left: -79px;
+	width: 158px;
+	height: 200px;
+	z-index: 100;
+	background: url(/images/maxou.png) no-repeat;
+	background-size: 158px 200px;
 	animation-name: loading;
-	animation-duration: 1s;
+	animation-duration: 0.8s;
+	animation-direction: alternate;
 	animation-iteration-count: infinite;
 }
 
@@ -67,11 +83,11 @@
 
 @keyframes loading {
 	0% {
-		background-color: red;
+ 		@include rotateZ(-30deg);
 	}
 
 	100% {
-		background-color: yellow;
+ 		@include rotateZ(10deg);
 	}
 }
 

@@ -30,9 +30,10 @@ App.upload_progress = (function() {
             case 'end':
               if(App.uploads.getDropzone().getQueuedFiles().length > 0)
                 loads.desc('Upload sur le serveur TN.net')
-              else
+              else {
                 finished = true
-                url = data.task
+                window.location = data.url;
+              }
               break
           }
           App.uploads.refresh()

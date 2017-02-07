@@ -1,7 +1,5 @@
 class Admin::TypesController < AdminController
 
-	layout 'application'
-
 	before_action :set_type, only:[:edit, :update, :show, :destroy]
 
 	def index

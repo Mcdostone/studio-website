@@ -37,9 +37,6 @@ $margin: 100px;
 	width: 100%;
 	height: $height-background;
 	position: relative;
-	/*border-top: 1px solid $nav-logo-background;
-	border-left: 1px solid $nav-logo-background;
-	border-right: 1px solid $nav-logo-background;*/
 	z-index: 3;
 	@include box-sizing(border-box);
 	&:before {

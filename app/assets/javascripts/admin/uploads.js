@@ -30,6 +30,7 @@ App.uploads = (function() {
 			url: action,
 			autoProcessQueue: false,
 			uploadMultiple: true,
+			maxFiles: parallelUploads,
 			dictDefaultMessage: 'Uploader des media',
 			paramName: 'admin_upload[media]',
 			addRemoveLinks: true,
@@ -124,22 +125,29 @@ App.uploads = (function() {
 			})
 
 			studioDropzone.on('removedfile', function(file) {
-				if(studioDropzone.getQueuedFiles().length  == 0) {
+				if(studioDropzone.getActiveFiles().length  == 0) {
 					submit.addClass('disabled')
 					submit.attr('disabled', 'disabled')
 				}
 			})
 
+			studioDropzone.on('maxfilesexceeded', function(file) {
+				this.removeFile(file)
+				App.flash.warning('Abruti,', "l'upload est limité à 100 médias")
+			})
+
 			studioDropzone.on('queuecomplete', function() {
-				console.log('finished')
+
 				studioDropzone.removeAllFiles()
 				progressBarContainer.removeClass('fadeIn')
 				App.uploads.refresh(true)
-				close.toggleClass('invisible')
+				desc.text('En attente de réponse du serveur @TN.net')
+				/*//close.toggleClass('invisible')
 				close.on('click', e => progressBarContainer.fadeOut(300, () => {
 					progressBarContainer.hide()
 //					window.location.href = App.upload_progress.getUrl()
-				}))
+				
+				}))*/
 			})
 
 			studioDropzone.on('totaluploadprogress', (per, r, a) => {
@@ -148,7 +156,7 @@ App.uploads = (function() {
 			})
 
 			form.submit(e => {
-				if(studioDropzone.getQueuedFiles().length > 0	) {
+				if(studioDropzone.getActiveFiles().length  > 0) {
 					nbFiles = studioDropzone.getActiveFiles().length
 					progressBarContainer.show()
 					progressBarContainer.fadeIn(500)

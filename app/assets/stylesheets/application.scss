@@ -1,7 +1,5 @@
-@import "configuration";
-
 @import "bootstrap";
-
+@import "configuration";
 
 //@import "base";
 //@import "style";
@@ -17,10 +15,15 @@
 @import "likes";
 @import "lightbox";
 
+
+.cards *:focus {
+	color: white;
+}
+
 .footer {
-	position: absolute;
-	bottom: 0;
-	display: block;
+	//position: absolute;
+	//bottom: 0;
+	display: inline-block;
 	width: 100%;
 	height: $footer-height;
 	background-color: $nav-background;
@@ -114,123 +117,32 @@
 
 }
 
-@import "uploads";
-@import "reports";
-
-/*
-#container {
-	display: inline-block;
-	display: flex;
-	flex-wrap: wrap;
-	margin-top: 10px;
-	justify-content: center;
-	align-items: center;
-	justify-content: flex-start;
-	width: 80%;
-	margin-left: 10%;padding-bottom: 210px;
-
-	h2 {
-		text-transform: uppercase;
-		margin-bottom: 40px;
-	}
-
-	a {
-		color: $nav-li-hover-color;
-	}
-}
-
-g
-.container-media, .container-events, .container-types, .container-users {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
-	align-content: flex-start;
-	align-items: center;
-	color: white;
-	cursor: pointer;
-
-	& > * {
-		margin: $container-big-item-margin;
-	}
-}
-
-.container-media > * {
-	margin: $container-small-item-margin;
-}
-
-.container-big-items .item, .container-small-items .item {
-	background-color: grey;
-	position: relative;
-	img { object-fit: cover; }
-}
-
-.container-big-items .item {
-	width: $big-item-size;
-	height: $big-item-size;
-
-	img {
-		width: $big-item-size;
-		height: $big-item-size;
-	}
-}
-
-.container-small-items .item {
-	width: $small-item-size;
-	height: $small-item-size;
-
-	img {
-		width: $small-item-size;
-		height: $small-item-size;
-	}
-}
-
 .overlay {
-	position: absolute;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0;
-	margin: auto;
-	text-align: center;
-	line-height: normal;
-	text-transform: uppercase;
-	background-color: rgba(0, 0, 0, 0.7);
-	@include transition-duration(0.2s);
+	filter: contrast(110%) grayscale(100%) brightness(105%);
+	@include transition-duration(0.5s);
 
 	&:hover {
-		background-color: rgba(0, 0, 0, 0.6);
+		filter: contrast(100%) grayscale(0%) brightness(100%);
 		@include transition-duration(0.3s);
 	}
 }
 
-.container-users .overlay:hover { background-color: rgba(0, 0, 0, 0.3); }
 
-.container-users .overlay:hover .item-name {
-	opacity: 0;
-	@include transition-duration(0.2s);
+
+.overlay:after {
+	content: '';
+	position: absolute;
+//	background-color: rgba(#000, 0.5);
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
 }
 
-.item-infos {
-	margin-top: 50%;
-	@include translate(0, -50%);
-
-	p {
-		line-height: normal;
-	}
-
-	.item-name {
-		@include transition-duration(0.2s);
-		font-size: 2em;
-		font-weight: 300em;
-	}
-
-	.item-date {
-		margin: 0;
-		font-size: 1em;
-		font-style: italic;
-	}
+.overlay:hover:after {
+	//background-color: transparent;
 }
 
 
-
-*/
+@import "uploads";
+@import "reports";

@@ -2,46 +2,45 @@
   = link_to "/", class: "navbar-brand" do
     = image_tag("/images/logo_studio.png")
 
-  %div.nav-container-hamburger
+  -#%div.nav-container-hamburger
     %div.nav-hamburger
 
-  %div.nav.hidden
+  -#%div.nav.hidden
+  %ul.nav.navbar-nav
+    - if !@current_user
+      %li.nav-item
+        = link_to "Studio", "/#studio", data: { turbolinks: false }
+      %li.nav-item
+        = link_to "Réalisations", "/#works", data: { turbolinks: false }
+      %li.nav-item
+        = link_to "À propos", "/#about", data: { turbolinks: false }
+    - else
+      %li.nav-item
+        = link_to "Medias", media_path, data: { turbolinks: false }
+      %li.nav-item
+        = link_to "Types", types_path, data: { turbolinks: false }
+      %li.nav-item
+        = link_to "Évents", events_path, data: { turbolinks: false }
+      %li.nav-item
+        = link_to "Studio", users_path, data: { turbolinks: false }
+
+  %div.float-xs-right
     %ul.nav.navbar-nav
-      - if !@current_user
-        %li.nav-item
-          = link_to "Studio", "/#studio", data: { turbolinks: false }
-        %li.nav-item
-          = link_to "Réalisations", "/#works", data: { turbolinks: false }
-        %li.nav-item
-          = link_to "À propos", "/#about", data: { turbolinks: false }
+      - if @current_user
+        - if @current_user.author? || @current_user.admin?
+          %li.nav-item          
+            = link_to "Dashboard", admin_path, class: "dropdown-item"
+
+        %li.nav-item.dropdown
+          = link_to user_path(@current_user), class: "nav-link dropdown-toggle", id: "nav-profile", data: {toggle: "dropdown" }, aria: {haspopup: "true", expanded: "false"} do
+            %div.nav-profile-avatar
+              = image_tag(picture_profile(@current_user, true))
+            = profile_name(@current_user)
+
+          %div.dropdown-menu
+            = link_to "Mon profil", user_path(@current_user), class: "dropdown-item" 
+            = link_to "Déconnexion", logout_path, class: "dropdown-item"  
+
       - else
         %li.nav-item
-          = link_to "Medias", media_path, data: { turbolinks: false }
-        %li.nav-item
-          = link_to "Types", types_path, data: { turbolinks: false }
-        %li.nav-item
-          = link_to "Évents", events_path, data: { turbolinks: false }
-        %li.nav-item
-          = link_to "Studio", users_path, data: { turbolinks: false }
-
-    %div.float-xs-right
-      %ul.nav.navbar-nav
-        - if @current_user
-          - if @current_user.author? || @current_user.admin?
-            %li.nav-item          
-              = link_to "Dashboard", admin_path, class: "dropdown-item"
-
-          %li.nav-item.dropdown
-            = link_to user_path(@current_user), class: "nav-link dropdown-toggle", id: "nav-profile", data: {toggle: "dropdown" }, aria: {haspopup: "true", expanded: "false"} do
-              %div.nav-profile-avatar
-                = image_tag(picture_profile(@current_user, true))
-              = profile_name(@current_user)
-
-            %div.dropdown-menu
-              = link_to "Mon profil", user_path(@current_user), class: "dropdown-item" 
-              = link_to "Déconnexion", logout_path, class: "dropdown-item"  
-
-        - else
-          %li.nav-item
-            = link_to "Se connecter", login_path, class: "dropdown-item"
-           
+          = link_to "Se connecter", login_path, class: "dropdown-item"

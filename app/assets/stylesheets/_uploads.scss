@@ -67,7 +67,7 @@
 	display: inline-block;
 	position: fixed;
 	top: 0;
-	z-index: 20;
+	z-index: 80;
 	left: 0;
 	right: 0;
 	bottom: 0;
@@ -102,7 +102,8 @@
 		right: 100%;
 		position: absolute;
 		z-index: 21;
-		background-color: rgba(#3498db, 0.4)
+		background-color: rgba(#3498db, 0.4);
+		@include transition-duration(0.2s);
 	}
 
 	

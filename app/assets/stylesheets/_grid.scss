@@ -1,6 +1,6 @@
 @import "configuration";
-
-
+$tmp: 2px;
+$size: 10%;
 .grid {
 	display: flex;
 	flex-wrap: wrap;
@@ -8,37 +8,79 @@
 	align-content: flex-start;
 	align-items: center;
 	color: white;
-
+	width: 90%;
+	margin-left: 5%;
+	padding-top: 50px;
+	//background-color: tint(black, 13%);
+	background-color: transparent;
+	@include box-sizing(border-box);	
 	img { object-fit: cover; }
 }
 
-.small-items .item {
-	margin: $small-item-margin;
-	width: $small-item-size;
-	height: $small-item-size;
-	img {
-		width: $small-item-size;
-		height: $small-item-size;
-	}
-}
 
-
+#app:hover .item { opacity: 0.3; }
+#app:hover .item:hover { opacity: 1; } 
 
 .item {
+	float: left;
+	//padding: $tmp;
+	margin: $tmp;
+	@include box-sizing(border-box);
+	background-color: transparent;
 	display: inline-block;
 	position: relative;
-	width: $big-item-size;
-	height: $big-item-size;
+	width: $size;
+	height: $size;
 	cursor: pointer;
-	margin: $big-item-margin;
+	img {  width: 100%;  height: 100%;  }
+}
 
-	img {
-		width: $big-item-size;
-		height: $big-item-size;
+
+.item-user {
+
+	width: 200px;
+	height: 200px;
+}
+
+
+
+.item-infos {
+	position: absolute;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: white;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background-color: rgba(0, 0, 0, 0.7);
+	@include transition-duration(0.2s);
+
+	&:hover {
+		background-color: rgba(0, 0, 0, 0.35);
+		@include transition-duration(0.3s);
+	}
+	
+	p {
+		line-height: normal;
+	}
+
+	.item-name {
+		@include transition-duration(0.2s);
+		font-size: 2em;
+		font-weight: 300em;
+	}
+
+	.item-date {
+		margin: 0;
+		font-size: 1em;
+		font-style: italic;
 	}
 }
 
-.item-overlay {
+
+/*.item-overlay {
 	color: white;
 	position: absolute;
 	top: 0;
@@ -57,24 +99,4 @@
 		@include transition-duration(0.3s);
 	}
 }
-
-.item-infos {
-	margin-top: 50%;
-	@include translate(0, -50%);
-
-	p {
-		line-height: normal;
-	}
-
-	.item-name {
-		@include transition-duration(0.2s);
-		font-size: 2em;
-		font-weight: 300em;
-	}
-
-	.item-date {
-		margin: 0;
-		font-size: 1em;
-		font-style: italic;
-	}
-}
+*/
