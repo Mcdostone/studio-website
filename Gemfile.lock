@@ -114,8 +114,14 @@ GEM
     erubis (2.7.0)
     excon (0.54.0)
     execjs (2.7.0)
+    factory_girl (4.8.0)
+      activesupport (>= 3.0.0)
+    factory_girl_rails (4.8.0)
+      factory_girl (~> 4.8.0)
+      railties (>= 3.0.0)
     faraday (0.10.1)
       multipart-post (>= 1.2, < 3)
+    ffaker (2.4.0)
     ffi (1.9.17)
     fog-aws (1.2.0)
       fog-core (~> 1.38)
@@ -260,6 +266,8 @@ GEM
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
     sexp_processor (4.7.0)
+    shoulda-matchers (3.1.1)
+      activesupport (>= 4.0.0)
     spring (2.0.1)
       activesupport (>= 4.2)
     sprockets (3.7.1)
@@ -306,6 +314,8 @@ DEPENDENCIES
   carrierwave-aws
   coffee-rails (~> 4.1.0)
   compass-rails
+  factory_girl_rails
+  ffaker (~> 2.2)
   fog-aws
   haml-rails
   jbuilder (~> 2.0)
@@ -317,6 +327,7 @@ DEPENDENCIES
   rspec-rails (~> 3.5)
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
+  shoulda-matchers
   spring
   sqlite3
   turbolinks

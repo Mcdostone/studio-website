@@ -24,16 +24,6 @@ ActiveRecord::Schema.define(version: 20170131235450) do
     t.string   "cover"
   end
 
-  create_table "likes", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer  "user_id"
-    t.integer  "medium_id"
-    t.index ["medium_id"], name: "index_likes_on_medium_id"
-    t.index ["user_id"], name: "index_likes_on_user_id"
-    t.index [nil, nil], name: "index_likes_on_user_and_medium", unique: true
-  end
-
   create_table "media", force: :cascade do |t|
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
