@@ -12,6 +12,7 @@ class UsersController < ApplicationController
 
 	def edit
 		redirect_to users_path unless @current_user == @user
+		render :layout => 'admin'
 	end
 
 	def update

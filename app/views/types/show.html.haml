@@ -1,8 +1,8 @@
-- if @type.media.empty?
+- if @filtered_media.empty?
   
   = render 'partials/nothing'
 
 - else
 
-  = render 'types/cover', type: @type, settings: true
-  = render 'partials/media', media: @type.media
+  = render 'types/cover', type: @type, media: @filtered_media, settings: true
+  = render 'partials/media', media: @filtered_media

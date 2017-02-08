@@ -27,6 +27,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :events
     resources :uploads, only: [:index, :new, :show, :create, :destroy]
+      post '/uploads/video', to: 'uploads#video', as: 'upload_video'
     resources :types
     resources :reports, only: [:index, :show, :destroy] do
       member do

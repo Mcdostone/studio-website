@@ -65,7 +65,7 @@ $card-padding: 10px;
 }
 
 .card:hover {
-	background-color: shade(#333, $shaden);
+	background-color: shade(#333, $value-shaden);
 	@include transition-duration(0.3s);
 }
 
@@ -76,7 +76,7 @@ $card-padding: 10px;
 }
 
 #card-media:hover {
-	background-color: shade($card-media-background, $shaden);
+	background-color: shade($card-media-background, $value-shaden);
 	@include transition-duration(0.3s);
 }
 
@@ -85,7 +85,7 @@ $card-padding: 10px;
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: 60px 60px;
-	background-color: shade($card-media-background, $shaden);
+	background-color: shade($card-media-background, $value-shaden);
 }
 
 
@@ -95,7 +95,7 @@ $card-padding: 10px;
 }
 
 #card-events:hover {
-	background-color: shade($card-events-background, $shaden);
+	background-color: shade($card-events-background, $value-shaden);
 	@include transition-duration(0.3s);
 }
 
@@ -104,7 +104,7 @@ $card-padding: 10px;
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: 60px 60px;
-	background-color: shade($card-events-background, $shaden);
+	background-color: shade($card-events-background, $value-shaden);
 
 }
 
@@ -114,7 +114,7 @@ $card-padding: 10px;
 }
 
 #card-types:hover {
-	background-color: shade($card-types-background, $shaden);
+	background-color: shade($card-types-background, $value-shaden);
 	@include transition-duration(0.3s);
 }
 
@@ -123,7 +123,7 @@ $card-padding: 10px;
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: 60px 60px;
-	background-color: shade($card-types-background, $shaden);
+	background-color: shade($card-types-background, $value-shaden);
 }
 
 
@@ -133,7 +133,7 @@ $card-padding: 10px;
 }
 
 #card-users:hover {
-	background-color: shade($card-users-background, $shaden);
+	background-color: shade($card-users-background, $value-shaden);
 	@include transition-duration(0.3s);
 }
 
@@ -142,7 +142,7 @@ $card-padding: 10px;
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: 60px 60px;
-	background-color: shade($card-users-background, $shaden);
+	background-color: shade($card-users-background, $value-shaden);
 }
 
 
@@ -152,7 +152,7 @@ $card-padding: 10px;
 }
 
 #card-uploads:hover {
-	background-color: shade($card-uploads-background, $shaden);
+	background-color: shade($card-uploads-background, $value-shaden);
 	@include transition-duration(0.3s);
 }
 
@@ -161,7 +161,7 @@ $card-padding: 10px;
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: 60px 60px;
-	background-color: shade($card-uploads-background, $shaden);
+	background-color: shade($card-uploads-background, $value-shaden);
 }
 
 #card-reports {
@@ -170,7 +170,7 @@ $card-padding: 10px;
 }
 
 #card-reports:hover {
-	background-color: shade($card-reports-background, $shaden);
+	background-color: shade($card-reports-background, $value-shaden);
 	@include transition-duration(0.3s);
 }
 
@@ -179,7 +179,7 @@ $card-padding: 10px;
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: 60px 60px;
-	background-color: shade($card-reports-background, $shaden);
+	background-color: shade($card-reports-background, $value-shaden);
 }
 
 

@@ -1,4 +1,4 @@
-- if @event.media.empty?
+- if @filtered_media.empty?
 
   = render 'partials/nothing'
 
@@ -9,5 +9,5 @@
     = javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/vue-resource/1.2.0/vue-resource.min.js'
     = javascript_include_tag 'lightbox'
 
-  = render 'events/cover', event: @event, settings: true
-  = render 'partials/media', media: @event.media
+  = render 'events/cover', event: @event, media: @filtered_media, settings: true
+  = render 'partials/media', media: @filtered_media

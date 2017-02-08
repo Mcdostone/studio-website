@@ -12,10 +12,10 @@ Dropzone.prototype.getActiveFiles = function() {
 }
 
 App.uploads = (function() {
-	let form = $('form')
+	let form = $('#medias form')
 	let action = form.attr('action')
 	let nbFiles = 0
-	let submit = $('.button')
+	let submit = $('#medias .button')
 	let parallelUploads = 100
 	let filesUploaded = 0
 	let percentUpload = 0
@@ -164,6 +164,7 @@ App.uploads = (function() {
 					close.addClass('invisible')
 					e.preventDefault()
 					studioDropzone.processQueue()
+					console.log(form)
 				}
 			})
 		}

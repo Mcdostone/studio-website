@@ -39,6 +39,18 @@ class Admin::UploadsController < AdminController
   def show
   end
 
+  def video
+    upload_params = admin_upload_video_params  
+    type = Type.find(upload_params[:type_id])
+    event = Event.find(upload_params[:event_id])
+    @upload = Upload.new(type: type, event: event, user: @current_user)
+    
+    @upload.media.create(type: type, event: event, file: m, upload: @upload)
+    
+    redirect_to admin_uploads_path
+  end
+
+
   def destroy
   end
 
@@ -54,5 +66,9 @@ class Admin::UploadsController < AdminController
         whitelisted[:type_id] = params[:admin_upload][:type_id]
         whitelisted[:media] = params[:admin_upload][:media].values
       end
+    end
+
+    def admin_upload_video_params
+      params.require(:admin_upload).permit(:event_id, :type_id, :video)
     end
 end

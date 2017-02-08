@@ -1,7 +1,8 @@
 class ReportsController < ApplicationController
 
   before_action :set_medium, only:[:new, :create]
-
+  layout 'admin'
+  
   def new
     @report = Report.new  
   end

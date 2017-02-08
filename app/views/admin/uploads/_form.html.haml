@@ -3,18 +3,55 @@
   = javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.3.0/min/dropzone.min.js'
   = javascript_include_tag 'admin/uploads'
 
-= form_for [:admin, @upload], multipart: true do |f|
-  %div.form-group
-    = label_tag 'Evénement:'
-    = f.select :event_id, options_from_collection_for_select(@events, :id, :name), {}, {:class => 'custom-select form-control', autofocus: 'autofocus'}
+%ul{class: 'nav nav-tabs', role:'tablist'}
+  %li{class: 'nav-item'}
+    = link_to 'Media', '#medias', class: 'nav-link', data: {toggle: 'tab'}, role: 'tab'
+    
+  %li{class: 'nav-item'}
+    = link_to 'Vidéo', '#videos', class: 'nav-link', data: {toggle: 'tab'}, role: 'tab'
+    
 
-  %div.form-group
-    = label_tag 'Type:'
-    = f.select :type_id, options_from_collection_for_select(@types, :id, :name), {}, {:class => 'custom-select form-control'}
+%div.tab-content
 
-  %div.form-group
-    = label_tag 'Media à upload:'
-    %div{:id => 'studio-dropzone', :class => 'dropzone'}
 
-  %div.form-group
-    = f.submit 'Uploader', class: 'button'
+  %div{class: 'tab-pane', id:'medias', role:'tabpanel'}
+
+    %h2 Nouvel upload de médias
+    = form_for [:admin, @upload], multipart: true do |f|
+      %div.form-group
+        = label_tag 'Evénement:'
+        = f.select :event_id, options_from_collection_for_select(@events, :id, :name), {}, {:class => 'custom-select form-control', autofocus: 'autofocus'}
+
+      %div.form-group
+        = label_tag 'Type:'
+        = f.select :type_id, options_from_collection_for_select(@types, :id, :name), {}, {:class => 'custom-select form-control'}
+
+      %div.form-group
+        = label_tag 'Media à upload:'
+        %div{:id => 'studio-dropzone', :class => 'dropzone'}
+
+      %div.form-group
+        = f.submit 'Uploader', class: 'button'
+
+
+  %div{class: 'tab-pane', id:'videos', role:'tabpanel'}
+    %h2 Nouvel upload de vidéo
+    = form_for [:admin, @upload], :url => admin_upload_video_path(), multipart: true do |f|
+      %div.form-group
+        = label_tag 'Evénement:'
+        = f.select :event_id, options_from_collection_for_select(@events, :id, :name), {}, {:class => 'custom-select form-control', autofocus: 'autofocus'}
+
+      %div.form-group
+        = label_tag 'Type:'
+        = f.select :type_id, options_from_collection_for_select(@types, :id, :name), {}, {:class => 'custom-select form-control'}
+
+      %div.form-group
+        = label_tag 'Lien Youtube:'
+        = text_field_tag 'admin_upload[video]', '', placeholder: 'youtube.com', autofocus: 'autofocus', class: 'form-control'
+        -#= f.text_field @upload, placeholder: "youtube.com", autofocus: "autofocus", class: "form-control"
+
+
+      %div.form-group
+        = f.submit 'Uploader', class: 'button'
+
+

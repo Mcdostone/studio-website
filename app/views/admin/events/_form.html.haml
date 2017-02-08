@@ -3,7 +3,7 @@
   = render 'admin/partials/errors', model: @event
   
   %div.form-group
-    = render 'events/cover', event: @event, settings: false
+    = render 'events/cover', event: @event, media: @event.media, settings: false
 
   %div.form-group
     = label_tag 'Photo de couverture:'

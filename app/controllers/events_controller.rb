@@ -3,7 +3,6 @@ class EventsController < ApplicationController
   before_action :set_event, only:[:show]
 
   def index
-    #@events = Event.includes(:media).where(media: { visible: true })
     @events = Event.all
 
     respond_to do |format|
@@ -13,12 +12,12 @@ class EventsController < ApplicationController
   end
 
   def show
-  	@media = @event.media
   end
 
   private
 	def set_event
 		@event = Event.find(params[:id])
+    @filtered_media = @event.media.select{|m| m.visible == true}
 	end
 
 end

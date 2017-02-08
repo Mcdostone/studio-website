@@ -3,7 +3,7 @@ class TypesController < ApplicationController
 	before_action :set_type, only:[:show]
 
 	def index
-		@types = Event.includes(:media).where(media: { visible: true })
+		@types = Type.includes(:media).where(media: { visible: true })
 
 		respond_to do |format|
       		format.html
@@ -12,11 +12,11 @@ class TypesController < ApplicationController
 	end
 
 	def show
-		@media = @type.media
 	end
 
 	private
 	def set_type
 		@type = Type.find(params[:id])
+		@filtered_media = @type.media.select{|m| m.visible == true}
 	end
 end
