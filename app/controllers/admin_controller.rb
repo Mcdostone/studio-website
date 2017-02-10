@@ -1,5 +1,5 @@
 class AdminController < ApplicationController
-
+ 	include PublicActivity::StoreController
 	before_action :require_author
 	layout 'admin'
 	def index

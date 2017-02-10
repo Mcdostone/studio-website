@@ -1,0 +1,12 @@
+- @activities.each do |a|
+  %div.activity
+    %div.activity-desc 
+      = render 'activities/profile', user: @current_user
+      %p.activity-title
+        = full_name(@current_user) + " a crée l'événénement " 
+        = link_to a.trackable, a.trackable_type
+        = a.key
+    %div.activity-content
+      = render 'events/cover', event: a.trackable, media: [], settings: false
+  
+   

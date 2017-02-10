@@ -33,6 +33,8 @@ gem 'carrierwave', '>= 1.0.0.rc', '< 2.0'
 gem 'carrierwave-aws'
 gem "fog-aws"
 
+gem 'public_activity', '~> 1.5'
+
 #for use on windows
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
 

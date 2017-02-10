@@ -12,4 +12,5 @@
         %div.cover-date
           = format_event_date(event.date_event)
         %div.cover-count
-          = "#{media.size} " + (media.size > 1 ? 'médias' : 'média')
+          - if media.size > 0
+            = "#{media.size} " + (media.size > 1 ? 'médias' : 'média')

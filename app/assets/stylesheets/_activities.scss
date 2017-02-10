@@ -1,0 +1,44 @@
+.activity {
+	margin-top: 20px;
+	width: 50%;
+	margin: auto;
+	height: 300px;
+	background-color: white;	
+}
+
+
+.activity .profile {
+	margin: 0;
+	margin-left: 5px;
+	width: auto;
+	float: left;
+}
+
+.activity .profile .nav-profile-avatar {
+	margin: 0;
+}
+
+.activity .profile .nav-profile-avatar img {
+	opacity: 1;
+}
+
+.activity-title {
+	float: left;
+	margin: 0;
+	padding: 0;
+}
+
+.activity .activity-desc {
+	display: inline-block;
+	font-size: 1em;
+	color: white;
+	height: 70px;
+	color: black;
+	line-height: 70px;
+}
+
+
+.activity .activity-content {
+	display: inline-block;
+	width: 100%;
+}

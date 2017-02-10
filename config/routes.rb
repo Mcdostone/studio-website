@@ -23,6 +23,7 @@ Rails.application.routes.draw do
     end
   end
 
+  get '/feeds', to: 'activities#index'
 
   namespace :admin do
     resources :events
