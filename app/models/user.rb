@@ -1,21 +1,22 @@
 class User < ApplicationRecord
-  belongs_to :authorization
-  has_many :uploads
-  after_initialize :set_defaults
-  mount_uploader :avatar, AvatarUploader  
+	belongs_to :authorization
+	has_many :uploads
+	after_initialize :set_defaults
+	mount_uploader :avatar, AvatarUploader  
 
-  validates :first_name,
-    presence: true,
-    allow_blank: false
+	validates :first_name,
+		presence: true,
+		allow_blank: false
 
-  validates :last_name,
-    presence: true,
-    allow_blank: false
+	validates :last_name,
+		presence: true,
+		allow_blank: false
 
-  validates :email,
-    presence: true,
-    allow_blank: false
-
+	validates :email,
+		presence: true,
+		allow_blank: false,
+		format: { with: /@telecomnancy.net\z/, message: 'Seuls les étudiants de TN.net sont autorisés !'}
+  
   validates :uid,
     presence: true,
     allow_blank: false
@@ -25,48 +26,39 @@ class User < ApplicationRecord
     allow_blank: false
 
   validates :oauth_expires_at,
-    presence: true,
-    allow_blank: false
+		presence: true,
+		allow_blank: false
 
-  validates :provider,
-    presence: true,
-    allow_blank: false
+  
+	def self.from_omniauth(auth)
+		where(provider: auth.provider, uid: auth.uid).first_or_initialize.tap do |user|
+			#user.provider = auth.provider
+			user.uid = auth.uid
+			user.first_name = auth.info.first_name.capitalize
+			user.last_name = auth.info.last_name.capitalize
+			user.email = auth.info.email
+			#user.id_token = auth.extra.id_token
+			user.oauth_token = auth.credentials.token
+			user.oauth_expires_at = Time.zone.at(auth.credentials.expires_at)
+			return (auth.extra.id_info.hd == 'telecomnancy.net' ? user.save! : nil)
+		end
+	end
 
-  def self.from_omniauth(auth)
-    where(provider: auth.provider, uid: auth.uid).first_or_initialize.tap do |user|
-      user.provider = auth.provider
-      user.uid = auth.uid
-      user.first_name = auth.info.first_name.capitalize
-      user.last_name = auth.info.last_name.capitalize
-      user.email = auth.info.email
-      user.id_token = auth.extra.id_token
-      user.oauth_token = auth.credentials.token
-      user.oauth_expires_at = Time.zone.at(auth.credentials.expires_at)
-      
-      if auth.extra.id_info.hd == 'telecomnancy.net' && user.email.split('@')[1] == 'telecomnancy.net'
-        user.save! 
-        return user
-      else
-        return nil
-      end
-    end
-  end
+	def admin?
+		return (self.authorization ? self.authorization.name == 'admin' : false)
+	end
 
-  def admin?
-    self.authorization.name == 'admin'
-  end
+	def author?
+		return (self.authorization ? self.authorization.name == 'author' : false)
+	end
 
-  def author?
-    self.authorization.name == 'author'
-  end
+	def viewer?
+		return (self.authorization ? self.authorization.name == 'viewer' : true)
+	end
 
-  def viewer?
-    self.authorization.name == 'viewer'
-  end
-
-  private
-    def set_defaults
-      self.authorization ||= Authorization.find_by(name: 'viewer')
-      self.nickname ||= 'Fredlapouf'
-    end
+	private
+		def set_defaults
+			self.authorization ||= Authorization.find_by(name: 'viewer')
+			self.nickname ||= 'Fredlapouf'
+		end
 end

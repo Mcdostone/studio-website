@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170210151945) do
+ActiveRecord::Schema.define(version: 20170213205129) do
 
   create_table "activities", force: :cascade do |t|
     t.string   "trackable_type"
@@ -89,7 +89,6 @@ ActiveRecord::Schema.define(version: 20170210151945) do
     t.string   "email"
     t.string   "first_name"
     t.string   "nickname"
-    t.string   "picture"
     t.integer  "authorization_id"
     t.string   "id_token"
     t.boolean  "ban",              default: false

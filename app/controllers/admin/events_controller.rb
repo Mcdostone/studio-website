@@ -1,11 +1,13 @@
 class Admin::EventsController < AdminController
 
-	def new
-		@event = Event.new
-	end
+  before_action :set_event, only:[:edit, :update, :destroy]
 
   def index
     @events = Event.all
+  end
+
+  def new
+    @event = Event.new
   end
 
   def create
@@ -15,18 +17,15 @@ class Admin::EventsController < AdminController
   end
 
   def edit
-    @event = Event.find(params[:id])
   end
 
   def update
-    @event = Event.find(params[:id])
     @event.update(event_params)
     redirect_to admin_events_path
   end
 
   def destroy
-    event = Event.find(params[:id])
-    event.destroy
+    @event.destroy
     redirect_to admin_events_path
   end
 
@@ -34,5 +33,9 @@ class Admin::EventsController < AdminController
   def event_params
 		params.require(:event).permit(:name, :date_event, :cover)
 	end
+
+  def set_event
+    @event = Event.find(params[:id])
+  end
 
 end

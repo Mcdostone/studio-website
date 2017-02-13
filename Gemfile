@@ -65,8 +65,9 @@ group :development do
 end
 
 group :development, :test do
+  gem 'shoulda-matchers', '~> 3.1'
   gem 'factory_girl_rails'
   gem 'rspec-rails', '~> 3.5'
+  gem 'database_cleaner'
   gem 'ffaker', '~> 2.2'
-  gem 'shoulda-matchers'
 end

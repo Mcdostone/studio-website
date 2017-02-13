@@ -1,12 +1,7 @@
-- @activities.each do |a|
-  %div.activity
-    %div.activity-desc 
-      = render 'activities/profile', user: @current_user
-      %p.activity-title
-        = full_name(@current_user) + " a crée l'événénement " 
-        = link_to a.trackable, a.trackable_type
-        = a.key
-    %div.activity-content
-      = render 'events/cover', event: a.trackable, media: [], settings: false
-  
-   
+- single_content_for :title do
+  = link_to full_name(@current_user), user_path(@current_user)
+  = " a crée l'événénement " 
+  = link_to activity.trackable.name, event_path(activity.trackable)
+
+- single_content_for  :content do
+  = render 'events/cover', event: activity.trackable, media: [], settings: false

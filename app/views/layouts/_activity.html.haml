@@ -1,0 +1,10 @@
+%div.activity
+
+  %div.activity-desc 
+    = render 'activities/profile', user: activity.owner
+    %p.activity-title
+      = content_for :title
+
+  %div.activity-content
+    = content_for :content
+      

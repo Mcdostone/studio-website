@@ -1,16 +1,15 @@
-%div.descriptions
-  %div.description.cover
-    - if((@current_user.author? || @current_user.admin?) && settings == true)
-      = link_to edit_admin_event_path(event), class: 'button-admin' do
-        %div.icon
-        %p Modifier
-    %div.illustration
-      = image_tag cover(event), class: 'illustration'
-      %div.cover-desc
-        %div.cover-name
-          = event.name
-        %div.cover-date
-          = format_event_date(event.date_event)
-        %div.cover-count
-          - if media.size > 0
-            = "#{media.size} " + (media.size > 1 ? 'médias' : 'média')
+%div.cover
+  - if((@current_user.author? || @current_user.admin?) && settings == true)
+    = link_to edit_admin_event_path(event), class: 'button-admin' do
+      %div.icon
+      %p Modifier
+  %div.illustration
+    = image_tag cover(event), class: 'illustration'
+    %div.cover-desc
+      %div.cover-name
+        = event.name
+      %div.cover-date
+        = format_event_date(event.date_event)
+      %div.cover-count
+        - if media.size > 0
+          = "#{media.size} " + (media.size > 1 ? 'médias' : 'média')

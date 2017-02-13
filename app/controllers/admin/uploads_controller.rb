@@ -10,6 +10,9 @@ class Admin::UploadsController < AdminController
     @events = Event.all
     @types = Type.all
     @upload = Upload.new
+    if(@events.size == 0 ||@types.size == 0)
+      redirect_to admin_uploads_path 
+    end
   end
   
   def create

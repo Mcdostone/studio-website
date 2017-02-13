@@ -1,0 +1,7 @@
+- single_content_for  :title do
+  = link_to full_name(activity.owner), user_path(activity.owner)
+  = " a crée le type" 
+  = link_to activity.trackable.name, type_path(activity.trackable)
+
+- single_content_for  :content do
+  = render 'types/cover', type: activity.trackable, media: [], settings: false

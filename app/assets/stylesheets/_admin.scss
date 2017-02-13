@@ -183,6 +183,63 @@ $card-padding: 10px;
 }
 
 
+.button-admin {
+	position: absolute;
+	display: inline-block;
+	width: auto;
+	height: auto;
+	bottom: 0;	
+	right: 20px;
+	cursor: pointer;
+	z-index: 50;
+	opacity: 0.7;	
+	@include transition-duration(0.2s);
+}
+
+.button-admin:hover {
+	opacity: 1;
+
+	@include transition-duration(0.3s);
+	.icon {
+			@include transition-duration(0.2s);
+			@include rotateZ(70deg);
+	}
+
+	p {
+		visibility: visible;
+	}
+}
+
+
+.button-admin .icon {
+	height: $button-settings-height;
+	width: $button-settings-height;
+	float: right;
+	z-index: 50;
+	@include transform-origin(15, 15);
+	background: url("/images/settings.png");
+	background-size: cover;
+	@include transition-duration(0.3s);
+	@include rotateZ(0deg);	
+}
+
+.button-admin p {
+	display: inline;
+	visibility: hidden;
+	background-color: transparent;
+	float: left;
+	line-height: $button-settings-height;
+	margin-right: 10px;
+	z-index: 50;
+	color: white;
+	padding: 0;
+	font-weight: 300;
+	
+	&:before {
+		display: none;
+	}
+}
+
 /*
 .wrapper {
 	display: block;

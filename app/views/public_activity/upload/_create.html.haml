@@ -1,0 +1,7 @@
+- single_content_for :title do
+  = link_to full_name(activity.owner), user_path(activity.owner)
+  = " a upload " 
+  = count_media(activity.trackable) + " dans l'événement "
+  = link_to activity.trackable.event.name, event_path(activity.trackable.event)
+- single_content_for  :content do
+  = render 'admin/uploads/cover', event: activity.trackable.event, media: activity.trackable.media.take(8)

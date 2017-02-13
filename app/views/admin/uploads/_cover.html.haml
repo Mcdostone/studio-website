@@ -1,0 +1,5 @@
+%div.cover
+  %div.grid.small-items#app
+    - media.each do |medium|
+      - if medium.visible
+        = link_to image_tag(url_thumbnail(medium)), medium_path(medium), {class: 'item', 'v-lightbox': ''}

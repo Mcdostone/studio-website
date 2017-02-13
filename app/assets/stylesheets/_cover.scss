@@ -1,22 +1,20 @@
 @import "configuration";
 
-form .cover {
-	width: 60%;
-	margin: 0 auto;
-	margin-bottom: 40px;
-}
-
-.descriptions .description.cover {
-	height: $cover-height;
+.cover {
+	position: relative;
 	display: inline-block;
 	width: 100%;
-	
+	float: left;
+
+	height: $cover-height;
+
 	.illustration {
     	height: $cover-height;
 		object-fit: cover;
-		background-color: black;
+		background-color: white;
 	}
 }
+
 
 .cover .cover-desc {
 	display: flex;
@@ -46,4 +44,9 @@ form .cover {
 	.cover-date {
 		font-size: 2em;
 	}
+}
+
+
+form .cover {
+	margin-bottom: 40px;
 }

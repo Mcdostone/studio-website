@@ -5,11 +5,11 @@ class CreateAuthorizations < ActiveRecord::Migration
       t.string :name
   	end
 
-	remove_column :users, :admin
-  	add_reference :users, :authorization, foreign_key: true
+		remove_column :users, :admin
+		add_reference :users, :authorization, foreign_key: true
 
-    Authorization.create :name => 'admin'
-    Authorization.create :name => 'author'
- 	Authorization.create :name => 'viewer'
+		Authorization.create :name => 'admin'
+		Authorization.create :name => 'author'
+		Authorization.create :name => 'viewer'
   end
 end

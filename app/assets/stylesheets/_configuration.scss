@@ -116,64 +116,6 @@ $breakpoint: 850px;*/
 #app {}
 
 
-.button-admin {
-	position: absolute;
-	display: inline-block;
-	width: auto;
-	height: auto;
-	bottom: 20px;
-	
-	right: 20px;
-	cursor: pointer;
-	z-index: 50;
-	opacity: 0.7;	
-	@include transition-duration(0.2s);
-}
-
-.button-admin:hover {
-	opacity: 1;
-
-	@include transition-duration(0.3s);
-	.icon {
-			@include transition-duration(0.2s);
-			@include rotateZ(70deg);
-	}
-
-	p {
-		visibility: visible;
-	}
-}
-
-
-.button-admin .icon {
-	height: $button-settings-height;
-	width: $button-settings-height;
-	float: right;
-	z-index: 50;
-	@include transform-origin(15, 15);
-	background: url("/images/settings.png");
-	background-size: cover;
-	@include transition-duration(0.3s);
-	@include rotateZ(0deg);	
-}
-
-.button-admin p {
-	display: inline;
-	visibility: hidden;
-	background-color: transparent;
-	float: left;
-	line-height: $button-settings-height;
-	margin-right: 10px;
-	z-index: 50;
-	color: white;
-	padding: 0;
-	font-weight: 300;
-	
-	&:before {
-		display: none;
-	}
-}
-
 /**
 	----------------------------------
 	Here, we modify default style of elements
@@ -232,15 +174,15 @@ a, a:hover {
 	padding-bottom: 50px;
 }
 
+#container-admin {
+	padding-bottom: 0;
+}
+
 
 #container-admin {
-
 	color: black;
 	width: 60%;
 	margin-left: 20%;
-	form {
-		padding-top: 50px;
-	}
 }
 
 .container-fluid {

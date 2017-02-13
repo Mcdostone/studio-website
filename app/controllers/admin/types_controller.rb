@@ -1,6 +1,6 @@
 class Admin::TypesController < AdminController
 
-	before_action :set_type, only:[:edit, :update, :show, :destroy]
+	before_action :set_type, only:[:edit, :update, :destroy]
 
 	def index
 		@types = Type.all
@@ -12,13 +12,9 @@ class Admin::TypesController < AdminController
 
 	def create
 		@type = Type.new(type_params)
-		@type.save
-		if @type.save
-			redirect_to admin_types_path
-		else
-			render 'new'
-		end
-	end
+  		flash[:success] = "Le type a été crée !" if @type.save
+    	redirect_to admin_types_path
+  	end
 
 	def edit
 	end

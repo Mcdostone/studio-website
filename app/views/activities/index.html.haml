@@ -1,2 +1,4 @@
 %h2 Dernières activités
-= render_activities(@activities)
+
+- @activities.each do |activity|
+  = render_activity(activity, layout: :activity)

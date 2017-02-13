@@ -5,7 +5,7 @@
 
 %ul{class: 'nav nav-tabs', role:'tablist'}
   %li{class: 'nav-item'}
-    = link_to 'Media', '#medias', class: 'nav-link', data: {toggle: 'tab'}, role: 'tab'
+    = link_to 'Media', '#medias', class: 'nav-link active', data: {toggle: 'tab'}, role: 'tab', aria: {expanded: 'true'}
     
   %li{class: 'nav-item'}
     = link_to 'Vidéo', '#videos', class: 'nav-link', data: {toggle: 'tab'}, role: 'tab'
@@ -14,7 +14,9 @@
 %div.tab-content
 
 
-  %div{class: 'tab-pane', id:'medias', role:'tabpanel'}
+
+
+  %div{class: 'tab-pane active', id:'medias', role:'tabpanel'}
 
     %h2 Nouvel upload de médias
     = form_for [:admin, @upload], multipart: true do |f|
@@ -32,6 +34,8 @@
 
       %div.form-group
         = f.submit 'Uploader', class: 'button'
+
+
 
 
   %div{class: 'tab-pane', id:'videos', role:'tabpanel'}
