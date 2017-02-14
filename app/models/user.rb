@@ -40,7 +40,12 @@ class User < ApplicationRecord
 			#user.id_token = auth.extra.id_token
 			user.oauth_token = auth.credentials.token
 			user.oauth_expires_at = Time.zone.at(auth.credentials.expires_at)
-			return (auth.extra.id_info.hd == 'telecomnancy.net' ? user.save! : nil)
+			
+			if auth.extra.id_info.hd == 'telecomnancy.net'
+				user.save!
+				return user
+			end
+			return nil
 		end
 	end
 

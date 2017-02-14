@@ -40,3 +40,44 @@ Shoulda::Matchers.configure do |config|
       with.library :rails
   end
 end
+
+OmniAuth.config.test_mode = true
+omniauth_hash = { 
+	'provider' => 'google_oauth2',
+	'uid' => '12345',
+	'info' => {
+		'first_name' => 'Mcdostone',
+		'last_name' => 'Prono',
+		'email' => 'hi@natashatherobot.com'
+	},
+	'extra' => {
+		'raw_info' => { 'location' => 'San Francisco' },
+		'id_info' => { 'hd' => 'telecomnancy.net' }
+	},
+	'credentials' => {
+		'token' => 'dgfjhdfhdjkgdjfg65.sdfdfjkgd',
+		'expires_at' => Time.now
+	}
+}
+OmniAuth.config.add_mock(:unknown, omniauth_hash)
+
+
+OmniAuth.config.test_mode = true
+omniauth_hash = { 
+	'provider' => 'google_oauth2',
+	'uid' => '12345',
+	'info' => {
+		'first_name' => 'Mcdostone',
+		'last_name' => 'Prono',
+		'email' => 'hi@telecomnancy.net',
+	},
+	'extra' => {
+		'raw_info' => { 'location' => 'San Francisco' },
+		'id_info' => { 'hd' => 'telecomnancy.net' }
+	},
+	'credentials' => {
+		'token' => 'dgfjhdfhdjkgdjfg65.sdfdfjkgd',
+		'expires_at' => Time.now
+	}
+}
+OmniAuth.config.add_mock(:TN, omniauth_hash)
