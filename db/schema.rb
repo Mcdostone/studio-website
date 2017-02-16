@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170213205129) do
+ActiveRecord::Schema.define(version: 20170216114137) do
 
   create_table "activities", force: :cascade do |t|
     t.string   "trackable_type"
@@ -46,7 +46,6 @@ ActiveRecord::Schema.define(version: 20170213205129) do
     t.integer  "event_id"
     t.integer  "type_id"
     t.string   "thumbnail_url"
-    t.string   "file"
     t.integer  "upload_id"
     t.boolean  "visible",       default: true
   end

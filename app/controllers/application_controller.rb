@@ -12,10 +12,11 @@ class ApplicationController < ActionController::Base
 
   def authenticate_user
     user = @current_user
-    
+
     if user == nil
-      redirect_to root_path 
-      return 
+      flash[:warning] = "connect"
+      redirect_to root_path
+      return
     end
     if user.ban
       redirect_to logout_path

@@ -6,6 +6,8 @@ abort("The Rails environment is running in production mode!") if Rails.env.produ
 require 'spec_helper'
 require 'shoulda/matchers'
 require 'rspec/rails'
+require './spec/support/controller_helpers'
+
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
@@ -32,6 +34,7 @@ RSpec.configure do |config|
   config.use_transactional_fixtures = true
   config.infer_spec_type_from_file_location!
   config.filter_rails_from_backtrace!
+  config.include ControllerHelpers
 end
 
 Shoulda::Matchers.configure do |config|
@@ -42,7 +45,7 @@ Shoulda::Matchers.configure do |config|
 end
 
 OmniAuth.config.test_mode = true
-omniauth_hash = { 
+omniauth_hash = {
 	'provider' => 'google_oauth2',
 	'uid' => '12345',
 	'info' => {
@@ -52,7 +55,7 @@ omniauth_hash = {
 	},
 	'extra' => {
 		'raw_info' => { 'location' => 'San Francisco' },
-		'id_info' => { 'hd' => 'telecomnancy.net' }
+		'id_info' => { 'hd' => 'esstin.net' }
 	},
 	'credentials' => {
 		'token' => 'dgfjhdfhdjkgdjfg65.sdfdfjkgd',
@@ -63,7 +66,7 @@ OmniAuth.config.add_mock(:unknown, omniauth_hash)
 
 
 OmniAuth.config.test_mode = true
-omniauth_hash = { 
+omniauth_hash_tn = {
 	'provider' => 'google_oauth2',
 	'uid' => '12345',
 	'info' => {
@@ -80,4 +83,4 @@ omniauth_hash = {
 		'expires_at' => Time.now
 	}
 }
-OmniAuth.config.add_mock(:TN, omniauth_hash)
+OmniAuth.config.add_mock(:TN, omniauth_hash_tn)
