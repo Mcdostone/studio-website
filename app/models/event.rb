@@ -5,22 +5,25 @@ class Event < ApplicationRecord
 
 	mount_uploader :cover, CoverUploader
 
-	has_many :media
+	has_many :media,
+		dependent: :nullify
+
+	has_many :upload,
+	  dependent: :nullify
 
 	has_many :activities,
 		as: :trackable,
 		class_name: 'PublicActivity::Activity',
 		dependent: :destroy
 
-	after_initialize :set_defaults
-
 	validates :name,
 		uniqueness: true,
-		presence: true,
-		allow_blank: false
+		presence: true
+
+	after_initialize :set_defaults
 
 	private
 		def set_defaults
-			self.date ||= Time.now 
+			self.date ||= Time.now
 		end
 end
