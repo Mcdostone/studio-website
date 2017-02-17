@@ -25,7 +25,7 @@ class MediumUploader < CarrierWave::Uploader::Base
   # Process files as they are uploaded:
   process :resize_to_fit  => [1500, 1500]
   process :quality        => 80
-  
+
   # Create different versions of your uploaded files:
   version :thumb do
     process :resize_to_fill       => [180, 180]
@@ -35,7 +35,7 @@ class MediumUploader < CarrierWave::Uploader::Base
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
   def extension_whitelist
-    %w(jpg jpeg gif png gif)
+    %w(JPG jpg jpeg gif png gif)
   end
 
   def content_type_whitelist

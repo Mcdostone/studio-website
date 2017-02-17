@@ -4,9 +4,11 @@ class Type < ApplicationRecord
 	tracked owner: Proc.new{ |controller, model| controller.current_user if controller }
 	mount_uploader :cover, CoverUploader
 
-	has_many :media
+	has_many :media,
+		dependent: :nullify
 
-	has_many :upload
+	has_many :upload,
+		dependent: :nullify
 
 	has_many :activities,
 		as: :trackable,

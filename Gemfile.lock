@@ -320,7 +320,7 @@ DEPENDENCIES
   capistrano-rails (~> 1.2, >= 1.2.2)
   capistrano-rvm (~> 0.1.2)
   capistrano3-puma (~> 1.2, >= 1.2.1)
-  carrierwave (>= 1.0.0.rc, < 2.0)
+  carrierwave (~> 1.0)
   carrierwave-aws
   coffee-rails (~> 4.1.0)
   compass-rails
@@ -331,6 +331,7 @@ DEPENDENCIES
   haml-rails
   jbuilder (~> 2.0)
   jquery-rails
+  mime-types
   mini_magick (~> 4.6)
   omniauth-google-oauth2 (~> 0.4.1)
   public_activity (~> 1.5)

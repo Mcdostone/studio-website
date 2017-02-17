@@ -28,11 +28,10 @@ gem 'bootstrap', '~> 4.0.0.alpha5'
 gem 'compass-rails'
 
 gem 'mini_magick', '~> 4.6'
-
-gem 'carrierwave', '>= 1.0.0.rc', '< 2.0'
+gem 'carrierwave', '~> 1.0'
 gem 'carrierwave-aws'
 gem "fog-aws"
-
+gem 'mime-types'
 gem 'public_activity', '~> 1.5'
 
 #for use on windows

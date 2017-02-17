@@ -3,11 +3,10 @@ class TypesController < ApplicationController
 	before_action :set_type, only:[:show]
 
 	def index
-		@types = Type.includes(:media).where(media: { visible: true })
-
+		@types = Type.all
 		respond_to do |format|
-      		format.html
-      		format.json { render :json => @types.to_json }
+			format.html
+      format.json { render :json => @types.to_json }
     end
 	end
 

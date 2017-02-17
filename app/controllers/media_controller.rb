@@ -1,5 +1,5 @@
 class MediaController < ApplicationController
-	
+
 	before_action :set_medium, only:[:show, :like]
 
 	def index
@@ -7,14 +7,15 @@ class MediaController < ApplicationController
 	end
 
 	def show
-		respond_to do |format|
-			format.json { render json: @medium}
-		end
+		#respond_to do |format|
+		#	format.json { render json: @medium}
+		render json: @medium
+		#end
 	end
 
 	def like
 		exists = Like.exists?(medium: @medium, user: @current_user)
-		
+
 		if exists
 			Like.where(medium: @medium, user: @current_user).first.destroy
 			flash[:success] = "You don't like ?"

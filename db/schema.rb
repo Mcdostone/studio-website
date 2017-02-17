@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170216114137) do
+ActiveRecord::Schema.define(version: 20170216121141) do
 
   create_table "activities", force: :cascade do |t|
     t.string   "trackable_type"
@@ -34,20 +34,20 @@ ActiveRecord::Schema.define(version: 20170216114137) do
 
   create_table "events", force: :cascade do |t|
     t.string   "name"
-    t.datetime "date_event"
+    t.datetime "date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string   "cover"
   end
 
   create_table "media", force: :cascade do |t|
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
     t.integer  "event_id"
     t.integer  "type_id"
-    t.string   "thumbnail_url"
+    t.string   "file"
     t.integer  "upload_id"
-    t.boolean  "visible",       default: true
+    t.boolean  "visible",    default: true
   end
 
   create_table "reports", force: :cascade do |t|

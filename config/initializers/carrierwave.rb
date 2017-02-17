@@ -1,5 +1,5 @@
 module CarrierWave
-  
+
   module MiniMagick
     def quality(percentage)
       manipulate! do |img|
@@ -27,7 +27,7 @@ module CarrierWave
     config.storage =      :aws
     config.aws_bucket =    Rails.application.secrets.AWS_BUCKET_NAME
     config.aws_acl =      :public_read
-    
+
     config.aws_authenticated_url_expiration = 20
     config.aws_attributes = {
     expires: 1.week.from_now.httpdate,
@@ -42,7 +42,7 @@ module CarrierWave
     }
 
     # -----------------
-    
+
     config.fog_provider = 'fog/aws'
     config.fog_authenticated_url_expiration = 10
     config.fog_credentials = {
@@ -59,5 +59,28 @@ module CarrierWave
 
 
     config.cache_dir = '/tmp/studio'
+  end
+
+  if Rails.env.test?
+    CarrierWave.configure do |config|
+      config.storage = :file
+      config.enable_processing = false
+    end
+
+    MediumUploader
+
+    CarrierWave::Uploader::Base.descendants.each do |klass|
+      next if klass.anonymous?
+
+      klass.class_eval do
+        def cache_dir
+          "#{Rails.root}/spec/support/uploads/tmp"
+        end
+        def store_dir
+          "#{Rails.root}/spec/support/uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+        end
+      end
+
+    end
   end
 end

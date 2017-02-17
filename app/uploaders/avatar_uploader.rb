@@ -24,7 +24,7 @@ class AvatarUploader < CarrierWave::Uploader::Base
 
   process :resize_to_fit  => [400, 400]
   process :quality        => 80
-  
+
   # Create different versions of your uploaded files:
   version :thumb do
     process :resize_to_fill       => [110, 110]
@@ -40,5 +40,5 @@ class AvatarUploader < CarrierWave::Uploader::Base
   def content_type_whitelist
     /image\//
   end
-  
+
 end

@@ -5,4 +5,5 @@ class Medium < ApplicationRecord
 	has_many :likes
 	has_many :reports
 	mount_uploader :file, MediumUploader
+
 end
