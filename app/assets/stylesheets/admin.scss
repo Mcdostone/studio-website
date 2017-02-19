@@ -1,0 +1,197 @@
+$card-height: 100px;
+$shaden: 20%;
+$card-padding: 10px;
+
+#admin {
+  background: white;
+}
+#admin nav {
+  background-color: black;
+}
+
+#admin .container {
+  color: black !important;
+  margin-top: $nav-height;
+  padding: 50px 10% 0 10%;
+  width: 80%;
+}
+
+.cards {
+	width: 80%;
+  margin: 0 auto;
+	display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+	&:hover * {
+		color: white;
+	}
+}
+
+.card:nth-child(even) {
+	float: right;
+}
+
+#container-admin .grid {
+	padding-top: 0;
+}
+
+.card {
+	border: none;
+	border-radius: 0;
+	color: white;
+	display: inline-block;
+	width: 40%;
+	height: $card-height;
+	margin-bottom: 15px;
+	cursor: pointer;
+	.card-number {
+		display: block;
+		width: auto;
+		font-size: 3em;
+		line-height: 1;
+		clear: right;
+		text-align: left;
+		margin-top: 5px;
+		margin-bottom: 7px;
+	}
+
+	.card-text {
+		display: block;
+		margin-top: 0;
+		text-align: left;
+		margin-bottom: 0;
+	}
+
+	.card-icon {
+		float: left;
+		background-color: black;
+		display: inline-block;
+		width: $card-height;
+		height: $card-height;
+		margin-right: $card-padding;
+	}
+}
+
+.card {
+	background-color: #333;
+	@include transition-duration(0.2s);
+}
+
+.card:hover {
+	background-color: shade(#333, $value-shaden);
+	@include transition-duration(0.3s);
+}
+
+
+#card-media {
+	background-color: $card-media-background;
+	@include transition-duration(0.2s);
+}
+
+#card-media:hover {
+	background-color: shade($card-media-background, $value-shaden);
+	@include transition-duration(0.3s);
+}
+
+#card-media .card-icon {
+	background: url("/images/card-media.png");
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 60px 60px;
+	background-color: shade($card-media-background, $value-shaden);
+}
+
+
+#card-events {
+	background-color: $card-events-background;
+	@include transition-duration(0.2s);
+}
+
+#card-events:hover {
+	background-color: shade($card-events-background, $value-shaden);
+	@include transition-duration(0.3s);
+}
+
+#card-events .card-icon {
+	background: url("/images/card-events.png");
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 60px 60px;
+	background-color: shade($card-events-background, $value-shaden);
+
+}
+
+#card-types {
+	background-color: $card-types-background;
+	@include transition-duration(0.2s);
+}
+
+#card-types:hover {
+	background-color: shade($card-types-background, $value-shaden);
+	@include transition-duration(0.3s);
+}
+
+#card-types .card-icon {
+	background: url("/images/card-types.png");
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 60px 60px;
+	background-color: shade($card-types-background, $value-shaden);
+}
+
+
+#card-users {
+	background-color: $card-users-background;
+	@include transition-duration(0.2s);
+}
+
+#card-users:hover {
+	background-color: shade($card-users-background, $value-shaden);
+	@include transition-duration(0.3s);
+}
+
+#card-users .card-icon {
+	background: url("/images/card-users.png");
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 60px 60px;
+	background-color: shade($card-users-background, $value-shaden);
+}
+
+
+#card-uploads {
+	background-color: $card-uploads-background;
+	@include transition-duration(0.2s);
+}
+
+#card-uploads:hover {
+	background-color: shade($card-uploads-background, $value-shaden);
+	@include transition-duration(0.3s);
+}
+
+#card-uploads .card-icon {
+	background: url("/images/card-uploads.png");
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 60px 60px;
+	background-color: shade($card-uploads-background, $value-shaden);
+}
+
+#card-reports {
+	background-color: $card-reports-background;
+	@include transition-duration(0.2s);
+}
+
+#card-reports:hover {
+	background-color: shade($card-reports-background, $value-shaden);
+	@include transition-duration(0.3s);
+}
+
+#card-reports .card-icon {
+	background: url("/images/card-report.png");
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 60px 60px;
+	background-color: shade($card-reports-background, $value-shaden);
+}

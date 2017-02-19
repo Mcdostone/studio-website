@@ -1,14 +1,17 @@
 //= require jquery
 //= require jquery_ujs
-//= require bootstrap-sprockets
 //= require cable
+//= require tappy
+//= require navbar
+//= require bootstrap-sprockets
+//= require bootstrap
 
 App.flash = (function() {
 	let closeHTML = `
 	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
     	<span aria-hidden="true">&times;</span>
   	</button>`
-  	
+
 	let insertMessage = function(container) {
 		$('.container-fluid').prepend(container)
 	}
@@ -18,7 +21,7 @@ App.flash = (function() {
 		let tmp = $('<div/>')
 		let close = $(closeHTML)
 		tmp.append(close)
-		tmp.addClass('alert alert-dismissible show animated fadeInRight alert-' + level) 
+		tmp.addClass('alert alert-dismissible show animated fadeInRight alert-' + level)
 		return tmp
 	}
 	return {

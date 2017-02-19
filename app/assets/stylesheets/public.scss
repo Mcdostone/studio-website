@@ -1,0 +1,150 @@
+	$section-margin: 100px;
+
+.section:last-child {
+	margin-bottom: 50px;
+}
+.section:first-child .illustration {
+	height: $section-height + 100px;
+}
+
+section.section {
+  display: inline-block;
+  width: 100%;
+  height: auto;
+  margin-bottom: $section-margin;
+}
+
+section.section .illustration {
+  display: flex;
+	justify-content: center;
+	align-items: center;
+  width: 100%;
+  text-align: center;
+  height: $section-height;
+	margin-bottom: $section-margin / 3;
+  z-index: 3;
+	position: relative;
+  @include box-sizing(border-box);
+  &:before {
+  	content: '';
+  	position: absolute;
+  	top: 0;
+  	bottom: 0;
+  	left: 0;
+  	right: 0;
+    z-index: 5;
+    background-color: rgba(0,0,0, 0.6);
+  }
+}
+
+section.section .title {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  z-index: 299;
+  text-align: center;
+	font-size: 5em;
+	font-weight: 300;
+	color: white;
+	text-transform: uppercase;
+}
+
+section.section p {
+  display: inline-block;
+  position: relative;
+  padding: 0 20%;
+  padding-top: 15px;
+  text-align: justify;
+	font-weight: 300;
+	font-size: 1.25em;
+  line-height: 1.25em;
+	margin: 0;
+	float: left;
+	z-index: 30;
+	color: black;
+	@include box-sizing(border-box);
+}
+
+section.section-mosaic {
+	display: flex;
+	width: 60%;
+	margin: 0 20%;
+  margin-bottom: $section-margin;
+	align-items: center;
+
+	.illustration {
+		width: 50%;
+		float: left;
+	}
+
+	p {
+		width: 50%;
+		padding: 0;
+		margin: 0;
+		float: right;
+		padding-left: 3%;
+		&:before {
+			display: none;
+		}
+	}
+}
+
+.section-mosaic:nth-child(odd) {
+	flex-direction: row-reverse;
+	p {
+		padding-left: 0;
+		padding-right: 3%;
+	}
+}
+
+
+#studio .illustration svg {
+	height: $section-height - 50px;
+	z-index: 298;
+	/*left: 50%;
+	top: 50%;
+	@include translate(-50%, -50%);*/
+	fill: white;
+}
+
+
+
+.nothing {
+	position: absolute;
+	z-index: 100;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	height: 100%;
+	height: 100vh;
+	&:before {
+		position: absolute;
+		content: '';
+		display: inline-block;
+		width: 100%;
+		height: 100%;
+		background-color: rgba(0,0,0, 0.4);
+	}
+
+	div {
+		position: relative;
+		width: 70%;
+		margin-left: 15%;
+		font-weight: 300;
+		font-size: 4em;
+		line-height: 1;
+		color: white;
+		top: 50%;
+		@include translate(0, -50%);
+		text-align: center;
+	}
+}
+
+
+
+
+@import "responsive/public";

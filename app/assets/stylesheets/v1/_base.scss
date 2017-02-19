@@ -1,0 +1,79 @@
+@import "compass/css3/selection";
+
+
+// ----------------------------------------------------
+// -- Basic rules
+// ----------------------------------------------------
+
+
+html *, body {
+	font-family: 'Lato', sans-serif !important;
+	@include selection(rgba($nav-logo-background, 0.8), white);
+}
+
+html {
+	display: block;
+	height: 100%;
+	padding: 0;
+	margin: 0;
+}
+
+body {
+	min-height: 100%;
+	color: $text-color;
+	background-color: $body-background;
+	position: relative;
+}
+
+a:hover, .uk-link:hover {
+	color:$nav-li-hover-color;
+	text-decoration: none;
+}
+
+h2 {
+	width: 100%;
+	color: $nav-li-hover-color;
+	margin: 20px auto;
+	text-align: center;
+}
+
+section {
+	display: inline-block;
+	position: relative;
+	padding: 3% 20%;
+	text-align: justify;
+	background-color: $body-background;
+	font-size: 1.1em;
+	margin: 0;
+	float: left;
+	z-index: 30;
+
+	&:before {
+		content: '';
+		display: block;
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		border-top: 1px solid $nav-logo-background;
+		left: 0;
+		right: 0;
+		z-index: -2;
+		@include transform-origin(0, 0);
+		@include skewY(-2deg);
+		background-color: $body-background;
+	}
+}
+
+label {
+	display: block;
+	font-size: 1.2em;
+	margin-bottom: 6px;
+	font-weight: normal;
+	color: $nav-li-hover-color;
+}
+
+table {
+	width: 100%;
+	color: white;
+	border: 3px solid $table-delimiter;
+}

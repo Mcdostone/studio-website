@@ -1,0 +1,42 @@
+$breakpoint: 590px;
+
+@media screen and (max-width: $breakpoint) {
+  .nav-item-social {  display: none; }  
+
+  #nav-menu-overlay .nav-item-social {
+    display: inline-block;
+  }
+
+  #nav-menu-overlay .nav-items:last-child {
+    flex-direction: row;
+    justify-content: center;
+    border: none;
+  }
+}
+
+@media screen and (max-width: 820px) {
+  nav #nav-logo {  display: none;  }
+  .nav-logo {  display: none;  }
+}
+
+
+@media screen and (max-width: 480px) {
+  nav { justify-content: flex-end; }
+  #app nav, #admin nav { justify-content: space-between; }
+  nav #hamburger {  display: inline-block;  }
+  .nav-right { display: none; }
+
+
+  #nav-menu-overlay.menu-visible {
+  	display: flex;
+  }
+
+  body.menu-visible {
+  	overflow: hidden;
+  }
+
+  #nav-main-menu {
+    display: none;
+    justify-content: center;
+  }
+}

@@ -1,19 +1,14 @@
 !!!
 %html
   %head
-    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}
-    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
-    %title StudioWebsite
-    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
-    = javascript_include_tag 'application', 'data-turbolinks-track' => true
-    = csrf_meta_tags
+    = render 'partials/head'
     - if content_for?(:font)
       = yield :font
-  %body
+  %body#admin
 
     = render 'partials/nav'
 
-    %div.container-fluid#container-admin
+    %div.container
       = render 'partials/flash'
       = yield
 
@@ -47,7 +42,7 @@
             }
           }
         })*/
-        
+
     = javascript_include_tag 'https://sdk.amazonaws.com/js/aws-sdk-2.7.27.min.js'
     - if content_for?(:js)
       = yield :js

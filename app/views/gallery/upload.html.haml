@@ -1,6 +1,0 @@
-%a{href: "javascript:;", "lk-google-picker" => true, "on-picked" => "onPicked(docs)", "on-loaded" => "onLoaded()", "on-cancel" => "onCancel()"}
-	Upload from Google Drive
-
-%div{"ng-repeat" => "file in files"}
-	%a{href: "{{ file.url }}"}
-		{{file.name}}

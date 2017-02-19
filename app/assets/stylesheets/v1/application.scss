@@ -1,0 +1,165 @@
+//@import "bootstrap";
+@import "configuration";
+
+//@import "base";
+//@import "style";
+@import "public";
+@import "animate";
+@import "media";
+@import "dropzone";
+@import "users";
+@import "grid";
+@import "admin";
+@import "navbar";
+@import "cover";
+@import "likes";
+@import "lightbox";
+@import "flash";
+@import "activities";
+
+
+.cards *:focus {
+	color: white;
+}
+
+.footer {
+	position: absolute;
+	bottom: 0;
+	width: 60%;
+
+	margin-left: 20%;
+	justify-content: center;
+	align-items: center;
+	display: flex;
+	padding: 0 20%;
+	.col {
+		width: 40%;
+	}
+
+	height: $footer-height;
+	background-color: $nav-background;
+	text-align: center;
+	z-index: 4;
+
+	a, div {
+		display: block;
+		color: darken($nav-color, 10%);
+		@include transition-duration(0.2s);
+
+	}
+
+	a:hover {
+		color: white;
+		@include transition-duration(0.3s);
+	}
+}
+
+.nothing {
+	position: absolute;
+	top: $nav-height;
+	left: 0;
+	bottom: $footer-height;
+	bottom: 0;
+	right: 0;
+	background: url("/images/nothing.gif") top fixed;
+	background-size: cover;
+	z-index: 5;
+
+	&:before {
+		position: absolute;
+		content: '';
+		display: inline-block;
+		width: 100%;
+		height: 100%;
+		background-color: rgba(0,0,0, 0.4);
+	}
+
+	div {
+		position: relative;
+		width: 70%;
+		margin-left: 15%;
+		font-weight: 300;
+		font-size: 4em;
+		line-height: 1;
+		color: white;
+		top: 45%;
+		@include translate(0, -50%);
+		text-align: center;
+	}
+}
+
+.button {
+	display: inline-block;
+	padding: 10px 20px;
+	width: auto;
+	margin: 0 auto;
+	margin-top: 20px;
+	color: white;
+	text-align: center;
+	border: none;
+	cursor: pointer;
+	font-size: 1.2em;
+	line-height: normal;
+	background-color: $nav-logo-background;
+	@include transition-duration(0.2s);
+
+	&:hover {
+		background-color: $nav-logo-hover-background;
+		color: white;
+		@include transition-duration(0.3s);
+	}
+
+	&:focus {  outline: none;  }
+}
+
+.center {
+	display: block;
+	text-align: center;
+	ul {
+		padding: 0;
+		list-style-type: none;
+	}
+}
+
+.form-group:last-child {
+	text-align: center;
+}
+
+.disabled {
+	cursor: default;
+	background-color: grey;
+	&:hover {
+		background-color: grey;
+	}
+
+}
+
+.overlay {
+	filter: contrast(110%) grayscale(100%) brightness(105%);
+	@include transition-duration(0.5s);
+
+	&:hover {
+		filter: contrast(100%) grayscale(0%) brightness(100%);
+		@include transition-duration(0.3s);
+	}
+}
+
+
+
+.overlay:after {
+	content: '';
+	position: absolute;
+//	background-color: rgba(#000, 0.5);
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+.overlay:hover:after {
+	//background-color: transparent;
+}
+
+
+@import "uploads";
+@import "reports";

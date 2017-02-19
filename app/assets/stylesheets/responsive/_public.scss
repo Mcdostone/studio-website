@@ -1,0 +1,92 @@
+@media screen and (max-width: 1500px) {
+  section.section .title {  font-size: 3em; }
+}
+
+@media screen and (max-width: 1050px) {
+  section.section .title {  font-size: 2em; }
+
+  section.section p {
+    padding: 0 10%;
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    @include box-sizing(border-box);
+  }
+
+  section.section {
+    margin-bottom: 60px;
+  }
+
+  section.section-mosaic {
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+    @include box-sizing(border-box);
+    .illustration { width: 90%; }
+    p { padding: 0; padding-left: 5%; width: 100%;}
+  }
+}
+
+@media screen and (max-width: 700px) {
+
+  section.section p, section.section-mosaic p, .section-mosaic:nth-child(odd) p{
+    font-size: 1em;
+    line-height: 1.3em;
+    padding: 0 5%;
+    width: 100%;
+  }
+
+  .nothing div {
+    width: 90%;
+    margin-left: 5%;
+  }
+
+  section.section-mosaic {
+    width: 100%;
+    display: inline-block;
+    margin-left: 0;
+    margin-right: 0;
+
+    .illustration {
+      width: 100%;
+    }
+  }
+
+  section.section .illustration {
+    margin-bottom: 20px;
+    background-attachment: scroll !important;
+  }
+
+  #studio .illustration svg {
+    position: absolute;
+    @include translate(0,0);
+    display: inline-block;
+    width: 90%;
+  }
+}
+
+
+
+@media screen and (max-width: 530px) {
+  section.section p, section.section-mosaic p, .section-mosaic:nth-child(odd) p{
+    padding: 0 5%;
+    width: 100%;
+  }
+
+  section.section .title {
+    font-size: 3em;
+  }
+
+  .nothing div {  font-size: 2em;  }
+
+  section.section-mosaic {
+    width: 100%;
+    display: inline-block;
+    margin-left: 0;
+    margin-right: 0;
+
+    .illustration {
+      width: 100%;
+    }
+  }
+}
