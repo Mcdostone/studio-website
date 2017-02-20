@@ -1,4 +1,4 @@
-	$section-margin: 100px;
+$section-margin: 100px;
 
 .section:last-child {
 	margin-bottom: 50px;
@@ -9,6 +9,7 @@
 
 section.section {
   display: inline-block;
+	padding: 0;
   width: 100%;
   height: auto;
   margin-bottom: $section-margin;

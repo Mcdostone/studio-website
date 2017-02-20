@@ -4,12 +4,14 @@ nav i {
 }
 
 nav {
+	box-shadow: none;
 	@include transition-duration(0.5s);
 	display: inline-flex;
 	justify-content: space-between;
 	width: 100%;
 	z-index: 300;
 	padding: 0;
+	height: $nav-height;
 	align-content: center;
 	position: fixed;
 	background-color: transparent;
@@ -63,10 +65,13 @@ nav {
 
 .dropdown {
 	width: auto;
+	a {
+		padding: 0 30px;
+	}
 	position: relative;
 }
 
-.dropdown-content {
+.dropdown-contents {
     display: none;
     position: absolute;
 		background: white;
@@ -77,13 +82,13 @@ nav {
 		@include box-sizing(border-box);
 }
 
-.nav-item:hover .dropdown-content a {
+.nav-item:hover .dropdown-contents a {
 	padding: 0;
  	color: shade(white, 45%);
 	&:hover { color: black; }
 }
 
-.dropdown:hover .dropdown-content {
+.dropdown:hover .dropdown-contents {
     display: inline-block;
 		right: 0;
 }
@@ -144,6 +149,10 @@ nav #hamburger{
 		a {  padding: 0;  }
 		text-align: left;
 	}
+	.nav-item.nav-item-social  {
+		padding:  0;
+		a {  padding: 0 15px; }
+	}
 
 	header {
 		.nav-logo {
@@ -163,5 +172,16 @@ nav #hamburger{
 		justify-content: space-between;
 	}
 }
+
+.nav-item.facebook:hover {
+	background-color: #3b5998;
+	.fa-facebook { color: white; }
+}
+
+.nav-item.youtube:hover {
+	background-color: #e52d27;
+	.fa-youtube-play { color: white; }
+}
+
 
 @import "responsive/navbar";

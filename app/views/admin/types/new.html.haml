@@ -1,8 +1,8 @@
-%h2 Nouveau type
-
 = content_for :js do
   = javascript_include_tag 'dynamic_image_form.js'
   = javascript_include_tag 'admin/covers.js'
   = javascript_include_tag 'admin/types.js'
 
-= render 'form'
+%div.section-admin
+  %h2 Nouveau type
+  = render 'form'

@@ -1,5 +1,5 @@
 App.types = function() {
-	
+
 	let check = function(e) {
 		e.preventDefault()
 		let input = $('#type_name')
@@ -18,4 +18,5 @@ App.types = function() {
 
 $(function() {
 	App.types()
+	Materialize.updateTextFields()
 })

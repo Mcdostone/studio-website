@@ -1,16 +1,17 @@
-%h2 Valider le report
+%div.section-admin
 
-= content_for :font do
-  = stylesheet_link_tag 'https://fonts.googleapis.com/css?family=Dancing+Script', rel: 'stylesheet'
+  %h2 Valider le report
+  = content_for :font do
+    = stylesheet_link_tag 'https://fonts.googleapis.com/css?family=Dancing+Script', rel: 'stylesheet'
 
-= image_tag(url_media(@report.medium), :class => "admin-medium")
-  
-%div.report
-  = link_to user_path(@report.user) do 
-    = render 'reports/profile', user: @report.user
-  %p.message
-    = @report.message
+  = image_tag(url_media(@report.medium), :class => "admin-medium")
 
-%div.form-group
-  = link_to 'Annuler', admin_report_path(@report), method: :delete, data: { confirm: 'Voulez-vous annuler ce report ?'}, class: 'button'
-  = link_to 'Valider', valid_admin_report_path(@report), method: :post, data: { confirm: 'Voulez-vous valider ce report (cela supprimera le média) ?'}, class: 'button'
+  %div.report
+    = link_to user_path(@report.user) do
+      = render 'reports/profile', user: @report.user
+    %p.message
+      = @report.message
+
+  %div.form-group
+    = link_to 'Annuler', admin_report_path(@report), method: :delete, data: { confirm: 'Voulez-vous annuler ce report ?'}, class: 'button'
+    = link_to 'Valider', valid_admin_report_path(@report), method: :post, data: { confirm: 'Voulez-vous valider ce report (cela supprimera le média) ?'}, class: 'button'

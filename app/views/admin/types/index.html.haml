@@ -1,32 +1,32 @@
-%h2 Liste des Types
+%div.section-admin
 
-%table.table.table-striped
-  %thead
-    %tr
-      %th ID
-      %th Nom
-      %th Types MIME
-      %th Ajouté
-      %th Mis à jour
-      %th
-      %th
-  %tbody
-    - @types.each do |type|
+  %h2 Liste des Types
+  %table.table.table-striped.highlight
+    %thead
       %tr
-        %td
-          = link_to type.id, edit_admin_type_path(type)
-        %td
-          = link_to type.name, edit_admin_type_path(type)
-        %td
-          = type.mime_types
-        %td
-          = format_date(type.created_at)
-        %td
-          = format_date(type.updated_at)
-        %td
-          = link_to 'Modifier', edit_admin_type_path(type)
-        %td
-          = link_to 'Supprimer', admin_type_path(type), method: :delete, data: { confirm: 'Voulez-vous supprimer ce Type ?' }
+        %th ID
+        %th Nom
+        %th Types MIME
+        %th Ajouté
+        %th Mis à jour
+        %th
+        %th
+    %tbody
+      - @types.each do |type|
+        %tr
+          %td
+            = link_to type.id, edit_admin_type_path(type)
+          %td
+            = link_to type.name, edit_admin_type_path(type)
+          %td
+            = type.mime_types
+          %td
+            = format_date(type.created_at)
+          %td
+            = format_date(type.updated_at)
+          %td
+            = link_to 'Modifier', edit_admin_type_path(type)
+          %td
+            = link_to 'Supprimer', admin_type_path(type), method: :delete, data: { confirm: 'Voulez-vous supprimer ce Type ?' }
 
-%div.center
-  = link_to 'Nouveau type', new_admin_type_path, class: 'button'
+  = link_to 'Nouveau type', new_admin_type_path, class: 'waves-effect waves-light btn'

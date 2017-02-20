@@ -2,7 +2,7 @@ class User < ApplicationRecord
 	belongs_to :authorization
 	has_many :uploads
 	after_initialize :set_defaults
-	mount_uploader :avatar, AvatarUploader  
+	mount_uploader :avatar, AvatarUploader
 
 	validates :first_name,
 		presence: true,
@@ -16,7 +16,7 @@ class User < ApplicationRecord
 		presence: true,
 		allow_blank: false,
 		format: { with: /@telecomnancy.net\z/, message: 'Seuls les étudiants de TN.net sont autorisés !'}
-  
+
   validates :uid,
     presence: true,
     allow_blank: false
@@ -29,7 +29,7 @@ class User < ApplicationRecord
 		presence: true,
 		allow_blank: false
 
-  
+
 	def self.from_omniauth(auth)
 		where(provider: auth.provider, uid: auth.uid).first_or_initialize.tap do |user|
 			#user.provider = auth.provider
@@ -40,12 +40,12 @@ class User < ApplicationRecord
 			#user.id_token = auth.extra.id_token
 			user.oauth_token = auth.credentials.token
 			user.oauth_expires_at = Time.zone.at(auth.credentials.expires_at)
-			
-			if auth.extra.id_info.hd == 'telecomnancy.net'
+
+			#if auth.extra.id_info.hd == 'telecomnancy.net'
 				user.save!
 				return user
-			end
-			return nil
+		#	end
+		#	return nil
 		end
 	end
 

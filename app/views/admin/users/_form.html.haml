@@ -2,29 +2,33 @@
 
   = render 'admin/partials/errors', model: @user
 
-  %div.form-group
-    = label_tag 'Image de profile:'
-    = f.file_field :avatar, accept: 'image/png,image/gif,image/jpeg,image/jpg', class: 'form-control' 
+  %div.input-field.file-field
+    %div.btn
+      %span Image de profile:
+      = f.file_field :avatar, accept: 'image/png,image/gif,image/jpeg,image/jpg'
+    %div.file-path-wrapper
+      = text_field_tag 'Eliot <3', '', class: 'file-path validate'
 
-  %div.form-group
+  %div.input-field
+    = f.text_field :nickname, placeholder: 'fred la pouf, toubab ...'
     = label_tag 'Surnom:'
-    = f.text_field :nickname, placeholder: "fred la pouf, toubab ...", autofocus: "autofocus", class: "form-control"
+
 
   - if @user.authorization.name != 'admin' && @current_user.authorization.name == 'admin'
-    %div.form-group
+    %div.row
       = label_tag "Auteur (Le statut d'auteur permet d'uploader des médias, créer de nouvelles évents et types ainsi que de modifier les profils des autres utilisateurs)"
-      = f.check_box :authorization, id: "toggle", checked: @user.authorization.name == 'author',  :class => 'form-control'
-      -#%div.wrapper
-        -#= f.check_box :authorization, id: "toggle", checked: @user.authorization.name == 'author'
-        -#%label{:for => "toggle"}
+      %div.switch
+        %label
+          Off
+          = f.check_box :authorization, checked: @user.authorization.name == 'author'
+          %span.lever
+          On
 
   - if @current_user.authorization.name == 'admin' && @user.authorization.name != 'admin'
-    %div.form-group
-      = label_tag 'Bannir ?'
-      = f.check_box :ban, checked: @user.ban, :class => 'form-control'
-      -#%div.wrapper
-        -#%label{:for => "toggle"}
+    %div.row
+      = f.check_box :ban, checked: @user.ban, :class => 'filled-in'
+      = label_tag '', 'Bannir ?', :for => 'user_ban'
 
-
-  %div.form-group
-    = f.submit submit_button_value(@user), class: 'button'
+  %button.btn.waves-effect.waves-light{type: 'submit'}
+    = submit_button_value(@user)
+    %i.material-icons.right

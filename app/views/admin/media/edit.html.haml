@@ -1,3 +1,5 @@
--#%h2 Éditer un Média
+= content_for :js do
+  = javascript_include_tag 'admin/media.js'
 
-= render 'form'
+%div.section-admin
+  = render 'form'

@@ -1,6 +1,11 @@
-@import "bootstrap";
+@import "materialize";
 @import "base";
+@import "grid";
+@import "users";
+@import "dropzone";
+@import "uploads";
 @import "navbar";
+@import "cover";
 @import "public";
 @import "footer";
 @import "admin";
@@ -9,12 +14,23 @@
 	justify-content: space-between;
 }
 
-.container {
+.invisible {
+	display: none;
+}
+
+#root-container {
 	width: 100%;
 	height: 100%;
 	padding: 0;
 	position: relative;
 	padding-bottom: $footer-height;
-	background-color: white;
-//	@include box-sizing(border-box);
+}
+
+.button {
+	padding: 20px;
+	width: auto;
+	text-align: center;
+	@include box-sizing(border-box);
+	background: red;
+	color: white;
 }

@@ -13,7 +13,7 @@ App.events = (function() {
 	return {
 		init: function() {
 			App.covers.setBindingName($('#event_name'))
-			App.covers.setBindingDate($('#event_date_event'))
+			App.covers.setBindingDate($('#event_date'))
 			App.covers.setBindingCover($('#event_cover'))
 			App.covers.setActionOnSubmit(check)
 		}
@@ -22,4 +22,8 @@ App.events = (function() {
 
 $(function() {
 	App.events.init()
+	Materialize.updateTextFields()
+	$('.datepicker').pickadate({
+    selectMonths: true
+  })
 })

@@ -3,8 +3,11 @@
 //= require cable
 //= require tappy
 //= require navbar
-//= require bootstrap-sprockets
-//= require bootstrap
+//= require materialize
+//= require pickadate/picker
+//= require pickadate/picker.date
+//= require pickadate/picker.time
+
 
 App.flash = (function() {
 	let closeHTML = `

@@ -1,45 +1,45 @@
-%h2 Liste des Médias
+%div.section-admin
+  %h2 Liste des Médias
 
-%table.table.table-striped
-  %thead
-    %tr
-      %th ID
-      %th Thumbnail
-      %th Type
-      %th Event
-      %th Upload
-      %th Visible
-      %th.colum-timestamps Ajouté
-      %th.colum-timestamps Mis à jour
-      %th
-      %th
-      %th
-  %tbody
-    - @media.each do |medium|
+  %table.striped.bordered.highlight
+    %thead
       %tr
-        %td
-          = medium.id
-        %td
-          = link_to image_tag(url_thumbnail(medium), class: 'table-medium'), edit_admin_medium_path(medium)
-        %td
-          = medium.type.name if medium.type
-        %td
-          = medium.event.name if medium.event
-        %td
-          -#= link_to(medium.upload.id, show_admin_upload_path(medium.upload)) if medium.upload
-          = link_to(medium.upload.id, admin_upload_path(medium.upload)) if medium.upload
-        %td
-          = 'non' unless medium.visible
-        %td
-          = format_date(medium.created_at)
-        %td
-          = format_date(medium.updated_at)
-        %td
-          = link_to 'Afficher', medium_path(medium)
-        %td
-          = link_to 'Modifier', edit_admin_medium_path(medium)
-        %td
-          = link_to 'Supprimer', admin_medium_path(medium), method: :delete, data: { confirm: 'Voulez vous supprimer ce média ?'}
+        %th ID
+        %th Thumbnail
+        %th Type
+        %th Event
+        %th Upload
+        %th Visible
+        %th.colum-timestamps Ajouté
+        %th.colum-timestamps Mis à jour
+        %th
+        %th
+        %th
+    %tbody
+      - @media.each do |medium|
+        %tr
+          %td
+            = medium.id
+          %td
+            = link_to image_tag(url_thumbnail(medium), class: 'table-medium'), edit_admin_medium_path(medium)
+          %td
+            = medium.type.name if medium.type
+          %td
+            = medium.event.name if medium.event
+          %td
+            -#= link_to(medium.upload.id, show_admin_upload_path(medium.upload)) if medium.upload
+            = link_to(medium.upload.id, admin_upload_path(medium.upload)) if medium.upload
+          %td
+            = 'non' unless medium.visible
+          %td
+            = format_date(medium.created_at)
+          %td
+            = format_date(medium.updated_at)
+          %td
+            = link_to 'Afficher', medium_path(medium)
+          %td
+            = link_to 'Modifier', edit_admin_medium_path(medium)
+          %td
+            = link_to 'Supprimer', admin_medium_path(medium), method: :delete, data: { confirm: 'Voulez vous supprimer ce média ?'}
 
-%div.center
-  = link_to 'Importer des médias', new_admin_upload_path, class: 'button'
+  = link_to 'Importer des médias', new_admin_upload_path, class: 'waves-effect waves-light btn'

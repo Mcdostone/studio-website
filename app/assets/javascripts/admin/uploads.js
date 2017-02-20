@@ -12,10 +12,10 @@ Dropzone.prototype.getActiveFiles = function() {
 }
 
 App.uploads = (function() {
-	let form = $('#medias form')
+	let form = $('form')
 	let action = form.attr('action')
 	let nbFiles = 0
-	let submit = $('#medias .button')
+	let submit = $('.btn')
 	let parallelUploads = 100
 	let filesUploaded = 0
 	let percentUpload = 0
@@ -26,7 +26,7 @@ App.uploads = (function() {
 	let studioDropzone = undefined
 
 	let initDropzone = function() {
-		studioDropzone = new Dropzone('div#studio-dropzone', { 
+		studioDropzone = new Dropzone('div#studio-dropzone', {
 			url: action,
 			autoProcessQueue: false,
 			uploadMultiple: true,
@@ -58,14 +58,14 @@ App.uploads = (function() {
 		refresh: function() {
   			p1 = Math.floor((100 * filesUploaded / nbFiles) / 2)
     		p2 = Math.floor(percentUpload/ 2)
-	
-    		percentValue = p1 + p2 > 100 ? 100 : p1 + p2 
+
+    		percentValue = p1 + p2 > 100 ? 100 : p1 + p2
     		App.uploads.setProgressBar(percentValue)
     		percent.text(percentValue + '%')
     		if(nbFiles == filesUploaded)
       			desc.text('Upload terminé')
   		},
-		
+
 		nbFiles: function() {
 			return nbFiles
 		},
@@ -97,7 +97,7 @@ App.uploads = (function() {
 			form.off('submit')
 			progressBarContainer = $('<div/>')
 			progressBarInfos.addClass('progress-bar-content')
-			let close = $('<div/>').text('Fermer').addClass('button button-close').toggleClass('invisible')
+			let close = $('<div/>').text('Fermer').addClass('btn').toggleClass('invisible')
 			progressBarInfos.append(percent)
 			progressBarInfos.append(desc)
 			progressBarInfos.append(close)
@@ -146,7 +146,7 @@ App.uploads = (function() {
 				close.on('click', e => progressBarContainer.fadeOut(300, () => {
 					progressBarContainer.hide()
 //					window.location.href = App.upload_progress.getUrl()
-				
+
 				}))*/
 			})
 
@@ -173,6 +173,7 @@ App.uploads = (function() {
 
 
 $(function() {
+	$('select').material_select();
 	App.upload_progress.init()
 	App.uploads.init()
 })

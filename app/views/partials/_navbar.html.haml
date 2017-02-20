@@ -44,11 +44,11 @@
             Logout
 
     %ul.nav-items
-      %li.nav-item.nav-item-social
+      %li.nav-item.nav-item-social.youtube
         = link_to "/" do
           %i.fa.fa-youtube-play{:aria => {hidden: 'true'}}
 
-      %li.nav-item.nav-item-social
+      %li.nav-item.nav-item-social.facebook
         = link_to "/" do
           %i.fa.fa-facebook{:aria => {hidden: 'true'}}
 
@@ -76,13 +76,13 @@
     - if @current_user
       - if @current_user.author? || @current_user.admin?
         %li.nav-item
-          = link_to "Dashboard", ''
+          = link_to "Dashboard", admin_path
 
-    %li.nav-item.nav-item-social
+    %li.nav-item.nav-item-social.youtube
       = link_to "/" do
         %i.fa.fa-youtube-play{:aria => {hidden: 'true'}}
 
-    %li.nav-item.nav-item-social
+    %li.nav-item.nav-item-social.facebook
       = link_to "/" do
         %i.fa.fa-facebook{:aria => {hidden: 'true'}}
 
@@ -90,7 +90,7 @@
       %li.nav-item.dropdown
         = link_to '#' do
           = @current_user.nickname
-        %div.dropdown-content
+        %div.dropdown-contents
           = link_to 'My Profil', user_path(@current_user)
           = link_to "Logout", logout_path
 

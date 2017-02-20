@@ -1,4 +1,4 @@
-%div.cards 
+%div.cards.section-admin
   = link_to admin_media_path, :id => 'card-media', :class => 'card'  do
     %div.card-icon
     %p.card-number
@@ -44,11 +44,11 @@
       = @reports_count > 1 ? 'reports' : 'report'
 
 
+%div.section-admin
+  %h2 Administrateurs
+  %div.grid
+    = render 'admin/users/list_users', users: @users.select { |u| u.admin? }
 
-%h2 Administrateurs
-%div.grid
-  = render 'admin/users/list_users', users: @users.select { |u| u.admin? }
-
-%h2 Auteurs
-%div.grid
-  = render 'admin/users/list_users', users: @users.select { |u| u.author? }
+  %h2  Auteurs
+  %div.grid
+    = render 'admin/users/list_users', users: @users.select { |u| u.author? }

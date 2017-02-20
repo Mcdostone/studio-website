@@ -1,15 +1,23 @@
-@import "configuration";
-
 .cover {
 	position: relative;
 	display: inline-block;
 	width: 100%;
 	float: left;
-
 	height: $cover-height;
 
+	&:after {
+		content: '';
+		background: rgba(0,0,0,0.5);
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+	}
+
 	.illustration {
-    	height: $cover-height;
+		width: 100%;
+		height: $cover-height;
 		object-fit: cover;
 		background-color: white;
 	}
@@ -31,14 +39,14 @@
 	top: 0;
 	text-align: center;
     color: white;
-	
+
 	.cover-name {
     	font-size: 5em;
     	font-weight: 300;
 	}
 	.cover-count, .cover-date {
 		font-weight: 100;
-		font-size: 1.5em;		
+		font-size: 1.5em;
 	}
 
 	.cover-date {

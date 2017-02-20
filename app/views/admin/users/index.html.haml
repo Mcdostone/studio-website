@@ -1,42 +1,43 @@
-%h2 Liste des Studistes
+%div.section-admin
 
-%table.table.table-striped
-  %thead
-    %tr
-      %th ID
-      %th Prénom
-      %th Nom
-      %th Pseudo
-      %th Autorisation
-      %th ban
-      %th.colum-timestamps Ajouté
-      %th.colum-timestamps Mis à jour
-      %th
-      - if @current_user.admin?
+  %h2 Liste des Studistes
+  %table.table.table-striped
+    %thead
+      %tr
+        %th ID
+        %th Prénom
+        %th Nom
+        %th Pseudo
+        %th.useless-column Autorisation
+        %th.useless-column ban
+        %th.useless-column Ajouté
+        %th.useless-column Mis à jour
         %th
-  %tbody
-  - @users.each do |user|
-    %tr
-      %td
-        =  link_to user.id, edit_admin_user_path(user)
-      %td
-        = link_to user.first_name, edit_admin_user_path(user)
-      %td
-        = link_to user.last_name, edit_admin_user_path(user)
-      %td
-        = link_to user.nickname, edit_admin_user_path(user)
-      %td
-        = user.authorization.name
-      %td
-        = 'oui' if user.ban
-      %td
-        = format_date(user.created_at)
-      %td
-        = format_date(user.updated_at)
-      %td
-        = link_to 'Afficher', user_path(user)
-      %td
-        = link_to 'Éditer', edit_admin_user_path(user)
+        - if @current_user.admin?
+          %th
+    %tbody
+    - @users.each do |user|
+      %tr
         %td
+          =  link_to user.id, edit_admin_user_path(user)
+        %td
+          = link_to user.first_name, edit_admin_user_path(user)
+        %td
+          = link_to user.last_name, edit_admin_user_path(user)
+        %td
+          = link_to user.nickname, edit_admin_user_path(user)
+        %td.useless-column
+          = user.authorization.name
+        %td.useless-column
+          = 'oui' if user.ban
+        %td.useless-column
+          = format_date(user.created_at)
+        %td.useless-column
+          = format_date(user.updated_at)
+        %td.useless-column
+          = link_to 'Afficher', user_path(user)
+        %td.useless-column
+          = link_to 'Éditer', edit_admin_user_path(user)
+        %td.useless-column
           - if @current_user.admin? && @current_user != user
             = link_to 'Ninja', admin_ninja_path(user), target: '_blank'

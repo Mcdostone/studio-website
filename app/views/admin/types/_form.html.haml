@@ -1,21 +1,23 @@
 = form_for [:admin, @type] do |f|
 
   = render 'admin/partials/errors', model: @type
+  = render 'types/cover', type: @type, media: @type.media, settings: false
 
-  %div.form-group
-    = render 'types/cover', type: @type, media: @type.media, settings: false
+  %div.input-field.file-field
+    %div.btn
+      %span Photo de couverture
+      = f.file_field :cover, accept: 'image/png,image/gif,image/jpeg,image/jpg'
+    %div.file-path-wrapper
+      = text_field_tag 'Maxou <3', '', class: 'file-path validate'
 
-  %div.form-group
-    = label_tag 'Photo de couverture:'
-    = f.file_field :cover, accept: 'image/png,image/gif,image/jpeg,image/jpg', class: 'form-control' 
-
-  %div.form-group
+  %div.input-field
     = label_tag 'Type de média:'
-    = f.text_field :name, placeholder: "Vidéo...", autofocus: "autofocus", class: "form-control"
+    = f.text_field :name, placeholder: "Vidéo...", class: "form-control"
 
-  %div.form-group
+  %div.input-field
     = label_tag 'Types de MIME (séparé par un espace si plusieurs):'
     = f.text_field :mime_types, placeholder: "image/png image/jpeg", class: "form-control"
 
-  %div.form-group
-    = f.submit submit_button_value(@type), class: "button"
+  %button.btn.waves-effect.waves-light{type: 'submit'}
+    = submit_button_value(@type)
+    %i.material-icons.right

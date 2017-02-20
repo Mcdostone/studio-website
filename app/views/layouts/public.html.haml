@@ -5,8 +5,8 @@
 
   %body{:id => ('app' if @current_user)}
 
-    %div.container
-      = render 'partials/nav'
+    %div#root-container
+      = render 'partials/navbar'
       = render 'partials/flash'
       = yield
 

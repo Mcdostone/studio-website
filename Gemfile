@@ -13,7 +13,7 @@ gem 'coffee-rails', '~> 4.1.0'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
-gem 'bootstrap', '~> 4.0.0.alpha6'
+gem 'materialize-sass'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
@@ -25,6 +25,7 @@ gem "haml-rails"
 
 gem 'omniauth-google-oauth2', '~> 0.4.1'
 gem "font-awesome-rails"
+gem 'pickadate-rails'
 gem 'compass-rails'
 
 gem 'mini_magick', '~> 4.6'

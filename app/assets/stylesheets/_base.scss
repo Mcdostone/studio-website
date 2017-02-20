@@ -4,7 +4,7 @@
 @import "compass/css3/box-sizing";
 @import "compass/css3/selection";
 @import "compass/reset/utilities";
-@include global-reset();
+//@include global-reset();
 
 @import url('https://fonts.googleapis.com/css?family=Lato:300,400,700');
 
@@ -18,6 +18,12 @@ $nav-size: 									1.1em;
 $nav-item-padding: 					15px;
 
 $section-height: 						300px;
+$small-item-size:						10vw;
+$small-item-margin:					4px;
+$big-item-size:							1.3 * $small-item-size;
+$big-item-margin:  					$small-item-margin;
+
+$cover-height:							300px;
 
 $card-media-background:			#2ECC71;
 $card-events-background:		#EB9532;
@@ -27,8 +33,19 @@ $card-uploads-background:		#333;
 $card-reports-background:		#34495e;
 $value-shaden: 							20%;
 
-
 $footer-height: 						100px;
+
+
+$primary-color: 				color("materialize-red", "lighten-2") !default;
+$primary-color-light: 	false !default;
+$primary-color-dark: 		false !default;
+
+$secondary-color: 			color("teal", "lighten-1") !default;
+$success-color: 				color("green", "base") !default;
+$error-color: 					color("red", "base") !default;
+$link-color: 						color("light-blue", "darken-1") !default;
+
+
 // ----------------------------------------------------
 // -- Mixins for studio
 // ----------------------------------------------------
@@ -60,10 +77,10 @@ html {
 	margin: 0;
 	touch-action: manipulation;
 	padding: 0;
+	background: transparent;
 	//height: 100%;
 	//min-height: 100%;
 	//min-width: 100%;
-	background: black;
 	font-family: 'Lato', sans-serif ;
 }
 
@@ -75,4 +92,21 @@ body {
 a, a:visited {
 	color: white;
 	text-decoration: none !important;
+}
+
+h2 {
+	width: 100%;
+	margin: 0.40em 0;
+	font-size: 1.5em;
+	font-weight: 300;
+	text-align: center;
+}
+
+form {
+	width: 100%;
+	text-align: center;
+}
+
+table {
+	margin-bottom: 30px;
 }

@@ -1,32 +1,32 @@
-%h2 Liste des Évents
+%div.section-admin
+  %h2 Liste des Évents
 
-%table.table.table-striped
-  %thead
-    %tr
-      %th ID
-      %th Nom
-      %th Date de l'Évent
-      %th.colum-timestamps Ajouté
-      %th.colum-timestamps Mis à jour
-      %th
-      %th
-  %tbody
-  - @events.each do |event|
-    %tr
-      %td
-        = link_to event.id, edit_admin_event_path(event)
-      %td
-        = link_to event.name, edit_admin_event_path(event)
-      %td
-        = format_event_date(event.date_event)
-      %td
-        = format_date(event.created_at)
-      %td
-        = format_date(event.updated_at)
-      %td
-        = link_to 'Modifier', edit_admin_event_path(event)
-      %td
-        = link_to 'Supprimer', admin_event_path(event), method: :delete, data: { confirm: 'Voulez-vous supprimer cet Event ?' }
+  %table.striped.bordered.highlight
+    %thead
+      %tr
+        %th ID
+        %th Nom
+        %th Date de l'Évent
+        %th.colum-timestamps Ajouté
+        %th.colum-timestamps Mis à jour
+        %th
+        %th
+    %tbody
+    - @events.each do |event|
+      %tr
+        %td
+          = link_to event.id, edit_admin_event_path(event)
+        %td
+          = link_to event.name, edit_admin_event_path(event)
+        %td
+          = format_event_date(event)
+        %td
+          = format_date(event.created_at)
+        %td
+          = format_date(event.updated_at)
+        %td
+          = link_to 'Modifier', edit_admin_event_path(event)
+        %td
+          = link_to 'Supprimer', admin_event_path(event), method: :delete, data: { confirm: 'Voulez-vous supprimer cet Event ?' }
 
-%div.center
-  = link_to 'Nouveau Évent', new_admin_event_path, class: 'button'
+  = link_to 'Nouveau Évent', new_admin_event_path, class: 'waves-effect waves-light btn'

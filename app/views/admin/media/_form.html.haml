@@ -1,19 +1,25 @@
 = form_for [:admin, @medium] do |f|
-  
+
   = render 'admin/partials/errors', model: @medium
   = image_tag(url_media(@medium), :class => "admin-medium")
-  
-  %div.form-group
+
+  %div.input-field
+    = f.select :type_id, @types.map{ |t| [t.name, t.id] }, {}, {autofocus: 'autofocus'}
     = label_tag 'Type du média:'
-    = f.select :type_id, @types.map{ |t| [t.name, t.id] }, {}, {:class => 'custom-select form-control', autofocus: 'autofocus'}
 
-  %div.form-group
+  %div.input-field
+    = f.select :event_id, @events.map{ |e| [e.name, e.id] }, {}, {}
     = label_tag 'Évenement:'
-    = f.select :event_id, @events.map{ |e| [e.name, e.id] }, {}, {:class => 'custom-select form-control'}
 
-  %div.form-group
-    = label_tag 'Visible:'
-    = f.check_box :visible, checked: @medium.visible, :class => 'form-control'
+  %div.row
+    = label_tag 'Visble:'
+    %div.switch
+      %label
+        Off
+        = f.check_box :visible, checked: @medium.visible
+        %span.lever
+        On
 
-  %div.form-group
-    = f.submit submit_button_value(@medium), class: "button"
+  %button.btn.waves-effect.waves-light{type: 'submit'}
+    = submit_button_value(@medium)
+    %i.material-icons.right

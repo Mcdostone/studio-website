@@ -6,14 +6,13 @@
       = yield :font
   %body#admin
 
-    = render 'partials/nav'
-
-    %div.container
+    %div#root-container
+      = render 'partials/navbar'
       = render 'partials/flash'
-      = yield
+      %div#container-admin
+        = yield
 
-
-    -#= render 'partials/footer'
+      -#= render 'partials/footer'
 
     - if @current_user
       :javascript
