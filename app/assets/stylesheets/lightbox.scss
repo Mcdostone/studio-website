@@ -1,5 +1,5 @@
 #lightbox {
-	z-index: 60;
+	z-index: 999;
 	position: fixed;
 	top: 0;
 	width: 100%;
@@ -58,7 +58,7 @@
 	top: 10px;
 	left: initial;
 	right: 10px;
-	transform: translate(0, 0);	
+	transform: translate(0, 0);
 }
 
 
@@ -111,7 +111,7 @@
 	opacity: 1;
 	transition: opacity 0.1s;
 }
- 
+
 
 .lightbox-next-enter-active {
  //	transition-delay: 0.1s

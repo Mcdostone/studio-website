@@ -1,6 +1,6 @@
 .footer {
-	position: absolute;
-	bottom: 0;
+	display: inline-block;
+	height: $footer-height;
 	width: 60%;
 	margin-left: 20%;
 	border-top: 1px solid transparent;// rgba($text-color-shade, 0.15);
@@ -19,17 +19,13 @@
 	font-weight: 300;
 	font-size: 0.9em;
 
-	.col {
-		width: 100%;
-	}
-
-	height: $footer-height;
 	text-align: center;
 	z-index: 4;
 	@include box-sizing(border-box);
 
 	a, div {
 		display: block;
+		width: 100%;
 		color: $text-color-shade;
 		@include transition-duration(0.2s);
 	}
@@ -51,9 +47,5 @@
 		width: 100%;
 		margin: 0;
 		flex-direction: column;
-	}
-
-	.col {
-		margin-bottom: 10px;
 	}
 }

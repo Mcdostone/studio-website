@@ -1,10 +1,17 @@
+
+
 - if @events.empty?
   = render 'partials/nothing'
 
 -else
-  %div.grid.big-items
+  = content_for :js do
+    = javascript_include_tag 'https://unpkg.com/vue/dist/vue.js'
+    = javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/vue-resource/1.2.0/vue-resource.min.js'
+    = javascript_include_tag 'lightbox'
+
+  %div.grid#container-masonry
     - @events.each do |event|
-      = link_to event_path(event), :class => "item" do
+      = link_to event_path(event), :class => "item item-overlay" do
         = image_tag(url_thumbnail(random_media(event)))
         %div.item-infos
           %p.item-name

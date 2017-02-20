@@ -6,9 +6,9 @@
       %tr
         %th ID
         %th Nom
-        %th Types MIME
-        %th Ajouté
-        %th Mis à jour
+        %th.useless-column Types MIME
+        %th.useless-column Ajouté
+        %th.useless-column Mis à jour
         %th
         %th
     %tbody
@@ -18,11 +18,11 @@
             = link_to type.id, edit_admin_type_path(type)
           %td
             = link_to type.name, edit_admin_type_path(type)
-          %td
+          %td.useless-column
             = type.mime_types
-          %td
+          %td.useless-column
             = format_date(type.created_at)
-          %td
+          %td.useless-column
             = format_date(type.updated_at)
           %td
             = link_to 'Modifier', edit_admin_type_path(type)

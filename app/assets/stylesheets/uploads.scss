@@ -64,7 +64,7 @@
 	display: inline-block;
 	position: fixed;
 	top: 0;
-	z-index: 600;
+	z-index: 900;
 	left: 0;
 	right: 0;
 	bottom: 0;
@@ -79,7 +79,7 @@
 		justify-content: center;
 		flex-direction: column;
 		text-align: center;
-		z-index: 22;
+		z-index: 950;
 		p {
 			font-size: 12em;
 			font-weight: 100;
@@ -98,7 +98,7 @@
 		bottom: 0;
 		right: 100%;
 		position: absolute;
-		z-index: 21;
+		z-index: 900;
 		background-color: rgba(#3498db, 0.4);
 		@include transition-duration(0.2s);
 	}

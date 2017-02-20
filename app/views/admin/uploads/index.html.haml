@@ -10,8 +10,8 @@
           %th Uploader
           %th Event
           %th Type
-          %th.colum-timestamps Uploadé le
-          %th
+          %th.useless-column Uploadé le
+          %th.useless-column
 
       %tbody
       - @uploads.each do |upload|
@@ -24,9 +24,9 @@
             = link_to upload.event.name, event_path(upload.event) if upload.event
           %td
             = link_to upload.type.name, type_path(upload.type) if upload.type
-          %td
+          %td.useless-column
             = format_upload_date(upload.created_at)
-          %td
+          %td.useless-column
             = link_to 'Détails', admin_upload_path(upload)
 
     = link_to 'Nouvel upload', new_admin_upload_path, class: 'waves-effect waves-light btn'

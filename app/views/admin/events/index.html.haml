@@ -6,9 +6,9 @@
       %tr
         %th ID
         %th Nom
-        %th Date de l'Évent
-        %th.colum-timestamps Ajouté
-        %th.colum-timestamps Mis à jour
+        %th.useless-column Date de l'Évent
+        %th.useless-column Ajouté
+        %th.useless-column Mis à jour
         %th
         %th
     %tbody
@@ -18,11 +18,11 @@
           = link_to event.id, edit_admin_event_path(event)
         %td
           = link_to event.name, edit_admin_event_path(event)
-        %td
+        %td.useless-column
           = format_event_date(event)
-        %td
+        %td.useless-column
           = format_date(event.created_at)
-        %td
+        %td.useless-column
           = format_date(event.updated_at)
         %td
           = link_to 'Modifier', edit_admin_event_path(event)

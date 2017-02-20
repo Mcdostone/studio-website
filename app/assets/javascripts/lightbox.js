@@ -1,3 +1,18 @@
+$(function(){
+	//$('#container-masonry').gridalicious({
+	$('#container-media').gridalicious({
+	  animate: true,
+		//width: 225,
+		//gutter: 0,
+		animationOptions: {
+			queue: true,
+			speed: 100,
+			effect: 'fadeInOnAppear',
+		}
+	})
+})
+
+
 Vue.http.headers.common['X-CSRF-TOKEN'] = $('meta[name="token"]').attr('value')
 // --------------
 //	Store
@@ -58,7 +73,7 @@ let media = {
 			this.src = m.src
 			this.resize(m)
 		}
-  
+
 		this.$http.get(this.medium).then(response => {
 			m.src = response.body.file.url
   		}, response => console.log(response)
@@ -114,7 +129,7 @@ let lightbox = {
 	},
 	computed: {
 		medium() {
-			if(this.state.index !== false) 
+			if(this.state.index !== false)
 				return this.state.medias[this.state.index]
 			else
 				return undefined
@@ -147,7 +162,7 @@ let lightbox = {
 		prev() {
 			if(this.medium) {
 				this.dir = 'previous'
-				this.state.index = (this.state.index == 0) ? this.state.medias.length - 1 : this.state.index - 1			
+				this.state.index = (this.state.index == 0) ? this.state.medias.length - 1 : this.state.index - 1
 			}
 		}
 	},
@@ -161,18 +176,14 @@ let lightbox = {
 	`
 }
 
-
-
 Vue.component('lightbox', lightbox);
 Vue.component('lightbox-media', media);
-
 
 // --------------
 //	lightbox directive
 // -------------
 Vue.directive('lightbox', {
 	bind(el, binding) {
-		//let index = store.addMedia(el.children[0].children[0].getAttribute('src'))
 		let index = store.addMedia(el.getAttribute('href'))
 		el.addEventListener('click', function(e) {
 			e.preventDefault()
@@ -185,5 +196,5 @@ Vue.directive('lightbox', {
 })
 
 var vm = new Vue({
-	el: '#app'
+	el: '#root-container'
 })

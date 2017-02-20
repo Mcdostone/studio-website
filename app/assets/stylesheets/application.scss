@@ -1,11 +1,12 @@
 @import "materialize";
 @import "base";
+@import "cover";
+@import "lightbox";
 @import "grid";
 @import "users";
 @import "dropzone";
 @import "uploads";
 @import "navbar";
-@import "cover";
 @import "public";
 @import "footer";
 @import "admin";
@@ -14,23 +15,43 @@
 	justify-content: space-between;
 }
 
+#sidenav-overlay {
+	z-index: 600;
+}
+
 .invisible {
 	display: none;
 }
 
-#root-container {
-	width: 100%;
-	height: 100%;
+#root-container, #container-media {
 	padding: 0;
 	position: relative;
-	padding-bottom: $footer-height;
+	//padding-bottom: $footer-height;
 }
 
-.button {
-	padding: 20px;
-	width: auto;
-	text-align: center;
-	@include box-sizing(border-box);
-	background: red;
-	color: white;
+#root-container {
+	flex: 1 0 auto;
+	padding-bottom: 50px;
+}
+
+#container-media {
+	padding-bottom: 0;
+}
+
+#app {
+	background-color: black;
+}
+
+.overlay {
+	position: absolute;
+	width: 100%;
+	z-index: 99;
+	left: 0;
+	top: 0;
+	background-color: $overlay;
+	height: 100%;
+}
+
+.btn {
+	margin: 10px 0;
 }

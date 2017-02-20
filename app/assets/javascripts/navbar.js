@@ -7,28 +7,14 @@ $(window).scroll(e => {
     navbar.addClass(sticky_class)
   else
     navbar.removeClass(sticky_class)
-
-  /*if(oldValue < window.pageYOffset && window.pageYOffset > trigger_value + navbar.height())
-    navbar.addClass('is-hidden')
-  else
-    navbar.removeClass('is-hidden')
-*/
   oldValue = window.pageYOffset
 })
 
-let close = function() {
-  $('#nav-menu-overlay').removeClass('menu-visible')
-  $('body').removeClass('menu-visible')
-}
-
 $(function() {
-  $('#hamburger').bind( 'tap', function( e ) {
-    e.preventDefault()
-    $('#nav-menu-overlay').toggleClass('menu-visible')
-    $('body').toggleClass('menu-visible')
-  })
+ $('#hamburger').sideNav({
+    closeOnClick: true
+ })
 
-  $('#nav-menu-overlay a').on('click', e => close())
-  $('nav #close').on('click', e => close() )
-
+ $(window).resize(() =>
+  $('#hamburger').sideNav('hide'))
 })

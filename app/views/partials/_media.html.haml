@@ -3,10 +3,6 @@
   = javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/vue-resource/1.2.0/vue-resource.min.js'
   = javascript_include_tag 'lightbox'
 
-%div.grid.small-items#app
- 
-  %lightbox#lightbox
- 
-  - media.each do |medium|
-    - if medium.visible
-      = link_to image_tag(url_thumbnail(medium)), medium_path(medium), {class: 'item overlay', 'v-lightbox': ''}
+- media.each do |medium|
+  - if medium.visible
+    = link_to image_tag(url_thumbnail(medium)), medium_path(medium), {class: 'item item-overlay col '  + "s#{rand(1..12)}", 'v-lightbox': ''}

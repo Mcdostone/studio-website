@@ -1,12 +1,20 @@
 %nav#nav
 
+  %ul.nav-items#hamburger{data: {activates: 'nav-menu-overlay'}}
+    %li.nav-item
+      = link_to '#' do
+        %i.fa.fa-bars{:aria => {hidden: 'true'}}
+
   %div#nav-menu-overlay
-    %header
-      = link_to '/', class: "nav-item nav-logo" do
-        = image_tag("/images/logo_studio.png")
-      %div.nav-item#close
-        = link_to '#' do
-          %i.fa.fa-times{:aria => {hidden: 'true'}}
+    = link_to '/', class: "nav-item" do
+      %header
+        %span.overlay
+        %div.nav-avatar
+          = image_tag(picture_profile(@current_user, true))
+        - if @current_user
+          %p
+            = @current_user.nickname
+
     %ul.nav-items
       %li.nav-item
         = link_to "/#studio", data: { turbolinks: false } do
@@ -88,6 +96,8 @@
 
     - if @current_user
       %li.nav-item.dropdown
+        %div.nav-avatar
+          = image_tag(picture_profile(@current_user, true))
         = link_to '#' do
           = @current_user.nickname
         %div.dropdown-contents
@@ -97,8 +107,3 @@
     - else
       %li.nav-item
         = link_to "Sign in", login_path
-
-  %ul.nav-items#hamburger
-    %li.nav-item
-      = link_to '#' do
-        %i.fa.fa-bars{:aria => {hidden: 'true'}}

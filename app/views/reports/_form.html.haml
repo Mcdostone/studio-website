@@ -1,11 +1,14 @@
-= form_for @report, :url => report_medium_path do |f|
+%section.section-admin
 
-  %div.form-group
-    Suite à un report, le média concerné ne sera plus accessible sur le site web. Les admins se chargeront de traiter votre demande de report. S'ils jugent que le report n'est pas justifié, le média sera de nouveau disponible !
- 
-  %div.form-group
-    = label_tag 'Message du report:'
-    = f.text_field :message, class: 'form-control' 
+  = form_for @report, :url => report_medium_path do |f|
 
-  %div.form-group
-    = f.submit 'signaler', class: 'button', data: { confirm: 'Voulez vous report ce média (le média ne sera plus disponible sur le site) ?'}
+    %div.input-field
+      Suite à un report, le média concerné ne sera plus accessible sur le site web. Les admins se chargeront de traiter votre demande de report. S'ils jugent que le report n'est pas justifié, le média sera de nouveau disponible !
+
+    %div.input-field
+      = label_tag '', 'Message du report:', :for => 'report_message'
+      = f.text_area :message, class: 'materialize-textarea'
+
+    %button.btn.waves-effect.waves-light{type: 'submit',  data: { confirm: 'Voulez vous report ce média (le média ne sera plus disponible sur le site) ?'}}
+      Signaler
+      %i.material-icons.right

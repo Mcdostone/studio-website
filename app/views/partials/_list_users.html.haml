@@ -1,5 +1,5 @@
 - users.each do |user|
-  = link_to user_path(user), :class => "item item-user" do
+  = link_to user_path(user), :class => "item item-user item-overlay" do
     = image_tag(picture_profile user)
     %div.item-infos
       %p.item-name

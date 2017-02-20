@@ -3,8 +3,11 @@
     = link_to edit_admin_event_path(event), class: 'button-admin' do
       %div.icon
       %p Modifier
+
+  %span.overlay
+
   %div.illustration
-    = image_tag cover(event), class: 'illustration'
+    = image_tag cover(event)
     %div.cover-desc
       %div.cover-name
         = event.name

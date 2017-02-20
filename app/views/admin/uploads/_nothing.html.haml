@@ -4,9 +4,5 @@
   Afin d'upload de nouveaux médias, il nécéssaire d'avoir
   %strong au moins 1 évent et 1 type déjà créés !
 
-%div.center
-  %ul
-    %li
-      =  link_to 'Créer un event', new_admin_event_path, class: 'button'
-    %li
-      = link_to 'Créer un type', new_admin_type_path(), class: 'button'
+= link_to 'Nouveau Évent', new_admin_event_path, class: 'waves-effect waves-light btn'
+= link_to 'Nouveau Type', new_admin_type_path, class: 'waves-effect waves-light btn'

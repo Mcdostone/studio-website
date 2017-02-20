@@ -31,7 +31,7 @@ App.uploads = (function() {
 			autoProcessQueue: false,
 			uploadMultiple: true,
 			maxFiles: parallelUploads,
-			dictDefaultMessage: 'Uploader des media',
+			dictDefaultMessage: 'Uploader des fichiers',
 			paramName: 'admin_upload[media]',
 			addRemoveLinks: true,
 			parallelUploads: parallelUploads,

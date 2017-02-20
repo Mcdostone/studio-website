@@ -2,9 +2,10 @@ class ReportsController < ApplicationController
 
   before_action :set_medium, only:[:new, :create]
   layout 'admin'
-  
+
   def new
-    @report = Report.new  
+    @report = Report.new
+    redirect_to root_path unless @medium.visible  
   end
 
   def create

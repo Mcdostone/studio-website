@@ -9,8 +9,11 @@ class MediaController < ApplicationController
 	def show
 		#respond_to do |format|
 		#	format.json { render json: @medium}
-		render json: @medium
-		#end
+		if @medium.visible
+			render json: @medium
+		else
+			render json: nil
+		end
 	end
 
 	def like

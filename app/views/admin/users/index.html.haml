@@ -12,9 +12,9 @@
         %th.useless-column ban
         %th.useless-column Ajouté
         %th.useless-column Mis à jour
-        %th
+        %th.useless-column
         - if @current_user.admin?
-          %th
+          %th.useless-column
     %tbody
     - @users.each do |user|
       %tr

@@ -1,5 +1,19 @@
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 1500px) {
+
+  table .table-medium {
+    width: 100px;
+    height: 100px;
+  }
   #container-admin {  width: 80%;  }
+
+}
+
+@media screen and (max-width: 1000px) {
+
+  #table-media .useless-column, #table-media .useless-column {
+    display: none;
+  }
+
 }
 
 @media screen and (max-width: 700px) {
@@ -8,14 +22,28 @@
     display: none;
   }
 
+  /*table .table-medium {
+    width: 50px;
+    height: 50px;
+  }*/
+
+  .progress-bar-container .progress-bar-content p {
+    font-size: 6em;
+  }
+
   .section-admin { padding: 10px; }
 }
 
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 550px) {
 
   .cards {
     flex-direction: column;
+  }
+
+  table .table-medium {
+    width: 30px;
+    height: 30px;
   }
 
   .card {

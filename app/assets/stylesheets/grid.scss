@@ -3,53 +3,51 @@ $size: 10%;
 
 .grid {
 	display: flex;
+	width: 100%;
 	flex-wrap: wrap;
 	justify-content: center;
 	align-content: flex-start;
-	align-items: center;
 	color: white;
-	padding-top: 50px;
+	margin-top: $nav-height;
 	background-color: transparent;
 	@include box-sizing(border-box);
 	img { object-fit: cover; }
 }
 
-
-.big-items .item {
-	width: $big-item-size;
-	height: $big-item-size;
-	width: 15vw;
-    height: 15vw;
-	img {
-		width: 100%;  height: 100%;
-		overflow:hidden;
-	}
-}
-
-#app:hover .item { opacity: 0.3; }
-#app:hover .item:hover { opacity: 1; }
-
 .item {
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	float: left;
-	//padding: $tmp;
-	margin: $tmp;
+	width: 100%;
+	margin: 0;
+	padding: 0;
 	@include box-sizing(border-box);
 	background-color: transparent;
-	display: inline-block;
 	position: relative;
-	width: $small-item-size;
-	height: $small-item-size;
-	cursor: pointer;
 	img {  width: 100%;  height: 100%;  }
+}
+
+.item-overlay:after {
+	@include transition-duration(0.2s);
+	position: absolute;
+	content: '';
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	background: $overlay;
+}
+.item-overlay:hover:after {
+	@include transition-duration(0.3s);
+	background: transparent;
 }
 
 
 .item-user {
-
 	width: 200px;
 	height: 200px;
 }
-
 
 
 .item-infos {
@@ -61,22 +59,19 @@ $size: 10%;
 	color: white;
 	top: 0;
 	right: 0;
+	z-index: 80;
 	bottom: 0;
 	left: 0;
-	background-color: rgba(0, 0, 0, 0.7);
 	@include transition-duration(0.2s);
 
-	&:hover {
-		background-color: rgba(0, 0, 0, 0.35);
-		@include transition-duration(0.3s);
-	}
-
 	p {
+		margin: 10px 0;
 		line-height: normal;
 	}
 
 	.item-name {
 		display: block;
+		text-align: center;
 		@include transition-duration(0.2s);
 		font-size: 2em;
 		font-weight: 300em;
@@ -86,6 +81,34 @@ $size: 10%;
 		display: block;
 		margin: 0;
 		font-size: 1em;
+		text-align: center;
 		font-style: italic;
+	}
+}
+
+
+@media screen and (max-width: 90px) {
+	.item {  width: 50% }
+}
+
+
+@media screen and (max-width: 700px) {
+	.item {  width: 100% }
+	.item-infos {
+		.item-name { font-size: 1.5em;}
+		.item-date {font-size: 0.8em;}
+	}
+}
+
+
+@media screen and (max-width: 400px) {
+	.item-overlay:after {
+		background: transparent;
+	}
+	/*.item-overlay:hover:after {
+		background: $overlay;
+	}*/
+	.item {
+		width: 33.333%;
 	}
 }

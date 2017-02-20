@@ -1,18 +1,20 @@
 %div.section-admin
   %h2 Liste des Médias
 
-  %table.striped.bordered.highlight
+  = link_to 'Importer des médias', new_admin_upload_path, class: 'waves-effect waves-light btn'
+
+  %table.striped.bordered.highlight#table-media
     %thead
       %tr
         %th ID
         %th Thumbnail
-        %th Type
-        %th Event
-        %th Upload
-        %th Visible
-        %th.colum-timestamps Ajouté
-        %th.colum-timestamps Mis à jour
-        %th
+        %th.useless-column Type
+        %th.useless-column Event
+        %th.useless-column Upload
+        %th.useless-column Visible
+        %th.useless-column Ajouté
+        %th.useless-column Mis à jour
+        %th.useless-column
         %th
         %th
     %tbody
@@ -22,24 +24,22 @@
             = medium.id
           %td
             = link_to image_tag(url_thumbnail(medium), class: 'table-medium'), edit_admin_medium_path(medium)
-          %td
+          %td.useless-column
             = medium.type.name if medium.type
-          %td
+          %td.useless-column
             = medium.event.name if medium.event
-          %td
+          %td.useless-column
             -#= link_to(medium.upload.id, show_admin_upload_path(medium.upload)) if medium.upload
             = link_to(medium.upload.id, admin_upload_path(medium.upload)) if medium.upload
-          %td
+          %td.useless-column
             = 'non' unless medium.visible
-          %td
+          %td.useless-column
             = format_date(medium.created_at)
-          %td
+          %td.useless-column
             = format_date(medium.updated_at)
-          %td
+          %td.useless-column
             = link_to 'Afficher', medium_path(medium)
           %td
             = link_to 'Modifier', edit_admin_medium_path(medium)
           %td
             = link_to 'Supprimer', admin_medium_path(medium), method: :delete, data: { confirm: 'Voulez vous supprimer ce média ?'}
-
-  = link_to 'Importer des médias', new_admin_upload_path, class: 'waves-effect waves-light btn'

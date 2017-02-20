@@ -24,10 +24,10 @@ class CoverUploader < CarrierWave::Uploader::Base
 
   process :resize_to_fit  => [1200, 1200]
   process :quality        => 80
-  
+
   # Create different versions of your uploaded files:
   version :thumb do
-    process :resize_to_fill       => [180, 180]
+    process :resize_to_fit       => [200, 200]
     process :optimize_thumbnail   => 80
   end
 
@@ -40,5 +40,5 @@ class CoverUploader < CarrierWave::Uploader::Base
   def content_type_whitelist
     /image\//
   end
-  
+
 end

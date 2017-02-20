@@ -3,11 +3,10 @@ module UsersHelper
 	SIZE_NAVBAR = 100
 
 	def picture_profile user, thumb = false
-		
-		if(user.avatar.url)
-			thumb ? user.avatar.url(:thumb) : user.avatar.url
-		else
+		if user.nil? || user.avatar.url == nil
 			'default-profile-picture.png'
+		else
+			thumb ? user.avatar.url(:thumb) : user.avatar.url
 		end
 	end
 

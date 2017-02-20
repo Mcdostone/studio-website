@@ -9,7 +9,7 @@ nav {
 	display: inline-flex;
 	justify-content: space-between;
 	width: 100%;
-	z-index: 300;
+	z-index: 650;
 	padding: 0;
 	height: $nav-height;
 	align-content: center;
@@ -22,13 +22,13 @@ nav {
 	& * {  height: $nav-height;  }
 }
 
-.nav-logo img {
-	width: auto;
-	height: 100%;
-	padding: 10px;
-	@include box-sizing(border-box);
+#public nav.sticky .nav-logo {
+	visibility: visible;
 }
 
+
+
+nav ul a:hover
 .nav-right {
 	float: right;
 }
@@ -37,13 +37,14 @@ nav {
 	display: inline-block;
 	float: left;
 	width: auto;
+	height: auto;
 	text-align: center;
 
 	a {
 		display: inline-block;
 		cursor: pointer;
+		height: $nav-height;
 		width: 100%;
-		height: 100%;
 		padding: 0 $nav-item-padding;
 		@include box-sizing(border-box);
 		line-height: $nav-height;
@@ -58,15 +59,17 @@ nav {
 	}
 }
 
-.nav-item:hover {
+.nav-item:hover, nav ul li a:hover {
 	background: white;
-	a { color: black; }
+	a, { color: black; }
 }
 
 .dropdown {
 	width: auto;
+	padding-left: 15px;
 	a {
-		padding: 0 30px;
+		padding: 0 15px 0 5px;
+		width: auto;
 	}
 	position: relative;
 }
@@ -89,15 +92,19 @@ nav {
 }
 
 .dropdown:hover .dropdown-contents {
-    display: inline-block;
+    display: flex;
+		flex-direction: column;
+		box-shadow: 0 1px 2px rgba(0,0,0,.1);
 		right: 0;
 }
 
+nav ul li, nav ul a{
+	@include transition(background-color, 0s);
+}
 
 nav.sticky {
 	background-color: black;
 	@include transition-duration(0.2s);
-	.nav-logo {  visibility: visible;  }
 }
 
 nav.sticky.is-hidden {
@@ -107,78 +114,154 @@ nav.sticky.is-hidden {
 
 nav #hamburger{
 	display: none;
+	.nav-item:hover {
+		background-color: transparent;
+	}
 }
 
 .nav-logo {
-//	visibility: hidden;;
 	position: absolute;
 	top: 0;
 	left: 50%;
+	height: 100%;
 	opacity: 0.8;
 	@include translateX(-50%);
 	@include transition-studio();
+	img {
+		width: auto;
+		height: $nav-height;
+		padding: 10px;
+		@include box-sizing(border-box);
+	}
 	&:hover {
 		opacity: 1;
 		background-color: transparent;
 	}
 }
 
+#public nav .nav-logo {
+	visibility: hidden;
+}
+
+.nav-avatar {
+	display: flex;
+	padding: 5px 0;
+	float: left;
+	width: auto;
+	align-items: center;
+	img {
+		height: $nav-height - 30px;
+		width: $nav-height - 30px;
+		border-radius: 50%;
+	}
+}
+
+
 #nav-menu-overlay {
-	z-index: 301;
+	z-index: 999;
 	background-color: black;
-	display: none;
-	//overflow-y: hidden;
+	display: flex;
+	overflow-y: hidden;
 	vertical-align: baseline;
 	flex-direction: column;
 	position: fixed;
 	height: 100%;
+	width: 200px;
 	left: 0;
-	right: 0;
+	//right: 0;
 	top: 0;
 	bottom: 0;
 
 
 	.nav-items {
-		flex-direction: column;
-		display: flex;
+		display: inline-block;;
 		height: auto;
 		border-bottom: 1px solid rgba($text-color-shade, 0.7);
-		.nav-item {  padding-left: 5%;  }
 	}
-	.nav-item {
-		a {  padding: 0;  }
+	.nav-items .nav-item {
+		padding-left: 0;
+		width: 100%;
+		height: auto;
+		a {
+			padding-left: 5%;
+			padding: 0;
+			line-height: $nav-height - 10px;
+			height: $nav-height - 10px;
+		 }
 		text-align: left;
 	}
 	.nav-item.nav-item-social  {
-		padding:  0;
-		a {  padding: 0 15px; }
+		padding: 0;
+		display: flex;
+		width: 50%;
+
+		a {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			padding: 0 15px; }
 	}
 
 	header {
+		height: 176px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		position: relative;
+
 		.nav-logo {
 			visibility: visible;
 			position: initial;
 			@include translate(0,0);
 			display: inline-block;
-			height: 100%
 		}
-		.nav-item {  padding: 0 15px;  }
+
+		p {
+			z-index: 600;
+			font-size: 1.5em;
+		}
+
+		.nav-avatar {
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			padding: 0;
+			width: 100%;
+			height: 100%;
+
+			img {
+				margin: 0;
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+				border-radius: 0;
+			}
+
+			width: 100%;
+		}
+
+		.nav-item {  padding: 0;
+			height: 100%;
+			width: 100%;
+		}
 
 		img {
 			height: $nav-height - 10px;
 			margin-top: 5px;
 		}
 		display: flex;
-		justify-content: space-between;
+		justify-content: center;
 	}
 }
 
-.nav-item.facebook:hover {
+nav ul li.facebook a:hover,  {
 	background-color: #3b5998;
 	.fa-facebook { color: white; }
 }
 
-.nav-item.youtube:hover {
+.nav-item.youtube a:hover {
 	background-color: #e52d27;
 	.fa-youtube-play { color: white; }
 }

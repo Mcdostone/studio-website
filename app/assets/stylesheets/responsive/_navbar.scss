@@ -1,7 +1,7 @@
 $breakpoint: 590px;
 
 @media screen and (max-width: $breakpoint) {
-  .nav-item-social {  display: none; }  
+  .nav-item-social {  display: none; }
 
   #nav-menu-overlay .nav-item-social {
     display: inline-block;
@@ -21,7 +21,7 @@ $breakpoint: 590px;
 
 
 @media screen and (max-width: 480px) {
-  nav { justify-content: flex-end; }
+  nav { justify-content: space-between; }
   #app nav, #admin nav { justify-content: space-between; }
   nav #hamburger {  display: inline-block;  }
   .nav-right { display: none; }

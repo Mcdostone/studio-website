@@ -3,11 +3,11 @@
   %head
     = render 'partials/head'
 
-  %body{:id => ('app' if @current_user)}
+  %body{:id => 'public'}
 
     %div#root-container
       = render 'partials/navbar'
       = render 'partials/flash'
       = yield
 
-      = render 'partials/footer'
+    = render 'partials/footer'
