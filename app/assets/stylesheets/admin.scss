@@ -1,4 +1,3 @@
-$card-height: 100px;
 $shaden: 20%;
 $card-padding: 10px;
 
@@ -15,17 +14,32 @@ $card-padding: 10px;
   width: 60%;
   margin: 0 auto;
 }
+.tabs {
+  margin-bottom: 10px;
+}
 
 .section-admin {
   display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
+  color: black;
   padding: 20px;
   margin: 10px;
   background-color: white;
   box-shadow: 0 1px 2px rgba(0,0,0,.1);
   @include box-sizing(border-box);
+
+
+
+  .row {
+    width: 100%;
+  }
+}
+
+
+.section-admin .report a {
+  color: black;
 }
 
 #container-admin {
@@ -39,9 +53,11 @@ $card-padding: 10px;
 	display: flex;
   flex-wrap: wrap;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
+  //padding: 0 20%;
+  @include box-sizing(border-box);
 
-	&:hover * {
+	a, &:hover * {
 		color: white;
 	}
 }
@@ -60,9 +76,10 @@ $card-padding: 10px;
 	color: white;
 	display: inline-block;
 	width: 40%;
-	height: $card-height;
+	height: auto;
 	margin-bottom: 15px;
 	cursor: pointer;
+
 	.card-number {
 		display: block;
 		width: auto;
@@ -212,6 +229,24 @@ $card-padding: 10px;
 	background-position: center;
 	background-size: 60px 60px;
 	background-color: shade($card-reports-background, $value-shaden);
+}
+
+#card-tags {
+	background-color: $card-tags-background;
+	@include transition-duration(0.2s);
+}
+
+#card-tags:hover {
+	background-color: shade($card-tags-background, $value-shaden);
+	@include transition-duration(0.3s);
+}
+
+#card-tags .card-icon {
+	background: url("/images/card-tags.png");
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 60px 60px;
+	background-color: shade($card-tags-background, $value-shaden);
 }
 
 .button-admin {

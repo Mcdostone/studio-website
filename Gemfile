@@ -22,6 +22,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem "haml-rails"
 
+gem 'acts-as-taggable-on', '~> 4.0'
 gem 'omniauth-google-oauth2', '~> 0.4.1'
 gem "font-awesome-rails"
 gem 'pickadate-rails'

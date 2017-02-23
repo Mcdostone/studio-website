@@ -1,3 +1,4 @@
 $(function() {
-	$('select').material_select();
+	$('.chips').material_chip()
+	$('select').material_select()
 })

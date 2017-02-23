@@ -1,18 +1,3 @@
-$(function(){
-	//$('#container-masonry').gridalicious({
-	$('#container-media').gridalicious({
-	  animate: true,
-		//width: 225,
-		//gutter: 0,
-		animationOptions: {
-			queue: true,
-			speed: 100,
-			effect: 'fadeInOnAppear',
-		}
-	})
-})
-
-
 Vue.http.headers.common['X-CSRF-TOKEN'] = $('meta[name="token"]').attr('value')
 // --------------
 //	Store
@@ -58,26 +43,25 @@ let media = {
 		return {
 			loading: true,
 			src: false,
-			style: {}
+			style: {},
+			loadingIcon: 'loading1'
 		}
 	},
 	props: {
-		medium: String
+		medium: ''
 	},
 	mounted() {
 		let m = new window.Image()
 		this.resizeEvent = () =>  this.resize(m)
+
+		this.loadingIcon = 'loading' + Math.floor((Math.random() * 3) + 1)
 
 		m.onload = () => {
 			this.loading = false
 			this.src = m.src
 			this.resize(m)
 		}
-
-		this.$http.get(this.medium).then(response => {
-			m.src = response.body.file.url
-  		}, response => console.log(response)
-  		)
+		m.src = this.medium.file.url
 		window.addEventListener('resize', this.resizeEvent)
 	},
 	destroyed() {
@@ -105,16 +89,74 @@ let media = {
 				top: ((window.innerHeight - height) * 0.5)  + 'px',
 				left: ((window.innerWidth - width) * 0.5)  + 'px'
 			}
+			//$('#lightbox .tags').css('width', this.style.left)
 		}
 	},
 
 	template: `
 
 	<div @click.stop >
-		<div v-show="loading" class="loading" id="loading"></div>
+		<div v-show="loading" class="loading" v-bind:id="loadingIcon"></div>
 		<transition name="lightbox-fade">
 			<img :src="src" :style="style" :key="src">
 		</transition>
+	</div>
+	`
+}
+
+let tags = {
+	data() {
+		return {}
+	},
+	props: {
+		tags: ''
+	},
+	mounted() {
+	/*	var tagListArray = ["Apple", "Orange", "Mango"]; //Some new data here
+		var data = []
+		var index;
+		for(index = 0; index < tags.length; index++) {
+			data.push({  tag: tags[index]  });
+		};
+		$('.chips-initial').material_chip({data: data})
+		*/
+	},
+	template: `
+		<div>
+			<div class="chip" v-for="t in tags">
+				{{t.name}}
+			</div>
+		</div>
+	`
+}
+
+
+let toolbar = {
+	data() {
+		return {}
+	},
+	props: {
+		options: ''
+	},
+	mounted() {
+	},
+	methods: {
+		tags() {
+			this.$emit('tags')
+		}
+	},
+	template: `
+	<div>
+		<div class="tool" @click.stop.prevent="like">
+			Like
+			<i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+		</div>
+		<div class="tool" :class="{'lightbox-active': options.tags}" @click.stop.prevent="tags">
+			Tags
+		</div>
+		<div class="tool" @click.stop.prevent="tagguer">
+			Tagger
+		</div>
 	</div>
 	`
 }
@@ -124,20 +166,12 @@ let lightbox = {
 	data() {
 		return {
 			state: store.state,
-			dir: 'next'
+			dir: 'next',
+			medium: undefined,
+			options: {
+				tags: false
+			}
 		}
-	},
-	computed: {
-		medium() {
-			if(this.state.index !== false)
-				return this.state.medias[this.state.index]
-			else
-				return undefined
-		},
-		direction() {
-			return 'lightbox-' + this.dir
-		}
-
 	},
 	mounted() {
 		document.onkeydown = (e) => {
@@ -149,9 +183,45 @@ let lightbox = {
 				this.next()
 		}
 	},
+	computed: {
+		loaded() {
+			return this.medium !== undefined
+		},
+
+		url() {
+			if(this.state.index !== false) {
+				let url = this.state.medias[this.state.index]
+				this.fetch(url)
+				return url
+			}
+			else
+				return undefined
+		}
+	},
 	methods: {
+		fetch(url) {
+			if(url) {
+			this.$http.get(url).then(response => {
+				this.medium = response.body
+				console.log(this.medium)
+				}, response => console.log(response)
+			)
+		}
+		else
+			return undefined
+		},
+
+		direction() {
+			return 'lightbox-' + this.dir
+		},
+
+		toggleTags() {
+			this.options.tags = !this.options.tags
+		},
+
 		close() {
 			store.close()
+			this.medium = undefined
 		},
 		next() {
 			if(this.medium) {
@@ -167,17 +237,23 @@ let lightbox = {
 		}
 	},
 	template: `
-	<div v-if="medium" @click="close">
-		<div class="lightbox-button" id="previous" @click.prevent.stop="prev">&lt;</div>
-		<div id="next" class="lightbox-button" @click.prevent.stop="next">&gt;</div>
-		<div id="close" class="lightbox-button" @click.prevent.stop="close">X</div>
-		<lightbox-media :medium="medium" :key="medium"></lightbox-media>
+	<div v-if="url" @click="close">
+		<div>
+			<lightbox-toolbar v-on:tags="toggleTags" id="lightbox-toolbar" :options="options"></lightbox-toolbar>
+			<div class="lightbox-button" id="previous" @click.prevent.stop="prev">&lt;</div>
+			<div id="next" class="lightbox-button" @click.prevent.stop="next">&gt;</div>
+			<div id="close" class="lightbox-button" @click.prevent.stop="close">X</div>
+			<lightbox-media v-if="loaded" :medium="medium" :key="medium"></lightbox-media>
+			<lightbox-tags id="lightbox-tags" v-if="options.tags && loaded" :tags="medium.tags"></lightbox-tags>
+		</div>
 	</div>
 	`
 }
 
-Vue.component('lightbox', lightbox);
-Vue.component('lightbox-media', media);
+Vue.component('lightbox', lightbox)
+Vue.component('lightbox-media', media)
+Vue.component('lightbox-tags', tags)
+Vue.component('lightbox-toolbar', toolbar)
 
 // --------------
 //	lightbox directive

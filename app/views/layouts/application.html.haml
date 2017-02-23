@@ -1,4 +1,4 @@
-!!!
+!!! 5
 %html
   %head
     = render 'partials/head'
@@ -6,43 +6,13 @@
       = yield :font
   %body#app
 
-
     %div#root-container
       = render 'partials/navbar'
       = render 'partials/flash'
       = yield
 
-
     = render 'partials/footer'
 
-    - if @current_user
-      :javascript
-        let email = '#{@current_user.email}'
-        /*let bucketName = 'tn-studio'
-        let id_token = '#{@current_user.id_token}'
-        AWS.config.region = 'eu-central-1';
-        AWS.config.update({region: 'eu-central-1'});
-        let myArn = 'arn:aws:iam::903147912286:role/studio';
-
-        let awsConfig = {
-              RoleArn : myArn,
-              WebIdentityToken : id_token
-        };
-
-        AWS.config.credentials = new AWS.WebIdentityCredentials(awsConfig)
-        let s3 = new AWS.S3({params: {Bucket : bucketName}})
-
-        s3.listObjects(function (error, data){
-          if(error)
-            console.log(error)
-          else {
-            for (var i = data.Contents.length - 1; i >= 0; i--) {
-              console.log(data.Contents[i].Key)
-              console.log(s3.getSignedUrl('getObject', {Key: data.Contents[i].Key, Expires: 10}));
-            }
-          }
-        })*/
-
-    -#= javascript_include_tag 'https://sdk.amazonaws.com/js/aws-sdk-2.7.27.min.js'
+    = javascript_include_tag 'analytics'
     - if content_for?(:js)
       = yield :js

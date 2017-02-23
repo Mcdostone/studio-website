@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
 
-#  resources :reports
+  resources :sessions, only: [:new, :create]
   #resources :likes
   root 'public#index'
-  
+
   get "/auth/google_oauth2", as: 'login'
   get 'logout', to: 'sessions#destroy', as: 'logout'
   get 'auth/:provider/callback', to: 'sessions#create'
@@ -11,12 +11,14 @@ Rails.application.routes.draw do
   get 'auth/failure', to: redirect('/')
 
   resources :sessions, only: [:create, :destroy]
+  resources :tags, only: [:show]
   resources :users, only: [:index, :show, :edit, :update]
   resources :events, only: [:index, :show]
   resources :types, only: [:index, :show]
-  
+
   resources :media, only: [:index, :show] do
     member do
+      post '/tag', to: 'media#tag', as: "tag"
       get '/report', to: 'reports#new', as: "report"
       post '/report', to: 'reports#create'
       post '/like', to: 'media#like'
@@ -27,16 +29,22 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :events
-    resources :uploads, only: [:index, :new, :show, :create, :destroy]
-      post '/uploads/video', to: 'uploads#video', as: 'upload_video'
     resources :types
+    resources :tags, only: [:index, :destroy]
+    resources :users, only: [:index, :edit, :update]
+    resources :uploads, only: [:index, :new, :show, :create, :destroy]
+
+    resources :media, only: [:index, :edit, :update, :destroy] do
+      member do
+          delete '/untag/:id_tag', to: 'media#untag', as: 'untag'
+      end
+    end
+      post '/uploads/video', to: 'uploads#video', as: 'upload_video'
     resources :reports, only: [:index, :show, :destroy] do
       member do
         post 'valid'
-      end 
-    end   
-    resources :media, only: [:index, :edit, :update, :destroy]
-    resources :users, only: [:index, :edit, :update]
+      end
+    end
     get 'users/:id/ninja', to: 'users#ninja', as: 'ninja'
   end
 

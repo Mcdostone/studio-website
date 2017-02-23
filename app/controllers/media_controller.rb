@@ -1,16 +1,15 @@
 class MediaController < ApplicationController
 
-	before_action :set_medium, only:[:show, :like]
+	before_action :set_medium, only:[:show, :like, :tag]
+	skip_before_action :verify_authenticity_token
 
 	def index
 		@media = Medium.includes(:type, :event).all
 	end
 
 	def show
-		#respond_to do |format|
-		#	format.json { render json: @medium}
 		if @medium.visible
-			render json: @medium
+			render json: @medium.to_json(include: :tags)
 		else
 			render json: nil
 		end
@@ -32,8 +31,17 @@ class MediaController < ApplicationController
 		end
 	end
 
+	def tag
+		@medium.tag_list.add(tag_params[:name])
+		@medium.save
+	end
+
 	private
 	def set_medium
 		@medium = Medium.find(params[:id])
+	end
+
+	def tag_params
+		params.require(:tag).permit(:name)
 	end
 end

@@ -28,6 +28,14 @@
 	position: relative;
 	//padding-bottom: $footer-height;
 }
+#container-studio {
+	padding-top: $nav-height;
+
+	h2 {
+		color: white;
+		font-size: 3em;
+	}
+}
 
 #root-container {
 	flex: 1 0 auto;
@@ -40,6 +48,10 @@
 
 #app {
 	background-color: black;
+}
+
+.chip a {
+	color: inherit;
 }
 
 .overlay {

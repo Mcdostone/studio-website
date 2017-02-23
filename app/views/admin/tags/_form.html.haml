@@ -1,0 +1,23 @@
+= form_for [:admin, @event] do |f|
+
+  = render 'admin/partials/errors', model: @event
+  = render 'events/cover', event: @event, media: @event.media, settings: false
+
+  %div.input-field.file-field
+    %div.btn
+      %span Photo de couverture
+      = f.file_field :cover, accept: 'image/png,image/gif,image/jpeg,image/jpg'
+    %div.file-path-wrapper
+      = text_field_tag 'Kroustille <3', '', class: 'file-path validate'
+
+  %div.input-field
+    = f.text_field :name, placeholder: 'WEI 2015, Gala ...', autofocus: 'autofocus'
+    = label_tag "Nom de l'Évent:"
+
+  %div.input-field
+    = f.date_field :date, class: 'datepicker'
+    = label_tag "Date de l'Évent:"
+
+  %button.btn.waves-effect.waves-light{type: 'submit'}
+    = submit_button_value(@event)
+    %i.material-icons.right

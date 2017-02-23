@@ -1,7 +1,7 @@
 @media screen and (max-width: 1500px) {
 
   table .table-medium {
-    width: 100px;
+    width: auto;
     height: 100px;
   }
   #container-admin {  width: 80%;  }
@@ -22,10 +22,15 @@
     display: none;
   }
 
-  /*table .table-medium {
-    width: 50px;
-    height: 50px;
-  }*/
+  .button-admin {
+    bottom: 15px;
+  }
+
+  .button-admin .icon {
+    width: 20px;
+    height: 20px;
+  }
+  .button-admin p { display: none; }
 
   .progress-bar-container .progress-bar-content p {
     font-size: 6em;

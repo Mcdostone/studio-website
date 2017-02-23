@@ -3,6 +3,14 @@
   = render 'admin/partials/errors', model: @medium
   = image_tag(url_media(@medium), :class => "admin-medium")
 
+  %div.row
+    %div.col.s12{style:"text-align:center; padding: 5px 0;"}
+      - @medium.tags.each do |tag|
+        %div.chip
+          = tag.name
+          = link_to untag_admin_medium_path(@medium, tag), method: :delete do
+            %i.close.material-icons close
+
   %div.input-field
     = f.select :type_id, @types.map{ |t| [t.name, t.id] }, {}, {autofocus: 'autofocus'}
     = label_tag 'Type du média:'

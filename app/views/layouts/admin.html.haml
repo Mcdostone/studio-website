@@ -1,4 +1,4 @@
-!!!
+!!! 5
 %html
   %head
     = render 'partials/head'
@@ -42,6 +42,7 @@
           }
         })*/
 
-    = javascript_include_tag 'https://sdk.amazonaws.com/js/aws-sdk-2.7.27.min.js'
+    = javascript_include_tag 'https://apis.google.com/js/api.js'  
+    = javascript_include_tag 'test'
     - if content_for?(:js)
       = yield :js

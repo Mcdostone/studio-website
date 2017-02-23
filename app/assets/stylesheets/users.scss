@@ -13,6 +13,7 @@ $avatar-width: 200px;
 	margin: 10px auto;
 	border:2px solid black;
 	border-radius: 50%;
+
 	z-index: 15;
 	@include box-sizing(border-box);
 
@@ -31,6 +32,7 @@ $avatar-width: 200px;
 .profile-about {
 	font-weight: 200;
 	line-height: 1;
+	text-align: center;
 }
 .profile-about p:first-child {  font-size: 2.2em; margin-bottom: 0;  }
 

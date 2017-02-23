@@ -8,7 +8,6 @@ $size: 10%;
 	justify-content: center;
 	align-content: flex-start;
 	color: white;
-	margin-top: $nav-height;
 	background-color: transparent;
 	@include box-sizing(border-box);
 	img { object-fit: cover; }
@@ -20,6 +19,7 @@ $size: 10%;
 	align-items: center;
 	float: left;
 	width: 100%;
+	height: auto;
 	margin: 0;
 	padding: 0;
 	@include box-sizing(border-box);
@@ -36,7 +36,7 @@ $size: 10%;
 	left: 0;
 	height: 100%;
 	width: 100%;
-	background: $overlay;
+	background: rgba(0,0,0,0.4);
 }
 .item-overlay:hover:after {
 	@include transition-duration(0.3s);
@@ -86,29 +86,24 @@ $size: 10%;
 	}
 }
 
-
-@media screen and (max-width: 90px) {
-	.item {  width: 50% }
+@media screen and (max-width: 800px) {
+	.item-infos .item-name { font-size: 1.5em; }
+	.item-infos .item-date { font-size: 0.7em; }
 }
 
-
-@media screen and (max-width: 700px) {
-	.item {  width: 100% }
-	.item-infos {
-		.item-name { font-size: 1.5em;}
-		.item-date {font-size: 0.8em;}
-	}
+@media screen and (max-width: 674px) {
+	.item-overlay:after { background: transparent;}
+	.item-overlay:hover:after { background: $overlay; }
+	.item {width: 50%; }
 }
 
-
-@media screen and (max-width: 400px) {
-	.item-overlay:after {
-		background: transparent;
+@media screen and (max-width: 449px) {
+	.item {width: 33.333%;
 	}
-	/*.item-overlay:hover:after {
-		background: $overlay;
-	}*/
-	.item {
-		width: 33.333%;
+
+	.item-user {
+		width: 90px;
+		height: 90px;
+		margin: 2px;
 	}
 }

@@ -49,3 +49,16 @@
 form .cover {
 	margin-bottom: 40px;
 }
+
+
+@media screen and (max-width: 800px) {
+	.cover .illustration img {
+		height: 200px;
+	}
+
+	.cover .illustration .cover-desc {
+		.cover-name {font-size: 3em; }
+		.cover-date {font-size: 1.5em; }
+		.cover-count {font-size: 1.5em; }
+	}
+}

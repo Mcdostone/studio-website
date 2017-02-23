@@ -1,6 +1,6 @@
 class Admin::MediaController < AdminController
 
-	before_action :set_medium, only:[:edit, :update, :destroy]
+	before_action :set_medium, only:[:edit, :update, :destroy, :untag]
 
 	def index
 		@media = Medium.includes(:type, :event).all
@@ -19,6 +19,12 @@ class Admin::MediaController < AdminController
 	def destroy
 		@medium.destroy
 		redirect_to admin_media_path
+	end
+
+	def untag
+		@tag = ActsAsTaggableOn::Tag.find(params[:id_tag])
+		@medium.tag_list.remove(@tag.name)
+		@medium.save
 	end
 
 	private

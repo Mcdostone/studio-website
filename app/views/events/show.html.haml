@@ -7,7 +7,6 @@
     = javascript_include_tag 'lightbox'
 
   %lightbox#lightbox
-
-  = render 'events/cover', event: @event, media: @filtered_media, settings: true
-  %div.grid#container-masonry
+  %div#container-studio
+    = render 'events/cover', event: @event, media: @filtered_media, settings: true
     = render 'partials/media', media: @filtered_media

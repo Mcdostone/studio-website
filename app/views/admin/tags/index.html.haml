@@ -1,0 +1,33 @@
+%div.section-admin
+  %h2 Liste des tags
+
+  %table.striped.bordered.highlight
+    %thead
+      %tr
+        %th ID
+        %th Nom
+        %th Médias liés
+        -#%th.useless-column Ajouté
+        -#%th.useless-column Mis à jour
+        %th
+        %th
+        -#%th
+    %tbody
+    - @tags.each do |tag|
+      %tr
+        %td
+          = link_to tag.id, tag_path(tag)
+        %td
+          = link_to tag.name, tag_path(tag)
+        %td
+          = link_to Medium.tagged_with(tag).size, tag_path(tag)
+
+        -#%td
+          = link_to 'Modifier', edit_admin_event_path(event)
+        %td
+          = link_to 'détails', tag_path(tag)
+
+        %td
+          = link_to 'Supprimer', admin_tag_path(tag), method: :delete, data: { confirm: 'Voulez-vous supprimer ce tag ?' }
+
+  -#= link_to 'Nouveau Évent', new_admin_event_path, class: 'waves-effect waves-light btn'

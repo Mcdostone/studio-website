@@ -3,15 +3,7 @@
 	height: $footer-height;
 	width: 60%;
 	margin-left: 20%;
-	border-top: 1px solid transparent;// rgba($text-color-shade, 0.15);
- 	border-image: linear-gradient(to bottom, #3acfd5 0%, #3a4ed5 100%);
-	border-image: linear-gradient(to left,
-	rgba(0,0,0,0) 0%,
-	rgba(153,153,153,0.2) 20%,
-	rgba(153,153,153,0.2) 50%,
-	rgba(153,153,153,0.2) 80%,
-	rgba(0,0,0,0) 100%);
-	border-image-slice: 1;
+	@include border-studio();
 	justify-content: center;
 	align-items: center;
 	display: flex;

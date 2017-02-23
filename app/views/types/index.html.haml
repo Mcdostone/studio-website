@@ -2,11 +2,11 @@
   = render 'partials/nothing'
 
 -else
-
-  %div.grid#container-masonry
-    - @types.each do |type|
-      = link_to type_path(type), :class => "item item-overlay" do
-        = image_tag(url_thumbnail(random_media(type)))
-        %div.item-infos
-          %p.item-name
-            = type.name
+  %div#container-studio
+    %div.grid#container-masonry
+      - @types.each do |type|
+        = link_to type_path(type), :class => "item item-overlay" do
+          = image_tag(url_thumbnail(random_media(type)))
+          %div.item-infos
+            %p.item-name
+              = type.name

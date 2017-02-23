@@ -43,6 +43,13 @@
     %p.card-text
       = @reports_count > 1 ? 'reports' : 'report'
 
+    = link_to admin_tags_path, :id => 'card-tags', :class => 'card'  do
+      %div.card-icon
+      %p.card-number
+        = @tags_count
+      %p.card-text
+        = @tags_count > 1 ? 'tags' : 'tag'
+
 
 %div.section-admin
   %h2 Administrateurs

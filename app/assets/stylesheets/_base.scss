@@ -5,7 +5,7 @@
 @import "compass/css3/selection";
 @import "compass/reset/utilities";
 //@include global-reset();
-
+@import "https://fonts.googleapis.com/icon?family=Material+Icons";
 @import url('https://fonts.googleapis.com/css?family=Lato:300,400,700');
 
 // ----------------------------------------------------
@@ -24,6 +24,7 @@ $big-item-size:							1.3 * $small-item-size;
 $big-item-margin:  					$small-item-margin;
 
 $cover-height:							400px;
+$card-height: 							90px;
 
 $card-media-background:			#2ECC71;
 $card-events-background:		#EB9532;
@@ -31,9 +32,10 @@ $card-types-background:			#3498DB;
 $card-users-background:			#936663;
 $card-uploads-background:		#333;
 $card-reports-background:		#34495e;
+$card-tags-background:			#e52d27;
 $value-shaden: 							20%;
 $overlay:										rgba(0, 0, 0, 0.5);
-$overlay-media:										rgba(0, 0, 0, 0.7);
+$overlay-media:							rgba(0, 0, 0, 0.7);
 
 $button-settings-height:		30px;
 $footer-height: 						100px;
@@ -63,6 +65,18 @@ $link-color: 						color("light-blue", "darken-1") !default;
 	&:hover{ @include transition-duration(0.1s); }
 }
 
+@mixin border-studio($color:rgba(153,153,153,0.2)) {
+	border-top: 1px solid transparent;// rgba($text-color-shade, 0.15);
+	border-image: linear-gradient(to bottom, $color 0%, $color 100%);
+	border-image: linear-gradient(to left,
+	rgba(0,0,0,0) 0%,
+	$color 20%,
+	$color 50%,
+	$color 80%,
+	rgba(0,0,0,0) 100%);
+	border-image-slice: 1;
+
+}
 
 @mixin section-illustration($url) {
 	background: url($url) top fixed;
@@ -96,6 +110,7 @@ html {
 
 body {
 	display: flex;
+	min-width: 260px;
   min-height: 100vh;
   flex-direction: column;
 }
