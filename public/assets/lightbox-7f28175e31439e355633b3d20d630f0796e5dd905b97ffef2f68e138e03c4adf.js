@@ -31,19 +31,6 @@ class LightboxStore {
 
 
 
-let lightboxOverlay = {
-	data() {
-		return {}
-	},
-	props: {
-	},
-	template: `
-		<div class="lightbox-overlay">
-		</div>
-	`
-}
-
-
 let store = new LightboxStore()
 
 
@@ -366,7 +353,7 @@ Vue.component('lightbox-media', media)
 Vue.component('lightbox-tags', tags)
 Vue.component('lightbox-toolbar', toolbar)
 Vue.component('lightbox-tags-input', tagsInput)
-Vue.componenet('lightbox-overlay', lightboxOverlay)
+
 
 // --------------
 //	lightbox directive
@@ -387,3 +374,4 @@ Vue.directive('lightbox', {
 var vm = new Vue({
 	el: '#root-container'
 })
+;

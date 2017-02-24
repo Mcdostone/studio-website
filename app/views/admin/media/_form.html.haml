@@ -3,7 +3,7 @@
   = render 'admin/partials/errors', model: @medium
   = image_tag(url_media(@medium), :class => "admin-medium")
 
-  %div.row
+  %div.row{style:"margin-bottom: 5px;"}
     %div.col.s12{style:"text-align:center; padding: 5px 0;"}
       - @medium.tags.each do |tag|
         %div.chip
@@ -11,8 +11,10 @@
           = link_to untag_admin_medium_path(@medium, tag), method: :delete do
             %i.close.material-icons close
 
-  - unless @medium.tags.empty?
-    = link_to 'Supprimer les tags', untag_all_admin_medium_path(@medium), method: :delete, data: { confirm: 'Êtes vous sûr de supprimer tous les tags ?'}, class: "btn waves-effect waves-light red"
+  %div
+    = @medium.count_likes
+    %i.fa.fa-thumbs-o-up{aria: {hidden: true}}
+
 
 
   %div.input-field
@@ -35,3 +37,6 @@
   %button.btn.waves-effect.waves-light{type: 'submit'}
     = submit_button_value(@medium)
     %i.material-icons.right
+
+  - unless @medium.tags.empty?
+    = link_to 'Supprimer les tags', untag_all_admin_medium_path(@medium), method: :delete, data: { confirm: 'Êtes vous sûr de supprimer tous les tags ?'}, class: "btn waves-effect waves-light red"
