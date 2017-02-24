@@ -2,13 +2,17 @@
 
   = render 'admin/partials/errors', model: @user
 
-  %div.form-group
-    = label_tag 'Image de profile:'
-    = f.file_field :avatar, accept: 'image/png,image/gif,image/jpeg,image/jpg', class: 'form-control' 
+  %div.input-field.file-field
+    %div.btn
+      %span Photo de profil
+      = f.file_field :avatar, accept: 'image/png,image/gif,image/jpeg,image/jpg'
+    %div.file-path-wrapper
+      = text_field_tag 'Victou <3', '', class: 'file-path validate'
 
-  %div.form-group
-    = label_tag 'Surnom:'
-    = f.text_field :nickname, placeholder: "fred la pouf, toubab ...", class: "form-control"
+  %div.input-field
+    = label_tag 'Surnom'
+    = f.text_field :nickname, placeholder: "fred la pouf, toubab ..."
 
-  %div.form-group    
-    = f.submit submit_button_value(@user), class: 'button'
+  %button.btn.waves-effect.waves-light{type: 'submit'}
+    = submit_button_value(@user)
+    %i.material-icons.right

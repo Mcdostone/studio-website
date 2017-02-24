@@ -12,9 +12,13 @@ class Admin::TypesController < AdminController
 
 	def create
 		@type = Type.new(type_params)
-  		flash[:success] = "Le type a été crée !" if @type.save
-    	redirect_to admin_types_path
-  	end
+  		if @type.save
+				flash[:success] = "Le type a été crée !"
+    		redirect_to admin_types_path
+			else
+				render :new
+		end
+	end
 
 	def edit
 	end
@@ -37,5 +41,5 @@ class Admin::TypesController < AdminController
 	def set_type
 		@type = Type.find(params[:id])
 	end
-	
+
 end

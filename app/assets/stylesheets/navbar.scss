@@ -192,6 +192,7 @@ nav #hamburger{
 			display: block;
 			line-height: $nav-height - 15px;
 			height: $nav-height - 15px;
+			&:hover { color: black; }
 		 }
 		text-align: left;
 	}
@@ -204,7 +205,10 @@ nav #hamburger{
 			display: flex;
 			justify-content: center;
 			align-items: center;
-			padding: 0 15px; }
+			padding: 0;
+			&:hover i { color: white;}
+
+		}
 	}
 
 	header {

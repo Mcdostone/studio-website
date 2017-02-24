@@ -89,20 +89,52 @@ let media = {
 				top: ((window.innerHeight - height) * 0.5)  + 'px',
 				left: ((window.innerWidth - width) * 0.5)  + 'px'
 			}
-			//$('#lightbox .tags').css('width', this.style.left)
 		}
 	},
 
 	template: `
 
 	<div @click.stop >
-		<div v-show="loading" class="loading" v-bind:id="loadingIcon"></div>
+		<div v-show="loading" class="loading" :id="loadingIcon"></div>
 		<transition name="lightbox-fade">
 			<img :src="src" :style="style" :key="src">
 		</transition>
 	</div>
 	`
 }
+
+let tagsInput = {
+	data() {
+		return {}
+	},
+	props: {
+		medium: '',
+		options: ''
+	},
+	mounted() {
+		$('.chips-placeholder').material_chip({
+			placeholder: 'Enter a tag',
+			secondaryPlaceholder: '+Tag',
+		})
+
+		$('.chips').on('chip.add', (e, chip) => {
+			this.$emit('tag', chip.tag)
+			this.options.tagguer = false
+		})
+		$('.chips input').trigger('focus')
+
+	},
+	template: `
+		<div class="container">
+			<div class="row">
+				<div class="col s12 m12 l12" @click.stop.prevent>
+					<div class="chips chips-placeholder"></div>
+				</div>
+			</div>
+		</div>
+	`
+}
+
 
 let tags = {
 	data() {
@@ -112,20 +144,14 @@ let tags = {
 		tags: ''
 	},
 	mounted() {
-	/*	var tagListArray = ["Apple", "Orange", "Mango"]; //Some new data here
-		var data = []
-		var index;
-		for(index = 0; index < tags.length; index++) {
-			data.push({  tag: tags[index]  });
-		};
-		$('.chips-initial').material_chip({data: data})
-		*/
 	},
 	template: `
 		<div>
-			<div class="chip" v-for="t in tags">
+		<a :href="'/tags/' + t.id" v-for="t in tags">
+			<div class="chip">
 				{{t.name}}
 			</div>
+			</a>
 		</div>
 	`
 }
@@ -136,27 +162,55 @@ let toolbar = {
 		return {}
 	},
 	props: {
-		options: ''
-	},
-	mounted() {
+		options: '',
+		medium: '',
+		user: ''
 	},
 	methods: {
 		tags() {
 			this.$emit('tags')
+		},
+		tagguer() {
+			this.$emit('tagguer')
+		},
+		urlReport() {
+			if(this.medium)
+				return '/media/' + this.medium.id + '/report'
+			else
+				return '#'
+		},
+		like() {
+			this.$emit('like')
+		},
+		liked() {
+			if(this.medium)
+				return this.medium.liked
+			return false
+		},
+		likes() {
+			if(this.medium) {
+				if(this.medium.count_likes !== 0)
+					return this.medium.count_likes
+			}
+			return ''
 		}
 	},
 	template: `
 	<div>
-		<div class="tool" @click.stop.prevent="like">
-			Like
+		<div class="tool" :class="{'lightbox-active': this.user.liked == true}" @click.stop.prevent="like">
+			{{likes()}} Like
 			<i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
 		</div>
 		<div class="tool" :class="{'lightbox-active': options.tags}" @click.stop.prevent="tags">
 			Tags
 		</div>
-		<div class="tool" @click.stop.prevent="tagguer">
+		<div class="tool" @click.stop.prevent="tagguer" :class="{'lightbox-active': options.tagguer}">
 			Tagger
 		</div>
+		<a :href="urlReport()" class="tool">
+				Signaler
+		</div>
+
 	</div>
 	`
 }
@@ -168,8 +222,11 @@ let lightbox = {
 			state: store.state,
 			dir: 'next',
 			medium: undefined,
+			user: {},
+			lastTimeMouseMoved: undefined,
 			options: {
-				tags: false
+				tags: false,
+				tagguer: false
 			}
 		}
 	},
@@ -185,7 +242,7 @@ let lightbox = {
 	},
 	computed: {
 		loaded() {
-			return this.medium !== undefined
+			return this.medium !== undefined && this.medium !== ''
 		},
 
 		url() {
@@ -196,19 +253,30 @@ let lightbox = {
 			}
 			else
 				return undefined
-		}
+		},
 	},
 	methods: {
 		fetch(url) {
 			if(url) {
-			this.$http.get(url).then(response => {
-				this.medium = response.body
-				console.log(this.medium)
-				}, response => console.log(response)
-			)
-		}
-		else
-			return undefined
+				this.$http.get(url).then(response => {
+					this.medium = response.body.medium
+					this.user.liked = response.body.liked
+					this.loaded = true
+					}, response => console.log(response)
+				)
+			}
+			else
+				return undefined
+		},
+
+		addTag(tagName) {
+			if(this.state.index !== false) {
+				let url = this.state.medias[this.state.index]
+				this.$http.post(url + '/tag', {tag: {name: tagName}}).then(response => {
+					this.medium.tags = response.body.tags
+					}, response => console.log(response)
+				)
+			}
 		},
 
 		direction() {
@@ -219,9 +287,37 @@ let lightbox = {
 			this.options.tags = !this.options.tags
 		},
 
+		closeTagguer() {
+			this.options.tagguer = false
+		},
+		sendLike() {
+			if(this.state.index !== false) {
+				this.medium.count_likes = (this.user.liked == true) ? this.medium.count_likes - 1 : this.medium.count_likes + 1 
+				this.user.liked = !this.user.liked
+				let url = this.state.medias[this.state.index]
+				this.$http.post(url + '/like').then(response => {
+					}, response => console.log(response)
+				)
+			}
+		},
+
+		toggleTagguer() {
+			this.options.tagguer = !this.options.tagguer
+			if(this.options.tagguer)
+				$('.chips-placeholder').material_chip({
+					placeholder: 'Enter a tag',
+					secondaryPlaceholder: '+Tag',
+				})
+		},
+
 		close() {
-			store.close()
-			this.medium = undefined
+			if(this.options.tagguer)
+				this.options.tagguer = false
+			else {
+				store.close()
+				this.options.tagguer = false
+				this.medium = undefined
+			}
 		},
 		next() {
 			if(this.medium) {
@@ -239,12 +335,13 @@ let lightbox = {
 	template: `
 	<div v-if="url" @click="close">
 		<div>
-			<lightbox-toolbar v-on:tags="toggleTags" id="lightbox-toolbar" :options="options"></lightbox-toolbar>
+			<lightbox-toolbar v-on:like="sendLike" v-on:tags="toggleTags" v-on:tagguer="toggleTagguer" id="lightbox-toolbar" :medium="medium" :options="options" :user="user"></lightbox-toolbar>
 			<div class="lightbox-button" id="previous" @click.prevent.stop="prev">&lt;</div>
 			<div id="next" class="lightbox-button" @click.prevent.stop="next">&gt;</div>
 			<div id="close" class="lightbox-button" @click.prevent.stop="close">X</div>
 			<lightbox-media v-if="loaded" :medium="medium" :key="medium"></lightbox-media>
-			<lightbox-tags id="lightbox-tags" v-if="options.tags && loaded" :tags="medium.tags"></lightbox-tags>
+			<lightbox-tags  id="lightbox-tags" v-if="options.tags && loaded" :tags="medium.tags"></lightbox-tags>
+			<lightbox-tags-input v-on:tag="addTag" @click.stop="closeTagguer" class="lightbox-tags-input" :options="options" :medium="medium" v-if="loaded && options.tagguer"></lightbox-tags-input>
 		</div>
 	</div>
 	`
@@ -254,6 +351,8 @@ Vue.component('lightbox', lightbox)
 Vue.component('lightbox-media', media)
 Vue.component('lightbox-tags', tags)
 Vue.component('lightbox-toolbar', toolbar)
+Vue.component('lightbox-tags-input', tagsInput)
+
 
 // --------------
 //	lightbox directive

@@ -22,6 +22,10 @@
 		@include transition-duration(0.2s);
 	}
 
+	a {
+		display: inline;
+	}
+
 	a:hover {
 		color: black;
 		cursor: pointer;

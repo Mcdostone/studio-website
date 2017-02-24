@@ -37,6 +37,7 @@ Rails.application.routes.draw do
     resources :media, only: [:index, :edit, :update, :destroy] do
       member do
           delete '/untag/:id_tag', to: 'media#untag', as: 'untag'
+          delete '/untagAll/', to: 'media#untag_all', as: 'untag_all'
       end
     end
       post '/uploads/video', to: 'uploads#video', as: 'upload_video'

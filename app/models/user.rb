@@ -1,9 +1,13 @@
 class User < ApplicationRecord
 	belongs_to :authorization
 	has_many :uploads
+
 	after_initialize :set_defaults
+
 	mount_uploader :avatar, AvatarUploader
 
+	acts_as_voter
+	
 	validates :first_name,
 		presence: true,
 		allow_blank: false
@@ -13,9 +17,9 @@ class User < ApplicationRecord
 		allow_blank: false
 
 	validates :email,
-		presence: true,
-		allow_blank: false,
-		format: { with: /@telecomnancy.net\z/, message: 'Seuls les étudiants de TN.net sont autorisés !'}
+		presence: true#,
+		#allow_blank: false,
+		#format: { with: /@telecomnancy.net\z/, message: 'Seuls les étudiants de TN.net sont autorisés !'}
 
   validates :uid,
     presence: true,

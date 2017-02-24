@@ -4,9 +4,6 @@
 //= require tappy
 //= require navbar
 //= require materialize
-//= require pickadate/picker
-//= require pickadate/picker.date
-//= require pickadate/picker.time
 //= require gridalicious
 //= require masonry
 

@@ -25,8 +25,8 @@ gem "haml-rails"
 gem 'acts-as-taggable-on', '~> 4.0'
 gem 'omniauth-google-oauth2', '~> 0.4.1'
 gem "font-awesome-rails"
-gem 'pickadate-rails'
 gem 'compass-rails'
+gem 'acts_as_votable', '~> 0.10.0'
 
 gem 'mini_magick', '~> 4.6'
 gem 'carrierwave', '~> 1.0'

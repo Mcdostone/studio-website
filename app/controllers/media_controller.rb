@@ -9,31 +9,23 @@ class MediaController < ApplicationController
 
 	def show
 		if @medium.visible
-			render json: @medium.to_json(include: :tags)
+			liked = @current_user.liked?(@medium)
+			render json: { :medium => @medium.as_json(:include => :tags, :methods => :count_likes), :liked => liked}.to_json
 		else
 			render json: nil
 		end
 	end
 
 	def like
-		exists = Like.exists?(medium: @medium, user: @current_user)
-
-		if exists
-			Like.where(medium: @medium, user: @current_user).first.destroy
-			flash[:success] = "You don't like ?"
-		else
-			Like.create(medium: @medium, user: @current_user)
-			flash[:success] = "Like counted !"
-		end
-
- 		respond_to do |format|
-			format.json { render json: exists}
-		end
+		@medium.liked_by @current_user
+		@medium.unliked_by @current_user unless @medium.vote_registered?
+		render json: {:liked => @medium.vote_registered?}.to_json
 	end
 
 	def tag
 		@medium.tag_list.add(tag_params[:name])
 		@medium.save
+		render json: @medium.to_json(include: :tags)
 	end
 
 	private

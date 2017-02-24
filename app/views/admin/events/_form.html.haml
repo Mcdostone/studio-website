@@ -15,7 +15,7 @@
     = label_tag "Nom de l'Évent:"
 
   %div.input-field
-    = f.date_field :date, class: 'datepicker'
+    = f.date_field :date, class: 'datepicker', value: format_event_date(@event)
     = label_tag "Date de l'Évent:"
 
   %button.btn.waves-effect.waves-light{type: 'submit'}

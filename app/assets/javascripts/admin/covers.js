@@ -12,7 +12,6 @@ App.covers = (function() {
 		},
 
 		setBindingDate: function(tag) {
-			console.log(tag)
 			tag.bind('change', function() {
 				date.html($(this).val())
 			})

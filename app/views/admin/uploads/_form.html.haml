@@ -7,7 +7,7 @@
         = link_to 'Vidéo', '#video'
 
   %div.col
-  
+
   %div#media.col.s12
     %h2 Upload de médias
     = form_for [:admin, @upload], multipart: true do |f|
@@ -21,7 +21,6 @@
         = label_tag 'Type:'
 
       %div.input-field
-        -#= label_tag 'Media à upload:'
         %div{:id => 'studio-dropzone', :class => 'dropzone'}
 
       %button.btn.waves-effect.waves-light#submit-media{type: 'submit'}
@@ -29,7 +28,7 @@
         %i.material-icons.right
 
   %div#video.col.s12
-    %h2 Upload de vidéo
+    %h2 Upload d'une vidéo
     = form_for [:admin, @upload], multipart: true do |f|
 
       %div.input-field
@@ -41,6 +40,8 @@
         = label_tag 'Type:'
 
       %div.input-field
+        = f.text_field :type_id, placeholder: 'https://www.youtube.com/watch?v=gcNEC9NaJuE'
+        = label_tag 'Lien (YT, Google)'
 
       %button.btn.waves-effect.waves-light{type: 'submit'}
         Uploader

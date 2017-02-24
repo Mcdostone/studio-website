@@ -11,12 +11,14 @@
       = text_field_tag 'Maxou <3', '', class: 'file-path validate'
 
   %div.input-field
-    = label_tag 'Type de média:'
-    = f.text_field :name, placeholder: "Vidéo...", class: "form-control"
+    = f.text_field :name, placeholder: "Vidéo..."
+    = label_tag '', 'Type de média:', :for => 'type_name'
+
 
   %div.input-field
+    = f.text_field :mime_types, placeholder: "image/png image/jpeg"
     = label_tag 'Types de MIME (séparé par un espace si plusieurs):'
-    = f.text_field :mime_types, placeholder: "image/png image/jpeg", class: "form-control"
+
 
   %button.btn.waves-effect.waves-light{type: 'submit'}
     = submit_button_value(@type)

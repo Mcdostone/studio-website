@@ -22,7 +22,7 @@ $text-color-tag: 						rgb(180,180,180);
 	top: 50%;
 	line-height: 50px;
 	text-align: center;
-	z-index: 30;
+	z-index: 11;
 	left: 0;
 	color: white;
 	font-weight: 100;
@@ -151,10 +151,11 @@ $text-color-tag: 						rgb(180,180,180);
 	.tool {
 		padding: 10px;
 		cursor: pointer;
-		color: rgb(200,200,200);
 		@include transition-duration(0.2s);
 		border-radius: 4px;
 		margin-right: 10px;
+		color: rgb(200,200,200);
+
 		&:hover {
 			background-color: rgba(50,50,50,1);
 			color: white;
@@ -190,5 +191,23 @@ $text-color-tag: 						rgb(180,180,180);
 			border-color: white;
 			@include transition-duration(0.3s);
 		}
+	}
+}
+
+#lightbox .container {
+	position: fixed;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 12;
+	bottom: 0;
+	min-width: 100%;
+	background: rgba(0,0,0,0.8);
+
+	input {
+		color: white;
 	}
 }

@@ -22,8 +22,13 @@ App.events = (function() {
 
 $(function() {
 	App.events.init()
+	$('select').material_select()
 	Materialize.updateTextFields()
 	$('.datepicker').pickadate({
-    selectMonths: true
-  })
+		selectYears: 15,
+		container: '#root-container',
+		selectMonths: true,
+		format: 'dd/mm/yyyy',
+		formatSubmit: 'dd/mm/yyyy'
+	})
 })

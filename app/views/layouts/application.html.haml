@@ -2,8 +2,6 @@
 %html
   %head
     = render 'partials/head'
-    - if content_for?(:font)
-      = yield :font
   %body#app
 
     %div#root-container
@@ -13,6 +11,5 @@
 
     = render 'partials/footer'
 
-    = javascript_include_tag 'analytics'
     - if content_for?(:js)
       = yield :js

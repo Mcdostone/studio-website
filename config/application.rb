@@ -26,5 +26,10 @@ module StudioWebsite
 		end
 
 		config.active_record.raise_in_transactional_callbacks = true
+
+    ActsAsTaggableOn.remove_unused_tags = true
+    config.action_view.field_error_proc = Proc.new { |html_tag, instance|
+      html_tag
+    }
   end
 end
