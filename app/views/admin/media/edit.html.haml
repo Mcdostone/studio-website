@@ -1,5 +1,5 @@
 = content_for :js do
-  = javascript_include_tag 'admin/media.js'
+  = javascript_include_tag *webpack_asset_paths('admin_media')
 
 %div.section-admin
   = render 'form'

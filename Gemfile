@@ -28,6 +28,8 @@ gem "font-awesome-rails"
 gem 'compass-rails'
 gem 'acts_as_votable', '~> 0.10.0'
 
+gem 'webpack-rails', '~> 0.9.5'
+
 gem 'mini_magick', '~> 4.6'
 gem 'carrierwave', '~> 1.0'
 gem 'carrierwave-aws'
@@ -72,3 +74,5 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'ffaker', '~> 2.2'
 end
+
+gem 'foreman'

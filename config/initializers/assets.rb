@@ -9,4 +9,4 @@ Rails.application.config.assets.version = '1.0'
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
 # Rails.application.config.assets.precompile += %w( search.js )
-Rails.application.config.assets.precompile += %w( admin/*.js channels/upload_progress.js users.js reports.js likes.js dynamic_image_form.js lightbox.js )
+Rails.application.config.assets.precompile += %w( admin/*.js channels/upload_progress.js users.js gridalicious.js masonry.js reports.js likes.js dynamic_image_form.js lightbox.js )
