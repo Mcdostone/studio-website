@@ -1,6 +1,6 @@
 <template>
-	<div>
-	<a :href="'/tags/' + t.id" v-for="t in tags">
+	<div  @click.stop.prevent>
+	<a :href="'/tags/' + t.id" v-for="t in tags"  @click.stop>
 		<div class="chip">
 			{{t.name}}
 		</div>
@@ -14,7 +14,7 @@ export default {
 		return {}
 	},
 	props: {
-		tags: ''
+		tags: undefined
 	}
 }
 </script>

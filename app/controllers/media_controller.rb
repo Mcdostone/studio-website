@@ -19,7 +19,7 @@ class MediaController < ApplicationController
 	def like
 		@medium.liked_by @current_user
 		@medium.unliked_by @current_user unless @medium.vote_registered?
-		render json: {:liked => @medium.vote_registered?}.to_json
+		render json: {:liked => @medium.vote_registered?, :count_likes => @medium.count_likes}.to_json
 	end
 
 	def tag

@@ -1,36 +1,17 @@
 import Vue from 'vue'
-import VueResource from 'vue-resource'
-import LightboxOverlay from './components/lightboxOverlay.vue'
-Vue.use(VueResource)
+import store from './lightboxStore'
 
-// Get the CRSF Token
-Vue.http.headers.common['X-CSRF-TOKEN'] = $('meta[name="token"]').attr('value')
+Vue.directive('lightbox', {
+  bind(el, binding) {
+		let index = store.addMedia(el.getAttribute('href'))
+		el.addEventListener('click', function(e) {
+			e.preventDefault()
+			store.load(index - 1)
+		})
+	},
 
+	unbind(el, binding) {
+		store.remove(el.getAttribute('src'))
+	}
 
-// Init gridalicious
-$(function() {
-	require('grid-a-licious')
-	$("#container-masonry").gridalicious({
-		  animate: true,
-			width: 225,
-			gutter: 0,
-			animationOptions: {
-				queue: true,
-				speed: 100,
-				effect: 'fadeInOnAppear',
-			}
-	})
-})
-
-
-/*Vue.component('lightbox', lightbox)
-Vue.component('lightbox-media', media)
-Vue.component('lightbox-tags', tags)
-Vue.component('lightbox-toolbar', toolbar)
-Vue.component('lightbox-tags-input', tagsInput)
-*/
-
-
-var vm = new Vue({
-	el: '#root-container'
 })

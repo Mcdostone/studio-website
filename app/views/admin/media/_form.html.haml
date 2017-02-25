@@ -11,7 +11,7 @@
           = link_to untag_admin_medium_path(@medium, tag), method: :delete do
             %i.close.material-icons close
 
-  %div
+  %div{style:"color: rgb(120,120,120);"}
     = @medium.count_likes
     %i.fa.fa-thumbs-o-up{aria: {hidden: true}}
 

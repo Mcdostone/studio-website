@@ -1,22 +1,20 @@
-App.types = function() {
+var covers = require('./covers')
 
-	let check = function(e) {
+$(function() {
+	/*let check = function(e) {
+		console.log('test')
 		e.preventDefault()
 		let input = $('#type_name')
 		if(input.val() === "") {
 			input.focus()
-			App.flash.warning("", 'SPÉCyphi 1 N0N STeplé')
+  		Materialize.toast('SPÉCyphi 1 N0N STeplé', 4000)
 		}
 		else
-		$('form').submit()
+			$('form').submit()
 	}
-
-	App.covers.setBindingName($('#type_name'))
-	App.covers.setBindingCover($('#type_cover'))
-	App.covers.setActionOnSubmit(check)
-}
-
-$(function() {
-	App.types()
-	Materialize.updateTextFields()
+	*/
+	covers.setBindingName($('#type_name'))
+	covers.setBindingCover($('#type_cover'))
+//	covers.setActionOnSubmit(check)
+//	Materialize.updateTextFields()
 })

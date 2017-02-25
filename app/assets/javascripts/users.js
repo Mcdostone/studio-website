@@ -1,16 +1,6 @@
-App.users = (function() {
-
-	return {
-		init: function() {
-			$('#user_nickname').bind('input', function() {
-				$('p#nickname').text('@' + $(this).val())
-			})
-
-			App.dynamicImage.setBindingImage($('#user_avatar'), $('#avatar'))
-		}
-	}
-})()
+var dynamic = require('./dynamic_image_form')
 
 $(function() {
-	App.users.init()
+	$('#user_nickname').bind('input',function() {  $('p#nickname').text('@' + $(this).val())  })
+	dynamic.setBindingImage($('#user_avatar'), $('#avatar'))
 })

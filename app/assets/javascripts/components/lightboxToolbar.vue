@@ -1,20 +1,21 @@
+
 <template>
 	<div>
-		<div class="tool" :class="{'lightbox-active': this.user.liked == true}" @click.stop.prevent="like">
-			<i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+		<div class="tool" @click.stop.prevent="like" :class="{'lightbox-active': this.user.liked == true}">
+			<i class="fa fa-thumbs-o-up" aria-hidden="true" style="margin-right: 5px;"></i>
 			{{likes()}} Like
 		</div>
-		<div class="tool" :class="{'lightbox-active': options.tags}" @click.stop.prevent="tags">
+
+		<div @click.stop.prevent="tags" class="tool">
 			Tags
 		</div>
-		<div class="tool" @click.stop.prevent="tagguer" :class="{'lightbox-active': options.tagguer}">
+		<div @click.stop.prevent="tagguer" class="tool" >
 			Tagger
 		</div>
-			<a :href="urlReport()" class="tool">
+			<a @click.stop :href="urlReport()" class="tool">
 				Signaler
 			</a>
 		</div>
-
 	</div>
 </template>
 
@@ -24,17 +25,13 @@ export default {
 		return {}
 	},
 	props: {
-		options: '',
 		medium: '',
 		user: ''
 	},
 	methods: {
-		tags() {
-			this.$emit('tags')
-		},
-		tagguer() {
-			this.$emit('tagguer')
-		},
+		tags() {  this.$emit('toggle-tags') },
+		tagguer() {  this.$emit('toggle-tagguer') },
+
 		urlReport() {
 			if(this.medium)
 				return '/media/' + this.medium.id + '/report'
@@ -50,13 +47,41 @@ export default {
 			return false
 		},
 		likes() {
-			if(this.medium) {
-				if(this.medium.count_likes !== 0)
-					return this.medium.count_likes
-			}
-			return ''
+			return this.medium.count_likes
 		}
 	},
 
 }
+
+/**
+
+<div>
+	<div class="tool" :class="{'lightbox-active': this.user.liked == true}" @click.stop.prevent="like">
+		<i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+		{{likes()}} Like
+	</div>
+	<div class="tool" :class="{'lightbox-active': options.tags}" @click.stop.prevent="tags">
+		Tags
+	</div>
+	<div class="tool" @click.stop.prevent="tagguer" :class="{'lightbox-active': options.tagguer}">
+		Tagger
+	</div>
+		<a :href="urlReport()" class="tool">
+			Signaler
+		</a>
+	</div>
+</div>
+
+
+sendLike() {
+	if(this.state.index !== false) {
+		this.medium.count_likes = (this.user.liked == true) ? this.medium.count_likes - 1 : this.medium.count_likes + 1
+		this.user.liked = !this.user.liked
+		let url = this.state.medias[this.state.index]
+		this.$http.post(url + '/like').then(response => {
+			}, response => console.log(response)
+		)
+	}
+},
+*/
 </script>

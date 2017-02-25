@@ -2,6 +2,9 @@
 %html
   %head
     = render 'partials/head'
+    = javascript_include_tag *webpack_asset_paths('application')
+    = javascript_include_tag *webpack_asset_paths('admin')
+
   %body#admin
 
     %div#root-container

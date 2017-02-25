@@ -22,7 +22,14 @@ class LightboxStore {
 	close() {
 		this.state.index = false
 	}
-}
 
+	next() {
+		this.state.index = (this.state.index == this.state.medias.length - 1) ? 0 : this.state.index + 1
+	}
+
+	previous() {
+		this.state.index = (this.state.index == 0) ? this.state.medias.length - 1 : this.state.index - 1
+	}
+}
 
 export default new LightboxStore()

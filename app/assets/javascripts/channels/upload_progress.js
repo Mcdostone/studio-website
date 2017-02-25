@@ -1,4 +1,4 @@
-App.upload_progress = (function() {
+module.exports = function(uploads) {
   let finished = false
   let url = ''
 
@@ -21,11 +21,11 @@ App.upload_progress = (function() {
 
         received: function(data) {
           switch(data.task) {
-            case 's3': 
-              App.uploads.desc('Traitement des images - Upload sur AWS S3')
+            case 's3':
+              uploads.desc('Traitement des images - Upload sur AWS S3')
               break
             case 'upload':
-              App.uploads.increaseNbFilesUploaded()
+              uploads.increaseNbFilesUploaded()
               break
             case 'end':
               if(App.uploads.getDropzone().getQueuedFiles().length > 0)
@@ -36,9 +36,9 @@ App.upload_progress = (function() {
               }
               break
           }
-          App.uploads.refresh()
+          uploads.refresh()
         }
       })
     }
   }
-})() 
+}

@@ -15,8 +15,13 @@ var config = {
   entry: {
     application: 'application.js',
     admin_media: 'admin/media.js',
-    masonry: 'masonry.js',
-    lightbox: 'lightbox.js'
+    'init-lightbox': 'init-lightbox.js',
+    events: 'admin/events.js',
+    types: 'admin/types.js',
+    uploads: 'admin/uploads.js',
+    reports: 'reports.js',
+    admin :'admin/admin.js',
+    users: 'users.js'
   },
 
   output: {

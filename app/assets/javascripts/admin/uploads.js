@@ -1,5 +1,7 @@
-let AUTH_TOKEN = $('meta[name="csrf-token"]').attr('content')
+var Dropzone = require('dropzone')
+Dropzone.autoDiscover = false
 
+var progress = require('../channels/upload_progress')
 Dropzone.prototype.getActiveFiles = function() {
 	var file, _i, _len, _ref, _results;
 	_ref = this.files;
@@ -11,12 +13,8 @@ Dropzone.prototype.getActiveFiles = function() {
 	return _results;
 }
 
-App.uploads = (function() {
-	let form = $('form')
-	let action = form.attr('action')
-	let nbFiles = 0
-	let submit = $('#submit-media')
-	let parallelUploads = 100
+
+var uploads = function(form, action, submit) {
 	let filesUploaded = 0
 	let percentUpload = 0
 	let progressBar = $('<div/>')
@@ -24,31 +22,6 @@ App.uploads = (function() {
 	let progressBarInfos = $('<div/>')
 	let desc = $('<span/>')
 	let studioDropzone = undefined
-
-	let initDropzone = function() {
-		studioDropzone = new Dropzone('div#studio-dropzone', {
-			url: action,
-			autoProcessQueue: false,
-			uploadMultiple: true,
-			maxFiles: parallelUploads,
-			dictDefaultMessage: 'Uploader des fichiers',
-			paramName: 'admin_upload[media]',
-			addRemoveLinks: true,
-			parallelUploads: parallelUploads,
-			acceptedFiles: 'image/*,audio/*,application/pdf,.CR2',
-			maxFilesize: 100,
-			params:{
-				'authenticity_token':  AUTH_TOKEN
-			},
-			init: function() {
-				this.on("sending", (file, xhr, formData) => {
-		 			formData.append('admin_upload[type_id]', $('#upload_type_id').val())
-		 			formData.append('admin_upload[event_id]', $('#upload_event_id').val())
-				}
-			)},
-			successmultiple: (data,response) => {}
-		})
-	}
 
 	return {
 		getDropzone: function() {
@@ -60,7 +33,7 @@ App.uploads = (function() {
     		p2 = Math.floor(percentUpload/ 2)
 
     		percentValue = p1 + p2 > 100 ? 100 : p1 + p2
-    		App.uploads.setProgressBar(percentValue)
+    		uploads.setProgressBar(percentValue)
     		percent.text(percentValue + '%')
     		if(nbFiles == filesUploaded)
       			desc.text('Upload terminé')
@@ -108,7 +81,6 @@ App.uploads = (function() {
 			progressBarContainer.hide()
 			progressBarContainer.insertAfter(document.body)
 
-			initDropzone()
 
 			studioDropzone.on('completemultiple', function(files) {
 				if(studioDropzone.getQueuedFiles().length > 0)
@@ -133,26 +105,19 @@ App.uploads = (function() {
 
 			studioDropzone.on('maxfilesexceeded', function(file) {
 				this.removeFile(file)
-				App.flash.warning('Abruti,', "l'upload est limité à 100 médias")
 			})
 
 			studioDropzone.on('queuecomplete', function() {
 
 				studioDropzone.removeAllFiles()
 				progressBarContainer.removeClass('fadeIn')
-				App.uploads.refresh(true)
+				uploads.refresh(true)
 				desc.text('En attente de réponse du serveur @TN.net')
-				/*//close.toggleClass('invisible')
-				close.on('click', e => progressBarContainer.fadeOut(300, () => {
-					progressBarContainer.hide()
-//					window.location.href = App.upload_progress.getUrl()
-
-				}))*/
 			})
 
 			studioDropzone.on('totaluploadprogress', (per, r, a) => {
 				percentUpload = per
-				App.uploads.refresh()
+				uploads.refresh()
 			})
 
 			form.submit(e => {
@@ -164,16 +129,40 @@ App.uploads = (function() {
 					close.addClass('invisible')
 					e.preventDefault()
 					studioDropzone.processQueue()
-					console.log(form)
 				}
 			})
 		}
 	}
-})()
+}
 
 
 $(function() {
-	$('select').material_select();
-	App.upload_progress.init()
-	App.uploads.init()
+	let form = $('form')
+	let action = form.attr('action')
+	let nbFiles = 0
+	let parallelUploads = 100
+	let AUTH_TOKEN = $('meta[name="csrf-token"]').attr('content')
+
+	let studioDropzone = new Dropzone('div#studio-dropzone', {
+		url: action,
+		autoProcessQueue: false,
+		uploadMultiple: true,
+		maxFiles: parallelUploads,
+		dictDefaultMessage: 'Uploader des fichiers',
+		paramName: 'admin_upload[media]',
+		addRemoveLinks: true,
+		parallelUploads: parallelUploads,
+		acceptedFiles: 'image/*,audio/*,application/pdf,.CR2',
+		maxFilesize: 100,
+		params:{  'authenticity_token':  AUTH_TOKEN },
+		init: function() {
+			this.on("sending", (file, xhr, formData) => {
+				formData.append('admin_upload[type_id]', $('#upload_type_id').val())
+				formData.append('admin_upload[event_id]', $('#upload_event_id').val())
+			}
+		)},
+		successmultiple: (data,response) => {}
+	})
+
+	uploads(form, action, $('button[type="submit"]')).init()
 })

@@ -2,6 +2,8 @@
   = render 'partials/nothing'
 
 -else
+  = content_for :js do
+    = javascript_include_tag *webpack_asset_paths('init-lightbox')
 
   %div#container-studio
     %div.grid#container-masonry

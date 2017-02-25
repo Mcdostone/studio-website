@@ -1,4 +1,6 @@
-App.covers = (function() {
+var dynamic = require('../dynamic_image_form')
+
+module.exports = (function() {
 	let name = $('.cover .cover-name')
 	let date = $('.cover .cover-date')
 	let cover = $('.cover .illustration img')
@@ -18,7 +20,7 @@ App.covers = (function() {
 		},
 
 		setBindingCover: function(tag) {
-			App.dynamicImage.setBindingImage(tag, cover)
+			dynamic.setBindingImage(tag, cover)
 		},
 
 		setActionOnSubmit: function(f) {

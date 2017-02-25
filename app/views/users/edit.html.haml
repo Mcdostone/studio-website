@@ -1,13 +1,8 @@
--#%h2 Modifier le profil
-
 = content_for :js do
-  = javascript_include_tag 'dynamic_image_form.js'
-  = javascript_include_tag 'users.js'
+  = javascript_include_tag *webpack_asset_paths('users')
 
 %div.section-admin
 
   %div.profile
-
     = render 'profile', user: @user
-
     = render 'form'

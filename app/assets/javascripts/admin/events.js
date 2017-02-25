@@ -1,29 +1,13 @@
-App.events = (function() {
-	let check = function(e) {
-		e.preventDefault()
-		let input = $('#event_name')
-		if(input.val() === "") {
-			input.focus()
-			App.flash.warning("", 'SPÉCyphi 1 N0N STeplé')
-		}
-		else
-			$('form').submit()
-	}
-
-	return {
-		init: function() {
-			App.covers.setBindingName($('#event_name'))
-			App.covers.setBindingDate($('#event_date'))
-			App.covers.setBindingCover($('#event_cover'))
-			App.covers.setActionOnSubmit(check)
-		}
-	}
-})()
+var covers = require('./covers')
+require('materialize-css')
 
 $(function() {
-	App.events.init()
+	covers.setBindingName($('#event_name'))
+	covers.setBindingDate($('#event_date'))
+	covers.setBindingCover($('#event_cover'))
+	//covers.setActionOnSubmit(check)
+
 	$('select').material_select()
-	Materialize.updateTextFields()
 	$('.datepicker').pickadate({
 		selectYears: 15,
 		container: '#root-container',
@@ -32,3 +16,15 @@ $(function() {
 		formatSubmit: 'dd/mm/yyyy'
 	})
 })
+
+/*
+let check = function(e) {
+	e.preventDefault()
+	let input = $('#event_name')
+	if(input.val() === "") {
+		input.focus()
+		App.flash.warning("", 'SPÉCyphi 1 N0N STeplé')
+	}
+	else
+		$('form').submit()
+}*/

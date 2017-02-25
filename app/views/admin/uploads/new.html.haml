@@ -1,7 +1,4 @@
 = content_for :js do
-  = javascript_include_tag 'channels/upload_progress'
-  = javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.3.0/min/dropzone.min.js'
-  = javascript_include_tag 'admin/uploads'
-
+  = javascript_include_tag *webpack_asset_paths('uploads')
 %div.section-admin
   = render 'form'

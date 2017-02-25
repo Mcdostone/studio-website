@@ -74,7 +74,7 @@ $text-color-tag: 						rgb(180,180,180);
 	margin-left: -$loading-icon-size/2;
 	width: $loading-icon-size;
 	height: $loading-icon-size;
-	z-index: 100;
+	z-index: 11;
 	//background: url(/images/loading1.png) no-repeat;
 	background-size: $loading-icon-size $loading-icon-size;
 	animation-name: loading;
