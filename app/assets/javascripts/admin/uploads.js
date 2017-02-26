@@ -47,7 +47,7 @@ var uploads = (function() {
 			init: function() {
 				this.on("sending", (file, xhr, formData) => {
 		 			formData.append('admin_upload[type_id]', $('#upload_type_id').val())
-		 			formData.append('admin_upload[event_id]', $('#upload_event_id').val())
+		 			formData.append('admin_upload[album_id]', $('#upload_album_id').val())
 				}
 			)},
 			successmultiple: (data,response) => {}

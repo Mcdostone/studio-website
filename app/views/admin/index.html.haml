@@ -7,12 +7,12 @@
       = @media_count > 1 ? 'médias' : 'média'
 
 
-  = link_to admin_events_path, :id => "card-events", :class => "card"  do
+  = link_to admin_albums_path, :id => "card-albums", :class => "card"  do
     %div.card-icon
     %p.card-number
-      = @events_count
+      = @albums_count
     %p.card-text
-      = @events_count > 1 ? 'events' : 'event'
+      = @albums_count > 1 ? 'albums' : 'album'
 
 
   = link_to admin_types_path, :id => 'card-types', :class => 'card'  do

@@ -6,7 +6,7 @@ class AdminController < ApplicationController
 
 	def index
 		@media_count =  Medium.count
-		@events_count =  Event.count
+		@albums_count =  Album.count
 		@types_count =  Type.count
 		@uploads_count =  Upload.count
 		@reports_count =  Report.count

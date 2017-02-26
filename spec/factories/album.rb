@@ -1,7 +1,5 @@
-require 'ffaker'
-
 FactoryGirl.define do
-	factory :event do
+	factory :album do
     name { FFaker::NameMX.name }
     date { FFaker::Time.date }
 	end

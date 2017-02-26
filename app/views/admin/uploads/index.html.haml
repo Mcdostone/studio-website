@@ -8,7 +8,7 @@
         %tr
           %th ID
           %th Uploader
-          %th Event
+          %th Album
           %th Type
           %th.useless-column Uploadé le
           %th.useless-column
@@ -21,7 +21,7 @@
           %td
             = link_to(full_name(upload.user), user_path(upload.user)) if upload.user
           %td
-            = link_to upload.event.name, event_path(upload.event) if upload.event
+            = link_to upload.album.name, album_path(upload.album) if upload.album
           %td
             = link_to upload.type.name, type_path(upload.type) if upload.type
           %td.useless-column

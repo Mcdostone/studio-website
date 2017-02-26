@@ -3,12 +3,12 @@ class Admin::MediaController < AdminController
 	before_action :set_medium, only:[:edit, :update, :destroy, :untag, :untag_all]
 
 	def index
-		@media = Medium.includes(:type, :event).all
+		@media = Medium.includes(:type, :album).all
 	end
 
 	def edit
 		@types = Type.all
-		@events = Event.all
+		@albums = Album.all
 	end
 
 	def update
@@ -38,7 +38,7 @@ class Admin::MediaController < AdminController
   	end
 
   	def medium_params
-  		params.require(:medium).permit(:type_id, :event_id, :visible)
+  		params.require(:medium).permit(:type_id, :album_id, :visible)
   	end
 
 	def set_medium

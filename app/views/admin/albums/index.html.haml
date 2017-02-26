@@ -1,0 +1,32 @@
+%div.section-admin
+  %h2 Liste des albums
+
+  %table.striped.bordered.highlight
+    %thead
+      %tr
+        %th ID
+        %th Nom
+        %th.useless-column Date de l'album
+        %th.useless-column Ajouté
+        %th.useless-column Mis à jour
+        %th
+        %th
+    %tbody
+    - @albums.each do |album|
+      %tr
+        %td
+          = link_to album.id, edit_admin_album_path(album)
+        %td
+          = link_to album.name, edit_admin_album_path(album)
+        %td.useless-column
+          = format_album_date(album)
+        %td.useless-column
+          = format_date(album.created_at)
+        %td.useless-column
+          = format_date(album.updated_at)
+        %td
+          = link_to 'Modifier', edit_admin_album_path(album)
+        %td
+          = link_to 'Supprimer', admin_album_path(album), method: :delete, data: { confirm: 'Voulez-vous supprimer cet album ?' }
+
+  = link_to 'Nouvel album', new_admin_album_path, class: 'waves-effect waves-light btn'

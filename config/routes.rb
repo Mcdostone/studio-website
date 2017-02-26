@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :albums
   resources :sessions, only: [:new, :create]
   #resources :likes
   root 'public#index'
@@ -13,7 +14,7 @@ Rails.application.routes.draw do
   resources :sessions, only: [:create, :destroy]
   resources :tags, only: [:show]
   resources :users, only: [:index, :show, :edit, :update]
-  resources :events, only: [:index, :show]
+  resources :albums, only: [:index, :show]
   resources :types, only: [:index, :show]
 
   resources :media, only: [:index, :show] do
@@ -28,7 +29,7 @@ Rails.application.routes.draw do
   get '/feeds', to: 'activities#index'
 
   namespace :admin do
-    resources :events
+    resources :albums
     resources :types
     resources :tags, only: [:index, :destroy]
     resources :users, only: [:index, :edit, :update]

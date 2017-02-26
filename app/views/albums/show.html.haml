@@ -2,5 +2,5 @@
   = render 'partials/nothing'
 - else
   %div#container-studio
-    = render 'events/cover', event: @event, media: @filtered_media, settings: true
+    = render 'albums/cover', album: @album, media: @filtered_media, settings: true
     = render 'partials/media', media: @filtered_media

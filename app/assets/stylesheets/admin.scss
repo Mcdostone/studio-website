@@ -29,6 +29,9 @@ $card-padding: 10px;
   background-color: white;
   box-shadow: 0 1px 2px rgba(0,0,0,.1);
   @include box-sizing(border-box);
+  .row {
+    width: 100%;
+  }
 
   .tabs {
     overflow-x: hidden;
@@ -145,22 +148,22 @@ $card-padding: 10px;
 }
 
 
-#card-events {
-	background-color: $card-events-background;
+#card-albums {
+	background-color: $card-albums-background;
 	@include transition-duration(0.2s);
 }
 
-#card-events:hover {
-	background-color: shade($card-events-background, $value-shaden);
+#card-albums:hover {
+	background-color: shade($card-albums-background, $value-shaden);
 	@include transition-duration(0.3s);
 }
 
-#card-events .card-icon {
-	background: url("/images/card-events.png");
+#card-albums .card-icon {
+	background: url("/images/card-albums.png");
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: 60px 60px;
-	background-color: shade($card-events-background, $value-shaden);
+	background-color: shade($card-albums-background, $value-shaden);
 
 }
 

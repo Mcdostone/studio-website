@@ -16,7 +16,7 @@ var config = {
     application: 'application.js',
     admin_media: 'admin/media.js',
     'init-lightbox': 'init-lightbox.js',
-    events: 'admin/events.js',
+    albums: 'admin/albums.js',
     types: 'admin/types.js',
     uploads: 'admin/uploads.js',
     reports: 'reports.js',

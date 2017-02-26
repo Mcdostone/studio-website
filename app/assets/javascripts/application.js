@@ -6,8 +6,7 @@ require('materialize-css')
 require('./navbar')
 
 $(document).ready(function(){
-  if(window.innerHeight > 600 && window.innerWidth > 600)
-    $('.parallax').parallax({height: '400px'})
+  $('.parallax').parallax()
 })
 
 //require('./cable')

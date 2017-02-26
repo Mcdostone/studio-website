@@ -53,11 +53,11 @@
 
     %ul.nav-items
       %li.nav-item.nav-item-social.youtube
-        = link_to "/" do
+        = link_to "https://www.youtube.com/channel/UCg3ryFLFBbceQidCukZ599A", target: "_blank" do
           %i.fa.fa-youtube-play{:aria => {hidden: 'true'}}
 
       %li.nav-item.nav-item-social.facebook
-        = link_to "/" do
+        = link_to "https://www.facebook.com/TNCYStudio/", target: "_blank" do
           %i.fa.fa-facebook{:aria => {hidden: 'true'}}
 
   - if !@current_user
@@ -73,7 +73,7 @@
       %li.nav-item
         = link_to "All", media_path
       %li.nav-item
-        = link_to "Albums", events_path
+        = link_to "Albums", albums_path
       %li.nav-item
         = link_to "Types", types_path
 
@@ -87,11 +87,11 @@
           = link_to "Dashboard", admin_path
 
     %li.nav-item.nav-item-social.youtube
-      = link_to "/" do
+      = link_to "https://www.youtube.com/channel/UCg3ryFLFBbceQidCukZ599A", target: "_blank" do
         %i.fa.fa-youtube-play{:aria => {hidden: 'true'}}
 
     %li.nav-item.nav-item-social.facebook
-      = link_to "/" do
+      = link_to "https://www.facebook.com/TNCYStudio/", target: "_blank" do
         %i.fa.fa-facebook{:aria => {hidden: 'true'}}
 
     - if @current_user

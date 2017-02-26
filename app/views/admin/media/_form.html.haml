@@ -22,8 +22,8 @@
     = label_tag 'Type du média:'
 
   %div.input-field
-    = f.select :event_id, @events.map{ |e| [e.name, e.id] }, {}, {}
-    = label_tag 'Évenement:'
+    = f.select :album_id, @albums.map{ |e| [e.name, e.id] }, {}, {}
+    = label_tag 'Album:'
 
   %div.row
     = label_tag 'Visble:'

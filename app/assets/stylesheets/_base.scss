@@ -28,7 +28,7 @@ $cover-height:							400px;
 $card-height: 							90px;
 
 $card-media-background:			#2ECC71;
-$card-events-background:		#EB9532;
+$card-albums-background:		#EB9532;
 $card-types-background:			#3498DB;
 $card-users-background:			#936663;
 $card-uploads-background:		#333;
@@ -84,7 +84,6 @@ $link-color: 						color("light-blue", "darken-1") !default;
 	background-size: cover;
 }
 
-/*#studio .illustration { @include section-illustration("/images/lens.jpg") }*/
 #works .description .illustration { @include section-illustration("/images/spiral-film.jpg") }
 #about .description .illustration { @include section-illustration("/images/film-projector.jpg") }
 

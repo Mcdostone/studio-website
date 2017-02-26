@@ -4,7 +4,7 @@ class MediaController < ApplicationController
 	skip_before_action :verify_authenticity_token
 
 	def index
-		@media = Medium.includes(:type, :event).all
+		@media = Medium.includes(:type, :album).all
 	end
 
 	def show

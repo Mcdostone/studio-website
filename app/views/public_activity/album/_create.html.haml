@@ -1,0 +1,7 @@
+- single_content_for :title do
+  = link_to full_name(@current_user), user_path(@current_user)
+  = " a crée l'album "
+  = link_to activity.trackable.name, album_path(activity.trackable)
+
+- single_content_for :content do
+  = render 'albums/cover', album: activity.trackable, media: [], settings: false

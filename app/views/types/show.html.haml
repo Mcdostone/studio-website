@@ -3,6 +3,6 @@
   = render 'partials/nothing'
 
 - else
-
-  = render 'types/cover', type: @type, media: @filtered_media, settings: true
-  = render 'partials/media', media: @filtered_media
+  %div#container-studio
+    = render 'types/cover', type: @type, media: @filtered_media, settings: true
+    = render 'partials/media', media: @filtered_media

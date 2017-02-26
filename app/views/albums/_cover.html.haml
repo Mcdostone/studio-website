@@ -1,18 +1,17 @@
-%div.cover
+%div.cover.parallax-container
   - if((@current_user.author? || @current_user.admin?) && settings == true)
-    = link_to edit_admin_event_path(event), class: 'button-admin' do
+    = link_to edit_admin_album_path(album), class: 'button-admin' do
       %div.icon
       %p Modifier
 
-  %span.overlay
-
-  %div.illustration
-    = image_tag cover(event)
+  %div.illustration.parallax
+    %span.overlay
+    = image_tag cover(album)
     %div.cover-desc
       %div.cover-name
-        = event.name
+        = album.name
       %div.cover-date
-        = format_event_date(event)
+        = format_album_date(album)
       %div.cover-count
         - if media.size > 0
           = "#{media.size} " + (media.size > 1 ? 'médias' : 'média')

@@ -1,6 +1,6 @@
 class Medium < ApplicationRecord
 	belongs_to :type
-	belongs_to :event
+	belongs_to :album
 	belongs_to :upload
 
 	has_many :likes

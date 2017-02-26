@@ -1,4 +1,4 @@
-- if @events.empty?
+- if @albums.empty?
   = render 'partials/nothing'
 
 -else
@@ -7,11 +7,11 @@
 
   %div#container-studio
     %div.grid#container-masonry
-      - @events.each do |event|
-        = link_to event_path(event), :class => "item item-overlay" do
-          = image_tag(url_thumbnail(random_media(event)))
+      - @albums.each do |album|
+        = link_to album_path(album), :class => "item item-overlay" do
+          = image_tag(url_thumbnail(random_media(album)))
           %div.item-infos
             %p.item-name
-              = event.name
+              = album.name
             %p.item-date
-              = format_event_date(event)
+              = format_album_date(album)

@@ -9,7 +9,7 @@
         %th ID
         %th Thumbnail
         %th.useless-column Type
-        %th.useless-column Event
+        %th.useless-column Album
         %th.useless-column Upload
         %th.useless-column Visible
         %th.useless-column Ajouté
@@ -27,7 +27,7 @@
           %td.useless-column
             = medium.type.name if medium.type
           %td.useless-column
-            = medium.event.name if medium.event
+            = medium.album.name if medium.album
           %td.useless-column
             -#= link_to(medium.upload.id, show_admin_upload_path(medium.upload)) if medium.upload
             = link_to(medium.upload.id, admin_upload_path(medium.upload)) if medium.upload

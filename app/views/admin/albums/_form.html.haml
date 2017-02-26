@@ -1,7 +1,11 @@
-= form_for [:admin, @event] do |f|
+= content_for :js do
+  = javascript_include_tag *webpack_asset_paths('albums')
 
-  = render 'admin/partials/errors', model: @event
-  = render 'events/cover', event: @event, media: @event.media, settings: false
+
+= form_for [:admin, @album] do |f|
+
+  = render 'admin/partials/errors', model: @album
+  = render 'albums/cover', album: @album, media: @album.media, settings: false
 
   %div.input-field.file-field
     %div.btn
@@ -12,12 +16,12 @@
 
   %div.input-field
     = f.text_field :name, placeholder: 'WEI 2015, Gala ...', autofocus: 'autofocus'
-    = label_tag "Nom de l'Évent:"
+    = label_tag "Nom de l'album:"
 
   %div.input-field
-    = f.date_field :date, class: 'datepicker', value: format_event_date(@event)
-    = label_tag "Date de l'Évent:"
+    = f.date_field :date, class: 'datepicker', value: format_album_date(@album)
+    = label_tag "Date de l'album:"
 
   %button.btn.waves-effect.waves-light{type: 'submit'}
-    = submit_button_value(@event)
+    = submit_button_value(@album)
     %i.material-icons.right

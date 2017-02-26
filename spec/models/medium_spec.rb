@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe Event, :type => :model do
+RSpec.describe Medium, :type => :model do
 
   before do
     @medium = FactoryGirl.create(:medium)

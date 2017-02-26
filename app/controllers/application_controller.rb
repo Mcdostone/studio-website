@@ -16,8 +16,7 @@ class ApplicationController < ActionController::Base
     user = @current_user
 
     if user == nil
-      flash[:warning] = "connect"
-      redirect_to root_path
+      redirect_to login_path
       return
     end
     if user.ban

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170224100952) do
+ActiveRecord::Schema.define(version: 20170226213323) do
 
   create_table "activities", force: :cascade do |t|
     t.string   "trackable_type"
@@ -28,11 +28,7 @@ ActiveRecord::Schema.define(version: 20170224100952) do
     t.index ["trackable_id", "trackable_type"], name: "index_activities_on_trackable_id_and_trackable_type"
   end
 
-  create_table "authorizations", force: :cascade do |t|
-    t.string "name"
-  end
-
-  create_table "events", force: :cascade do |t|
+  create_table "albums", force: :cascade do |t|
     t.string   "name"
     t.datetime "date"
     t.datetime "created_at", null: false
@@ -40,10 +36,14 @@ ActiveRecord::Schema.define(version: 20170224100952) do
     t.string   "cover"
   end
 
+  create_table "authorizations", force: :cascade do |t|
+    t.string "name"
+  end
+
   create_table "media", force: :cascade do |t|
     t.datetime "created_at",                             null: false
     t.datetime "updated_at",                             null: false
-    t.integer  "event_id"
+    t.integer  "album_id"
     t.integer  "type_id"
     t.string   "file"
     t.integer  "upload_id"
@@ -110,7 +110,7 @@ ActiveRecord::Schema.define(version: 20170224100952) do
   create_table "uploads", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer  "event_id"
+    t.integer  "album_id"
     t.integer  "type_id"
     t.integer  "user_id"
     t.index ["user_id"], name: "index_uploads_on_user_id"
