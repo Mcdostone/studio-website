@@ -1,7 +1,7 @@
 <template>
 	<div v-if="url" @click="close">
 			<lightbox-media @click.stop.prevent v-if="loaded" :medium="medium" :key="medium"></lightbox-media>
-			<lightbox-overlay v-on:like="like" v-on:new-tag="addTag" :medium="medium" :user="user" v-if="loaded"></lightbox-overlay>
+			<lightbox-overlay id="lightbox-overlay" v-on:like="like" v-on:new-tag="addTag" :medium="medium" :user="user" v-if="loaded"></lightbox-overlay>
 	</div>
 	</template>
 
@@ -53,7 +53,7 @@ export default {
 			else
 				return undefined
 		},
-		
+
 		addTag(tag) {
 			if(this.store.state.index !== false) {
 				let url = this.store.state.medias[this.store.state.index]
@@ -72,7 +72,6 @@ export default {
 				}, response => console.log(response))
 			}
 		},
-
 		close() {
 			this.store.close()
 		}

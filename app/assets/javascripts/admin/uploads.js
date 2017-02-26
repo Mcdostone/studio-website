@@ -1,7 +1,8 @@
+require('materialize-css')
 var Dropzone = require('dropzone')
 Dropzone.autoDiscover = false
+let AUTH_TOKEN = $('meta[name="csrf-token"]').attr('content')
 
-var progress = require('../channels/upload_progress')
 Dropzone.prototype.getActiveFiles = function() {
 	var file, _i, _len, _ref, _results;
 	_ref = this.files;
@@ -13,8 +14,13 @@ Dropzone.prototype.getActiveFiles = function() {
 	return _results;
 }
 
-
-var uploads = function(form, action, submit) {
+var uploads = (function() {
+	let form = $('form')
+	let action = form.attr('action')
+	let nbFiles = 0
+	let submit = $('.btn')
+	let progressBarContainer = ''
+	let parallelUploads = 100
 	let filesUploaded = 0
 	let percentUpload = 0
 	let progressBar = $('<div/>')
@@ -23,16 +29,41 @@ var uploads = function(form, action, submit) {
 	let desc = $('<span/>')
 	let studioDropzone = undefined
 
+	let initDropzone = function() {
+		studioDropzone = new Dropzone('div#studio-dropzone', {
+			url: action,
+			autoProcessQueue: false,
+			uploadMultiple: true,
+			maxFiles: parallelUploads,
+			dictDefaultMessage: 'Uploader des media',
+			paramName: 'admin_upload[media]',
+			addRemoveLinks: true,
+			parallelUploads: parallelUploads,
+			acceptedFiles: 'image/*,audio/*,application/pdf,.CR2',
+			maxFilesize: 100,
+			params:{
+				'authenticity_token':  AUTH_TOKEN
+			},
+			init: function() {
+				this.on("sending", (file, xhr, formData) => {
+		 			formData.append('admin_upload[type_id]', $('#upload_type_id').val())
+		 			formData.append('admin_upload[event_id]', $('#upload_event_id').val())
+				}
+			)},
+			successmultiple: (data,response) => {}
+		})
+	}
+
 	return {
 		getDropzone: function() {
 			return studioDropzone
 		},
 
 		refresh: function() {
-  			p1 = Math.floor((100 * filesUploaded / nbFiles) / 2)
-    		p2 = Math.floor(percentUpload/ 2)
+  			let p1 = Math.floor((100 * filesUploaded / nbFiles) / 2)
+    		let p2 = Math.floor(percentUpload/ 2)
 
-    		percentValue = p1 + p2 > 100 ? 100 : p1 + p2
+    		let percentValue = p1 + p2 > 100 ? 100 : p1 + p2
     		uploads.setProgressBar(percentValue)
     		percent.text(percentValue + '%')
     		if(nbFiles == filesUploaded)
@@ -81,6 +112,7 @@ var uploads = function(form, action, submit) {
 			progressBarContainer.hide()
 			progressBarContainer.insertAfter(document.body)
 
+			initDropzone()
 
 			studioDropzone.on('completemultiple', function(files) {
 				if(studioDropzone.getQueuedFiles().length > 0)
@@ -129,40 +161,17 @@ var uploads = function(form, action, submit) {
 					close.addClass('invisible')
 					e.preventDefault()
 					studioDropzone.processQueue()
+					console.log(form)
 				}
 			})
 		}
 	}
-}
+})()
 
 
 $(function() {
-	let form = $('form')
-	let action = form.attr('action')
-	let nbFiles = 0
-	let parallelUploads = 100
-	let AUTH_TOKEN = $('meta[name="csrf-token"]').attr('content')
-
-	let studioDropzone = new Dropzone('div#studio-dropzone', {
-		url: action,
-		autoProcessQueue: false,
-		uploadMultiple: true,
-		maxFiles: parallelUploads,
-		dictDefaultMessage: 'Uploader des fichiers',
-		paramName: 'admin_upload[media]',
-		addRemoveLinks: true,
-		parallelUploads: parallelUploads,
-		acceptedFiles: 'image/*,audio/*,application/pdf,.CR2',
-		maxFilesize: 100,
-		params:{  'authenticity_token':  AUTH_TOKEN },
-		init: function() {
-			this.on("sending", (file, xhr, formData) => {
-				formData.append('admin_upload[type_id]', $('#upload_type_id').val())
-				formData.append('admin_upload[event_id]', $('#upload_event_id').val())
-			}
-		)},
-		successmultiple: (data,response) => {}
-	})
-
-	uploads(form, action, $('button[type="submit"]')).init()
+	$('select').material_select();
+	uploads.init()
+	var channel = require('../channels/upload_progress')
+	channel.init(uploads)
 })

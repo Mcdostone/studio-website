@@ -39,6 +39,10 @@
 
 
 @media screen and (max-width: 600px) {
+	footer .container .row {
+		margin: 0;
+	}
+
 	footer.footer {
 		width: 100%;
 		margin: 0;

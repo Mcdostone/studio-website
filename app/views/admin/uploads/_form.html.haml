@@ -11,7 +11,6 @@
   %div#media.col.s12
     %h2 Upload de médias
     = form_for [:admin, @upload], multipart: true do |f|
-
       %div.input-field
         = f.select :event_id, options_from_collection_for_select(@events, :id, :name), {}, {autofocus: 'autofocus'}
         = label_tag 'Evénement:'
@@ -23,7 +22,9 @@
       %div.input-field
         %div{:id => 'studio-dropzone', :class => 'dropzone'}
 
-      %button.btn.waves-effect.waves-light#submit-media{type: 'submit'}
+      %progress-bar{":form" => "form", ":dropzone" => "dropzone", ':sending' => 'submit'}
+
+      %button.btn.waves-effect.waves-light#submit-media{type: 'submit', "@click.prevent.stop" => 'ff'}
         Uploader
         %i.material-icons.right
 

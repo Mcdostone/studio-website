@@ -2,7 +2,7 @@
 	<div @click.stop >
 		<div v-show="loading" class="loading" :id="loadingIcon"></div>
 		<transition name="lightbox-fade">
-			<img :src="src" :style="style" :key="src">
+			<img :src="src" :style="style" :key="src" />
 		</transition>
 	</div>
 </template>

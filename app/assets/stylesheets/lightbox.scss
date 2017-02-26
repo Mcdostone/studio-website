@@ -1,5 +1,7 @@
 $loading-icon-size: 		200px;
 $text-color-tag: 						rgb(180,180,180);
+$background-panel: 					rgba(0,0,0,0.7);
+$background-active: 				rgba(60,60,60,1);
 
 #lightbox {
 	z-index: 999;
@@ -130,21 +132,25 @@ $text-color-tag: 						rgb(180,180,180);
 
 
 #lightbox .lightbox-active {
-	background-color: rgba(50,50,50,1);
+	background-color: $background-active;
 	color: white;
 	@include transition-duration(0.3s);
+}
+
+#lightbox #lightbox-overlay {
+	z-index: 30;
 }
 
 #lightbox #lightbox-toolbar {
 	position: absolute;
 	height: auto;
 	display: flex;
-	justify-content: flex-start;
+	justify-content: center;
 	width: 100%;
+	background-color: $background-panel;
 	top: 0;
 	left: 0;
-	padding: 20px;
-	padding-top: $nav-height + 10px;
+	padding: 10px;
 	z-index: 10;
 
 
@@ -157,7 +163,7 @@ $text-color-tag: 						rgb(180,180,180);
 		color: rgb(200,200,200);
 
 		&:hover {
-			background-color: rgba(50,50,50,1);
+			background-color: $background-active;
 			color: white;
 			@include transition-duration(0.3s);
 
@@ -205,7 +211,7 @@ $text-color-tag: 						rgb(180,180,180);
 	z-index: 12;
 	bottom: 0;
 	min-width: 100%;
-	background: rgba(0,0,0,0.8);
+	background: $background-panel;
 
 	input {
 		color: white;

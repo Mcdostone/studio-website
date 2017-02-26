@@ -19,7 +19,8 @@ export default {
 	data: function() {
 			return {
 				tags: false,
-				tagguer: false
+				tagguer: false,
+				timer: undefined
 			}
 	},
 	props: {
@@ -32,6 +33,22 @@ export default {
 		lightboxTags,
 		lightboxTagsInput
 	},
+	mounted() {
+		this.listener = (e) => {
+			if(this.timer) {
+				clearTimeout(this.timer)
+				this.timer = 0
+			}
+			$('#lightbox-overlay').fadeIn()
+			this.timer = setTimeout(function() {
+				$('#lightbox-overlay').fadeOut()
+			}, 3000)
+		}
+		window.addEventListener('mousemove', this.listener)
+	},
+	destroyed() {
+		window.removeEventListener('mousemove', this.listener)
+	},
 	methods: {
 		toggleTags() { this.tags = !this.tags },
 		toggleTagguer() {
@@ -42,6 +59,14 @@ export default {
 			this.tagguer = false
 	 	},
 		like() {  this.$emit('like')  }
+	},
+	animateOverlay(e) {
+		e.preventDefault()
+		clearTimeout(this.timer);
+		$('#lightbox-overlay').fadeIn()
+		this.timer = setTimeout(function() {
+			$('#lightbox-overlay').fadeOut()
+		}, 5000)
 	}
 }
 </script>

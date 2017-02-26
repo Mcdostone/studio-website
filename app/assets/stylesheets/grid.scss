@@ -92,7 +92,7 @@ $size: 10%;
 }
 
 @media screen and (max-width: 674px) {
-	.item-overlay:after { background: transparent;}
+	.item-overlay.item-medium:after {background: transparent;}
 	.item-overlay:hover:after { background: $overlay; }
 	.item {width: 50%; }
 }

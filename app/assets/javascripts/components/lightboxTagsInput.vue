@@ -31,7 +31,7 @@ export default {
 		$('.chips').on('chip.add', (e, chip) => {
 			this.$emit('new-tag', chip)
 		})
-		//$('.chips input').trigger('focus')
+		$('.chips input').trigger('focus')
 	}
 }
 </script>

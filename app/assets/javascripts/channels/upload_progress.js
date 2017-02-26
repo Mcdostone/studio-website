@@ -1,6 +1,9 @@
-module.exports = function(uploads) {
+var ActionCable = require('actioncable')
+
+module.exports = (function() {
   let finished = false
   let url = ''
+  let App = {}
 
   return {
     isFinished: function() {
@@ -11,7 +14,8 @@ module.exports = function(uploads) {
       return url
     },
 
-    init: function() {
+    init: function(uploads) {
+      App.cable = ActionCable.createConsumer();
       App.cable.subscriptions.create("UploadProgressChannel", {
         connected: function() {
         },
@@ -28,7 +32,7 @@ module.exports = function(uploads) {
               uploads.increaseNbFilesUploaded()
               break
             case 'end':
-              if(App.uploads.getDropzone().getQueuedFiles().length > 0)
+              if(uploads.getDropzone().getQueuedFiles().length > 0)
                 loads.desc('Upload sur le serveur TN.net')
               else {
                 finished = true
@@ -41,4 +45,4 @@ module.exports = function(uploads) {
       })
     }
   }
-}
+})()
