@@ -84,9 +84,9 @@ $link-color: 						color("light-blue", "darken-1") !default;
 	background-size: cover;
 }
 
-#studio .illustration { @include section-illustration("/images/lens.jpg") }
-#works .illustration { @include section-illustration("/images/spiral-film.jpg") }
-#about .illustration { @include section-illustration("/images/film-projector.jpg") }
+/*#studio .illustration { @include section-illustration("/images/lens.jpg") }*/
+#works .description .illustration { @include section-illustration("/images/spiral-film.jpg") }
+#about .description .illustration { @include section-illustration("/images/film-projector.jpg") }
 
 #nothing1 { @include section-illustration("/images/nothing1.gif") }
 #nothing2 { @include section-illustration("/images/nothing2.gif") }
