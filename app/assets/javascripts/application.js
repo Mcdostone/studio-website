@@ -8,5 +8,3 @@ require('./navbar')
 $(document).ready(function(){
   $('.parallax').parallax()
 })
-
-//require('./cable')

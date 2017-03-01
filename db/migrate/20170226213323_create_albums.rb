@@ -11,6 +11,5 @@ class CreateAlbums < ActiveRecord::Migration[5.0]
     end
     rename_column :media, :event_id, :album_id
     rename_column :uploads, :event_id, :album_id
-
   end
 end

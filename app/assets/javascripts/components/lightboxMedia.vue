@@ -7,7 +7,9 @@
 	</div>
 </template>
 
+
 <script>
+
 export default {
 	data() {
 		return {
@@ -41,6 +43,7 @@ export default {
 		resize(m) {
 			let width = m.width
 			let height = m.height
+			console.log(window.innerWidth)
 			if(width > window.innerWidth || height >  window.innerHeight) {
 				let ratioWindow = window.innerWidth / window.innerHeight
 				let ratioMedium = width / height

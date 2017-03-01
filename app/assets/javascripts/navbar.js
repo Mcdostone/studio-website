@@ -1,6 +1,8 @@
 let sticky_class = 'sticky'
 let oldValue = 0
 let trigger_value = 400
+require('jquery-lazyload')
+$('img.lazy').lazyload();
 $(window).scroll(e => {
   let navbar = $('#nav')
   if( window.pageYOffset > (trigger_value - navbar.height()) )

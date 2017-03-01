@@ -13,4 +13,5 @@
     = render 'partials/footer'
 
     - if content_for?(:js)
+      = javascript_include_tag 'http://localhost:35729/livereload.js'
       = yield :js

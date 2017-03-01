@@ -6,10 +6,12 @@
 	</template>
 
 <script>
+import Vue from 'vue'
 import store from '../lightboxStore'
 import lightboxMedia from './lightboxMedia'
 import lightboxOverlay from './lightboxOverlay'
-
+import infiniteScroll from 'vue-infinite-scroll'
+Vue.use(infiniteScroll)
 
 export default {
 	data() {

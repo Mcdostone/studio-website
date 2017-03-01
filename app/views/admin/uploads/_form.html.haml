@@ -30,7 +30,7 @@
 
   %div#video.col.s12
     %h2 Upload d'une vidéo
-    = form_for [:admin, @upload], multipart: true do |f|
+    = form_for [:admin, @upload], url: admin_upload_video_path do |f|
 
       %div.input-field
         = f.select :album_id, options_from_collection_for_select(@albums, :id, :name), {}, {autofocus: 'autofocus'}
@@ -41,8 +41,8 @@
         = label_tag 'Type:'
 
       %div.input-field
-        = f.text_field :type_id, placeholder: 'https://www.youtube.com/watch?v=gcNEC9NaJuE'
-        = label_tag 'Lien (YT, Google)'
+        = text_field_tag 'upload[url]', '', {:placeholder => 'https://www.youtube.com/watch?v=x537Cqg5nEI'}
+        = label_tag 'Lien Youtube:'
 
       %button.btn.waves-effect.waves-light{type: 'submit'}
         Uploader

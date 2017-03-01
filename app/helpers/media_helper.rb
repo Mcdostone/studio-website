@@ -5,6 +5,10 @@ module MediaHelper
 	end
 
 	def url_thumbnail medium
-		medium ? medium.file.url(:thumb) : '/images/film-projector.jpg'
+		if medium.url
+			medium.url
+		else
+			medium ? medium.file.url(:thumb) : '/images/film-projector.jpg'
+		end
 	end
 end

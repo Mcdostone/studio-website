@@ -47,9 +47,9 @@ class Admin::UploadsController < AdminController
     type = Type.find(upload_params[:type_id])
     album = Album.find(upload_params[:album_id])
     @upload = Upload.new(type: type, album: album, user: @current_user)
-
-    @upload.media.create(type: type, album: album, file: m, upload: @upload)
-
+    if @upload.save
+      @upload.media.create(type: type, album: album, url: upload_params[:url], upload: @upload)
+    end
     redirect_to admin_uploads_path
   end
 
@@ -65,13 +65,13 @@ class Admin::UploadsController < AdminController
 
     def admin_upload_params
       params.require(:admin_upload).tap do |whitelisted|
-        whitelisted[:albumsid] = params[:admin_upload][:albumsid]
+        whitelisted[:album_id] = params[:admin_upload][:album_id]
         whitelisted[:type_id] = params[:admin_upload][:type_id]
         whitelisted[:media] = params[:admin_upload][:media].values
       end
     end
 
     def admin_upload_video_params
-      params.require(:admin_upload).permit(:albumsid, :type_id, :video)
+      params.require(:upload).permit(:album_id, :type_id, :url)
     end
 end

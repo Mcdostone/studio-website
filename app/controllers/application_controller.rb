@@ -5,8 +5,8 @@ class ApplicationController < ActionController::Base
 
   def current_user
   	begin
-  		@current_user = User.first
-  		#@current_user = User.find(session[:user_id])
+  		#@current_user = User.first
+  		@current_user = User.find(session[:user_id])
     rescue ActiveRecord::RecordNotFound => e
       nil
     end

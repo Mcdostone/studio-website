@@ -2,7 +2,6 @@ Rails.application.routes.draw do
 
   resources :albums
   resources :sessions, only: [:new, :create]
-  #resources :likes
   root 'public#index'
 
   get "/auth/google_oauth2", as: 'login'
@@ -33,7 +32,7 @@ Rails.application.routes.draw do
     resources :types
     resources :tags, only: [:index, :destroy]
     resources :users, only: [:index, :edit, :update]
-    resources :uploads, only: [:index, :new, :show, :create, :destroy]
+    resources :uploads, only: [:index, :new, :show, :create, :destroy, :video]
 
     resources :media, only: [:index, :edit, :update, :destroy] do
       member do

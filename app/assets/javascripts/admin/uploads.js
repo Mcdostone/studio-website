@@ -15,10 +15,10 @@ Dropzone.prototype.getActiveFiles = function() {
 }
 
 var uploads = (function() {
-	let form = $('form')
+	let form = $('#media form')
 	let action = form.attr('action')
 	let nbFiles = 0
-	let submit = $('.btn')
+	let submit = $('#media .btn')
 	let progressBarContainer = ''
 	let parallelUploads = 100
 	let filesUploaded = 0
