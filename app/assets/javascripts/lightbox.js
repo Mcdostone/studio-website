@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import store from './lightboxStore'
-
 Vue.directive('lightbox', {
   bind(el, binding) {
 		let index = store.addMedia(el.getAttribute('href'))
@@ -13,5 +12,4 @@ Vue.directive('lightbox', {
 	unbind(el, binding) {
 		store.remove(el.getAttribute('src'))
 	}
-
 })

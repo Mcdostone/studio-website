@@ -8,42 +8,37 @@ RSpec.describe UsersController, :type => :controller do
     end
 
     describe 'GET #index' do
-      it "should redirect to root path" do
+      it "should redirect to login path" do
         get :index
-        expect(flash.keys).to_not be_empty
-        expect(response).to redirect_to(root_path)
+        expect(response).to redirect_to(login_path)
       end
     end
 
     describe 'GET #show' do
-      it "should redirect to root path" do
+      it "should redirect to login path" do
         get :show, :id => @user.id
-        expect(flash.keys).to_not be_empty
-        expect(response).to redirect_to(root_path)
+        expect(response).to redirect_to(login_path)
       end
     end
 
     describe 'GET #show' do
-      it 'should redirect to root path' do
+      it 'should redirect to login path' do
         get :show, :id => @user.id
-        expect(flash.keys).to_not be_empty
-        expect(response).to redirect_to(root_path)
+        expect(response).to redirect_to(login_path)
       end
     end
 
     describe 'GET #edit' do
-      it 'should redirect to root path' do
+      it 'should redirect to login path' do
         get :show, :id => @user.id
-        expect(flash.keys).to_not be_empty
-        expect(response).to redirect_to(root_path)
+        expect(response).to redirect_to(login_path)
       end
     end
 
     describe 'PUT #update' do
-      it 'should redirect to root path' do
+      it 'should redirect to login path' do
         post :update, :id => @user.id
-        expect(flash.keys).to_not be_empty
-        expect(response).to redirect_to(root_path)
+        expect(response).to redirect_to(login_path)
       end
     end
 

@@ -1,45 +1,9 @@
+= content_for :js do
+  = javascript_include_tag *webpack_asset_paths('init-lazy-loading')
+
 %div.section-admin
   %h2 Liste des Médias
 
   = link_to 'Importer des médias', new_admin_upload_path, class: 'waves-effect waves-light btn'
 
-  %table.striped.bordered.highlight#table-media
-    %thead
-      %tr
-        %th ID
-        %th Thumbnail
-        %th.useless-column Type
-        %th.useless-column Album
-        %th.useless-column Upload
-        %th.useless-column Visible
-        %th.useless-column Ajouté
-        %th.useless-column Mis à jour
-        %th.useless-column
-        %th
-        %th
-    %tbody
-      - @media.each do |medium|
-        %tr
-          %td
-            = medium.id
-          %td
-            = link_to image_tag(url_thumbnail(medium), class: 'table-medium'), edit_admin_medium_path(medium)
-          %td.useless-column
-            = medium.type.name if medium.type
-          %td.useless-column
-            = medium.album.name if medium.album
-          %td.useless-column
-            -#= link_to(medium.upload.id, show_admin_upload_path(medium.upload)) if medium.upload
-            = link_to(medium.upload.id, admin_upload_path(medium.upload)) if medium.upload
-          %td.useless-column
-            = 'non' unless medium.visible
-          %td.useless-column
-            = format_date(medium.created_at)
-          %td.useless-column
-            = format_date(medium.updated_at)
-          %td.useless-column
-            = link_to 'Afficher', medium_path(medium)
-          %td
-            = link_to 'Modifier', edit_admin_medium_path(medium)
-          %td
-            = link_to 'Supprimer', admin_medium_path(medium), method: :delete, data: { confirm: 'Voulez vous supprimer ce média ?'}
+  %table-media

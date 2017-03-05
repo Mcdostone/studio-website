@@ -26,6 +26,9 @@ export default {
 				this.next()
 		}
 	},
+	destroyed() {
+		document.onkeydown = null
+	},
 	methods: {
 		close() {
 			this.store.close()

@@ -15,14 +15,25 @@ Rails.application.routes.draw do
   resources :users, only: [:index, :show, :edit, :update]
   resources :albums, only: [:index, :show]
   resources :types, only: [:index, :show]
+  resources :media, only: [:index]
 
-  resources :media, only: [:index, :show] do
-    member do
-      post '/tag', to: 'media#tag', as: "tag"
-      get '/report', to: 'reports#new', as: "report"
-      post '/report', to: 'reports#create'
-      post '/like', to: 'media#like'
+  namespace :api do
+    namespace :admin do
+      resources :uploads, only: [:show]
+      resources :media, only: [:index]
     end
+
+    resources :media, only: [:index, :show] do
+      member do
+        post '/tag', to: 'media#tag', as: "tag"
+        get '/report', to: 'reports#new', as: "report"
+        post '/report', to: 'reports#create'
+        post '/like', to: 'media#like'
+      end
+    end
+    resources :albums, only: [:show]
+    resources :types, only: [:show]
+    resources :tags, only: [:show]
   end
 
   get '/feeds', to: 'activities#index'

@@ -3,11 +3,13 @@ require "rails_helper"
 RSpec.describe User, :type => :model do
 
 	before do
+		Rails.application.load_seed
 		@user = FactoryGirl.create(:user)
 	end
 	subject { @user }
 
 	it "should be a viewer " do
+		puts @user.inspect
 		expect(@user.viewer?).to be true
 		expect(@user.author?).to be false
 		expect(@user.admin?).to be false
@@ -54,8 +56,8 @@ RSpec.describe User, :type => :model do
 		end
 
 		it 'should be a author' do
-			expect(@user.viewer?).to be true
 			expect(@user.author?).to be true
+			expect(@user.viewer?).to be true
 			expect(@user.admin?).to be false
 		end
 	end

@@ -43,7 +43,7 @@ export default {
 			this.timer = setTimeout(() => {
 				if(this.tagguer == false)
 					$('#lightbox-overlay').fadeOut()
-			}, 3000)
+			}, 2000)
 		}
 		window.addEventListener('mousemove', this.listener)
 	},
@@ -67,7 +67,7 @@ export default {
 		$('#lightbox-overlay').fadeIn()
 		this.timer = setTimeout(function() {
 			$('#lightbox-overlay').fadeOut()
-		}, 5000)
+		}, 4000)
 	}
 }
 </script>

@@ -13,15 +13,21 @@ $size: 10%;
 	img { object-fit: cover; }
 }
 
+@keyframes fadeIn {
+    0%   { opacity: 0; }
+		100%   { opacity: 1; }
+}
+
 .item {
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	float: left;
-	width: 100%;
+	width: 10%;
 	height: auto;
 	margin: 0;
-	padding: 0;
+	padding: 2px;
+	//padding: 0;
 	@include box-sizing(border-box);
 	background-color: transparent;
 	position: relative;
@@ -32,11 +38,11 @@ $size: 10%;
 	@include transition-duration(0.2s);
 	position: absolute;
 	content: '';
-	top: 0;
-	left: 0;
-	height: 100%;
-	width: 100%;
-	background: rgba(0,0,0,0.4);
+	top: 2px;
+	left: 2px;
+	bottom: 2px;
+	right: 2px;
+	background: rgba(0,0,0,0.25);
 }
 .item-overlay:hover:after {
 	@include transition-duration(0.3s);
@@ -49,6 +55,10 @@ $size: 10%;
 	height: 200px;
 }
 
+.item-medium {
+	animation-name: fadeIn;
+	animation-duration: 3s;
+}
 
 .item-infos {
 	position: absolute;
@@ -86,6 +96,11 @@ $size: 10%;
 	}
 }
 
+@media screen and (max-width: 1000px) {
+	.item {
+		width: 20%;
+	}
+}
 @media screen and (max-width: 800px) {
 	.item-infos .item-name { font-size: 1.5em; }
 	.item-infos .item-date { font-size: 0.7em; }
@@ -98,7 +113,9 @@ $size: 10%;
 }
 
 @media screen and (max-width: 449px) {
-	.item {width: 33.333%;
+	.item {width: 33.333%; }
+	.item-medium {
+		padding: 1px;
 	}
 
 	.item-user {

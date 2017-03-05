@@ -4,6 +4,7 @@ class Medium < ApplicationRecord
 	belongs_to :upload
 
 	has_many :likes
+
 	has_many :reports,
 		dependent: :destroy
 

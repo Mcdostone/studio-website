@@ -9,18 +9,16 @@ RSpec.describe MediaController, :type => :controller do
     subject { @type }
 
     describe 'GET #index' do
-      it "should redirect to root path" do
+      it "should redirect to login path" do
         get :index
-        expect(flash.keys).to_not be_empty
-        expect(response).to redirect_to(root_path)
+        expect(response).to redirect_to(login_path)
       end
     end
 
     describe 'GET #show' do
-      it "should redirect to root path" do
+      it "should redirect to login path" do
         get :show, :id => @type.id
-        expect(flash.keys).to_not be_empty
-        expect(response).to redirect_to(root_path)
+        expect(response).to redirect_to(login_path)
       end
     end
 end
@@ -45,10 +43,12 @@ end
     end
 
     describe 'GET #show' do
-      it "should return the type" do
-				get :show, { :id => @medium.id }, { "Accept" => "application/json" }
-				expect(assigns(:medium)).to eq @medium
-      end
+      it { should respond_with :not_found }
+
+      #it "should return the type" do
+      #	get :show, { :id => @medium.id }, { "Accept" => "application/json" }
+			#	expect(assigns(:medium)).to eq @medium
+        #end
     end
 
     describe 'GET #edit' do

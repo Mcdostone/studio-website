@@ -4,23 +4,21 @@ RSpec.describe TypesController, :type => :controller do
 
   context 'not connected' do
     before do
-      @type = FactoryGirl.create(:user)
+      @type = FactoryGirl.create(:type)
     end
     subject { @type }
 
     describe 'GET #index' do
-      it "should redirect to root path" do
+      it "should redirect to login path" do
         get :index
-        expect(flash.keys).to_not be_empty
-        expect(response).to redirect_to(root_path)
+        expect(response).to redirect_to(login_path)
       end
     end
 
     describe 'GET #show' do
-      it "should redirect to root path" do
+      it "should redirect to login path" do
         get :show, :id => @type.id
-        expect(flash.keys).to_not be_empty
-        expect(response).to redirect_to(root_path)
+        expect(response).to redirect_to(login_path)
       end
     end
 end

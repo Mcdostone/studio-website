@@ -1,9 +1,4 @@
 = content_for :js do
   = javascript_include_tag *webpack_asset_paths('init-lightbox')
 
-%div.grid#container-masonry
-  %lightbox#lightbox
-  - media.each do |medium|
-    - if medium.visible
-      = link_to image_tag(url_thumbnail(medium)), medium_path(medium), {class: 'lazy item item-medium item-overlay col '  + "s#{rand(1..12)}", 'v-lightbox': ''}
-  %div{'v-infinite-scroll': 'loadMore'}
+%media-container

@@ -27,6 +27,7 @@ gem 'omniauth-google-oauth2', '~> 0.4.1'
 gem "font-awesome-rails"
 gem 'compass-rails'
 gem 'acts_as_votable', '~> 0.10.0'
+gem 'kaminari'
 
 gem 'webpack-rails', '~> 0.9.5'
 

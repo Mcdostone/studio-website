@@ -3,7 +3,8 @@ class LightboxStore {
 	constructor() {
 		this.state = {
 			medias: [],
-			index: false
+			index: false,
+			cache: []
 		}
 	}
 
@@ -29,6 +30,24 @@ class LightboxStore {
 
 	previous() {
 		this.state.index = (this.state.index == 0) ? this.state.medias.length - 1 : this.state.index - 1
+	}
+
+	getNextIndex() {
+		return (this.state.index == this.state.medias.length - 1) ? 0 : this.state.index + 1
+	}
+
+	addToCache(id, toCache) {
+			this.state.cache['/api/media/' + id] = toCache
+			console.log(this.state.cache)
+	}
+
+	isCached(url) {
+		return this.state.cache[url] != undefined
+	}
+
+	getMediaFromCache(url) {
+		if(this.isCached(url))
+			return this.state.cache[url]
 	}
 }
 

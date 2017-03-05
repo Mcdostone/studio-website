@@ -1,6 +1,6 @@
 <template>
 	<div @click.stop.prevent>
-		<div class="tool" @click.stop.prevent="like" :class="{'lightbox-active': user.liked == true}">
+		<div class="tool" @click.stop.prevent="like" :class="{'lightbox-active': medium.liked == true}">
 			<i class="fa fa-thumbs-o-up" aria-hidden="true" style="margin-right: 5px;"></i>
 			{{likes()}}
 		</div>
@@ -14,6 +14,9 @@
 			<a @click.stop :href="urlReport()" class="tool">
 				Signaler
 			</a>
+			<a @click.stop v-if="isAdmin()" :href="urlAdmin()" class="tool">
+				Admin
+			</a>
 		</div>
 	</div>
 </template>
@@ -26,8 +29,7 @@ export default {
 		}
 	},
 	props: {
-		medium: undefined,
-		user: undefined
+		medium: undefined
 	},
 	methods: {
 		tags() {
@@ -36,9 +38,16 @@ export default {
 		},
 		tagguer() {  this.$emit('toggle-tagguer') },
 
+		urlAdmin() {
+			if(this.medium)
+				return '/admin/media/' + this.medium.id + '/edit'
+			else
+				return '#'
+		},
+
 		urlReport() {
 			if(this.medium)
-				return '/media/' + this.medium.id + '/report'
+				return '/api/media/' + this.medium.id + '/report'
 			else
 				return '#'
 		},
@@ -51,12 +60,17 @@ export default {
 				return this.medium.liked
 			return false
 		},
+		isAdmin() {
+			if(this.medium)
+				return this.medium.admin
+			return false
+		},
 		likes() {
 			if(this.medium) {
-				if(this.medium.count_likes == 0)
+				if(this.medium.likes == 0)
 					return 'like'
 				else
-					return this.medium.count_likes + (this.medium.count_likes > 1 ? ' likes' : ' like')
+					return this.medium.likes + (this.medium.likes > 1 ? ' likes' : ' like')
 			}
 		}
 	},

@@ -31,7 +31,7 @@ module CarrierWave
     config.aws_authenticated_url_expiration = 20
     config.aws_attributes = {
     expires: 1.week.from_now.httpdate,
-      cache_control: 'max-age=20'
+      cache_control: 'max-age=200'
     }
 
     config.aws_credentials = {

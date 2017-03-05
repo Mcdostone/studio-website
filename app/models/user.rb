@@ -7,7 +7,7 @@ class User < ApplicationRecord
 	mount_uploader :avatar, AvatarUploader
 
 	acts_as_voter
-	
+
 	validates :first_name,
 		presence: true,
 		allow_blank: false
@@ -17,13 +17,15 @@ class User < ApplicationRecord
 		allow_blank: false
 
 	validates :email,
-		presence: true#,
-		#allow_blank: false,
-		#format: { with: /@telecomnancy.net\z/, message: 'Seuls les étudiants de TN.net sont autorisés !'}
+		presence: true,
+		allow_blank: false,
+		uniqueness: true,
+		format: { with: /@telecomnancy.net\z/, message: 'Seuls les étudiants de TN.net sont autorisés !'}
 
   validates :uid,
     presence: true,
-    allow_blank: false
+    allow_blank: false,
+		uniqueness: true
 
   validates :oauth_token,
     presence: true,
@@ -44,25 +46,22 @@ class User < ApplicationRecord
 			#user.id_token = auth.extra.id_token
 			user.oauth_token = auth.credentials.token
 			user.oauth_expires_at = Time.zone.at(auth.credentials.expires_at)
-
 			#if auth.extra.id_info.hd == 'telecomnancy.net'
-				user.save!
-				return user
-		#	end
-		#	return nil
+			user.save!
+			return user
 		end
 	end
 
 	def admin?
-		return (self.authorization ? self.authorization.name == 'admin' : false)
+		return self.authorization.name == 'admin'
 	end
 
 	def author?
-		return (self.authorization ? self.authorization.name == 'author' : false)
+		return self.authorization.name == 'author'|| self.admin?
 	end
 
 	def viewer?
-		return (self.authorization ? self.authorization.name == 'viewer' : true)
+		return true
 	end
 
 	private

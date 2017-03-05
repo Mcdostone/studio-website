@@ -18,6 +18,7 @@ var config = {
     'init-lightbox': 'init-lightbox.js',
     albums: 'admin/albums.js',
     types: 'admin/types.js',
+    'init-lazy-loading': 'admin/init-lazy-loading.js',
     uploads: 'admin/uploads.js',
     reports: 'reports.js',
     admin :'admin/admin.js',
@@ -37,7 +38,10 @@ var config = {
     modulesDirectories: ['node_modules'],
     alias: {
       'jquery': path.join(__dirname, '../node_modules/jquery/dist/jquery.js'),
-      'vue$': 'vue/dist/vue.common.js'
+      'vue$': 'vue/dist/vue.common.js',
+      'eventEmitter/EventEmitter': 'wolfy87-eventemitter',
+      "matches-selector/matches-selector": "desandro-matches-selector",
+      "get-style-property/get-style-property": "desandro-get-style-property"
     }
   },
 
@@ -74,20 +78,20 @@ var config = {
           loader: "imports-loader?$=jquery,jQuery=jquery"
       },
       {
-        test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-        loader:"url?limit=10000&mimetype=application/font-woff"
+          test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+          loader:"url?limit=10000&mimetype=application/font-woff"
       },
       {
-         test: /\.(ttf|eot)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-         loader: "file"
-       },
-       {
-         test: /\.(png|jpg|gif|svg)$/,
-         loader: 'file-loader',
-         options: {
-           name: '[name].[ext]?[hash]'
-         }
-       }
+          test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+          loader: 'file'
+      },
+      {
+          test: /\.(png|jpg|gif|svg)$/,
+          loader: 'file-loader',
+          options: {
+            name: '[name].[ext]?[hash]'
+          }
+      }
     ]
   },
 
@@ -107,7 +111,8 @@ var config = {
         'window.$': 'jquery',
         'window.jQuery': 'jquery',
         Materialize: 'materialize-css',
-        'window.Materialize': 'materialize-css'
+        "window.Materialize": 'materialize-css',
+        'Vel': 'velocity-animate'
     })
  ]
 }
