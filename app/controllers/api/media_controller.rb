@@ -12,13 +12,11 @@ class Api::MediaController < ApiController
 	def like
 		@medium.liked_by @current_user
 		@medium.unliked_by @current_user unless @medium.vote_registered?
-		render 'api/media/show'
 	end
 
 	def tag
 		@medium.tag_list.add(tag_params[:name])
 		@medium.save
-		render 'api/media/show'
 	end
 
 	private

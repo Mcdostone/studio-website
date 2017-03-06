@@ -18,7 +18,7 @@ class AdminController < ApplicationController
 		if(@current_user.author? || @current_user.admin?)
 			true
 		else
-			redirect_to root_path
+			redirect_to hacker_path
 			return
 		end
 	end

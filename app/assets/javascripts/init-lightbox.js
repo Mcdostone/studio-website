@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueResource from 'vue-resource'
-//import lightbox from './lightbox'
+import lightbox from './lightbox'
 import mediaContainer from './components/mediaContainer'
 import infiniteScroll from 'vue-infinite-scroll'
 

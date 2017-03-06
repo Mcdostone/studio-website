@@ -3,11 +3,13 @@ $size: 10%;
 
 .grid {
 	display: flex;
-	width: 100%;
+	width: 70%;
+	margin: 0 auto;
 	flex-wrap: wrap;
 	justify-content: center;
 	align-content: flex-start;
 	color: white;
+//	padding-top: 10px;
 	background-color: transparent;
 	@include box-sizing(border-box);
 	img { object-fit: cover; }
@@ -23,7 +25,7 @@ $size: 10%;
 	justify-content: center;
 	align-items: center;
 	float: left;
-	width: 10%;
+	width: 250px;
 	height: auto;
 	margin: 0;
 	padding: 2px;
@@ -56,6 +58,8 @@ $size: 10%;
 }
 
 .item-medium {
+	width: 20%;
+	max-width: 200px;
 	animation-name: fadeIn;
 	animation-duration: 3s;
 }

@@ -5,6 +5,6 @@ json.tags @medium.tags do |tag|
   json.(tag, :id, :name)
 end
 
-if @current_user.author?
+if @current_user.author? || @current_user.admin?
   json.admin true
 end

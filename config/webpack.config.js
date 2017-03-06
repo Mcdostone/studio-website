@@ -15,6 +15,7 @@ var config = {
   entry: {
     application: 'application.js',
     admin_media: 'admin/media.js',
+    techno: 'techno.js',
     'init-lightbox': 'init-lightbox.js',
     albums: 'admin/albums.js',
     types: 'admin/types.js',
@@ -108,8 +109,10 @@ var config = {
     new webpack.ProvidePlugin({
         $: 'jquery',
         jQuery: 'jquery',
+        jquery: 'jquery',
         'window.$': 'jquery',
         'window.jQuery': 'jquery',
+        'window.jquery': 'jquery',
         Materialize: 'materialize-css',
         "window.Materialize": 'materialize-css',
         'Vel': 'velocity-animate'

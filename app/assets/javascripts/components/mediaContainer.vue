@@ -5,8 +5,7 @@
 	<a :href="'/api/media/' + m.id" v-lightbox v-for="m in media" v-if="m.file.thumb.url != undefined" class="item item-medium item-overlay">
 		<img :src="m.file.thumb.url" alt="">
 	</a>
-
-	<div id="trigger-loading" infinite-scroll-distance="50" infinite-scroll-listen-for-event v-infinite-scroll="loadMore"></div>
+	<div id="trigger-loading" infinite-scroll-distance="100" infinite-scroll-listen-for-event v-infinite-scroll="loadMore"></div>
 </div>
 
 </template>

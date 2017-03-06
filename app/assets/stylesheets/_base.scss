@@ -91,6 +91,9 @@ $link-color: 						color("light-blue", "darken-1") !default;
 #nothing2 { @include section-illustration("/images/nothing2.gif") }
 #nothing3 { @include section-illustration("/images/nothing3.gif") }
 #nothing4 { @include section-illustration("/images/nothing4.gif") }
+#nothing5 {
+	background: url("/images/nothing5.gif") top fixed;
+}
 
 // ----------------------------------------------------
 // -- Reset of default values

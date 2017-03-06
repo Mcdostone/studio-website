@@ -38,6 +38,10 @@ $card-padding: 10px;
   }
 }
 
+.section-admin .profile-about *{
+  color: black;
+}
+
 .errors {
   padding: 10px;
   margin: 0 0 1rem 0;
@@ -317,5 +321,14 @@ $card-padding: 10px;
 	}
 }
 
+.report {
+  margin: 10px 0;
+}
+.report .message {
+  font-style: italic;
+  text-align: center;
+  font-size: 1.3em;
+  font-weight: 300;
+}
 
 @import "responsive/admin";

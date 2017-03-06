@@ -43,8 +43,8 @@ RSpec.describe User, :type => :model do
 		end
 
 		it 'should be a admin' do
-			expect(@user.viewer?).to be true
-			expect(@user.author?).to be true
+			expect(@user.viewer?).to be false
+			expect(@user.author?).to be false
 			expect(@user.admin?).to be true
 		end
 	end
@@ -57,7 +57,7 @@ RSpec.describe User, :type => :model do
 
 		it 'should be a author' do
 			expect(@user.author?).to be true
-			expect(@user.viewer?).to be true
+			expect(@user.viewer?).to be false
 			expect(@user.admin?).to be false
 		end
 	end

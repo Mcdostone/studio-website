@@ -36,6 +36,8 @@ export default {
 				this.fetch(url)
 				return url
 			}
+			else
+				this.medium = undefined
 		}
 	},
 	methods: {
@@ -50,20 +52,23 @@ export default {
 		addTag(tag) {
 			if(this.store.state.index !== false) {
 				let url = this.store.state.medias[this.store.state.index]
-				this.postData(url, '/tag', {tag: {name: tag.tag}})
+				this.$http.post(url + '/tag', {tag: {name: tag.tag}}).then(response => {
+					this.medium.tags = response.body.tags
+					console.log(response)
+				}, response => console.log(response))
 			}
-		},
-		postData(media, action, params = {}) {
-			this.$http.post(media + action, params).then(response =>  this.medium. response.body
-			, response => console.log(response))
 		},
 		like() {
 			if(this.store.state.index !== false) {
 				let url = this.store.state.medias[this.store.state.index]
-				this.postData(url, '/like')
+				this.$http.post(url + '/like', {}).then(response => {
+					this.medium.likes = response.body.likes
+					this.medium.liked = response.body.liked
+				}, response => console.log(response))
 			}
 		},
 		close() {
+			this.medium = undefined
 			this.store.close()
 		}
 	}

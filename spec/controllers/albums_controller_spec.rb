@@ -53,10 +53,7 @@ RSpec.describe AlbumsController, type: :controller do
   end
 
   describe "GET #new" do
-    it "assigns a new album as @album" do
-      get :new, params: {}, session: valid_session
-      expect(assigns(:album)).to be_a_new(Album)
-    end
+
   end
 
   describe "GET #edit" do

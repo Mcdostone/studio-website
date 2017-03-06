@@ -18,7 +18,7 @@ RSpec.describe MediaController, :type => :controller do
     describe 'GET #show' do
       it "should redirect to login path" do
         get :show, :id => @type.id
-        expect(response).to redirect_to(login_path)
+        expect(response).to redirect_to(not_found_path)
       end
     end
 end

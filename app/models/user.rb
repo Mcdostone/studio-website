@@ -19,8 +19,8 @@ class User < ApplicationRecord
 	validates :email,
 		presence: true,
 		allow_blank: false,
-		uniqueness: true,
-		format: { with: /@telecomnancy.net\z/, message: 'Seuls les étudiants de TN.net sont autorisés !'}
+		uniqueness: true#,
+		#format: { with: /@telecomnancy.net\z/, message: 'Seuls les étudiants de TN.net sont autorisés !'}
 
   validates :uid,
     presence: true,
@@ -57,11 +57,11 @@ class User < ApplicationRecord
 	end
 
 	def author?
-		return self.authorization.name == 'author'|| self.admin?
+		return self.authorization.name == 'author'
 	end
 
 	def viewer?
-		return true
+		return self.authorization ? self.authorization.name == 'viewer' : true
 	end
 
 	private

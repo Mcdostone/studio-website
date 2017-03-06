@@ -12,6 +12,7 @@ class UsersController < ApplicationController
 	end
 
 	def show
+		@media = @user.votes.size
 	end
 
 	def edit

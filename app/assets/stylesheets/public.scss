@@ -163,14 +163,74 @@ section {
 		width: 70%;
 		margin-left: 15%;
 		font-weight: 300;
-		font-size: 4em;
+		font-size: 3em;
 		line-height: 1;
 		color: white;
-		top: 50%;
-		@include translate(0, -50%);
+		top: 45%;
+//		@include translate(0, -50%);
 		text-align: center;
 	}
 }
 
+@keyframes techno {
+  from {
+    transform: scale3d(1, 1, 1);
+  }
 
+	20% {
+		transform: scale3d(1, 1, 1);
+	}
+
+  50% {
+    transform: scale3d(1.2, 1.2, 1.2);
+  }
+
+  to {
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+.nothing .techno {
+	animation-iteration-count: infinite;
+	animation-duration: 0.377358491s;
+	animation-name: techno;
+}
+
+#countdown {
+	overflow: hidden;
+}
+
+#countdown .nothing:before {
+	background-color: rgba(0,0,0,0.8)
+}
+
+#countdown .nothing #cuming {
+	font-size: 4em;
+	font-family: "Comic Sans MS", "Comic Sans", cursive;
+}
+
+.countdown-image {
+	position: fixed;
+	width: 250px;
+	height: auto;
+}
+
+.rotate-lol {
+	animation-name: loading;
+	animation: loading 2s linear 0s infinite normal;
+}
+
+.nothing iframe, .nothing .iframe-overlay {
+	position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.nothing .iframe-overlay {
+	background: rgba(0,0,0, 0.5);
+	margin: 0;
+}
 @import "responsive/public";

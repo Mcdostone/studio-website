@@ -15,7 +15,7 @@
 				Signaler
 			</a>
 			<a @click.stop v-if="isAdmin()" :href="urlAdmin()" class="tool">
-				Admin
+				Modifier
 			</a>
 		</div>
 	</div>
@@ -47,7 +47,7 @@ export default {
 
 		urlReport() {
 			if(this.medium)
-				return '/api/media/' + this.medium.id + '/report'
+				return '/media/' + this.medium.id + '/report'
 			else
 				return '#'
 		},

@@ -1,0 +1,10 @@
+= content_for :js do
+  = javascript_include_tag *webpack_asset_paths('techno')
+
+%div.nothing{:id => "nothing#{rand(1..5)}"}
+  -#%iframe{:src => "https://www.youtube.com/embed/x537Cqg5nEI?controls=0&showinfo=0&rel=0&autoplay=1&loop=1",
+  -#:frameborder => "0", :autoplay => '', :allowfullscreen => ''}
+  %div#player-countdown
+  %div.iframe-overlay
+  %div#cuming
+    Studio is coming ...

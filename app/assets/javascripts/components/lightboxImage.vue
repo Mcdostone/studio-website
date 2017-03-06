@@ -1,6 +1,6 @@
 <template>
 	<div @click.stop >
-		<img :src="src" :style="style"/>
+		<img :src="src"  :key="src" :style="style"/>
 	</div>
 </template>
 

@@ -1,6 +1,6 @@
 <template>
 	<div @click.stop >
-		<div v-show="false" class="loading" :id="loadingIcon"></div>
+		<div v-show="false" class="loading" :key="medium" :id="loadingIcon"></div>
 		<lightbox-image :image="medium"></lightbox-image>
 	</div>
 </template>

@@ -52,14 +52,17 @@ export default {
 	},
 	methods: {
 		toggleTags() { this.tags = !this.tags },
+
 		toggleTagguer() {
 			this.tagguer = !this.tagguer
 		},
+
 		newTag(tag) {
 			this.$emit('new-tag', tag)
 			this.tagguer = false
 	 	},
-		like() {  this.$emit('like')  }
+
+		like() {  this.$emit('like')  },
 	},
 	animateOverlay(e) {
 		e.preventDefault()
